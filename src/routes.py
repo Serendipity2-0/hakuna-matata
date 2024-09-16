@@ -5,7 +5,7 @@ from fastapi import File, UploadFile
 from server import APIRouter
 
 from .constants import Department, KnowledgePattern
-from .views import MeetingProcessor
+from .views import FetchWisdomFile, MeetingProcessor
 
 meeting_router = APIRouter(prefix="/meeting", tags=["meeting"])
 
@@ -30,4 +30,4 @@ async def transcribe_meeting(
 
 @meeting_router.get("/wisdom-file/{file_path}")
 async def download_file(file_path: str):
-    return await MeetingProcessor().get_wisdom_file(file_path)
+    return await FetchWisdomFile().get(file_path)

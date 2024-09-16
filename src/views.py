@@ -25,10 +25,6 @@ class MeetingProcessor:
     audio_file: UploadFile
     audio_file_path: str = field(default=None, init=False)
 
-    async def _schedule_file_deletion(self):
-        await asyncio.sleep(20)
-        os.remove(self.audio_file_path)
-
     async def _save_audio_file(self) -> bool:
         department_dir = self.department.value.lower().replace(" ", "_")
         date_dir = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -126,7 +122,23 @@ class MeetingProcessor:
             status_code=400,
         )
 
-    async def get_wisdom_file(self, file_path: str):
+
+class FetchWisdomFile:
+    async def _schedule_file_deletion(self):
+        await asyncio.sleep(20)
+        os.remove(self.audio_file_path)
+
+    async def get(self, file_path: str):
+        # check if file exists
+        if not os.path.exists(file_path):
+            return JSONResponse(
+                content={
+                    "message": "File not found. Try again.",
+                    "file_path": None,
+                },
+                status_code=404,
+            )
+
         # check media type based on file extension
         if file_path.endswith(".json"):
             media_type = "application/json"
