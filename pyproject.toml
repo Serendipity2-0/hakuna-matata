@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "hakuna-matata"
+version = "0.1.0"
+description = "A notekeeper backend service, that will transcribe audio notes and find the most relevant note patterns in them"
+authors = ["Satyarth Raghuvanshi <srk.satyarth@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.114.1"
+uvicorn = "^0.30.6"
+gunicorn = "^23.0.0"
+assemblyai = "^0.33.0"
+python-dotenv = "^1.0.1"
+pydantic-settings = "^2.5.2"
+openai = "^1.45.0"
+aiohttp = "^3.10.5"
+aiofiles = "^24.1.0"
+python-multipart = "^0.0.9"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
