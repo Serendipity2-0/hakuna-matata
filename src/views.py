@@ -133,7 +133,7 @@ class MeetingProcessor:
 
 class FetchWisdomFile:
     async def _schedule_file_deletion(self, file_dir: str):
-        _del_time = 5
+        _del_time = settings.FILE_DELETE_TIME
         settings.LOGGER.info(f"Scheduling file deletion in {_del_time} seconds")
         await asyncio.sleep(_del_time)
 

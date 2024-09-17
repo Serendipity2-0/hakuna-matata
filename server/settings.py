@@ -21,6 +21,7 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str
 
     # OPTIONAL SETTINGS
+    FILE_DELETE_TIME: int = 60
     LOGGER: Optional[logging.Logger] = logging.getLogger(__name__)
     UPLOAD_DIR: str = f"{ROOT}/uploads"
 
