@@ -14,20 +14,23 @@ meeting_router = APIRouter(prefix="/meeting", tags=["meeting"])
 async def transcribe_meeting(
     language: str,
     meeting_subject: str,
-    knowledge_patterns: List[KnowledgePattern],
+    knowledge_patterns: List[str],
     department: Department,
     audio_file: UploadFile = File(...),
 ):
+    # knowledge_patterns is in ['keynote,summary']
+    knowledge_patterns = knowledge_patterns[0].split(",")
+    validated_patterns = [KnowledgePattern(pattern) for pattern in knowledge_patterns]
 
     return await MeetingProcessor(
         language=language,
         meeting_subject=meeting_subject,
-        knowledge_patterns=knowledge_patterns,
+        knowledge_patterns=validated_patterns,
         department=department,
         audio_file=audio_file,
     ).build_knowledge_base()
 
 
-@meeting_router.get("/wisdom-file/{file_path}")
-async def download_file(file_path: str):
-    return await FetchWisdomFile().get(file_path)
+@meeting_router.get("/wisdom-file/{file_search_dir}")
+async def download_file(file_search_dir: str):
+    return await FetchWisdomFile().get(file_search_dir)

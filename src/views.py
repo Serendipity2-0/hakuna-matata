@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import shutil
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Dict, List, Literal
@@ -25,13 +26,16 @@ class MeetingProcessor:
     audio_file: UploadFile
     audio_file_path: str = field(default=None, init=False)
 
-    async def _save_audio_file(self) -> bool:
+    save_dir: str = field(default=None, init=False)
+
+    def __post_init__(self):
         department_dir = self.department.value.lower().replace(" ", "_")
         date_dir = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        save_dir = os.path.join(settings.UPLOAD_DIR, department_dir, date_dir)
-        os.makedirs(save_dir, exist_ok=True)
+        self.save_dir = os.path.join(settings.UPLOAD_DIR, department_dir, date_dir)
+        os.makedirs(self.save_dir, exist_ok=True)
 
-        save_path = os.path.join(save_dir, self.audio_file.filename)
+    async def _save_audio_file(self) -> bool:
+        save_path = os.path.join(self.save_dir, self.audio_file.filename)
 
         try:
             async with aiofiles.open(save_path, "wb") as buffer:
@@ -89,12 +93,12 @@ class MeetingProcessor:
             for result in patterns_results:
                 pattern = result["pattern"]
                 content = result["response"]
-                combined_content.append(f"# {pattern}\n\n{content}")
+                combined_content.append(f"# {pattern.upper()}\n\n{content}")
 
             # Join all sections with a markdown separator
             file_content = "\n\n---\n\n".join(combined_content)
 
-        file_path = os.path.join(settings.UPLOAD_DIR, filename)
+        file_path = os.path.join(self.save_dir, filename)
         async with aiofiles.open(file_path, "w") as f:
             await f.write(file_content)
 
@@ -108,10 +112,14 @@ class MeetingProcessor:
     ):
         if await self._save_audio_file():
             asyncio.create_task(self._async_task(return_type))
+
+            # save_dir is in /Users/satyarthraghuvanshi/projects/hakuna-matata/uploads/trademan/2024-09-17_12-29-16
+            # replace all the / with -
+            _save_dir = self.save_dir.replace("/", "+")
             return JSONResponse(
                 content={
                     "message": "Audio file saved successfully. Building knowledge base...",
-                    "file_path": self.audio_file_path,
+                    "dir_search_path": _save_dir,
                 }
             )
         return JSONResponse(
@@ -124,12 +132,39 @@ class MeetingProcessor:
 
 
 class FetchWisdomFile:
-    async def _schedule_file_deletion(self):
-        await asyncio.sleep(20)
-        os.remove(self.audio_file_path)
+    async def _schedule_file_deletion(self, file_dir: str):
+        _del_time = 5
+        settings.LOGGER.info(f"Scheduling file deletion in {_del_time} seconds")
+        await asyncio.sleep(_del_time)
 
-    async def get(self, file_path: str):
+        # split the file_dir to get the last directory
+        _last_dir = file_dir.split("/")[-1]
+        settings.LOGGER.info(f"Deleting files in {_last_dir}")
+
+        for file in os.listdir(file_dir):
+            os.remove(os.path.join(file_dir, file))
+        # delete the _last_dir
+        os.rmdir(file_dir)
+
+    async def get(self, dir_search_path: str):
+        _file_search_dir = dir_search_path.replace("+", "/")
+        print(_file_search_dir)
+
         # check if file exists
+        if not os.path.exists(_file_search_dir):
+            return JSONResponse(
+                content={
+                    "message": "File not found. Try again.",
+                    "file_path": None,
+                },
+                status_code=404,
+            )
+
+        # search the file (combined_results) from in dir_search_path. Try for .md first, then .json
+        file_path = os.path.join(_file_search_dir, "combined_results.md")
+        if not os.path.exists(file_path):
+            file_path = os.path.join(_file_search_dir, "combined_results.json")
+
         if not os.path.exists(file_path):
             return JSONResponse(
                 content={
@@ -147,5 +182,5 @@ class FetchWisdomFile:
 
         filename = os.path.basename(file_path)
 
-        asyncio.create_task(self._schedule_file_deletion())
+        asyncio.create_task(self._schedule_file_deletion(_file_search_dir))
         return FileResponse(path=file_path, filename=filename, media_type=media_type)
