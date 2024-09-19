@@ -182,5 +182,5 @@ class FetchWisdomFile:
 
         filename = os.path.basename(file_path)
 
-        asyncio.create_task(self._schedule_file_deletion(_file_search_dir))
+        # asyncio.create_task(self._schedule_file_deletion(_file_search_dir))
         return FileResponse(path=file_path, filename=filename, media_type=media_type)
