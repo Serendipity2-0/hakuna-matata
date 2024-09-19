@@ -8,7 +8,7 @@ from typing import Dict, List, Literal
 
 import aiofiles
 from fastapi import UploadFile
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import JSONResponse, ORJSONResponse
 
 from server import settings
 
@@ -182,5 +182,16 @@ class FetchWisdomFile:
 
         filename = os.path.basename(file_path)
 
+        # open the file and stream the content
+        async with aiofiles.open(file_path, mode="r") as f:
+            file_content = await f.read()
+
         # asyncio.create_task(self._schedule_file_deletion(_file_search_dir))
-        return FileResponse(path=file_path, filename=filename, media_type=media_type)
+        return ORJSONResponse(
+            content=file_content,
+            media_type=media_type,
+            headers={
+                "Content-Disposition": f"attachment; filename={filename}",
+                "Content-Type": media_type or "application/octet-stream",
+            },
+        )
