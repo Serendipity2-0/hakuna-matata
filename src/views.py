@@ -8,7 +8,7 @@ from typing import Dict, List, Literal
 
 import aiofiles
 from fastapi import UploadFile
-from fastapi.responses import JSONResponse, ORJSONResponse
+from fastapi.responses import JSONResponse
 
 from server import settings
 
@@ -187,11 +187,6 @@ class FetchWisdomFile:
             file_content = await f.read()
 
         # asyncio.create_task(self._schedule_file_deletion(_file_search_dir))
-        return ORJSONResponse(
-            content=file_content,
-            media_type=media_type,
-            headers={
-                "Content-Disposition": f"attachment; filename={filename}",
-                "Content-Type": media_type or "application/octet-stream",
-            },
+        return JSONResponse(
+            content=file_content, headers={"Content-Filename": filename}
         )
