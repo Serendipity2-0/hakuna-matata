@@ -1,9 +1,13 @@
 # backend/app/main.py
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import asyncio
+import logging
 from agents.coderunner import WebScraperAgent, AnalystAgent, CampaignIdeaAgent, CopywriterAgent
 from agents.amolgittur import UserInterfaceAgent
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
@@ -51,9 +55,26 @@ async def generate_copy(request: Request):
 
 @app.post("/api/git_commit_message")
 async def generate_commit_message(request: Request):
-    data = await request.json()
-    directory = data.get("directory")
-    guidelines = data.get("guidelines")
-    ui_agent = UserInterfaceAgent()
-    commit_message = ui_agent.run(directory, guidelines)
-    return {"commit_message": commit_message}
+    try:
+        logger.info("Received request for git commit message")
+        data = await request.json()
+        logger.info(f"Received data: {data}")
+        
+        directory = data.get("directory")
+        guidelines = data.get("guidelines")
+        
+        if not directory or not guidelines:
+            raise HTTPException(status_code=400, detail="Missing directory or guidelines")
+        
+        ui_agent = UserInterfaceAgent()
+        commit_message = ui_agent.run(directory, guidelines)
+        
+        # Ensure the commit message is a string
+        if not isinstance(commit_message, str):
+            commit_message = str(commit_message)
+        
+        logger.info(f"Generated commit message: {commit_message}")
+        return {"commit_message": {"commit_message": commit_message}}
+    except Exception as e:
+        logger.error(f"Error generating commit message: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
