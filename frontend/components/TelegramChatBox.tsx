@@ -1,17 +1,39 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MessageCircle, Send, X } from 'lucide-react';
 import EditableMarkdown from '@/components/EditableMarkdown';
+import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 
 export default function TelegramChatBox() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const openTelegramBubble = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  const closeTelegramBubble = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('openTelegramBubble', openTelegramBubble);
+    return () => {
+      window.removeEventListener('openTelegramBubble', openTelegramBubble);
+    };
+  }, [openTelegramBubble]);
+
+  useKeyboardShortcuts({
+    resetToHome: () => {}, // No-op for this component
+    openTelegramBubble,
+    closeModal: closeTelegramBubble,
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +64,7 @@ export default function TelegramChatBox() {
     <>
       <Button
         className="fixed bottom-4 right-4 rounded-full w-16 h-16 shadow-lg"
-        onClick={() => setIsOpen(true)}
+        onClick={openTelegramBubble}
       >
         <MessageCircle size={24} />
       </Button>
@@ -52,7 +74,7 @@ export default function TelegramChatBox() {
           <Card className="w-full max-w-md mx-4">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Telegram Chat</CardTitle>
-              <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)}>
+              <Button variant="ghost" size="sm" onClick={closeTelegramBubble}>
                 <X size={24} />
               </Button>
             </CardHeader>

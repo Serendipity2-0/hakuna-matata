@@ -19,7 +19,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-background text-foreground`}>{children}
+      <body className={`${inter.className} bg-background text-foreground`}>
+        {children}
         <TelegramChatBox />
       </body>
     </html>

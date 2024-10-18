@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import ToolSelector from '@/components/ToolSelector';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { RefreshCw } from 'lucide-react';
+import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 
 const GitCommitInterface = dynamic(() => import('@/components/GitCommitInterface'), { ssr: false });
 const RepoInfoInterface = dynamic(() => import('@/components/RepoInfoInterface'), { ssr: false });
@@ -21,6 +22,21 @@ const ScriptWriterInterface = dynamic(() => import('@/components/ScriptWriterInt
 export default function ChatInterface() {
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
 
+  const resetApp = useCallback(() => {
+    setSelectedTool(null);
+  }, []);
+
+  const openTelegramBubble = useCallback(() => {
+    // This function will be implemented in TelegramChatBox
+    window.dispatchEvent(new CustomEvent('openTelegramBubble'));
+  }, []);
+
+  useKeyboardShortcuts({
+    resetToHome: resetApp,
+    openTelegramBubble,
+    closeModal: resetApp, // In this case, closing the modal is the same as resetting
+  });
+
   const renderToolInterface = () => {
     switch (selectedTool) {
       case 'GitCommitterAgent':
@@ -34,10 +50,6 @@ export default function ChatInterface() {
       default:
         return null;
     }
-  };
-
-  const resetApp = () => {
-    setSelectedTool(null);
   };
 
   return (

@@ -1,7 +1,10 @@
-import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
-const ChatInterface = dynamic(() => import('@/components/ChatInterface'), { ssr: false });
+const ClientSideHome = dynamic(() => import('@/components/ClientSideHome'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>
+});
 
 export const metadata: Metadata = {
   title: 'Serendipity Task Assistant',
@@ -9,9 +12,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <ChatInterface />
-    </div>
-  );
+  return <ClientSideHome />;
 }
