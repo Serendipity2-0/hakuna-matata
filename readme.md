@@ -1,80 +1,146 @@
-# Hakuna Matata Project
+# Project Name
 
-Welcome to the Hakuna Matata project! This document will guide you through the process of running the project using Docker and how to use its APIs.
+Brief description of your project.
+
+Links:
+- [openai agent cookbook](https://cookbook.openai.com/examples/orchestrating_agents)
+- [swarm library](https://github.com/openai/swarm)
+- [git guidelines](https://registerspill.thorstenball.com/p/how-i-use-git)
+
+## Table of Contents
+
+- [Project Name](#project-name)
+  - [Table of Contents](#table-of-contents)
+  - [Resources](#resources)
+  - [Features](#features)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+    - [Backend (FastAPI)](#backend-fastapi)
+    - [Frontend (Next.js)](#frontend-nextjs)
+  - [API Documentation](#api-documentation)
+  - [Contributing](#contributing)
+  - [License](#license)
+    - [Architecture](#architecture)
+
+## Resources
+
+- [Chatbot](https://github.com/jakobhoeg/shadcn-chat?tab=readme-ov-file)
+## Features
+
+- List key features of your project
 
 ## Prerequisites
 
-- Docker installed on your system
-- Bash shell (for Unix-based systems) or Git Bash (for Windows)
+Before you begin, ensure you have met the following requirements:
 
-## Getting Started
+- Python 3.7+
+- Node.js 14+
+- npm or yarn
 
-To run the project, follow these simple steps:
+## Installation
 
-1. Clone the repository to your local machine:
+1. Clone the repository:
    ```
-   git clone <repository-url>
-   cd hakuna-matata
-   ```
-
-2. Make sure the `start_docker.sh` script is executable:
-   ```
-   chmod +x startup_control/start_docker.sh
+   git clone https://github.com/yourusername/your-repo-name.git
+   cd your-repo-name
    ```
 
-3. Run the `start_docker.sh` script:
+2. Set up the backend:
    ```
-   ./startup_control/start_docker.sh
+   cd backend
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   pip install -r requirements.txt
    ```
 
-This script will:
-- Build the Docker image if it doesn't exist
-- Stop and remove any existing container with the same name
-- Start a new container named "hakuna-matata"
-- Map port 8000 from the container to port 8000 on your host machine
-- Set the container to restart automatically unless stopped manually
+3. Set up the frontend:
+   ```
+   cd ../frontend
+   npm install  # or yarn install
+   ```
 
-## Accessing the Application
+## Running the Application
 
-Once the container is running, you can access the application at:
+### Backend (FastAPI)
 
-## APIs Flow
+1. Navigate to the backend directory:
+   ```
+   cd backend
+   ```
 
-The project provides two main API endpoints for processing meeting data and retrieving wisdom files. Here's how to use them:
+2. Activate the virtual environment:
+   ```
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   ```
 
-### 1. Submit Meeting Transcription
+3. Start the FastAPI server:
+   ```
+   uvicorn main:app --reload
+   ```
 
-**Endpoint:** `POST /meeting/submit-meeting`
+   The API will be available at `http://localhost:8000`.
 
-This API allows you to submit a meeting for transcription and knowledge base building.
+### Frontend (Next.js)
 
-**Parameters:**
-- `language` (string): The language of the meeting audio.
-- `meeting_subject` (string): The subject or topic of the meeting.
-- `knowledge_patterns` (array): List of knowledge patterns to extract.
-- `department` (string): The department associated with the meeting.
-- `audio_file` (file): The audio file of the meeting to be transcribed.
+1. Navigate to the frontend directory:
+   ```
+   cd frontend
+   ```
 
-**Example using cURL:**
-```
-curl --location 'http://0.0.0.0:80/meeting/submit-meeting' \
---form 'audio_file=@"/Users/satyarthraghuvanshi/Downloads/sample_meeting.m4a"' \
---form 'language="en"' \
---form 'meeting_subject="Random Meetings"' \
---form 'knowledge_patterns="idea_compass, keynote"' \
---form 'department="trademan"'
-```
+2. Start the Next.js development server:
+   ```
+   npm run dev  # or yarn dev
+   ```
 
-### 2. Download Wisdom File
+   The frontend will be available at `http://localhost:3000`.
 
-**Endpoint:** `GET /meeting/wisdom-file`
+## API Documentation
 
-This API allows you to download a specific wisdom file.
+FastAPI provides automatic API documentation. Once the backend is running, you can access the docs at:
 
-**Parameters:**
-- `file_path` (string): The path to the wisdom file you want to download.
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
 
-**Example using cURL:**
-```
-curl --location 'http://0.0.0.0:80/meeting/wisdom-file/20240725_120000_UTC_idea_compass_trademan.md'
-```
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+### Architecture
+
+The FastAPI backend is designed to be modular, scalable, and easy to maintain. Below is an overview of the architecture:
+
+1. **Directory Structure**:
+   - `app/`: Contains the main application code.
+     - `main.py`: The entry point of the application.
+     - `routers/`: Contains all the route definitions.
+     - `models/`: Contains the database models.
+     - `schemas/`: Contains the Pydantic models for request and response validation.
+     - `services/`: Contains the business logic and service layer.
+     - `core/`: Contains core configurations and utilities.
+     - `tests/`: Contains unit and integration tests.
+
+2. **Main Components**:
+   - **FastAPI Application**: The core of the backend, handling HTTP requests and responses.
+   - **Database**: Typically uses SQLAlchemy for ORM and database interactions.
+   - **Authentication**: JWT-based authentication for secure access.
+   - **Middleware**: Custom middleware for logging, error handling, etc.
+   - **Dependency Injection**: Utilizes FastAPI's dependency injection for clean and testable code.
+
+3. **Flow**:
+   - **Request Handling**: Incoming requests are routed to the appropriate endpoint in the `routers/` directory.
+   - **Validation**: Requests are validated using Pydantic models defined in the `schemas/` directory.
+   - **Business Logic**: The `services/` directory contains the core business logic, interacting with the database and other services.
+   - **Response**: After processing, a response is returned to the client, often using Pydantic models for serialization.
+
+4. **Configuration**:
+   - Environment variables and configuration files are used to manage different environments (development, testing, production).
+
+5. **Testing**:
+   - The `tests/` directory contains unit tests for individual components and integration tests for end-to-end testing.
+
+This architecture ensures that the FastAPI backend is robust, maintainable, and scalable, making it suitable for production environments.
