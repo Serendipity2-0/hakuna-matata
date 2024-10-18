@@ -4,7 +4,7 @@ import ChatMessage from '@/components/ChatMessage';
 import HumanReviewModal from '@/components/HumanReviewModal';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
+// Textarea component removed as per instructions
 import WorkingDirectoryModal from '@/components/WorkingDirectoryModal';
 import { useState } from 'react';
 
@@ -131,26 +131,7 @@ export default function ChatInterface() {
           Working Directory: {workingDirectory}
         </div>
       )}
-      <Textarea
-        placeholder="Enter task summary"
-        value={taskSummary}
-        onChange={(e) => setTaskSummary(e.target.value)}
-        className="bg-secondary text-secondary-foreground"
-      />
-      <div className="border rounded-lg p-4 h-[400px] overflow-y-auto bg-secondary/30">
-        {messages.map((message, index) => (
-          <ChatMessage key={index} message={message} />
-        ))}
-      </div>
-      <div className="flex space-x-2">
-        <Textarea
-          placeholder="Type your message..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="flex-grow bg-secondary text-secondary-foreground"
-        />
-        <Button onClick={handleSendMessage} className="bg-primary text-primary-foreground hover:bg-primary/90">Send</Button>
-      </div>
+      
       <HumanReviewModal
         isOpen={isHumanReviewOpen}
         onClose={() => setIsHumanReviewOpen(false)}
