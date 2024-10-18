@@ -6,7 +6,7 @@
 # Step 4: Run the GIT commit command and ask for push
 
 import os
-
+import subprocess
 import dotenv
 from openai import OpenAI
 
@@ -19,44 +19,33 @@ dotenv.load_dotenv(dotenv_path="kaas.env")
 # Initialize OpenAI client
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Function to cd to the working directory
-def cd_to_working_directory(working_directory):
-    os.chdir(working_directory)
-    return "cd to working directory"
+# Function to get the GIT diff output using subprocess shell command    
+def get_git_diff_output(directory):
+    os.chdir(directory)
+    return os.popen("git diff").read()
 
-# Function to run the GIT diff command
-def run_git_diff_command():
-    return "git diff"
 
-# Function to run the GIT commit command
-def run_git_commit_command():
-    return "git commit"
+# Function to beautify git diff output in xml format    
+def beautify_git_diff_output(git_diff_output):
+    # Use a tool like 'xmllint' to format the XML output
+    formatted_output = subprocess.run(['xmllint', '--format', '-'], input=git_diff_output, capture_output=True, text=True)
+    return formatted_output.stdout
 
-# Function to run the GIT push command
-def run_git_push_command():
-    return "git push"
+# Function to analyze git diff output
+def analyze_git_diff_output(content, guidelines):
+    """
+    Analyze the git diff output using OpenAI.
+    This function demonstrates how to use AI for content analysis.
+    """
+    print("Analyzing git diff output")
+    commit_message = generate_completion(
+        "code reviewer",
+        "Analyze the following git diff output and use the git commit guidelines provided to output a nice and compelling git commit message",
+        "git diff output: " + content + "\n" + "git commit guidelines: " + guidelines
+    )
+    print("commit_message:", commit_message)
+    return {"commit_message": commit_message}
 
-# Function to run the GIT pull command
-def run_git_pull_command():
-    return "git pull"
-
-# Function to run the GIT status command
-def run_git_status_command():
-    return "git status"
-
-# Function to run all the shell command
-
-# Function to beatify git diff output
-def beatify_git_diff_output(git_diff_output):
-    return git_diff_output
-
-# Function to generate GIT commit message
-def generate_git_commit_message(git_diff_output):
-    return git_diff_output
-
-# Function to beatify git diff output
-def beatify_git_diff_output():
-    pass
 
 # Function to generate completions using OpenAI
 def generate_completion(role, task, content):
@@ -74,46 +63,16 @@ def generate_completion(role, task, content):
     )
     return response.choices[0].message.content
 
-# Function to analyze git diff output
-def analyze_git_diff_output(content):
-    """
-    Analyze the git diff output using OpenAI.
-    This function demonstrates how to use AI for content analysis.
-    """
-    print("Analyzing git diff output")
-    analysis = generate_completion(
-        "code reviewer",
-        "Analyze the following git diff output and provide output in markdown format",
-        content
-    )
-    return {"analysis": analysis}
 
 
-# Function to generate commit message
-def generate_commit_message(brief):
-    """
-    Generate commit message based on a brief using OpenAI.
-    This function shows how AI can be used for content creation.
-    """
-    print("Generating commit message")
-    commit_message = generate_completion(
-        "Senior Software Engineer",
-        "Create compelling commit message based on the following git diff output presented",
-        brief
-    )
-    return {"commit_message": commit_message}
 
 # Fast api will get working directory and guidelines from the user and pass it to this agent
 class UserInterfaceAgent(Agent):
     def run(self, directory, guidelines):
         print("working directory:", directory)
         print("guidelines:", guidelines)
-        cd_to_working_directory(directory)
-        git_diff_output = run_git_diff_command()
-        print("git_diff_output:", git_diff_output)
-        analysis = analyze_git_diff_output(git_diff_output)
-        print("analysis:", analysis)
-        commit_message = generate_commit_message(analysis)
+        git_diff_output = get_git_diff_output(directory)
+        commit_message = analyze_git_diff_output(git_diff_output, guidelines)
         print("commit_message:", commit_message)
         print("UserInterfaceAgent: Completed")
         return {"commit_message": commit_message}

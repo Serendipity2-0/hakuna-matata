@@ -2,8 +2,8 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 import asyncio
-from backend.agents.coderunner import UserInterfaceAgent, WebScraperAgent, AnalystAgent, CampaignIdeaAgent, CopywriterAgent
-from backend.agents.amolgittur import create_website_folder
+from agents.coderunner import WebScraperAgent, AnalystAgent, CampaignIdeaAgent, CopywriterAgent
+from agents.amolgittur import UserInterfaceAgent
 
 app = FastAPI()
 
@@ -49,7 +49,7 @@ async def generate_copy(request: Request):
     instructions = await copywriter_agent.run(brief)
     return {"coding_instructions": instructions}
 
-@app.post("/git_commit_message")
+@app.post("/api/git_commit_message")
 async def generate_commit_message(request: Request):
     data = await request.json()
     directory = data.get("directory")
@@ -57,4 +57,3 @@ async def generate_commit_message(request: Request):
     ui_agent = UserInterfaceAgent()
     commit_message = ui_agent.run(directory, guidelines)
     return {"commit_message": commit_message}
-    
