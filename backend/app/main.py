@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import asyncio
 import logging
 from agents.coderunner import WebScraperAgent, AnalystAgent, CampaignIdeaAgent, CopywriterAgent
+from agents.snowywriter import SnowyInterfaceAgent
 from agents.amolgittur import UserInterfaceAgent
 
 logging.basicConfig(level=logging.INFO)
@@ -78,3 +79,16 @@ async def generate_commit_message(request: Request):
     except Exception as e:
         logger.error(f"Error generating commit message: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+@app.post("/api/script_outline")
+async def generate_script_outline(request: Request):
+    data = await request.json()
+    file_path = data.get("directory")  # We're using 'directory' as file_path now
+    guidelines = data.get("guidelines", "")
+    
+    if not file_path:
+        raise HTTPException(status_code=400, detail="Missing file path")
+    
+    ui_agent = SnowyInterfaceAgent()
+    script_outline = ui_agent.run(file_path, guidelines)
+    return {"script_outline": script_outline}
