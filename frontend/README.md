@@ -38,3 +38,16 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 'Ctrl + H' to reset to home
 'Ctrl + T' to open the Telegram message bubble
 3. 'Esc' to close any open modal or the Telegram message bubble
+
+## Rectangle Component Shortcuts
+
+The application features four rectangle components that can be toggled using keyboard shortcuts:
+
+- Ctrl/Cmd + W: Toggle the top rectangle
+- Ctrl/Cmd + D: Toggle the right rectangle
+- Ctrl/Cmd + S: Toggle the bottom rectangle
+- Ctrl/Cmd + A: Toggle the left rectangle
+
+Each rectangle occupies half the screen and slides in from its respective side when activated.
+
+Note: Use Ctrl on Windows/Linux and Cmd (⌘) on Mac.

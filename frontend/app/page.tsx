@@ -6,11 +6,19 @@ const ClientSideHome = dynamic(() => import('@/components/ClientSideHome'), {
   loading: () => <p>Loading...</p>
 });
 
+const DynamicAdaptiveLayout = dynamic(() => import('@/components/AdaptiveLayout'), {
+  ssr: false,
+});
+
 export const metadata: Metadata = {
   title: 'Serendipity Task Assistant',
   description: 'An AI-powered task assistant with advanced tool selection',
 };
 
 export default function Home() {
-  return <ClientSideHome />;
+  return (
+    <DynamicAdaptiveLayout>
+      <ClientSideHome />
+    </DynamicAdaptiveLayout>
+  );
 }
