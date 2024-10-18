@@ -1,6 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 /**
  * GitCommitInterface component for generating git commit messages.
@@ -21,34 +25,18 @@ export default function GitCommitInterface() {
    * @param {string} message - The raw commit message.
    * @returns {string} The formatted commit message.
    */
-  const formatCommitMessage = (message: string): string => {
-    console.log('Raw message:', message);
-    
+  const formatCommitMessage = (message: string): { title: string; body: string } => {
     try {
-      // Parse the JSON string
       const parsedMessage = JSON.parse(message);
-      console.log('Parsed message:', parsedMessage);
-      
-      // Extract the actual commit message
       const actualMessage = parsedMessage.commit_message || parsedMessage;
-      console.log('Actual message:', actualMessage);
-      
-      // Remove any remaining nested structures and backticks
       const cleanMessage = actualMessage.replace(/^```\n?|\n?```$/g, '').trim();
-      console.log('Clean message:', cleanMessage);
-      
-      // Split the message into lines
       const lines = cleanMessage.split('\n');
-      
-      // Extract title and body
       const title = lines[0];
       const body = lines.slice(1).join('\n').trim();
-      
-      // Format the message
-      return `${title}\n\n${body}`;
+      return { title, body };
     } catch (error) {
       console.error('Error formatting commit message:', error);
-      return message; // Return the original message if parsing fails
+      return { title: 'Error parsing message', body: message };
     }
   };
 
@@ -66,13 +54,8 @@ export default function GitCommitInterface() {
     try {
       const response = await fetch('http://localhost:8000/api/git_commit_message', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          directory,
-          guidelines: taskSummary,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ directory, guidelines: taskSummary }),
       });
 
       if (!response.ok) {
@@ -80,20 +63,8 @@ export default function GitCommitInterface() {
       }
 
       const data = await response.json();
-      console.log('API Response:', data);
-
-      let rawMessage = '';
-      if (typeof data.commit_message === 'string') {
-        rawMessage = data.commit_message;
-      } else if (data.commit_message && typeof data.commit_message.commit_message === 'string') {
-        rawMessage = data.commit_message.commit_message;
-      } else {
-        throw new Error('Unexpected response format');
-      }
-
-      const formattedMessage = formatCommitMessage(rawMessage);
-      console.log('Formatted message:', formattedMessage);
-      setCommitMessage(formattedMessage);
+      const formattedMessage = formatCommitMessage(JSON.stringify(data));
+      setCommitMessage(JSON.stringify(formattedMessage));
     } catch (error) {
       console.error('Error generating commit message:', error);
       setError('Failed to generate commit message. Please try again.');
@@ -102,59 +73,53 @@ export default function GitCommitInterface() {
     }
   };
 
+  const { title, body } = commitMessage ? JSON.parse(commitMessage) : { title: '', body: '' };
+
   return (
-    <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-4">Generate Git Commit Message</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="directory" className="block mb-1">Working Directory:</label>
-          <input
-            type="text"
-            id="directory"
-            value={directory}
-            onChange={(e) => setDirectory(e.target.value)}
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="taskSummary" className="block mb-1">Task Summary (Commit Guidelines):</label>
-          <textarea
-            id="taskSummary"
-            value={taskSummary}
-            onChange={(e) => setTaskSummary(e.target.value)}
-            className="w-full p-2 border rounded"
-            rows={4}
-            required
-          ></textarea>
-        </div>
-        <button 
-          type="submit" 
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          disabled={isLoading}
-        >
-          {isLoading ? 'Generating...' : 'Generate Commit Message'}
-        </button>
-      </form>
-      {error && (
-        <div className="mt-4 text-red-500">
-          {error}
-        </div>
-      )}
-      {commitMessage && (
-        <div className="mt-4">
-          <h3 className="text-xl font-bold mb-2">Generated Commit Message:</h3>
-          <pre className="bg-gray-100 p-4 rounded whitespace-pre-wrap font-mono text-sm leading-relaxed">
-            {commitMessage.split('\n').map((line, index) => (
-              <span key={index} className={index === 0 ? 'font-bold' : ''}>
-                {line}
-                {index === 0 && <br />}
-                {index === 1 && <br />}
-              </span>
-            ))}
-          </pre>
-        </div>
-      )}
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Generate Git Commit Message</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="directory" className="block text-sm font-medium text-gray-700">Working Directory:</label>
+            <Input
+              id="directory"
+              value={directory}
+              onChange={(e) => setDirectory(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="taskSummary" className="block text-sm font-medium text-gray-700">Task Summary (Commit Guidelines):</label>
+            <Textarea
+              id="taskSummary"
+              value={taskSummary}
+              onChange={(e) => setTaskSummary(e.target.value)}
+              rows={4}
+              required
+            />
+          </div>
+          <Button type="submit" disabled={isLoading}>
+            {isLoading ? 'Generating...' : 'Generate Commit Message'}
+          </Button>
+        </form>
+        {error && (
+          <div className="mt-4 text-red-500">
+            {error}
+          </div>
+        )}
+        {commitMessage && (
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold mb-2">Generated Commit Message:</h3>
+            <div className="bg-gray-100 p-4 rounded-md">
+              <p className="font-bold">{title}</p>
+              <p className="mt-2 whitespace-pre-wrap">{body}</p>
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }
