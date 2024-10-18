@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Textarea } from '@/components/ui/textarea';
+import { Loader2 } from 'lucide-react';
+import EditableMarkdown from '@/components/EditableMarkdown';
 
 /**
  * GitCommitInterface component for generating git commit messages.
@@ -18,27 +20,6 @@ export default function GitCommitInterface() {
   const [commitMessage, setCommitMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-
-  /**
-   * Parses and formats the commit message for better readability.
-   * 
-   * @param {string} message - The raw commit message.
-   * @returns {string} The formatted commit message.
-   */
-  const formatCommitMessage = (message: string): { title: string; body: string } => {
-    try {
-      const parsedMessage = JSON.parse(message);
-      const actualMessage = parsedMessage.commit_message || parsedMessage;
-      const cleanMessage = actualMessage.replace(/^```\n?|\n?```$/g, '').trim();
-      const lines = cleanMessage.split('\n');
-      const title = lines[0];
-      const body = lines.slice(1).join('\n').trim();
-      return { title, body };
-    } catch (error) {
-      console.error('Error formatting commit message:', error);
-      return { title: 'Error parsing message', body: message };
-    }
-  };
 
   /**
    * Handles the form submission to generate a commit message.
@@ -63,8 +44,7 @@ export default function GitCommitInterface() {
       }
 
       const data = await response.json();
-      const formattedMessage = formatCommitMessage(JSON.stringify(data));
-      setCommitMessage(JSON.stringify(formattedMessage));
+      setCommitMessage(data.commit_message.commit_message);
     } catch (error) {
       console.error('Error generating commit message:', error);
       setError('Failed to generate commit message. Please try again.');
@@ -73,50 +53,57 @@ export default function GitCommitInterface() {
     }
   };
 
-  const { title, body } = commitMessage ? JSON.parse(commitMessage) : { title: '', body: '' };
-
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
-        <CardTitle>Generate Git Commit Message</CardTitle>
+        <CardTitle className="text-2xl font-bold">Generate Git Commit Message</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="directory" className="block text-sm font-medium text-gray-700">Working Directory:</label>
+            <label htmlFor="directory" className="block text-sm font-medium text-gray-700 mb-1">Working Directory:</label>
             <Input
               id="directory"
               value={directory}
               onChange={(e) => setDirectory(e.target.value)}
+              placeholder="e.g., /path/to/your/repo"
               required
+              className="w-full"
             />
           </div>
           <div>
-            <label htmlFor="taskSummary" className="block text-sm font-medium text-gray-700">Task Summary (Commit Guidelines):</label>
+            <label htmlFor="taskSummary" className="block text-sm font-medium text-gray-700 mb-1">Task Summary (Commit Guidelines):</label>
             <Textarea
               id="taskSummary"
               value={taskSummary}
               onChange={(e) => setTaskSummary(e.target.value)}
-              rows={4}
+              placeholder="Enter a summary of the changes or task..."
+              className="w-full h-24"
               required
             />
           </div>
-          <Button type="submit" disabled={isLoading}>
-            {isLoading ? 'Generating...' : 'Generate Commit Message'}
+          <Button type="submit" disabled={isLoading} className="w-full">
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Generating...
+              </>
+            ) : (
+              'Generate Commit Message'
+            )}
           </Button>
         </form>
+
         {error && (
           <div className="mt-4 text-red-500">
             {error}
           </div>
         )}
+
         {commitMessage && (
-          <div className="mt-4">
+          <div className="mt-6">
             <h3 className="text-lg font-semibold mb-2">Generated Commit Message:</h3>
-            <div className="bg-gray-100 p-4 rounded-md">
-              <p className="font-bold">{title}</p>
-              <p className="mt-2 whitespace-pre-wrap">{body}</p>
-            </div>
+            <EditableMarkdown content={commitMessage} onChange={setCommitMessage} />
           </div>
         )}
       </CardContent>

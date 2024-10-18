@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
+import EditableMarkdown from '@/components/EditableMarkdown';
 
 export default function ReconciliationInterface() {
   const [filePath, setFilePath] = useState('');
@@ -92,13 +93,10 @@ export default function ReconciliationInterface() {
         {analysisReport && (
           <div className="mt-6">
             <h3 className="text-lg font-semibold mb-2">Financial Analysis Report:</h3>
-            <div className="prose max-w-none">
-              <div dangerouslySetInnerHTML={{ __html: analysisReport }} />
-            </div>
+            <EditableMarkdown content={analysisReport} onChange={setAnalysisReport} />
           </div>
         )}
       </CardContent>
     </Card>
   );
 }
-

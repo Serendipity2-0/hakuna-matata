@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
+import EditableMarkdown from '@/components/EditableMarkdown';
 
 export default function ScriptWriterInterface() {
   const [filePath, setFilePath] = useState('');
@@ -92,11 +93,7 @@ export default function ScriptWriterInterface() {
         {scriptOutline && (
           <div className="mt-6">
             <h3 className="text-lg font-semibold mb-2">Generated Script Outline:</h3>
-            <Textarea
-              value={scriptOutline}
-              readOnly
-              className="w-full h-64 p-4 bg-gray-50 rounded-md"
-            />
+            <EditableMarkdown content={scriptOutline} onChange={setScriptOutline} />
           </div>
         )}
       </CardContent>
