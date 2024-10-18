@@ -68,8 +68,12 @@ def generate_completion(role, task, content):
 
 # Fast api will get working directory and guidelines from the user and pass it to this agent
 class UserInterfaceAgent(Agent):
-    def run(self, directory, guidelines):
+    def run(self, directory):
         print("working directory:", directory)
+        
+        with open("/Users/omkar/hakuna-matata/backend/patterns/git_commit_guidelines.md", "r") as file:
+            guidelines = file.read()
+        
         print("guidelines:", guidelines)
         git_diff_output = get_git_diff_output(directory)
         commit_message = analyze_git_diff_output(git_diff_output, guidelines)

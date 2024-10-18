@@ -7,6 +7,7 @@ from agents.coderunner import WebScraperAgent, AnalystAgent, CampaignIdeaAgent, 
 from agents.snowywriter import SnowyInterfaceAgent
 from agents.amolgittur import UserInterfaceAgent
 from agents.NikhilRaghu import NikhilRaghuAgent
+from agents.Arjun import ArjunAgent
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -69,7 +70,7 @@ async def generate_commit_message(request: Request):
             raise HTTPException(status_code=400, detail="Missing directory or guidelines")
         
         ui_agent = UserInterfaceAgent()
-        commit_message = ui_agent.run(directory, guidelines)
+        commit_message = ui_agent.run(directory)
         
         # Ensure the commit message is a string
         if not isinstance(commit_message, str):
@@ -114,3 +115,15 @@ async def generate_financial_analysis_report(request: Request):
     except Exception as e:
         logger.error(f"Error generating financial analysis report: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+@app.post("/api/eod_message")
+async def post_eod_message(request: Request):
+    data = await request.json()
+    eod_messages = data.get("eod_messages")
+    
+    if not eod_messages:
+        raise HTTPException(status_code=400, detail="Missing telegram messages")
+    
+    arjun_agent = ArjunAgent()
+    eod_telegram_message = await arjun_agent.run_async(eod_messages)
+    return {"eod_telegram_message": eod_telegram_message}
