@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 const ChatInterface = dynamic(() => import('@/components/ChatInterface'), { ssr: false });
 
 export const metadata: Metadata = {
-  title: 'Task Assistant',
+  title: 'Serendipity Task Assistant',
   description: 'An AI-powered task assistant with advanced tool selection',
 };
 

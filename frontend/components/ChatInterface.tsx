@@ -43,7 +43,7 @@ export default function ChatInterface() {
   return (
     <Card className="w-full max-w-4xl mx-auto">
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-2xl font-bold">Task Assistant</CardTitle>
+        <CardTitle className="text-2xl font-bold">Serendipity Task Assistant</CardTitle>
         {selectedTool && (
           <Button variant="outline" size="sm" onClick={resetApp}>
             <RefreshCw className="mr-2 h-4 w-4" /> Reset

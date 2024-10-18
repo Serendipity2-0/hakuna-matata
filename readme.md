@@ -1,5 +1,9 @@
 # Project Name
 
+Event: 18th Oct 2024
+Description: Showed hakuna-matata demo to Snowy
+
+
 Brief description of your project.
 
 Department -- [Serendipity, Dhoom Studios, TradeMan]
