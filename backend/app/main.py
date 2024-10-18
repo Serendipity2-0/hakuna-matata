@@ -6,6 +6,7 @@ import logging
 from agents.coderunner import WebScraperAgent, AnalystAgent, CampaignIdeaAgent, CopywriterAgent
 from agents.snowywriter import SnowyInterfaceAgent
 from agents.amolgittur import UserInterfaceAgent
+from agents.NikhilRaghu import NikhilRaghuAgent
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -92,3 +93,24 @@ async def generate_script_outline(request: Request):
     ui_agent = SnowyInterfaceAgent()
     script_outline = ui_agent.run(file_path, guidelines)
     return {"script_outline": script_outline}
+
+@app.post("/api/financial_analysis_report")
+async def generate_financial_analysis_report(request: Request):
+    try:
+        data = await request.json()
+        file_path = data.get("directory")
+        guidelines = data.get("guidelines", "")
+        
+        if not file_path:
+            raise HTTPException(status_code=400, detail="Missing file path")
+        
+        ui_agent = NikhilRaghuAgent()
+        financial_analysis_report = ui_agent.run(file_path, guidelines)
+        
+        if financial_analysis_report.startswith("An error occurred:"):
+            raise HTTPException(status_code=500, detail=financial_analysis_report)
+        
+        return {"financial_analysis_report": financial_analysis_report}
+    except Exception as e:
+        logger.error(f"Error generating financial analysis report: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
