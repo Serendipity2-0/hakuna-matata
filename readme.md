@@ -2,6 +2,12 @@
 
 Brief description of your project.
 
+Department -- [Serendipity, Dhoom Studios, TradeMan]
+Role -- [Admin, Manager, Executive]
+Project -- [{Serendipity: [AccQt, HRQt], {Dhoom Studios: BrandQt}, {TradeMan: Hakuna-Matata}]
+Tasks -- Each project has task list under docs/{project}/{task_name}.md. So get the list of tasks from there.
+Tools -- [{Serendipity:[ReconcilationAgent], Dhoom Studios:[ScriptWriterAgent], TradeMan:[GitCommitterAgent, RepoInfoAgent]}]
+
 Links:
 - [openai agent cookbook](https://cookbook.openai.com/examples/orchestrating_agents)
 - [swarm library](https://github.com/openai/swarm)
