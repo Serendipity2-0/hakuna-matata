@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import ToolSelector from '@/components/ToolSelector';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const GitCommitInterface = dynamic(() => import('@/components/GitCommitInterface'), { ssr: false });
 const RepoInfoInterface = dynamic(() => import('@/components/RepoInfoInterface'), { ssr: false });
@@ -34,14 +35,19 @@ export default function ChatInterface() {
   };
 
   return (
-    <div className="flex flex-col space-y-4">
-      <ToolSelector onToolSelect={setSelectedTool} />
-      {selectedTool && (
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">{selectedTool}</h2>
-          {renderToolInterface()}
-        </div>
-      )}
-    </div>
+    <Card className="w-full max-w-4xl mx-auto">
+      <CardHeader>
+        <CardTitle className="text-2xl font-bold text-center">Task Assistant</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <ToolSelector onToolSelect={setSelectedTool} />
+        {selectedTool && (
+          <div className="mt-8">
+            <h2 className="text-xl font-semibold mb-4">{selectedTool}</h2>
+            {renderToolInterface()}
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

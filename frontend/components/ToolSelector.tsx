@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
+import { ChevronRight, CheckCircle } from 'lucide-react';
 
 type Department = 'Serendipity' | 'Dhoom Studios' | 'TradeMan';
 type Role = 'Admin' | 'Manager' | 'Executive';
@@ -26,6 +28,7 @@ const toolsByDepartment: Record<Department, Tool[]> = {
 };
 
 export default function ToolSelector({ onToolSelect }: ToolSelectorProps) {
+  const [step, setStep] = useState(0);
   const [department, setDepartment] = useState<Department | ''>('');
   const [role, setRole] = useState<Role | ''>('');
   const [project, setProject] = useState<Project | ''>('');
@@ -64,68 +67,106 @@ export default function ToolSelector({ onToolSelect }: ToolSelectorProps) {
     onToolSelect(selectedTool);
   };
 
+  const nextStep = () => {
+    setStep((prevStep) => prevStep + 1);
+  };
+
+  const renderStep = () => {
+    switch (step) {
+      case 0:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Select Department</h3>
+            <Select value={department} onValueChange={(value) => setDepartment(value as Department)}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Choose department" />
+              </SelectTrigger>
+              <SelectContent>
+                {departments.map((dept) => (
+                  <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Button onClick={nextStep} disabled={!department} className="w-full">
+              Next <ChevronRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        );
+      case 1:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Select Role</h3>
+            <Select value={role} onValueChange={(value) => setRole(value as Role)}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Choose role" />
+              </SelectTrigger>
+              <SelectContent>
+                {roles.map((r) => (
+                  <SelectItem key={r} value={r}>{r}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Button onClick={nextStep} disabled={!role} className="w-full">
+              Next <ChevronRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        );
+      case 2:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Select Project</h3>
+            <Select value={project} onValueChange={(value) => setProject(value as Project)}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Choose project" />
+              </SelectTrigger>
+              <SelectContent>
+                {projectsByDepartment[department].map((proj) => (
+                  <SelectItem key={proj} value={proj}>{proj}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Button onClick={nextStep} disabled={!project} className="w-full">
+              Next <ChevronRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        );
+      case 3:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Select Tool</h3>
+            <Select value={tool} onValueChange={(value) => handleToolSelect(value as Tool)}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Choose tool" />
+              </SelectTrigger>
+              <SelectContent>
+                {toolsByDepartment[department].map((t) => (
+                  <SelectItem key={t} value={t}>{t}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Button onClick={nextStep} disabled={!tool} className="w-full">
+              Finish <CheckCircle className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="space-y-4">
-      <Select value={department} onValueChange={(value) => setDepartment(value as Department)}>
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Select Department" />
-        </SelectTrigger>
-        <SelectContent>
-          {departments.map((dept) => (
-            <SelectItem key={dept} value={dept}>{dept}</SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
-      <Select value={role} onValueChange={(value) => setRole(value as Role)}>
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Select Role" />
-        </SelectTrigger>
-        <SelectContent>
-          {roles.map((r) => (
-            <SelectItem key={r} value={r}>{r}</SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
-      {department && (
-        <Select value={project} onValueChange={(value) => setProject(value as Project)}>
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select Project" />
-          </SelectTrigger>
-          <SelectContent>
-            {projectsByDepartment[department].map((proj) => (
-              <SelectItem key={proj} value={proj}>{proj}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      )}
-
-      {project && tasks.length > 0 && (
-        <Select>
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select Task" />
-          </SelectTrigger>
-          <SelectContent>
-            {tasks.map((task) => (
-              <SelectItem key={task} value={task}>{task}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      )}
-
-      {department && (
-        <Select value={tool} onValueChange={(value) => handleToolSelect(value as Tool)}>
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select Tool" />
-          </SelectTrigger>
-          <SelectContent>
-            {toolsByDepartment[department].map((t) => (
-              <SelectItem key={t} value={t}>{t}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      )}
+    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+      <div className="flex justify-between mb-6">
+        {['Department', 'Role', 'Project', 'Tool'].map((label, index) => (
+          <div key={label} className={`flex items-center ${index <= step ? 'text-blue-600' : 'text-gray-400'}`}>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${index < step ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}>
+              {index < step ? <CheckCircle className="h-5 w-5" /> : index + 1}
+            </div>
+            <span className="ml-2 text-sm font-medium">{label}</span>
+          </div>
+        ))}
+      </div>
+      {renderStep()}
     </div>
   );
 }

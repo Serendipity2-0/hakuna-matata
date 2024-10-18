@@ -4,14 +4,13 @@ import { Metadata } from 'next';
 const ChatInterface = dynamic(() => import('@/components/ChatInterface'), { ssr: false });
 
 export const metadata: Metadata = {
-  title: 'Task Assistant Chatbot',
-  description: 'An AI-powered chatbot with human-in-the-loop capabilities',
+  title: 'Task Assistant',
+  description: 'An AI-powered task assistant with advanced tool selection',
 };
 
 export default function Home() {
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Task Assistant</h1>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <ChatInterface />
     </div>
   );
