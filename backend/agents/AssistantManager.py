@@ -1,3 +1,4 @@
+from asyncio import sleep
 from openai import OpenAI
 import shelve
 from dotenv import load_dotenv
@@ -11,6 +12,37 @@ client = OpenAI(api_key=OPEN_AI_API_KEY)
 # ------------------------------------------------------------
 # Assistant management
 # ------------------------------------------------------------
+
+
+# load technical documentation into string
+def load_technical_doc(file_path):
+    with open(file_path, "r") as file:
+        return file.read()
+
+
+# function to get all assistants
+def get_all_assistants(to_file=False):
+    assistants = client.beta.assistants.list(
+        order="desc",
+        limit="100",
+    )
+    print(assistants)
+    if to_file:
+        with open("assistants.txt", "w") as file:
+            for assistant in assistants.data:
+                file.write(f"{assistant.id}\n")
+    else:
+        print(len(assistants.data))
+        return assistants
+
+# Retrieve an assistant by name and return the id
+def get_assistant_id_by_name(name):
+    assistants = get_all_assistants()
+    for assistant in assistants.data:
+        if assistant.name == name:
+            return assistant.id
+    return None
+
 # funtion to get all files
 def get_all_files(to_file=False):
     files = client.files.list()
@@ -61,20 +93,18 @@ def upload_file(path):
 # --------------------------------------------------------------
 # Create assistant
 # --------------------------------------------------------------
-def create_assistant(file):
+def create_assistant():
     """
     You currently cannot set the temperature for Assistant via the API.
     """
-    assistant = client.beta.assistants.create(
-        name="WhatsApp AirBnb Assistant",
-        instructions="You're a helpful WhatsApp assistant that can assist guests that are staying in our Paris AirBnb. Use your knowledge base to best respond to customer queries. If you don't know the answer, say simply that you cannot help with question and advice to contact the host directly. Be friendly and funny.",
-        tools=[{"type": "retrieval"}],
-        model="gpt-4-1106-preview",
-        file_ids=[file.id],
+    my_assistant = client.beta.assistants.create(
+    instructions="You are a personal math tutor. When asked a question, write and run Python code to answer the question.",
+    name="Math Tutor",
+    tools=[{"type": "code_interpreter"}],
+    model="gpt-4o-mini",
     )
-    return assistant
-
-
+    print(my_assistant)
+    return my_assistant
 
 # --------------------------------------------------------------
 # Thread management
@@ -126,7 +156,7 @@ def generate_response(message_body, wa_id, name):
 # --------------------------------------------------------------
 def run_assistant(thread):
     # Retrieve the Assistant
-    assistant = client.beta.assistants.retrieve("asst_rNfGqSgJfJD6aQjj2EA9mJIF")
+    assistant = client.beta.assistants.retrieve("asst_Q7Bsnp7PeKHb0S5FscAMcquJ")
 
     # Run the assistant
     run = client.beta.threads.runs.create(
@@ -150,38 +180,14 @@ def run_assistant(thread):
 # --------------------------------------------------------------
 # Test assistant
 # --------------------------------------------------------------
-
-# load technical documentation into string
-def load_technical_doc(file_path):
-    with open(file_path, "r") as file:
-        return file.read()
-
-
-# function to get all assistants
-def get_all_assistants(to_file=False):
-    assistants = client.beta.assistants.list(
-        order="desc",
-        limit="100",
-    )
-    if to_file:
-        with open("assistants.txt", "w") as file:
-            for assistant in assistants.data:
-                file.write(f"{assistant.id}\n")
-    else:
-        print(len(assistants.data))
-        return assistants
-
-# Retrieve an assistant by name and return the id
-def get_assistant_id_by_name(name):
-    assistants = get_all_assistants()
-    for assistant in assistants.data:
-        if assistant.name == name:
-            return assistant.id
-    return None
         
 # if __name__ == "__main__":
     
+#     # create_assistant()
+#     # sleep(10)
+#     # get_all_assistants()
     
-    # jio_router_config = load_technical_doc("docs/JioRouterConfig.md")
-    # user_query = "I am able to access my website from other network but not when I am connected to Jio network. Below are Router settings. Please help."
-    # new_message = generate_response(user_query, "123", "Omkar")
+#     # jio_router_config = load_technical_doc("docs/JioRouterConfig.md")
+    
+#     user_query = "I want to learn vedic maths. Please help."
+#     new_message = generate_response(user_query, "123", "Omkar")

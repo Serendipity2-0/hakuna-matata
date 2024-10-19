@@ -1,13 +1,15 @@
 # backend/app/main.py
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import FastAPI, Request, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 import asyncio
 import logging
+import json
 from agents.coderunner import WebScraperAgent, AnalystAgent, CampaignIdeaAgent, CopywriterAgent
 from agents.snowywriter import SnowyInterfaceAgent
 from agents.amolgittur import UserInterfaceAgent
 from agents.NikhilRaghu import NikhilRaghuAgent
 from agents.Arjun import ArjunAgent
+from agents.AssistantManager import generate_response, check_if_thread_exists, store_thread
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -127,3 +129,41 @@ async def post_eod_message(request: Request):
     arjun_agent = ArjunAgent()
     eod_telegram_message = await arjun_agent.run_async(eod_messages)
     return {"eod_telegram_message": eod_telegram_message}
+
+@app.websocket("/ws/assistant")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    wa_id = None
+    name = None
+
+    try:
+        while True:
+            data = await websocket.receive_text()
+            message = json.loads(data)
+
+            if message["type"] == "init":
+                wa_id = message["wa_id"]
+                name = message["name"]
+                await websocket.send_json({"type": "init", "status": "success"})
+            elif message["type"] == "message":
+                if not wa_id or not name:
+                    await websocket.send_json({"type": "error", "message": "Session not initialized"})
+                else:
+                    response = generate_response(message["content"], wa_id, name)
+                    await websocket.send_json({"type": "message", "content": response})
+            elif message["type"] == "reset":
+                if wa_id:
+                    store_thread(wa_id, None)
+                    await websocket.send_json({"type": "reset", "status": "success"})
+                else:
+                    await websocket.send_json({"type": "error", "message": "Session not initialized"})
+    except WebSocketDisconnect:
+        print(f"WebSocket disconnected for {name} with wa_id {wa_id}")
+    finally:
+        # Optionally, you can add cleanup code here if needed
+        pass
+
+@app.get("/api/assistant/thread_exists/{wa_id}")
+async def thread_exists(wa_id: str):
+    thread_id = check_if_thread_exists(wa_id)
+    return {"exists": thread_id is not None}
