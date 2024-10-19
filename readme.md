@@ -154,3 +154,46 @@ The FastAPI backend is designed to be modular, scalable, and easy to maintain. B
    - The `tests/` directory contains unit tests for individual components and integration tests for end-to-end testing.
 
 This architecture ensures that the FastAPI backend is robust, maintainable, and scalable, making it suitable for production environments.
+
+Frontend Design:
+1. RGB for 3 sides components and gradient gray for top component
+   1.1 Red Component: Execution Component
+   1.2 Green Component: Discusion Component
+   1.3 Blue Component: Knowledge/Planning/Architecture Component
+   1.4 Grey Component: Our work output
+   
+2. Center stage VIBGYOR: Showcase and feedback component
+   2.1 Visual component
+   2.2 Audio component
+   2.3 Written text component 
+Agent: Telegram agent, text clipboard agent, file search agent, terminal agent, code execution agent, audio transcript agent, kannada language agent. Project init agent for all Depts.
+
+Backend Knowledge Gaps:
+1.Async concept
+2. Websocket streaming
+3. Api testing
+4. Agentic system design
+5. Authentication and Authorization. Role based access control.
+
+Frontend Knowledge Gaps:
+1. Nextjs
+2. Tailwind CSS
+3. Shadcn UI
+4. Typescript
+5. Framer Motion
+6. CSR and SSR
+7. Nextjs 14 app router
+8. Nextjs 14 server actions
+9. Playwright testing
+10. Mobile development
+
+System Admin Knowledge Gaps:
+1. Linux
+2. Docker
+3. Coolify
+4. Networking
+5. DNS and CDN
+6. Database administration
+7. Server monitoring and alerting
+8. Server backup and recovery
+9. Cursor rules

@@ -46,7 +46,7 @@ const RectangleComponent: React.FC<RectangleProps> = ({ position, shortcut }) =>
   };
 
   return (
-    <div style={getPositionStyle() as React.CSSProperties}>
+    <div style={getPositionStyle() as React.CSSProperties} data-testid={`${position}-rectangle`}>
       <button onClick={() => alert('To be implemented')}>
         Click me ({position})
       </button>
