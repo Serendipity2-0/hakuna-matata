@@ -12,6 +12,7 @@ from openai import OpenAI
 
 from swarm import Agent
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 # Load environment variables from .env file
 dotenv.load_dotenv(dotenv_path="kaas.env")
@@ -30,6 +31,19 @@ def beautify_git_diff_output(git_diff_output):
     # Use a tool like 'xmllint' to format the XML output
     formatted_output = subprocess.run(['xmllint', '--format', '-'], input=git_diff_output, capture_output=True, text=True)
     return formatted_output.stdout
+
+commit_message_prompt = '''
+    You will be provided with content from a git diff output.
+    Your goal will be to generate a git commit message following the schema provided.
+    Here is a description of the parameters:
+    - commit_message: a well-formatted git commit message
+'''
+
+class CommitMessage(BaseModel):
+    commit_message_header: str
+    commit_message_body: str
+    commit_explanation: str
+
 
 # Function to analyze git diff output
 def analyze_git_diff_output(content, guidelines):
@@ -54,16 +68,15 @@ def generate_completion(role, task, content):
     This function demonstrates how to interact with OpenAI's API.
     """
     print(f"Generating completion for {role}")
-    response = client.chat.completions.create(
+    response = client.beta.chat.completions.parse(
         model="gpt-4o-mini",  # Using GPT-4o for high-quality responses
         messages=[
             {"role": "system", "content": f"You are a {role}. {task}"},
             {"role": "user", "content": content}
-        ]
+        ],
+        response_format=CommitMessage,
     )
-    return response.choices[0].message.content
-
-
+    return response.choices[0].message.parsed
 
 
 # Fast api will get working directory and guidelines from the user and pass it to this agent
