@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
 interface Message {
   id: string;
   content: string;
@@ -21,7 +23,7 @@ const AssistantChat: React.FC = () => {
     const newWaId = uuidv4();
     setWaId(newWaId);
 
-    const ws = new WebSocket(`ws://localhost:8000/ws/assistant`);
+    const ws = new WebSocket(`${baseUrl}/ws/assistant`);
     websocketRef.current = ws;
 
     ws.onopen = () => {

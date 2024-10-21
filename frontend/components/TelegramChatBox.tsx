@@ -8,6 +8,8 @@ import { MessageCircle, Send, X } from 'lucide-react';
 import EditableMarkdown from '@/components/EditableMarkdown';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
 export default function TelegramChatBox() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
@@ -40,7 +42,7 @@ export default function TelegramChatBox() {
     setIsLoading(true);
 
     try {
-      const res = await fetch('http://localhost:8000/api/eod_message', {
+      const res = await fetch(`${baseUrl}/api/eod_message`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ eod_messages: message }),

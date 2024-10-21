@@ -8,7 +8,7 @@ Brief description of your project.
 
 Department -- [Serendipity, Dhoom Studios, TradeMan]
 Role -- [Admin, Manager, Executive]
-Project -- [{Serendipity: [AccQt, HRQt], {Dhoom Studios: BrandQt}, {TradeMan: Hakuna-Matata}]
+Project -- [{Serendipity: [AccQt, HRQt], {Dhoom Studios: BrandQt}, {TradeMan: Hakuna-Matata}}]
 Tasks -- Each project has task list under docs/{project}/{task_name}.md. So get the list of tasks from there.
 Tools -- [{Serendipity:[ReconcilationAgent], Dhoom Studios:[ScriptWriterAgent], TradeMan:[GitCommitterAgent, RepoInfoAgent]}]
 
@@ -86,7 +86,7 @@ Before you begin, ensure you have met the following requirements:
 
 3. Start the FastAPI server:
    ```
-   uvicorn main:app --reload
+   uvicorn app.main:app --host 0.0.0.0 --port 8051 --reload
    ```
 
    The API will be available at `http://localhost:8000`.
@@ -100,10 +100,16 @@ Before you begin, ensure you have met the following requirements:
 
 2. Start the Next.js development server:
    ```
-   npm run dev  # or yarn dev
+   npm run dev -- -H 0.0.0.0 -p 8080
    ```
 
-   The frontend will be available at `http://localhost:3000`.
+   The frontend will be available at `http://localhost:8080`.
+
+The NEXT_PUBLIC_BASE_URL is currently set to the static public ip address. After nginx is configured then we will change the NEXT_PUBLIC_BASE_URL to the sub domain name.
+
+Current we are running this servers on Prankster. The static ip address of prankster is 192.168.29.202. In future if we want to move this to mac server we must
+change the ip address bind to the ports 8051 and 8080 to the static ip address of mac server.
+
 
 ## API Documentation
 
