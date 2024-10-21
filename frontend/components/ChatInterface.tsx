@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { RefreshCw } from 'lucide-react';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 
-const GitCommitInterface = dynamic(() => import('@/components/GitCommitInterface'), { ssr: false });
 const RepoInfoInterface = dynamic(() => import('@/components/RepoInfoInterface'), { ssr: false });
 const ReconciliationInterface = dynamic(() => import('@/components/ReconciliationInterface'), { ssr: false });
 const ScriptWriterInterface = dynamic(() => import('@/components/ScriptWriterInterface'), { ssr: false });
@@ -39,8 +38,6 @@ export default function ChatInterface() {
 
   const renderToolInterface = () => {
     switch (selectedTool) {
-      case 'GitCommitterAgent':
-        return <GitCommitInterface />;
       case 'RepoInfoAgent':
         return <RepoInfoInterface />;
       case 'ReconciliationAgent':

@@ -58,32 +58,6 @@ async def generate_copy(request: Request):
     instructions = await copywriter_agent.run(brief)
     return {"coding_instructions": instructions}
 
-@app.post("/api/git_commit_message")
-async def generate_commit_message(request: Request):
-    try:
-        logger.info("Received request for git commit message")
-        data = await request.json()
-        logger.info(f"Received data: {data}")
-        
-        directory = data.get("directory")
-        guidelines = data.get("guidelines")
-        
-        if not directory or not guidelines:
-            raise HTTPException(status_code=400, detail="Missing directory or guidelines")
-        
-        ui_agent = UserInterfaceAgent()
-        commit_message = ui_agent.run(directory)
-        
-        # Ensure the commit message is a string
-        if not isinstance(commit_message, str):
-            commit_message = str(commit_message)
-        
-        logger.info(f"Generated commit message: {commit_message}")
-        return {"commit_message": {"commit_message": commit_message}}
-    except Exception as e:
-        logger.error(f"Error generating commit message: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
-
 @app.post("/api/script_outline")
 async def generate_script_outline(request: Request):
     data = await request.json()
