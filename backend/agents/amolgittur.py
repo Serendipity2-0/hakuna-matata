@@ -19,6 +19,7 @@ dotenv.load_dotenv(dotenv_path="kaas.env")
 
 # Initialize OpenAI client
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+git_guidelines_path = os.getenv("GIT_GUIDELINES_PATH")
 
 # Function to get the GIT diff output using subprocess shell command    
 def get_git_diff_output(directory):
@@ -84,7 +85,7 @@ class UserInterfaceAgent(Agent):
     def run(self, directory):
         print("working directory:", directory)
         
-        with open("/Users/omkar/hakuna-matata/backend/patterns/git_commit_guidelines.md", "r") as file:
+        with open(git_guidelines_path, "r") as file:
             guidelines = file.read()
         
         print("guidelines:", guidelines)

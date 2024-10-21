@@ -15,6 +15,7 @@ dotenv.load_dotenv(dotenv_path="kaas.env")
 
 # Initialize OpenAI client
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+eodmsggen_path = os.getenv("EODMSGGEN_PATH")
 
 class TelegramAdapter:
     def __init__(self, api_id, api_hash, phone_number):
@@ -66,7 +67,7 @@ class ArjunAgent(Agent):
             telegram_api_hash = '351041b3c3951a0a116652896d55d9a2'
             telegram_phone_number = '+919902106162'
             
-            with open("/Users/omkar/hakuna-matata/backend/patterns/EODMsgGen.md", "r") as file:
+            with open(eodmsggen_path, "r") as file:
                 guidelines = file.read()
                 print(f"guidelines: {guidelines}")  
             
