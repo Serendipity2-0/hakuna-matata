@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
 import EditableMarkdown from '@/components/EditableMarkdown';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 /**
  * GitCommitInterface component for generating git commit messages.
  * 
@@ -33,7 +34,7 @@ export default function GitCommitInterface() {
     setCommitMessage('');
 
     try {
-      const response = await fetch('http://localhost:8000/api/git_commit_message', {
+      const response = await fetch(`${baseUrl}/api/git_commit_message`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ directory, guidelines: taskSummary }),

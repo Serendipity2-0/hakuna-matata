@@ -6,6 +6,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
 import EditableMarkdown from '@/components/EditableMarkdown';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
 export default function ReconciliationInterface() {
   const [filePath, setFilePath] = useState('');
   const [guidelines, setGuidelines] = useState('');
@@ -20,7 +22,7 @@ export default function ReconciliationInterface() {
     setAnalysisReport('');
 
     try {
-      const response = await fetch('http://localhost:8000/api/financial_analysis_report', {
+      const response = await fetch(`${baseUrl}/api/financial_analysis_report`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ directory: filePath, guidelines }),

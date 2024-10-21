@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
 import EditableMarkdown from '@/components/EditableMarkdown';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export default function ScriptWriterInterface() {
   const [filePath, setFilePath] = useState('');
   const [guidelines, setGuidelines] = useState('');
@@ -20,7 +21,7 @@ export default function ScriptWriterInterface() {
     setScriptOutline('');
 
     try {
-      const response = await fetch('http://localhost:8000/api/script_outline', {
+      const response = await fetch(`${baseUrl}/api/script_outline`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ directory: filePath, guidelines }),
