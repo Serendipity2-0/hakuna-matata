@@ -23,7 +23,7 @@ const AssistantChat: React.FC = () => {
     const newWaId = uuidv4();
     setWaId(newWaId);
 
-    const ws = new WebSocket(`${baseUrl}/ws/assistant`);
+    const ws = new WebSocket(`wss://${baseUrl}/ws/assistant`);
     websocketRef.current = ws;
 
     ws.onopen = () => {
