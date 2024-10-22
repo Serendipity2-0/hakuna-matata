@@ -1,10 +1,5 @@
 # This is an agent which will take the perplexity research link and provide script outline for dhoom studios
 
-# Step 1: cd to the working directory
-# Step 2: Run the GIT diff command and give git output and 'commitMessageGuidelines.md' as prompt to chat completion API to get the GIT commit message
-# Step 3: Show the GIT commit message to the user for human review
-# Step 4: Run the GIT commit command and ask for push
-
 import os
 import subprocess
 import dotenv

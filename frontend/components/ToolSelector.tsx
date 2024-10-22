@@ -8,7 +8,7 @@ import { ChevronRight, CheckCircle } from 'lucide-react';
 type Department = 'Serendipity' | 'Dhoom Studios' | 'TradeMan';
 type Role = 'Admin' | 'Manager' | 'Executive';
 type Project = 'AccQt' | 'HRQt' | 'BrandQt' | 'Hakuna-Matata';
-type Tool = 'ReconciliationAgent' | 'ScriptWriterAgent' | 'GitCommitterAgent' | 'RepoInfoAgent';
+type Tool = 'ReconciliationAgent' | 'ScriptWriterAgent' | 'RepoInfoAgent';
 
 interface ToolSelectorProps {
   onToolSelect: (tool: Tool) => void;
@@ -24,7 +24,7 @@ const projectsByDepartment: Record<Department, Project[]> = {
 const toolsByDepartment: Record<Department, Tool[]> = {
   Serendipity: ['ReconciliationAgent'],
   'Dhoom Studios': ['ScriptWriterAgent'],
-  TradeMan: ['GitCommitterAgent', 'RepoInfoAgent'],
+  TradeMan: ['RepoInfoAgent'],
 };
 
 export default function ToolSelector({ onToolSelect }: ToolSelectorProps) {

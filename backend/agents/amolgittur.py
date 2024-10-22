@@ -27,11 +27,23 @@ def get_git_diff_output(directory):
     return os.popen("git diff").read()
 
 
-# Function to beautify git diff output in xml format    
-def beautify_git_diff_output(git_diff_output):
-    # Use a tool like 'xmllint' to format the XML output
-    formatted_output = subprocess.run(['xmllint', '--format', '-'], input=git_diff_output, capture_output=True, text=True)
-    return formatted_output.stdout
+# Function to generate completions using OpenAI
+def generate_completion(role, task, content):
+    """
+    Generate a completion using OpenAI's GPT model.
+    This function demonstrates how to interact with OpenAI's API.
+    """
+    print(f"Generating completion for {role}")
+    response = client.beta.chat.completions.parse(
+        model="gpt-4o-mini",  # Using GPT-4o for high-quality responses
+        messages=[
+            {"role": "system", "content": f"You are a {role}. {task}"},
+            {"role": "user", "content": content}
+        ],
+        response_format=CommitMessage,
+    )
+    return response.choices[0].message.parsed
+
 
 commit_message_prompt = '''
     You will be provided with content from a git diff output.
@@ -54,30 +66,13 @@ def analyze_git_diff_output(content, guidelines):
     """
     print("Analyzing git diff output")
     commit_message = generate_completion(
-        "code reviewer",
+        "git commit message generator",
         "Analyze the following git diff output and use the git commit guidelines provided to output a nice and compelling git commit message",
         "git diff output: " + content + "\n" + "git commit guidelines: " + guidelines
     )
     print("commit_message:", commit_message)
     return {"commit_message": commit_message}
 
-
-# Function to generate completions using OpenAI
-def generate_completion(role, task, content):
-    """
-    Generate a completion using OpenAI's GPT model.
-    This function demonstrates how to interact with OpenAI's API.
-    """
-    print(f"Generating completion for {role}")
-    response = client.beta.chat.completions.parse(
-        model="gpt-4o-mini",  # Using GPT-4o for high-quality responses
-        messages=[
-            {"role": "system", "content": f"You are a {role}. {task}"},
-            {"role": "user", "content": content}
-        ],
-        response_format=CommitMessage,
-    )
-    return response.choices[0].message.parsed
 
 
 # Fast api will get working directory and guidelines from the user and pass it to this agent
