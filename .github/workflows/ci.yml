@@ -3,7 +3,7 @@ name: GitHub Pages CI
 on:
   push:
     branches:
-      - CommitAgent # The branch that triggers the workflow
+      - branch/hakuna-matata_docs # The branch that triggers the workflow
 
 permissions:
   contents: write
