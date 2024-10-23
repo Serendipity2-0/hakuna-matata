@@ -1,7 +1,17 @@
-site_name: My Docs
-docs_dir: docs  # Tell MkDocs to look in the 'docs/' folder for Markdown files
+site_name: Serendepity Docs
+docs_dir: docs 
 theme:
   name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
 
 plugins:
   - search
@@ -13,3 +23,16 @@ nav:
   - HakunaMatata Dev Guidelines: HakunaMatataDevGuide.md
   - Rbac Guidelines: RbacGuidelines.md
   - Development: developmentSch.MD
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
