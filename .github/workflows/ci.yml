@@ -1,9 +1,9 @@
-name: ci
+name: GitHub Pages CI
 
 on:
   push:
     branches:
-      - CommitAgent # Make sure this is the correct branch name
+      - CommitAgent # The branch that triggers the workflow
 
 permissions:
   contents: write
@@ -13,34 +13,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository code
+      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Debug step: List files in the repository to verify structure
-      - name: List repository files
-        run: ls -al
-
-      # Setup Python to run MkDocs
+      # Set up Python environment
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.x
 
-      # Install MkDocs and plugins
+      # Install MkDocs and required plugins
       - name: Install dependencies
         run: |
           pip install mkdocs-material
           pip install mkdocs-awesome-pages-plugin
 
-      # Debug step: List files in the docs folder to ensure Markdown files are present
-      - name: List docs folder contents
-        run: ls -al docs/
-
-      # Build and deploy the documentation to GitHub Pages
-      - name: Build and Deploy Documentation
-        env:
-          CI: "true"
+      # Build and deploy the documentation
+      - name: Deploy to GitHub Pages
         run: |
-          mkdocs build --strict  # Builds the documentation to check for errors
-          mkdocs gh-deploy --force  # Deploys the documentation to GitHub Pages
+          mkdocs gh-deploy --force
