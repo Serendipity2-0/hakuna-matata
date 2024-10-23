@@ -1,22 +1,38 @@
-name: ci 
+name: ci
+
 on:
   push:
     branches:
-      - CommitAgent
+      - CommitAgent  # Make sure this is the correct branch name
+
 permissions:
   contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      # Checkout the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Setup Python to run MkDocs
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
           python-version: 3.x
+
+      # Install MkDocs and plugins
       - name: Install dependencies
         run: |
           pip install mkdocs-material
           pip install mkdocs-awesome-pages-plugin
-      - name: Build and deploy documentation
+
+      # Build and deploy the documentation to GitHub Pages
+      - name: Build and Deploy Documentation
+        env:
+          CI: "true"
         run: |
-          mkdocs gh-deploy --force
+          mkdocs build --strict  # Builds the documentation to check for errors
+          mkdocs gh-deploy --force  # Deploys the documentation to GitHub Pages
