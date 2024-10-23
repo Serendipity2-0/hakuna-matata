@@ -3,7 +3,9 @@ name: GitHub Pages CI
 on:
   push:
     branches:
-      - CommitAgent # The branch that triggers the workflow
+      - CommitAgent
+      - gh-pages
+      - aaaksh
 
 permissions:
   contents: write
