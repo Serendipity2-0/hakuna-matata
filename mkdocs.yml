@@ -17,3 +17,10 @@ theme:
     - search.share
     - search.suggest
 
+nav:
+  - Home: index.md
+  - Agent Creation Guidelines: AgentCreationGuideline.md
+  - HakunaMatata Dev Guidelines: HakunaMatataDevGuide.md
+  - Rbac Guidelines: RbacGuidelines.md
+  - Development: developmentSch.MD
+  
