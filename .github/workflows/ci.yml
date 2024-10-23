@@ -3,7 +3,7 @@ name: ci
 on:
   push:
     branches:
-      - CommitAgent  # Make sure this is the correct branch name
+      - CommitAgent # Make sure this is the correct branch name
 
 permissions:
   contents: write
@@ -17,6 +17,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Debug step: List files in the repository to verify structure
+      - name: List repository files
+        run: ls -al
+
       # Setup Python to run MkDocs
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -28,6 +32,10 @@ jobs:
         run: |
           pip install mkdocs-material
           pip install mkdocs-awesome-pages-plugin
+
+      # Debug step: List files in the docs folder to ensure Markdown files are present
+      - name: List docs folder contents
+        run: ls -al docs/
 
       # Build and deploy the documentation to GitHub Pages
       - name: Build and Deploy Documentation
