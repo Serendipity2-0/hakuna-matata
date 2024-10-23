@@ -2,20 +2,18 @@ site_name: My Docs
 theme:
   name: material
   features:
-    - content.code.annotate
-    - content.code.copy
-    - content.tabs.link
-    - header.autohide
-    - announce.dismiss
-    - navigation.footer
-    - navigation.indexes
-    - navigation.sections
     - navigation.tabs
+    - navigation.sections
+    - toc.integrate
     - navigation.top
-    - navigation.tracking
-    - search.highlight
-    - search.share
     - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+plugins:
+  - search
+  - awesome-pages
 
 nav:
   - Home: index.md
@@ -23,4 +21,16 @@ nav:
   - HakunaMatata Dev Guidelines: HakunaMatataDevGuide.md
   - Rbac Guidelines: RbacGuidelines.md
   - Development: developmentSch.MD
-  
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
