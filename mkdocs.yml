@@ -1,0 +1,15 @@
+site_name: My Docs
+docs_dir: docs  # Tell MkDocs to look in the 'docs/' folder for Markdown files
+theme:
+  name: material
+
+plugins:
+  - search
+  - awesome-pages
+
+nav:
+  - Home: index.md
+  - Agent Creation Guidelines: AgentCreationGuideline.md
+  - HakunaMatata Dev Guidelines: HakunaMatataDevGuide.md
+  - Rbac Guidelines: RbacGuidelines.md
+  - Development: developmentSch.MD
