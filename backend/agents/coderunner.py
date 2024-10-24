@@ -12,15 +12,25 @@ import re
 from swarm import Agent
 from playwright.async_api import async_playwright
 from fastapi import FastAPI
+from pathlib import Path
+
+# Get the directory of the current script
+current_dir = Path(__file__).parent.absolute()
+
+# Get the path to the .env file
+env_path = Path(current_dir).parent.parent / 'kaas.env'
+
+# Load environment variables from .env file
+dotenv.load_dotenv(env_path)
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Load environment variables from .env file
-dotenv.load_dotenv(dotenv_path="kaas.env")
+OPENAI_API_KEY = os.getenv("NEW_OPENAI_API_KEY")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL")
 
 # Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 # Function to create a folder for the website
 def create_website_folder(url):
@@ -86,7 +96,7 @@ def generate_completion(role, task, content):
     """
     logging.info(f"Generating completion for {role}")
     response = client.chat.completions.create(
-        model="gpt-4o-mini",  # Using GPT-4o for high-quality responses
+        model=OPENAI_MODEL,  # Using GPT-4o for high-quality responses
         messages=[
             {"role": "system", "content": f"You are a {role}. {task}"},
             {"role": "user", "content": content}
@@ -191,15 +201,15 @@ class UserInterfaceAgent(Agent):
         # Create and save comprehensive coding plan
         coding_plan = f"""# Comprehensive Coding Plan
 
-## Website Analysis
-{analysis['analysis']}
+                        ## Website Analysis
+                        {analysis['analysis']}
 
-## Coding Outline
-{coding_outline['coding_outline']}
+                        ## Coding Outline
+                        {coding_outline['coding_outline']}
 
-## Coding Instructions
-{coding_instructions['coding_instructions']}
-"""
+                        ## Coding Instructions
+                        {coding_instructions['coding_instructions']}
+                        """
         with open(os.path.join(folder_name, "coding-plan.md"), "w", encoding="utf-8") as f:
             f.write(coding_plan)
         
@@ -236,15 +246,15 @@ async def analyze_documentation(url: str, target_audience: str, goals: str):
     # Create comprehensive coding plan
     coding_plan = f"""# Comprehensive Coding Plan
 
-## Website Analysis
-{analysis['analysis']}
+                    ## Website Analysis
+                    {analysis['analysis']}
 
-## Coding Outline
-{coding_outline['coding_outline']}
+                    ## Coding Outline
+                    {coding_outline['coding_outline']}
 
-## Coding Instructions
-{coding_instructions['coding_instructions']}
-"""
+                    ## Coding Instructions
+                    {coding_instructions['coding_instructions']}
+                    """
     
     return {
         "analysis": analysis['analysis'],

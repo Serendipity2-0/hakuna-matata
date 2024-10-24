@@ -12,12 +12,23 @@ import dotenv
 from openai import OpenAI
 import pandas as pd
 from swarm import Agent
+from pathlib import Path
+
+# Get the directory of the current script
+current_dir = Path(__file__).parent.absolute()
+
+# Get the path to the .env file
+env_path = Path(current_dir).parent.parent / 'kaas.env'
 
 # Load environment variables from .env file
-dotenv.load_dotenv(dotenv_path="kaas.env")
+dotenv.load_dotenv(env_path)
+
+
+OPENAI_API_KEY = os.getenv("NEW_OPENAI_API_KEY")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL")
 
 # Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 # read the excel file and return the list of sheet names
 def read_excel_N_return_sheet_names(directory):
@@ -103,18 +114,18 @@ def collate_data_and_generate_markdown_report(sheet_dataframe_dictionary):
     category_wise_expenses = get_category_wise_expenses(sheet_dataframe_dictionary)
     
     markdown_report = f"""
-## Budget
-{budget}
+                        ## Budget
+                        {budget}
 
-## Upcoming Payments
-{upcoming_payments.to_markdown() if isinstance(upcoming_payments, pd.DataFrame) else upcoming_payments}
+                        ## Upcoming Payments
+                        {upcoming_payments.to_markdown() if isinstance(upcoming_payments, pd.DataFrame) else upcoming_payments}
 
-## Overdue Payments
-{overdue_payments.to_markdown() if isinstance(overdue_payments, pd.DataFrame) else overdue_payments}
+                        ## Overdue Payments
+                        {overdue_payments.to_markdown() if isinstance(overdue_payments, pd.DataFrame) else overdue_payments}
 
-## Category Wise Expenses
-{category_wise_expenses.to_markdown() if isinstance(category_wise_expenses, pd.Series) else category_wise_expenses}
-"""
+                        ## Category Wise Expenses
+                        {category_wise_expenses.to_markdown() if isinstance(category_wise_expenses, pd.Series) else category_wise_expenses}
+                        """
     print("Markdown report generated")
     return markdown_report
 
@@ -133,7 +144,7 @@ def generate_financial_analysis_report(markdown_report, guidelines):
 def generate_completion(role, task, content):
     print(f"Generating completion for {role}")
     response = client.chat.completions.create(
-        model="gpt-4o",
+        model=OPENAI_MODEL,
         messages=[
             {"role": "system", "content": f"You are a {role}. {task}"},
             {"role": "user", "content": content}
@@ -152,7 +163,7 @@ class NikhilRaghuAgent(Agent):
             markdown_report = collate_data_and_generate_markdown_report(sheet_dataframe_dictionary)
             
             if not guidelines:
-                with open("patterns/Kaas_Sheets_Summary.md", "r") as file:
+                with open("patterns/Kaas_Sheets_Summary.md", "r") as file:#TODO: check if this is correct path if yes move it to env file
                     guidelines = file.read()
             
             financial_analysis_report = generate_financial_analysis_report(markdown_report, guidelines)

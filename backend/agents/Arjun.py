@@ -9,19 +9,34 @@ from openai import OpenAI
 from swarm import Agent
 from telethon import TelegramClient
 import asyncio
+from pathlib import Path
+
+# Get the directory of the current script
+current_dir = Path(__file__).parent.absolute()
+
+# Get the path to the .env file
+env_path = Path(current_dir).parent.parent / 'kaas.env'
 
 # Load environment variables from .env file
-dotenv.load_dotenv(dotenv_path="kaas.env")
+dotenv.load_dotenv(env_path)
 
 # Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-eodmsggen_path = os.getenv("EODMSGGEN_PATH")
+TELEGRAM_API_ID = os.getenv("telegram_api_id")
+TELEGRAM_API_HASH = os.getenv("telegram_api_hash")
+TELEGRAM_PHONE_NUMBER = os.getenv("telegram_phone_number")
+TELEGRAM_CHANNEL_ID = os.getenv("telegram_channel_id")
+TELEGRAM_PEER_ID = os.getenv("telegram_peer_id")
+EODMSGPATH = os.getenv("EODMSGGEN_PATH")
+OPENAI_API_KEY = os.getenv("NEW_OPENAI_API_KEY")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL")
+
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 class TelegramAdapter:
     def __init__(self, api_id, api_hash, phone_number):
         self.client = TelegramClient('session_name', api_id, api_hash)
         self.phone_number = phone_number
-        self.channel_id = 6648119238
+        self.channel_id = -1001677058465
 
     async def start(self):
         await self.client.start(phone=self.phone_number)
@@ -51,7 +66,7 @@ def generate_eod_message(markdown_report, guidelines):
 def generate_completion(role, task, content):
     print(f"Generating completion for {role}")
     response = client.chat.completions.create(
-        model="gpt-4",
+        model=OPENAI_MODEL,
         messages=[
             {"role": "system", "content": f"You are a {role}. {task}"},
             {"role": "user", "content": content}
@@ -60,23 +75,29 @@ def generate_completion(role, task, content):
     return response.choices[0].message.content
 
 class ArjunAgent(Agent):
+    def __init__(self):
+        super().__init__()
+        # Load environment variables in the constructor
+        self._telegram_api_id = TELEGRAM_API_ID
+        self._telegram_api_hash = TELEGRAM_API_HASH
+        self._telegram_phone_number = TELEGRAM_PHONE_NUMBER
+        self._eodmsggen_path = os.path.normpath(EODMSGPATH)
+
     async def run_async(self, telegram_messages):
-        print(f"telegram messages: {telegram_messages}")
         try:
-            telegram_api_id = '22353756'
-            telegram_api_hash = '351041b3c3951a0a116652896d55d9a2'
-            telegram_phone_number = '+919902106162'
+            if not os.path.exists(self._eodmsggen_path):
+                raise FileNotFoundError(f"File not found: {self._eodmsggen_path}")
             
-            with open(eodmsggen_path, "r") as file:
+            with open(self._eodmsggen_path, "r") as file:
                 guidelines = file.read()
-                print(f"guidelines: {guidelines}")  
+                print(f"guidelines: {guidelines}")
             
             eod_message = generate_eod_message(telegram_messages, guidelines)
             print("ArjunAgent: Completed")
             print(f"eod_message: {eod_message}")
             
             # send the eod message to telegram
-            telegram_adapter = TelegramAdapter(telegram_api_id, telegram_api_hash, telegram_phone_number)
+            telegram_adapter = TelegramAdapter(self._telegram_api_id, self._telegram_api_hash, self._telegram_phone_number)
             await telegram_adapter.start()
             await telegram_adapter.send_message(eod_message)
             await telegram_adapter.stop()
