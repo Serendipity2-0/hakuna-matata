@@ -1,0 +1,48 @@
+/* Custom CSS for light/dark mode toggle switch */
+
+.md-nav__icon:before {
+    display: none;  /* Hide the default material icon */
+}
+
+.md-nav__toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    background-color: var(--md-default-bg-color);
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.md-nav__toggle::before {
+    content: '\2600'; /* Sun icon */
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-size: 16px;
+    color: #000;
+}
+
+.md-nav__toggle[data-md-toggle="light"]::before {
+    content: '\1F319'; /* Moon icon for dark mode */
+    right: 5px;
+    left: auto;
+    font-size: 16px;
+    color: #fff;
+}
+
+.md-nav__toggle-switch {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.md-nav__toggle[data-md-toggle="dark"] .md-nav__toggle-switch {
+    left: 26px;
+    background-color: #4d4d4d;
+}
