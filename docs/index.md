@@ -8,10 +8,10 @@ Brief description of your project.
 
 ## Quick Links
 
-- [Agent Creation Guideline](AgentCreationGuideline.md)
+<!-- - [Agent Creation Guideline](AgentCreationGuideline.md)
 - [HakunaMatata Dev Guidelines](HakunaMatataDevGuide.md)
 - [Rbac Guidelines](RbacGuidelines.md)
-- [Development](developmentSch.MD)
+- [Development](developmentSch.MD) -->
 
 
 For more details, please navigate through the sections above.

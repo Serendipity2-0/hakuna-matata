@@ -1,7 +1,34 @@
-site_name: My Docs
+site_name: Serendipity
 docs_dir: docs  # Tell MkDocs to look in the 'docs/' folder for Markdown files
 theme:
   name: material
+  features:
+    - navigation.tabs
+    - toggle.dark_mode  # Enables dark mode toggle (required for the toggle to appear)
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
 
 plugins:
   - search
@@ -9,7 +36,31 @@ plugins:
 
 nav:
   - Home: index.md
-  - Agent Creation Guidelines: AgentCreationGuideline.md
-  - HakunaMatata Dev Guidelines: HakunaMatataDevGuide.md
-  - Rbac Guidelines: RbacGuidelines.md
-  - Development: developmentSch.MD
+
+  - Serendipity:
+      - AccQT Prd: SerendipityDoc/AccQTPrd.md
+      - Account Daily Report: SerendipityDoc/AccountDailyReport.md
+      - Audio Meeting Guidelines: SerendipityDoc/AudioMeetingGuidelines.md
+      - File Naming Guidelines: SerendipityDoc/FileNamingGuidelines.md
+      - Kaas Main Sheet Summary: SerendipityDoc/KaasMainSheetSummary.md
+      - Kaas Sheets Summary: SerendipityDoc/Kaas_Sheets_Summary.md
+      - Script Guide: SerendipityDoc/ScriptGuide.md
+      - Prompt Collections: SerendipityDoc/prompt_collections.md
+  - TradeMan:
+      - Begin Phase 1: TradeManDoc/Begin_Phase1.md
+      - Fabric Kaas: TradeManDoc/FabricKaas.md
+      - HakunaMatata Dev Guide: TradeManDoc/HakunaMatataDevGuide.md
+      - Kaas App Prompt: TradeManDoc/KaasAppPrompt.md
+      - Serendipity Commit Convention Guideline: TradeManDoc/Serendipity_Commit_Convention_Guideline.md
+      - Tech Daily Report: TradeManDoc/TechDailyReport.md
+      - Coolify Instructions: TradeManDoc/coolifyIns.md
+  - DhoomStudios:
+      - Debt Reference: DhoomStudiosDoc/Debt_Reference.md
+      - Debt Reviewed: DhoomStudiosDoc/Debt_Reviewed.md
+      - Jio Router Config: DhoomStudiosDoc/JioRouterConfig.md
+      - Old Man's Tale: DhoomStudiosDoc/OldMansTale.md
+  - HakunaMatata:
+      - Agent Creation Guidelines: HakunaMatataDoc/AgentCreationGuideline.md
+      - HakunaMatata Dev Guide: HakunaMatataDoc/HakunaMatataDevGuide.md
+      - Rbac Guidelines: HakunaMatataDoc/RbacGuidelines.md
+ 
