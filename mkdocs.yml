@@ -1,10 +1,12 @@
 site_name: Serendipity
-docs_dir: docs  # Tell MkDocs to look in the 'docs/' folder for Markdown files
+docs_dir: docs # Tell MkDocs to look in the 'docs/' folder for Markdown files
 theme:
   name: material
   features:
     - navigation.tabs
-    - toggle.dark_mode  # Enables dark mode toggle (required for the toggle to appear)
+    - toggle.dark_mode
+    - navigation.footer
+      # Enables dark mode toggle (required for the toggle to appear)
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
@@ -54,6 +56,7 @@ nav:
       - Serendipity Commit Convention Guideline: TradeManDoc/Serendipity_Commit_Convention_Guideline.md
       - Tech Daily Report: TradeManDoc/TechDailyReport.md
       - Coolify Instructions: TradeManDoc/coolifyIns.md
+      - OnboardingGuide: TradeManDoc/OnboardingGuide.md
   - DhoomStudios:
       - Debt Reference: DhoomStudiosDoc/Debt_Reference.md
       - Debt Reviewed: DhoomStudiosDoc/Debt_Reviewed.md
@@ -63,4 +66,14 @@ nav:
       - Agent Creation Guidelines: HakunaMatataDoc/AgentCreationGuideline.md
       - HakunaMatata Dev Guide: HakunaMatataDoc/HakunaMatataDevGuide.md
       - Rbac Guidelines: HakunaMatataDoc/RbacGuidelines.md
- 
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Serendipity2-0
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/trademanv1?s=21&t=bBTay4-vvjkbqF5YnSYrog
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/trademan.v1?igsh=NnZ6dDR2M2Nhc3h5
+    - icon: fontawesome/solid/envelope
+      link: mailto:your-email@example.com # Replace with your actual email
