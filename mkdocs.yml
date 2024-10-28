@@ -48,6 +48,9 @@ nav:
       - Kaas Sheets Summary: SerendipityDoc/Kaas_Sheets_Summary.md
       - Script Guide: SerendipityDoc/ScriptGuide.md
       - Prompt Collections: SerendipityDoc/prompt_collections.md
+      - Employee OnboardingGuide: SerendipityDoc/EmployeeOnboardingGuide.md
+      - Kaas Sheet Header Description: SerendipityDoc/KaasSheetHeaderDescription.md
+      - Account Transaction Scenarios: SerendipityDoc/AccountTransactionScenarios.md
   - TradeMan:
       - Begin Phase 1: TradeManDoc/Begin_Phase1.md
       - Fabric Kaas: TradeManDoc/FabricKaas.md
@@ -57,15 +60,18 @@ nav:
       - Tech Daily Report: TradeManDoc/TechDailyReport.md
       - Coolify Instructions: TradeManDoc/coolifyIns.md
       - OnboardingGuide: TradeManDoc/OnboardingGuide.md
+      - Agent Creation Guidelines: TradeManDoc/HakunaMatataDoc/AgentCreationGuideline.md
+      - HakunaMatata Dev Guide: TradeManDoc/HakunaMatataDoc/HakunaMatataDevGuide.md
+      - Rbac Guidelines: TradeManDoc/HakunaMatataDoc/RbacGuidelines.md
+      - Development Schedule: TradeManDoc/HakunaMatataDoc/developmentSch.MD
   - DhoomStudios:
       - Debt Reference: DhoomStudiosDoc/Debt_Reference.md
       - Debt Reviewed: DhoomStudiosDoc/Debt_Reviewed.md
       - Jio Router Config: DhoomStudiosDoc/JioRouterConfig.md
       - Old Man's Tale: DhoomStudiosDoc/OldMansTale.md
-  - HakunaMatata:
-      - Agent Creation Guidelines: HakunaMatataDoc/AgentCreationGuideline.md
-      - HakunaMatata Dev Guide: HakunaMatataDoc/HakunaMatataDevGuide.md
-      - Rbac Guidelines: HakunaMatataDoc/RbacGuidelines.md
+      - Adobe Creative Suite: DhoomStudiosDoc/AdobeCreativeSuite.md
+
+
 
 extra:
   social:
