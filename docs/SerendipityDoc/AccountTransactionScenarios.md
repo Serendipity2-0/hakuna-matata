@@ -119,3 +119,77 @@ For situations where an existing loan’s monthly interest is paid using a new h
 ---
 
 Each of these scenarios ensures accurate categorization and clarity in financial transactions for future reference and auditing. -->
+
+# Transaction Scenarios
+
+### How to treat an expense which is not available in Freedom Future sheet?
+
+**Answer:** When an expense is not projected in Freedom (Future), we need to:
+1. Add a new account in the **Accounts (Present)** sheet and fill in the relevant details.
+2. Record the expense in the **Transaction (Past)** sheet.
+3. Categorize the expense accordingly. For instance, if it is a one-time expense like a new hand loan from Sachin, add the relevant details under hand loans.
+4. Update the main dashboard's total projected expenses tab.
+
+![Alt text](TransactionScenarioImage1.png)
+
+
+
+**Example:** Hand Loan received from Sachin for 30,000 rupees. If there is no existing hand loan account for Sachin, create a new loan account accordingly.
+
+![Alt text](TransactionScenarioImage2.png)
+
+---
+
+### How to highlight the salary credit and salary paid in Freedom sheet and Transaction (Past)? What sign should we use?
+
+**Answer:** Since salary is paid weekly:
+1. The specific date in the **Freedom Future** should be added beforehand based on the weekend date.
+2. After processing from Freedom (Future), update the **Transaction (Past)** sheet with the salary credit description.
+3. Enter a transaction in the **Salaries** category.
+4. When salaries are actually paid, record it in **Transaction (Past)** and **Salaries** category.
+
+- **Sign:** The salary credit description will be marked with a negative sign, and once salaries are paid, it will show a positive sign in the **Salaries** category and a negative sign in the **Transaction (Past)** sheet.
+
+![Alt text](TransactionScenarioImage3.png)
+
+**Example:** Nikhil's Salary Credit for week 38 is due on September 28th as per the Freedom Sheet. Process accordingly as shown below.
+
+![Alt text](TransactionScenarioImage4.png)
+
+---
+
+### How to show assets in Transaction (Past)? How to add description and comments?
+
+**Answer:** Assets in transaction scenarios are unique:
+1. The amount spent will appear in **Transaction (Past)** with a negative sign.
+2. The asset's yield value is not calculated but should be updated on the dashboard.
+3. For description, input the asset's name.
+4. In comments, provide a detailed description, including the asset's nature.
+
+![Alt text](TransactionScenarioImage5.png)
+
+---
+
+### How to show interest paid for an existing loan using a new hand loan?
+
+**Answer:** In cases where interest on an existing loan is paid using a new hand loan:
+1. Record the transaction against the existing hand loan holder's name.
+2. If there is no existing account, create one in **Accounts (Present)**.
+3. Add a transaction in the **Hand Loans** sheet for the new loan amount received.
+4. Since there are debit and credit entries for both payable and receivable accounts, update **Accounts (Present)** to reflect the balance changes.
+
+![Alt text](TransactionScenarioImage6.png)
+
+---
+
+### How to handle a hand loan of ₹50,000 cash received from a creditor when only ₹49,000 is deposited into the bank and ₹1,000 is used for maintenance?
+
+**Answer:** In this scenario:
+1. If there is no existing account, create one in **Accounts (Present)**.
+2. Record a transaction of ₹50,000 with a positive sign in the **Hand Loan** account in **Transaction (Past)**.
+3. Add an entry of ₹50,000 with a negative sign credited to the **Cash (Safe)** account.
+4. Record the deposit to the bank as ₹49,000, and the remaining ₹1,000 for maintenance.
+5. In the **Hand Loans** sheet, add an entry for ₹50,000.
+6. In **Transaction (Past)**, show ₹49,000 as deposited to the bank (negative sign) and ₹1,000 as maintenance (negative sign), with ₹1,000 categorized under maintenance.
+
+

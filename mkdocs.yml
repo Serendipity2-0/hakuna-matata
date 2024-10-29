@@ -51,6 +51,7 @@ nav:
       - Employee OnboardingGuide: SerendipityDoc/EmployeeOnboardingGuide.md
       - Kaas Sheet Header Description: SerendipityDoc/KaasSheetHeaderDescription.md
       - Account Transaction Scenarios: SerendipityDoc/AccountTransactionScenarios.md
+      - Account Standard Operating Procedures: SerendipityDoc/AccountStandardOperatingProcedures.md
   - TradeMan:
       - Begin Phase 1: TradeManDoc/Begin_Phase1.md
       - Fabric Kaas: TradeManDoc/FabricKaas.md
@@ -64,14 +65,14 @@ nav:
       - HakunaMatata Dev Guide: TradeManDoc/HakunaMatataDoc/HakunaMatataDevGuide.md
       - Rbac Guidelines: TradeManDoc/HakunaMatataDoc/RbacGuidelines.md
       - Development Schedule: TradeManDoc/HakunaMatataDoc/developmentSch.MD
+      - TradeMan Meeting Audio Transcribe: TradeManDoc/TradeManMeetingAudio_Transcribe.md
+     
   - DhoomStudios:
       - Debt Reference: DhoomStudiosDoc/Debt_Reference.md
       - Debt Reviewed: DhoomStudiosDoc/Debt_Reviewed.md
       - Jio Router Config: DhoomStudiosDoc/JioRouterConfig.md
       - Old Man's Tale: DhoomStudiosDoc/OldMansTale.md
       - Adobe Creative Suite: DhoomStudiosDoc/AdobeCreativeSuite.md
-
-
 
 extra:
   social:
@@ -83,3 +84,7 @@ extra:
       link: https://www.instagram.com/trademan.v1?igsh=NnZ6dDR2M2Nhc3h5
     - icon: fontawesome/solid/envelope
       link: mailto:your-email@example.com # Replace with your actual email
+
+  # Including media folder so audio can be served properly
+  include:
+    - media/
