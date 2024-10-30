@@ -1,33 +1,34 @@
 site_name: Serendipity
+
 docs_dir: docs # Tell MkDocs to look in the 'docs/' folder for Markdown files
+
 theme:
   name: material
   features:
     - navigation.tabs
     - toggle.dark_mode
-    - navigation.footer
-      # Enables dark mode toggle (required for the toggle to appear)
+    - navigation.footer  # Enables dark mode toggle (required for the toggle to appear)
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
       toggle:
         icon: material/brightness-auto
         name: Switch to light mode
-
+      primary: custom
+      accent: custom
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
@@ -40,39 +41,47 @@ nav:
   - Home: index.md
 
   - Serendipity:
-      - AccQT Prd: SerendipityDoc/AccQTPrd.md
-      - Account Daily Report: SerendipityDoc/AccountDailyReport.md
-      - Audio Meeting Guidelines: SerendipityDoc/AudioMeetingGuidelines.md
-      - File Naming Guidelines: SerendipityDoc/FileNamingGuidelines.md
-      - Kaas Main Sheet Summary: SerendipityDoc/KaasMainSheetSummary.md
-      - Kaas Sheets Summary: SerendipityDoc/Kaas_Sheets_Summary.md
-      - Script Guide: SerendipityDoc/ScriptGuide.md
-      - Prompt Collections: SerendipityDoc/prompt_collections.md
-      - Employee OnboardingGuide: SerendipityDoc/EmployeeOnboardingGuide.md
-      - Kaas Sheet Header Description: SerendipityDoc/KaasSheetHeaderDescription.md
-      - Account Transaction Scenarios: SerendipityDoc/AccountTransactionScenarios.md
-      - Account Standard Operating Procedures: SerendipityDoc/AccountStandardOperatingProcedures.md
+      - AccQT Prd: serendipitydoc/AccQTPrd.md
+      - Account Daily Report: serendipitydoc/AccountDailyReport.md
+      - Audio Meeting Guidelines: serendipitydoc/AudioMeetingGuidelines.md
+      - File Naming Guidelines: serendipitydoc/FileNamingGuidelines.md
+      - Kaas Main Sheet Summary: serendipitydoc/KaasMainSheetSummary.md
+      - Kaas Sheets Summary: serendipitydoc/KaasSheetsSummary.md
+      - Script Guide: serendipitydoc/ScriptGuide.md
+      - Prompt Collections: serendipitydoc/PromptCollections.md
+      - Employee OnboardingGuide: serendipitydoc/EmployeeOnboardingGuide.md
+      - Kaas Sheet Header Description: serendipitydoc/KaasSheetHeaderDescription.md
+      - Account Transaction Scenarios: serendipitydoc/AccountTransactionScenarios.md
+      - Account Standard Operating Procedures: serendipitydoc/AccountStandardOperatingProcedures.md
+
   - TradeMan:
-      - Begin Phase 1: TradeManDoc/Begin_Phase1.md
-      - Fabric Kaas: TradeManDoc/FabricKaas.md
-      - HakunaMatata Dev Guide: TradeManDoc/HakunaMatataDevGuide.md
-      - Kaas App Prompt: TradeManDoc/KaasAppPrompt.md
-      - Serendipity Commit Convention Guideline: TradeManDoc/Serendipity_Commit_Convention_Guideline.md
-      - Tech Daily Report: TradeManDoc/TechDailyReport.md
-      - Coolify Instructions: TradeManDoc/coolifyIns.md
-      - OnboardingGuide: TradeManDoc/OnboardingGuide.md
-      - Agent Creation Guidelines: TradeManDoc/HakunaMatataDoc/AgentCreationGuideline.md
-      - HakunaMatata Dev Guide: TradeManDoc/HakunaMatataDoc/HakunaMatataDevGuide.md
-      - Rbac Guidelines: TradeManDoc/HakunaMatataDoc/RbacGuidelines.md
-      - Development Schedule: TradeManDoc/HakunaMatataDoc/developmentSch.MD
-      - TradeMan Meeting Audio Transcribe: TradeManDoc/TradeManMeetingAudio_Transcribe.md
-     
+      - Projects:
+          - TradeManV1:
+              - Onboarding Guide: trademandoc/Projects/trademanV1/OnboardingGuide.md
+              - TradeManV1 Meetings: trademandoc/Projects/trademanV1/TradeManMeetingAudio_Transcribe.md
+          - HakunaMatata:
+              - HakunaMatata Dev Guide: trademandoc/Projects/hakunamatata/HakunaMatataDevGuide.md
+          - Kaas:
+              - Kaas App Prompt: trademandoc/Projects/kaas/KaasAppPrompt.md
+              - Fabric Kaas: trademandoc/Projects/kaas/FabricKaas.md
+              
+      - Tech Guidelines:
+          - Commit Convention Guideline: trademandoc/tech_guidelines/CommitConventionGuideline.md
+          - Agent Creation Guidelines: trademandoc/tech_guidelines/AgentCreationGuideline.md
+          - RBAC Guidelines: trademandoc/tech_guidelines/RbacGuidelines.md
+      - Software Instructions:
+          - Coolify Phase1: trademandoc/software_instructions/CoolifyBeginPhase1.md
+          - Coolify Instructions: trademandoc/software_instructions/CoolifyInstructions.md
+      - Reports:
+          - Tech Daily Report: trademandoc/reports/TechDailyReport.md
+          - Development Schedule: trademandoc/reports/developmentSch.MD
+
   - DhoomStudios:
-      - Debt Reference: DhoomStudiosDoc/Debt_Reference.md
-      - Debt Reviewed: DhoomStudiosDoc/Debt_Reviewed.md
-      - Jio Router Config: DhoomStudiosDoc/JioRouterConfig.md
-      - Old Man's Tale: DhoomStudiosDoc/OldMansTale.md
-      - Adobe Creative Suite: DhoomStudiosDoc/AdobeCreativeSuite.md
+      - Debt Reference: dhoomstudiosdoc/DebtReference.md
+      - Debt Reviewed: dhoomstudiosdoc/DebtReviewed.md
+      - Jio Router Config: dhoomstudiosdoc/JioRouterConfig.md
+      - Old Man's Tale: dhoomstudiosdoc/OldMansTale.md
+      - Adobe Creative Suite: dhoomstudiosdoc/AdobeCreativeSuite.md
 
 extra:
   social:
@@ -88,3 +97,6 @@ extra:
   # Including media folder so audio can be served properly
   include:
     - media/
+
+extra_css:
+  - css/custom.css
