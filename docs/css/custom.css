@@ -1,0 +1,42 @@
+/* Style for the site name/title - More specific selector */
+.md-header__title .md-header__topic:first-child {
+    color: rgb(232, 108, 199) !important;
+}
+
+/* Reset color for navigation items */
+.md-tabs__link {
+    color: var(--md-primary-bg-color) !important;
+}
+
+/* Top navigation bar background */
+.md-header {
+    background-color: var(--md-primary-fg-color) !important;
+}
+
+/* Custom primary color - Dark green */
+[data-md-color-primary="custom"] {
+    --md-primary-fg-color: #2e5a1c;
+    --md-primary-fg-color--light: #3d7926;
+    --md-primary-fg-color--dark: #1e3b12;
+    --md-primary-bg-color: #fff;
+    --md-primary-bg-color--light: #ffffffb3;
+}
+
+/* Custom accent color - Matching green */
+[data-md-color-primary="custom"] {
+    --md-accent-fg-color: #3d7926;
+    --md-accent-fg-color--transparent: #3d792626;
+    --md-accent-bg-color: #fff;
+    --md-accent-bg-color--light: #ffffffb3;
+}
+
+/* Navigation and hover states */
+.md-nav__link:hover,
+.md-nav__link:focus {
+    color: #3d7926 !important;
+}
+
+/* Sidebar navigation background */
+.md-nav--primary .md-nav__title {
+    background-color: var(--md-primary-fg-color) !important;
+}
