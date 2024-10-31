@@ -3,7 +3,7 @@ name: GitHub Pages CI
 on:
   push:
     branches:
-      - branch/hakuna-matata_docs
+      - CommitAgent
       - gh-pages
 
 permissions:
