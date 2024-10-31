@@ -3,6 +3,7 @@ name: GitHub Pages CI
 on:
   push:
     branches:
+      - CommitAgent
       - feat/doc
       - gh-pages
 
