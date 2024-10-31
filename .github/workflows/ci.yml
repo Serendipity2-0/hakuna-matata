@@ -6,6 +6,7 @@ on:
       - CommitAgent
       - gh-pages
       - aaaksh
+      - feat/doc
 
 permissions:
   contents: write
