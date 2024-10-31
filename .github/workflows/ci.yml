@@ -5,7 +5,6 @@ on:
     branches:
       - CommitAgent
       - gh-pages
-      - aaaksh
 
 permissions:
   contents: write
