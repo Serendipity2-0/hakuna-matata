@@ -1,0 +1,38 @@
+site_name: Serendepity Docs
+docs_dir: docs 
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+
+plugins:
+  - search
+  - awesome-pages
+
+nav:
+  - Home: index.md
+  - Agent Creation Guidelines: AgentCreationGuideline.md
+  - HakunaMatata Dev Guidelines: HakunaMatataDevGuide.md
+  - Rbac Guidelines: RbacGuidelines.md
+  - Development: developmentSch.MD
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
