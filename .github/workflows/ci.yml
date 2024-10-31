@@ -3,7 +3,8 @@ name: GitHub Pages CI
 on:
   push:
     branches:
-      - branch/hakuna-matata_docs # The branch that triggers the workflow
+      - branch/hakuna-matata_docs
+      - gh-pages
 
 permissions:
   contents: write
