@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - CommitAgent
+      - feat/doc
+      - branch/hakuna_matata_docs
       - gh-pages
 
 permissions:
