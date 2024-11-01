@@ -100,4 +100,4 @@ extra:
     - media/
 
 extra_css:
-  - custom.css
+  - css/custom.css
