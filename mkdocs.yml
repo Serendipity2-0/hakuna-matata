@@ -41,19 +41,19 @@ use_directory_urls: false
 nav:
   - Home: index.md
 
-  # - Serendipity:
-  #     - AccQT Prd: serendipitydoc/AccQTPrd.md
-  #     - Account Daily Report: serendipitydoc/AccountDailyReport.md
-  #     - Audio Meeting Guidelines: serendipitydoc/AudioMeetingGuidelines.md
-  #     - File Naming Guidelines: serendipitydoc/FileNamingGuidelines.md
-  #     - Kaas Main Sheet Summary: serendipitydoc/KaasMainSheetSummary.md
-  #     - Kaas Sheets Summary: serendipitydoc/KaasSheetsSummary.md
-  #     - Script Guide: serendipitydoc/ScriptGuide.md
-  #     - Prompt Collections: serendipitydoc/PromptCollections.md
-  #     - Employee OnboardingGuide: serendipitydoc/EmployeeOnboardingGuide.md
-  #     - Kaas Sheet Header Description: serendipitydoc/KaasSheetHeaderDescription.md
-  #     - Account Transaction Scenarios: serendipitydoc/AccountTransactionScenarios.md
-  #     - Account Standard Operating Procedures: serendipitydoc/AccountStandardOperatingProcedures.md
+  - Serendipity:
+      - AccQT Prd: serendipitydoc/AccQTPrd.md
+      - Account Daily Report: serendipitydoc/AccountDailyReport.md
+      - Audio Meeting Guidelines: serendipitydoc/AudioMeetingGuidelines.md
+      - File Naming Guidelines: serendipitydoc/FileNamingGuidelines.md
+      - Kaas Main Sheet Summary: serendipitydoc/KaasMainSheetSummary.md
+      - Kaas Sheets Summary: serendipitydoc/KaasSheetsSummary.md
+      - Script Guide: serendipitydoc/ScriptGuide.md
+      - Prompt Collections: serendipitydoc/PromptCollections.md
+      - Employee OnboardingGuide: serendipitydoc/EmployeeOnboardingGuide.md
+      - Kaas Sheet Header Description: serendipitydoc/KaasSheetHeaderDescription.md
+      - Account Transaction Scenarios: serendipitydoc/AccountTransactionScenarios.md
+      - Account Standard Operating Procedures: serendipitydoc/AccountStandardOperatingProcedures.md
 
   - TradeMan:
       - Projects:

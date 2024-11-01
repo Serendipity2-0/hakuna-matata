@@ -2,21 +2,21 @@
 
 Welcome! Here you’ll find all the resources, guides, and tools you need to succeed. Use the quick links below to navigate, or click on **Get Started** for the onboarding guide.
 
-<!-- [Get Started](serendipitydoc/EmployeeOnboardingGuide.md) -->
+[Get Started](serendipitydoc/EmployeeOnboardingGuide.md)
 
 ---
 
 ## Table of Contents
 
-<!-- - [Dhoom Studios Documentation](#dhoom-studios-documentation)
+- [Dhoom Studios Documentation](#dhoom-studios-documentation)
 - [Serendipity Documentation](#serendipity-documentation)
-- [TradeMan Documentation](#trademan-documentation) -->
+- [TradeMan Documentation](#trademan-documentation)
 
 ---
 
 ## Quick Links
 
-<!-- ### Dhoom Studios Documentation
+### Dhoom Studios Documentation
 
 - [Adobe Creative Suite Guide](dhoomstudiosdoc/AdobeCreativeSuite.md)
 - [Debt Reference](dhoomstudiosdoc/DebtReference.md)
@@ -24,9 +24,9 @@ Welcome! Here you’ll find all the resources, guides, and tools you need to suc
 - [Jio Router Configurations](dhoomstudiosdoc/JioRouterConfig.md)
 - [Old Man's Tale](dhoomstudiosdoc/OldMansTale.md)
 
---- -->
+---
 
-<!-- ### Serendipity Documentation
+### Serendipity Documentation
 
 - [Account Daily Report](serendipitydoc/AccountDailyReport.md)
 - [Account Standard Operating Procedures](serendipitydoc/AccountStandardOperatingProcedures.md)
@@ -37,7 +37,7 @@ Welcome! Here you’ll find all the resources, guides, and tools you need to suc
 - [Kaas Sheets Summary](serendipitydoc/KaasSheetsSummary.md)
 - [Script Guide](serendipitydoc/ScriptGuide.md)
 
---- -->
+---
 
 ### TradeMan Documentation
 
