@@ -2,7 +2,7 @@
 
 Welcome! Here you’ll find all the resources, guides, and tools you need to succeed. Use the quick links below to navigate, or click on **Get Started** for the onboarding guide.
 
-[Get Started](serendipitydoc/EmployeeOnboardingGuide.md)
+[Get Started](serendipitydoc/hronboardinglibrary/EmployeeOnboardingGuide.md)
 
 ---
 
@@ -28,14 +28,13 @@ Welcome! Here you’ll find all the resources, guides, and tools you need to suc
 
 ### Serendipity Documentation
 
-- [Account Daily Report](serendipitydoc/AccountDailyReport.md)
-- [Account Standard Operating Procedures](serendipitydoc/AccountStandardOperatingProcedures.md)
-- [Account Transaction Scenarios](serendipitydoc/AccountTransactionScenarios.md)
-- [Audio Meeting Guidelines](serendipitydoc/AudioMeetingGuidelines.md)
-- [Employee Onboarding Guide](serendipitydoc/EmployeeOnboardingGuide.md)
-- [File Naming Guidelines](serendipitydoc/FileNamingGuidelines.md)
-- [Kaas Sheets Summary](serendipitydoc/KaasSheetsSummary.md)
-- [Script Guide](serendipitydoc/ScriptGuide.md)
+- [Account Daily Report](serendipitydoc/accounts/accountingguide/AccountDailyReport.md)
+- [Account Standard Operating Procedures](serendipitydoc/accounts/accountingguide/AccountStandardOperatingProcedures.md)
+- [Account Transaction Scenarios](serendipitydoc/accounts/accountingguide/AccountTransactionScenarios.md)
+- [Audio Meeting Guidelines](serendipitydoc/generalguidelines/AudioMeetingGuidelines.md)
+- [Employee Onboarding Guide](serendipitydoc/hronboardinglibrary/EmployeeOnboardingGuide.md)
+- [File Naming Guidelines](serendipitydoc/generalguidelines/FileNamingGuidelines.md)
+- [Kaas Sheets Summary](serendipitydoc/accounts/kaasuserguide/KaasSheetsSummary.md) 
 
 ---
 

@@ -42,20 +42,23 @@ nav:
   - Home: index.md
 
   - Serendipity:
-      - AccQT Prd: serendipitydoc/AccQTPrd.md
-      - Account Daily Report: serendipitydoc/AccountDailyReport.md
-      - Audio Meeting Guidelines: serendipitydoc/AudioMeetingGuidelines.md
-      - File Naming Guidelines: serendipitydoc/FileNamingGuidelines.md
-      - Kaas Main Sheet Summary: serendipitydoc/KaasMainSheetSummary.md
-      - Kaas Sheets Summary: serendipitydoc/KaasSheetsSummary.md
-      - Script Guide: serendipitydoc/ScriptGuide.md
-      - Prompt Collections: serendipitydoc/PromptCollections.md
-      - Employee OnboardingGuide: serendipitydoc/EmployeeOnboardingGuide.md
-      - Kaas Sheet Header Description: serendipitydoc/KaasSheetHeaderDescription.md
-      - Account Transaction Scenarios: serendipitydoc/AccountTransactionScenarios.md
-      - Account Standard Operating Procedures: serendipitydoc/AccountStandardOperatingProcedures.md
+      - Accounts:
+          - Kaas user Guide:
+              - Kaas MainSheet Summary: serendipitydoc/accounts/kaasuserguide/KaasMainSheetSummary.md
+              - Kaas Sheet Header Description: serendipitydoc/accounts/kaasuserguide/KaasSheetHeaderDescription.md
+              - Kaas Sheets Summary: serendipitydoc/accounts/kaasuserguide/KaasSheetsSummary.md
+          - Accounting Guide: 
+              - Account Daily Report: serendipitydoc/accounts/accountingguide/AccountDailyReport.md
+              - Account Standard Operating Procedures: serendipitydoc/accounts/accountingguide/AccountStandardOperatingProcedures.md
+              - Account Transaction Scenarios: serendipitydoc/accounts/accountingguide/AccountTransactionScenarios.md
+              - AccQT Prd: serendipitydoc/accounts/accountingguide/AccQTPrd.md
+      - HR Onboarding Library:
+          - Employee Onboarding Guide: serendipitydoc/hronboardinglibrary/EmployeeOnboardingGuide.md
+      - General Guidelines:
+          - File Naming Guidelines: serendipitydoc/generalguidelines/FileNamingGuidelines.md
+          - Audio Meeting Guidelines: serendipitydoc/generalguidelines/AudioMeetingGuidelines.md
 
-  - TradeMan:
+  - TradeMan: 
       - Projects:
           - TradeManV1:
               - Onboarding Guide: trademandoc/Projects/trademanV1/OnboardingGuide.md
@@ -65,11 +68,11 @@ nav:
           - Kaas:
               - Kaas App Prompt: trademandoc/Projects/kaas/KaasAppPrompt.md
               - Fabric Kaas: trademandoc/Projects/kaas/FabricKaas.md
-              
       - Tech Guidelines:
           - Commit Convention Guideline: trademandoc/tech_guidelines/CommitConventionGuideline.md
           - Agent Creation Guidelines: trademandoc/tech_guidelines/AgentCreationGuideline.md
           - RBAC Guidelines: trademandoc/tech_guidelines/RbacGuidelines.md
+          - Prompt Collection : trademandoc/tech_guidelines/PromptCollections.md
       - Software Instructions:
           - Coolify Phase1: trademandoc/software_instructions/CoolifyBeginPhase1.md
           - Coolify Instructions: trademandoc/software_instructions/CoolifyInstructions.md
@@ -82,7 +85,9 @@ nav:
       - Debt Reviewed: dhoomstudiosdoc/DebtReviewed.md
       - Jio Router Config: dhoomstudiosdoc/JioRouterConfig.md
       - Adobe Creative Suite: dhoomstudiosdoc/AdobeCreativeSuite.md
+      - Script Guide: dhoomstudiosdoc/ScriptGuide.md
       - Old Man's Tale: dhoomstudiosdoc/OldMansTale.md
+
 extra:
   social:
     - icon: fontawesome/brands/github
