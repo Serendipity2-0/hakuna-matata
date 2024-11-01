@@ -41,19 +41,19 @@ use_directory_urls: false
 nav:
   - Home: index.md
 
-  - Serendipity:
-      - AccQT Prd: serendipitydoc/AccQTPrd.md
-      - Account Daily Report: serendipitydoc/AccountDailyReport.md
-      - Audio Meeting Guidelines: serendipitydoc/AudioMeetingGuidelines.md
-      - File Naming Guidelines: serendipitydoc/FileNamingGuidelines.md
-      - Kaas Main Sheet Summary: serendipitydoc/KaasMainSheetSummary.md
-      - Kaas Sheets Summary: serendipitydoc/KaasSheetsSummary.md
-      - Script Guide: serendipitydoc/ScriptGuide.md
-      - Prompt Collections: serendipitydoc/PromptCollections.md
-      - Employee OnboardingGuide: serendipitydoc/EmployeeOnboardingGuide.md
-      - Kaas Sheet Header Description: serendipitydoc/KaasSheetHeaderDescription.md
-      - Account Transaction Scenarios: serendipitydoc/AccountTransactionScenarios.md
-      - Account Standard Operating Procedures: serendipitydoc/AccountStandardOperatingProcedures.md
+  # - Serendipity:
+  #     - AccQT Prd: serendipitydoc/AccQTPrd.md
+  #     - Account Daily Report: serendipitydoc/AccountDailyReport.md
+  #     - Audio Meeting Guidelines: serendipitydoc/AudioMeetingGuidelines.md
+  #     - File Naming Guidelines: serendipitydoc/FileNamingGuidelines.md
+  #     - Kaas Main Sheet Summary: serendipitydoc/KaasMainSheetSummary.md
+  #     - Kaas Sheets Summary: serendipitydoc/KaasSheetsSummary.md
+  #     - Script Guide: serendipitydoc/ScriptGuide.md
+  #     - Prompt Collections: serendipitydoc/PromptCollections.md
+  #     - Employee OnboardingGuide: serendipitydoc/EmployeeOnboardingGuide.md
+  #     - Kaas Sheet Header Description: serendipitydoc/KaasSheetHeaderDescription.md
+  #     - Account Transaction Scenarios: serendipitydoc/AccountTransactionScenarios.md
+  #     - Account Standard Operating Procedures: serendipitydoc/AccountStandardOperatingProcedures.md
 
   - TradeMan:
       - Projects:
@@ -77,12 +77,12 @@ nav:
           - Tech Daily Report: trademandoc/reports/TechDailyReport.md
           - Development Schedule: trademandoc/reports/developmentSch.MD
 
-  - DhoomStudios:
-      - Debt Reference: dhoomstudiosdoc/DebtReference.md
-      - Debt Reviewed: dhoomstudiosdoc/DebtReviewed.md
-      - Jio Router Config: dhoomstudiosdoc/JioRouterConfig.md
-      - Old Man's Tale: dhoomstudiosdoc/OldMansTale.md
-      - Adobe Creative Suite: dhoomstudiosdoc/AdobeCreativeSuite.md
+  # - DhoomStudios:
+  #     - Debt Reference: dhoomstudiosdoc/DebtReference.md
+  #     - Debt Reviewed: dhoomstudiosdoc/DebtReviewed.md
+  #     - Jio Router Config: dhoomstudiosdoc/JioRouterConfig.md
+  #     - Old Man's Tale: dhoomstudiosdoc/OldMansTale.md
+  #     - Adobe Creative Suite: dhoomstudiosdoc/AdobeCreativeSuite.md
 
 extra:
   social:
