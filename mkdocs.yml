@@ -1,5 +1,4 @@
 site_name: Serendipity
-
 docs_dir: docs # Tell MkDocs to look in the 'docs/' folder for Markdown files
 
 theme:
@@ -99,4 +98,4 @@ extra:
     - media/
 
 extra_css:
-  - css/custom.css
+  - custom.css
