@@ -2,7 +2,7 @@
 
 ## October 18, 2024
 - Review project requirements
-- Set up development environment
+- Set up development environments
 
 ## October 19, 2024
 - Design system architecture

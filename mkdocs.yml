@@ -6,7 +6,7 @@ theme:
   features:
     - navigation.tabs
     - toggle.dark_mode
-    - navigation.footer  # Enables dark mode toggle (required for the toggle to appear)
+    - navigation.footer # Enables dark mode toggle (required for the toggle to appear)
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
@@ -36,7 +36,7 @@ plugins:
   - search
   - awesome-pages
 
-use_directory_urls: false  
+use_directory_urls: false
 
 nav:
   - Home: index.md
@@ -45,20 +45,21 @@ nav:
       - Accounts:
           - Kaas user Guide:
               - Kaas MainSheet Summary: serendipitydoc/accounts/kaasuserguide/KaasMainSheetSummary.md
-              - Kaas Sheet Header Description: serendipitydoc/accounts/kaasuserguide/KaasSheetHeaderDescription.md
+              - Kaas Sheet Header Indexes: serendipitydoc/accounts/kaasuserguide/KaasSheetHeaderDescription.md
               - Kaas Sheets Summary: serendipitydoc/accounts/kaasuserguide/KaasSheetsSummary.md
-          - Accounting Guide: 
+          - Accounting Guide:
               - Account Daily Report: serendipitydoc/accounts/accountingguide/AccountDailyReport.md
               - Account Standard Operating Procedures: serendipitydoc/accounts/accountingguide/AccountStandardOperatingProcedures.md
               - Account Transaction Scenarios: serendipitydoc/accounts/accountingguide/AccountTransactionScenarios.md
               - AccQT Prd: serendipitydoc/accounts/accountingguide/AccQTPrd.md
+              - Serendipity Business Requirements Plan: serendipitydoc/accounts/accountingguide/SerendipityBusinessRequirementsPlan.md
       - HR Onboarding Library:
           - Employee Onboarding Guide: serendipitydoc/hronboardinglibrary/EmployeeOnboardingGuide.md
       - General Guidelines:
           - File Naming Guidelines: serendipitydoc/generalguidelines/FileNamingGuidelines.md
           - Audio Meeting Guidelines: serendipitydoc/generalguidelines/AudioMeetingGuidelines.md
 
-  - TradeMan: 
+  - TradeMan:
       - Projects:
           - TradeManV1:
               - Onboarding Guide: trademandoc/Projects/trademanV1/OnboardingGuide.md
@@ -68,17 +69,24 @@ nav:
           - Kaas:
               - Kaas App Prompt: trademandoc/Projects/kaas/KaasAppPrompt.md
               - Fabric Kaas: trademandoc/Projects/kaas/FabricKaas.md
+          - ChitBox:
+              - API sethu documentation: trademandoc\Projects\chitbox\apisethudocs\ApiSethuDocs.md
+              - DLT Implementation Guide: trademandoc\Projects\chitbox\apisethudocs\DLTImplementationGuide.md
+              - DLT Entity Registration: trademandoc\Projects\chitbox\apisethudocs\DLTEntityRegistration.md
+              - DLT Header Manual Ping: trademandoc\Projects\chitbox\apisethudocs\DLTHeaderManualPing.md
+              - DLT Content Approval: trademandoc\Projects\chitbox\apisethudocs\DLTContentApproval.md
       - Tech Guidelines:
           - Commit Convention Guideline: trademandoc/tech_guidelines/CommitConventionGuideline.md
           - Agent Creation Guidelines: trademandoc/tech_guidelines/AgentCreationGuideline.md
           - RBAC Guidelines: trademandoc/tech_guidelines/RbacGuidelines.md
-          - Prompt Collection : trademandoc/tech_guidelines/PromptCollections.md
+          - Prompt Collection: trademandoc/tech_guidelines/PromptCollections.md
       - Software Instructions:
           - Coolify Phase1: trademandoc/software_instructions/CoolifyBeginPhase1.md
           - Coolify Instructions: trademandoc/software_instructions/CoolifyInstructions.md
+          - Cloudflare Hosting: trademandoc/software_instructions/CloudflareHosting.md
       - Reports:
           - Tech Daily Report: trademandoc/reports/TechDailyReport.md
-          - Development Schedule: trademandoc/reports/developmentSch.MD
+          - Development Schedule: trademandoc/reports/developmentSch.md
 
   - DhoomStudios:
       - Debt Reference: dhoomstudiosdoc/DebtReference.md
