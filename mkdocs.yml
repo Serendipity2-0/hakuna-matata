@@ -69,12 +69,12 @@ nav:
           - Kaas:
               - Kaas App Prompt: trademandoc/Projects/kaas/KaasAppPrompt.md
               - Fabric Kaas: trademandoc/Projects/kaas/FabricKaas.md
-          - ChitBox:
-              - API sethu documentation: trademandoc\Projects\chitbox\apisethudocs\ApiSethuDocs.md
-              - DLT Implementation Guide: trademandoc\Projects\chitbox\apisethudocs\DLTImplementationGuide.md
-              - DLT Entity Registration: trademandoc\Projects\chitbox\apisethudocs\DLTEntityRegistration.md
-              - DLT Header Manual Ping: trademandoc\Projects\chitbox\apisethudocs\DLTHeaderManualPing.md
-              - DLT Content Approval: trademandoc\Projects\chitbox\apisethudocs\DLTContentApproval.md
+          # - ChitBox:
+          #     - API sethu documentation: trademandoc\Projects\chitbox\apisethudocs\ApiSethuDocs.md
+          #     - DLT Implementation Guide: trademandoc\Projects\chitbox\apisethudocs\DLTImplementationGuide.md
+          #     - DLT Entity Registration: trademandoc\Projects\chitbox\apisethudocs\DLTEntityRegistration.md
+          #     - DLT Header Manual Ping: trademandoc\Projects\chitbox\apisethudocs\DLTHeaderManualPing.md
+          #     - DLT Content Approval: trademandoc\Projects\chitbox\apisethudocs\DLTContentApproval.md
       - Tech Guidelines:
           - Commit Convention Guideline: trademandoc/tech_guidelines/CommitConventionGuideline.md
           - Agent Creation Guidelines: trademandoc/tech_guidelines/AgentCreationGuideline.md
@@ -86,7 +86,7 @@ nav:
           - Cloudflare Hosting: trademandoc/software_instructions/CloudflareHosting.md
       - Reports:
           - Tech Daily Report: trademandoc/reports/TechDailyReport.md
-          - Development Schedule: trademandoc/reports/developmentSch.md
+          # - Development Schedule: trademandoc/reports/developmentSch.md
 
   - DhoomStudios:
       - Debt Reference: dhoomstudiosdoc/DebtReference.md
