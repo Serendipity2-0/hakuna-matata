@@ -86,7 +86,7 @@ nav:
           - Cloudflare Hosting: trademandoc/software_instructions/CloudflareHosting.md
       - Reports:
           - Tech Daily Report: trademandoc/reports/TechDailyReport.md
-          # - Development Schedule: trademandoc/reports/developmentSch.md
+          - Development Schedule: trademandoc/reports/DevelopmentSch.md
 
   - DhoomStudios:
       - Debt Reference: dhoomstudiosdoc/DebtReference.md
