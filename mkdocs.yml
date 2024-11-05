@@ -92,6 +92,7 @@ nav:
           - Coolify Instructions: trademandoc/software_instructions/CoolifyInstructions.md
           - Cloudflare Hosting: trademandoc/software_instructions/CloudflareHosting.md
           - Jio Router Config: trademandoc/software_instructions/JioRouterConfig.md
+          - Payment Gateway Benefits Razorpay: trademandoc/software_instructions/PaymentGatewayBenefits.md
       - Reports:
           - Tech Daily Report: trademandoc/reports/TechDailyReport.md
           - Development Schedule: trademandoc/reports/DevelopmentSch.md
