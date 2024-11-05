@@ -85,12 +85,11 @@
    - The Income Tax Department requires TDS to be filed quarterly via Form 24Q for salary deductions. The belated or revised filing can be done through the Income Tax e-filing Portal.
    - Source: Income Tax e-filing Portal Guide (search for “Form 24Q” for TDS on salaries return filing).
 
-# Three Pillars of Indian Constitution for Below Categories
+### Three Pillars of Indian Constitution for Below Categories
 
 ## 1. Income Tax:
 
 **Legislative Branch**: The Parliament enacts laws governing income tax, primarily through the Income Tax Act, 1961. This Act outlines the legal framework for the levy, administration, collection, and recovery of income tax in India.  
-
 
 **Executive Branch**: The Central Board of Direct Taxes (CBDT), under the Ministry of Finance, administers and enforces income tax laws. The Income Tax Department, functioning under the CBDT, is responsible for tax collection and ensuring compliance.
 
