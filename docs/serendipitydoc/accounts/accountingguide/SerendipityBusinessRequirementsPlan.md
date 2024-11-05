@@ -84,3 +84,48 @@
 - **TDS Return Filing Requirements**
    - The Income Tax Department requires TDS to be filed quarterly via Form 24Q for salary deductions. The belated or revised filing can be done through the Income Tax e-filing Portal.
    - Source: Income Tax e-filing Portal Guide (search for “Form 24Q” for TDS on salaries return filing).
+
+# Three Pillars of Indian Constitution for Below Categories
+
+## 1. Income Tax:
+
+**Legislative Branch**: The Parliament enacts laws governing income tax, primarily through the Income Tax Act, 1961. This Act outlines the legal framework for the levy, administration, collection, and recovery of income tax in India.  
+
+
+**Executive Branch**: The Central Board of Direct Taxes (CBDT), under the Ministry of Finance, administers and enforces income tax laws. The Income Tax Department, functioning under the CBDT, is responsible for tax collection and ensuring compliance.
+
+**Judicial Branch**: The judiciary interprets income tax laws and adjudicates disputes between taxpayers and the tax authorities. The Income Tax Appellate Tribunal (ITAT) serves as a quasi-judicial body for resolving tax disputes.  
+
+
+## 2. Udyam Registration:
+
+**Legislative Branch**: The Micro, Small, and Medium Enterprises Development (MSMED) Act, 2006, enacted by Parliament, provides the legal framework for the classification and development of MSMEs in India.
+
+**Executive Branch**: The Ministry of Micro, Small and Medium Enterprises oversees the implementation of policies related to MSMEs. The Udyam Registration portal facilitates the registration process for enterprises, enabling them to avail benefits under various government schemes.
+
+**Judicial Branch**: The judiciary addresses disputes or grievances related to MSME classifications, benefits, or compliance under the MSMED Act.  
+[https://www.indiafilings.com/learn/benefits-of-udyam-registration-for-msme/](https://www.indiafilings.com/learn/benefits-of-udyam-registration-for-msme/)
+
+## 3. Labour Department:
+
+**Legislative Branch**: Parliament enacts labor laws governing employment conditions, wages, industrial relations, and social security. Recent consolidations include the Code on Wages, 2019, and the Industrial Relations Code, 2020.
+
+**Executive Branch**: The Ministry of Labour and Employment, along with state labor departments, implements and enforces labor laws. They oversee compliance, conduct inspections, and address labor-related grievances.
+
+**Judicial Branch**: Labor courts and industrial tribunals adjudicate disputes between employers and employees, ensuring the fair application of labor laws.
+
+In summary, while the Legislative branch enacts laws governing income tax, MSMEs, and labor, the Executive branch administers and enforces these laws, and the Judicial branch interprets them and resolves related disputes.  
+[https://en.wikipedia.org/wiki/Ministry_of_Labour_and_Employment_%28India%29](https://en.wikipedia.org/wiki/Ministry_of_Labour_and_Employment_%28India%29)
+
+## 4. Private Limited Company
+
+A Private Limited Company in India operates under the Legislative pillar. It is governed by laws enacted by the Parliament, primarily the Companies Act, 2013. This Act outlines the legal framework for the incorporation, regulation, and dissolution of companies in India. The Executive branch, through agencies like the Ministry of Corporate Affairs (MCA), administers and enforces these laws. The Judiciary interprets these laws and resolves disputes arising under them. Therefore, while the Legislative branch establishes the laws governing Private Limited Companies, the Executive implements them, and the Judiciary interprets them as needed.
+
+In India, the establishment and regulation of Private Limited Companies are governed by the Companies Act, 2013, which is a legislative enactment by Parliament. This Act provides the legal framework for the incorporation, management, and dissolution of companies, including Private Limited Companies. The Ministry of Corporate Affairs (MCA), an executive body, administers and enforces the provisions of this Act. The judiciary interprets these laws and adjudicates disputes arising under them.
+
+Therefore, while the Legislative branch enacts the laws governing Private Limited Companies, the Executive branch implements and enforces these laws, and the Judicial branch interprets them as needed.  
+[https://www.mca.gov.in/Ministry/pdf/CompaniesAct2013.pdf](https://www.mca.gov.in/Ministry/pdf/CompaniesAct2013.pdf)
+
+## 5. GST (Goods and Services Tax)
+
+The Goods and Services Tax (GST) in India is a comprehensive indirect tax levied on the supply of goods and services. Its frame
