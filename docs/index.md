@@ -21,7 +21,6 @@ Welcome! Here you’ll find all the resources, guides, and tools you need to suc
 - [Adobe Creative Suite Guide](dhoomstudiosdoc/AdobeCreativeSuite.md)
 - [Debt Reference](dhoomstudiosdoc/DebtReference.md)
 - [Debt Reviewed](dhoomstudiosdoc/DebtReviewed.md)
-- [Jio Router Configurations](dhoomstudiosdoc/JioRouterConfig.md)
 - [Old Man's Tale](dhoomstudiosdoc/OldMansTale.md)
 
 ---
@@ -40,14 +39,6 @@ Welcome! Here you’ll find all the resources, guides, and tools you need to suc
 
 ### TradeMan Documentation
 
-<!-- - [Phase 1 Overview](TradeManDoc/Begin_Phase1.md)
-- [Coolify Installation Guide](TradeManDoc/coolifyIns.md)
-- [Fabric Kaas Guide](TradeManDoc/FabricKaas.md)
-- [Hakuna Matata Developer Guide](TradeManDoc/HakunaMatataDevGuide.md)
-- [Kaas App Prompt](TradeManDoc/KaasAppPrompt.md)
-- [Onboarding Guide](TradeManDoc/OnboardingGuide.md)
-- [Tech Daily Report](TradeManDoc/TechDailyReport.md) -->
-
----
+- [Jio Router Configurations](trademandoc/software_instructions/JioRouterConfig.md)
 
 Feel free to explore each section and make use of the resources available. If you have any questions, refer to the relevant guides or reach out for support!
