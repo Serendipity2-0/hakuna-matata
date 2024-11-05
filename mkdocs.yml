@@ -80,6 +80,7 @@ nav:
 
               - App Design Technical Documentation: trademandoc/Projects/chitbox/AppDesignTechnicalDocs.md
               - System Design (LLD+HLD): trademandoc/Projects/chitbox/SystemDesignLLD_HLD.md
+              - Git WorkFlow: trademandoc/Projects/chitbox/GitWorkFlow.md
 
       - Tech Guidelines:
           - GitHub Repositories: trademandoc/tech_guidelines/GitHubRepos.md
