@@ -71,11 +71,16 @@ nav:
               - Kaas App Prompt: trademandoc/Projects/kaas/KaasAppPrompt.md
               - Fabric Kaas: trademandoc/Projects/kaas/FabricKaas.md
           - ChitBox:
-              - API sethu documentation: trademandoc/Projects/chitbox/apisethudocs/ApiSethuDocs.md
-              - DLT Implementation Guide: trademandoc/Projects/chitbox/apisethudocs/DLTImplementationGuide.md
-              - DLT Entity Registration: trademandoc/Projects/chitbox/apisethudocs/DLTEntityRegistration.md
-              - DLT Header Manual Ping: trademandoc/Projects/chitbox/apisethudocs/DLTHeaderManualPing.md
-              - DLT Content Approval: trademandoc/Projects/chitbox/apisethudocs/DLTContentApproval.md
+              - API Sethu and Distributed Ledger Technology:
+                  - API sethu documentation: trademandoc/Projects/chitbox/apisethudocs/ApiSethuDocs.md
+                  - DLT Implementation Guide: trademandoc/Projects/chitbox/apisethudocs/DLTImplementationGuide.md
+                  - DLT Entity Registration: trademandoc/Projects/chitbox/apisethudocs/DLTEntityRegistration.md
+                  - DLT Header Manual Ping: trademandoc/Projects/chitbox/apisethudocs/DLTHeaderManualPing.md
+                  - DLT Content Approval: trademandoc/Projects/chitbox/apisethudocs/DLTContentApproval.md
+
+              - App Design Technical Documentation: trademandoc/Projects/chitbox/AppDesignTechnicalDocs.md
+              - System Design (LLD+HLD): trademandoc/Projects/chitbox/SystemDesignLLD_HLD.md
+
       - Tech Guidelines:
           - GitHub Repositories: trademandoc/tech_guidelines/GitHubRepos.md
           - Commit Convention Guideline: trademandoc/tech_guidelines/CommitConventionGuideline.md
