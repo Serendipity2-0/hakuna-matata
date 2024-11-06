@@ -6,7 +6,7 @@ Myself Nikhil, an excited bloke in terms of every stream I deep dive. Bumped to 
 ## Introducing SERENDIPITY – Our Path
 Serendipity for me is like a baby with utmost care, Omkar has incredible trust on Serendipity. Since we have all the inflows and identity as the perquisites we reap in. Now we have 3 departments mainly Serendipity the Primary department which is responsible for accounting all the transactions and foreseeing the legal and compliance services. Next comes Dhoom Studios An internal arm of Serendipity, Dhoom Studios focuses on marketing and production services. It also features a home theater where employees and guests can unwind, watch movies, play games, and enjoy various activities—a space dedicated to relaxation and team bonding.
 
-### Trademan
+## Trademan
 In my view, this is our revenue powerhouse. Our well-structured team here is responsible for task creation, tech solutions, web hosting, and more. The department is developing a product called "Trademan," which will soon be launched in the market. With a tech-savvy team and Omkar's guidance and leadership, this product is shaping up remarkably and is poised for a global release.
 
 ## Team
