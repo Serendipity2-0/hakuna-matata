@@ -1,13 +1,30 @@
 from asyncio import sleep
 from openai import OpenAI
 import shelve
-from dotenv import load_dotenv
+import dotenv
 import os
 import time
+from pathlib import Path
 
-load_dotenv('kaas.env')
-OPEN_AI_API_KEY = os.getenv("OPEN_AI_API_KEY")
-client = OpenAI(api_key=OPEN_AI_API_KEY)
+# Get the directory of the current script
+current_dir = Path(__file__).parent.absolute()
+
+# Get the path to the .env file
+env_path = Path(current_dir).parent.parent / 'kaas.env'
+
+# Load environment variables from .env file
+dotenv.load_dotenv(env_path)
+
+# Initialize OpenAI client
+OPENAI_API_KEY = os.getenv("NEW_OPENAI_API_KEY")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL")
+client = OpenAI(api_key=OPENAI_API_KEY)
+
+
+#TODO: check if we need to remove hardcode for assistant text
+#TODO: Check what this value is asst_Q7Bsnp7PeKHb0S5FscAMcquJ
+
+
 
 # ------------------------------------------------------------
 # Assistant management
@@ -101,7 +118,7 @@ def create_assistant():
     instructions="You are a personal math tutor. When asked a question, write and run Python code to answer the question.",
     name="Math Tutor",
     tools=[{"type": "code_interpreter"}],
-    model="gpt-4o-mini",
+    model=OPENAI_MODEL,
     )
     print(my_assistant)
     return my_assistant

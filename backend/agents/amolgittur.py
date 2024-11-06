@@ -11,15 +11,24 @@ import dotenv
 from openai import OpenAI
 
 from swarm import Agent
-from fastapi import FastAPI
 from pydantic import BaseModel
+from pathlib import Path
+
+# Get the directory of the current script
+current_dir = Path(__file__).parent.absolute()
+
+# Get the path to the .env file
+env_path = Path(current_dir).parent.parent / 'kaas.env'
 
 # Load environment variables from .env file
-dotenv.load_dotenv(dotenv_path="kaas.env")
+dotenv.load_dotenv(env_path)
 
 # Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-git_guidelines_path = os.getenv("GIT_GUIDELINES_PATH")
+OPENAI_API_KEY = os.getenv("NEW_OPENAI_API_KEY")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL")
+GIT_GUIDELINES = os.getenv("GIT_GUIDELINES_PATH")
+
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 # Function to get the GIT diff output using subprocess shell command    
 def get_git_diff_output(directory):
@@ -35,7 +44,7 @@ def generate_completion(role, task, content):
     """
     print(f"Generating completion for {role}")
     response = client.beta.chat.completions.parse(
-        model="gpt-4o-mini",  # Using GPT-4o for high-quality responses
+        model=OPENAI_MODEL,  # Using GPT-4o for high-quality responses
         messages=[
             {"role": "system", "content": f"You are a {role}. {task}"},
             {"role": "user", "content": content}
@@ -80,7 +89,7 @@ class UserInterfaceAgent(Agent):
     def run(self, directory):
         print("working directory:", directory)
         
-        with open(git_guidelines_path, "r") as file:
+        with open(GIT_GUIDELINES, "r") as file:
             guidelines = file.read()
         
         print("guidelines:", guidelines)

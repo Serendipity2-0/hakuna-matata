@@ -6,13 +6,23 @@ import dotenv
 from openai import OpenAI
 
 from swarm import Agent
-from fastapi import FastAPI
+from pathlib import Path
+
+# Get the directory of the current script
+current_dir = Path(__file__).parent.absolute()
+
+# Get the path to the .env file
+env_path = Path(current_dir).parent.parent / 'kaas.env'
 
 # Load environment variables from .env file
-dotenv.load_dotenv(dotenv_path="kaas.env")
+dotenv.load_dotenv(env_path)
+
+OPENAI_API_KEY = os.getenv("NEW_OPENAI_API_KEY")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL")
+SCRIPT_GUIDE_PATH = os.getenv("SCRIPT_GUIDE_PATH")
 
 # Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 # read the md file and return formatted content
 def get_perplexity_research_link(directory):
@@ -43,7 +53,7 @@ def generate_completion(role, task, content):
     """
     print(f"Generating completion for {role}")
     response = client.chat.completions.create(
-        model="gpt-4",  # Using GPT-4 for high-quality responses
+        model=OPENAI_MODEL,  # Using GPT-4 for high-quality responses
         messages=[
             {"role": "system", "content": f"You are a {role}. {task}"},
             {"role": "user", "content": content}
@@ -63,7 +73,7 @@ class SnowyInterfaceAgent(Agent):
         
         # If guidelines are not provided, load them from patterns/scriptGuide.md
         if not guidelines:
-            with open("patterns/scriptGuide.md", "r") as file:
+            with open(SCRIPT_GUIDE_PATH, "r") as file:
                 guidelines = file.read()
         
         script_outline = generate_script_outline(perplexity_research_link, guidelines)
