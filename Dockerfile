@@ -21,13 +21,13 @@ RUN apt-get update && apt-get install -y \
     tzdata \
     && rm -rf /var/lib/apt/lists/*
 
-
-# set working directory
+# Set working directory
 WORKDIR /app
 
-# Copy the requirements file and key to the container
+# Copy the requirements file to the container
 COPY requirements.txt .
 
+# Install Python packages
 RUN pip3 install --upgrade setuptools && \
     pip3 install wheel && \
     pip3 install --upgrade pip && \
@@ -36,5 +36,12 @@ RUN pip3 install --upgrade setuptools && \
 # Copy the rest of the application code to the container
 COPY . .
 
-RUN chmod +x ./worker.sh
-CMD ["./worker.sh"]
+# Expose port 8082
+EXPOSE 8082
+
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl --fail http://localhost:8082 || exit 1
+
+# Command to run MkDocs
+CMD ["mkdocs", "serve", "-a", "0.0.0.0:8082"]
