@@ -81,6 +81,7 @@ nav:
               - App Design Technical Documentation: trademandoc/Projects/chitbox/AppDesignTechnicalDocs.md
               - System Design (LLD+HLD): trademandoc/Projects/chitbox/SystemDesignLLD_HLD.md
               - Git WorkFlow: trademandoc/Projects/chitbox/GitWorkFlow.md
+              - Auction Process: trademandoc/Projects/chitbox/ChitboxAuctionProcess.md
 
       - Software/Technology Instructions:
           - Coolify Phase1: trademandoc/software_instructions/CoolifyBeginPhase1.md
