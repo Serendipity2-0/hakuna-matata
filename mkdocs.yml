@@ -96,7 +96,7 @@ nav:
           - GitHub Repositories: trademandoc/tech_guidelines/GitHubRepos.md
           - Commit Convention Guideline: trademandoc/tech_guidelines/CommitConventionGuideline.md
           - Prompt Collection: trademandoc/tech_guidelines/PromptCollections.md
-
+          
       - Reports:
           - Tech Daily Report: trademandoc/reports/TechDailyReport.md
           - Development Schedule: trademandoc/reports/DevelopmentSch.md
