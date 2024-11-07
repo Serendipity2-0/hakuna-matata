@@ -1,7 +1,8 @@
-# backend/app/main.py
-from fastapi import FastAPI, Request, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import (
+    FastAPI, Depends, HTTPException, status, Request,
+    WebSocket, WebSocketDisconnect
+)
 from fastapi.middleware.cors import CORSMiddleware
-import asyncio
 import logging
 import json
 from agents.coderunner import WebScraperAgent, AnalystAgent, CampaignIdeaAgent, CopywriterAgent
@@ -10,6 +11,11 @@ from agents.amolgittur import UserInterfaceAgent
 from agents.NikhilRaghu import NikhilRaghuAgent
 from agents.Arjun import ArjunAgent
 from agents.AssistantManager import generate_response, check_if_thread_exists, store_thread
+from sqlalchemy.orm import Session
+from fastapi.security import OAuth2PasswordRequestForm
+from db.db_utils import (UserCreate, UserOut, Token, get_password_hash, 
+                         verify_password, create_access_token, require_role, get_db,User, Role)
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -24,6 +30,130 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
+
+# Registration endpoint
+@app.post("/register", response_model=UserOut)
+def register(user: UserCreate, db: Session = Depends(get_db)):
+    """
+    Register a new user.
+
+    Args:
+        user (UserCreate): User data to register.
+        db (Session, optional): Database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: If the user already exists.
+
+    Returns:
+        UserOut: Registered user data.
+    """
+    db_user = db.query(User).filter(
+        User.phone_number == user.phone_number
+    ).first()
+    if db_user:
+        raise HTTPException(
+            status_code=400, detail="Email already registered"
+        )
+    new_user = User(
+        phone_number=user.phone_number,
+        password=get_password_hash(user.password),
+        name=user.name,
+        email=user.email,
+        department_id=user.department_id
+    )
+    user_role = db.query(Role).filter(Role.name == 'User').first()
+    if not user_role:
+        user_role = Role(name='User')
+        db.add(user_role)
+        db.commit()
+        db.refresh(user_role)
+    new_user.role = user_role
+
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return new_user
+
+# Manager registration endpoint
+@app.post("/register_manager", response_model=UserOut)
+def register_manager(
+    user: UserCreate,
+    current_user: User = Depends(require_role(['Admin'])),
+    db: Session = Depends(get_db)
+):
+    """
+    Register a new manager user.
+
+    Args:
+        user (UserCreate): User data to register.
+        current_user (User, optional): Current user. Defaults to Depends(require_role(['Admin'])).
+        db (Session, optional): Database session. Defaults to Depends(get_db).
+
+    Returns:
+        UserOut: Registered user data.
+    """
+    print(f"Current user role: {current_user.role.name}")
+    
+    db_user = db.query(User).filter(
+        User.phone_number == user.phone_number
+    ).first()
+    if db_user:
+        raise HTTPException(
+            status_code=400, detail="Email already registered"
+        )
+    new_user = User(
+        phone_number=user.phone_number,
+        password=get_password_hash(user.password),
+        email=user.email,
+        name=user.name,
+        department_id=user.department_id
+    )
+    manager_role = db.query(Role).filter(Role.name == 'Manager').first()
+    if not manager_role:
+        manager_role = Role(name='Manager')
+        db.add(manager_role)
+        db.commit()
+        db.refresh(manager_role)
+    new_user.role = manager_role
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return new_user
+
+# Login endpoint
+@app.post("/login", response_model=Token)
+def login(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    db: Session = Depends(get_db)
+):
+    """
+    Login a user.
+
+    Args:
+        form_data (OAuth2PasswordRequestForm, optional): Login form data. Defaults to Depends().
+        db (Session, optional): Database session. Defaults to Depends(get_db).
+
+    Returns:
+        Token: Access token.
+    """
+    # OAuth2PasswordRequestForm contains 'username' field, we'll use it for email
+    user = db.query(User).filter(
+        User.phone_number == form_data.username
+    ).first()
+    if not user or not verify_password(
+        form_data.password, user.password
+    ):
+        raise HTTPException(
+            status_code=400, detail="Incorrect email or password"
+        )
+    access_token = create_access_token(
+        data={
+            "sub": user.phone_number,
+            "roles": [user.role.name] if user.role else []
+        }
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
+
 
 @app.post("/agents/scrape")
 async def run_scraper(request: Request):
