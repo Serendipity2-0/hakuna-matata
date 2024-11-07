@@ -31,6 +31,10 @@ def create_super_admin():
             "Enter admin email: "
         )
 
+        admin_phone_number = os.getenv('ADMIN_PHONE_NUMBER') or input(
+            "Enter admin phone number: "
+        )
+
         # Check if email already exists
         existing_user = db.query(User).filter(User.email == admin_email).first()
         if existing_user:
@@ -51,6 +55,7 @@ def create_super_admin():
         admin_user = User(
             name="Admin",
             email=admin_email,
+            phone_number=admin_phone_number,
             password=get_password_hash(admin_password),
             role=admin_role
         )
