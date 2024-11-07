@@ -52,7 +52,9 @@ nav:
               - Account Standard Operating Procedures: serendipitydoc/accounts/accountingguide/AccountStandardOperatingProcedures.md
               - Account Transaction Scenarios: serendipitydoc/accounts/accountingguide/AccountTransactionScenarios.md
               - AccQT Prd: serendipitydoc/accounts/accountingguide/AccQTPrd.md
-              - Serendipity Business Requirements Plan: serendipitydoc/accounts/accountingguide/SerendipityBusinessRequirementsPlan.md
+              - VBA Macro - Tool within Excel: serendipitydoc/accounts/accountingguide/VBAExcelToolGuide.md
+              - GST Process: serendipitydoc/accounts/accountingguide/GSTProcess.md
+          - Serendipity Business Requirements Plan: serendipitydoc/accounts/SerendipityBusinessRequirementsPlan.md
       - HR Onboarding Library:
           - Employee Onboarding Guide: serendipitydoc/hronboardinglibrary/EmployeeOnboardingGuide.md
       - General Guidelines:
