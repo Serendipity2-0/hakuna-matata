@@ -90,6 +90,8 @@ nav:
           - Payment Gateway Benefits Razorpay: trademandoc/software_instructions/PaymentGatewayBenefits.md
           - Agent Creation Guidelines: trademandoc/software_instructions/AgentCreationGuideline.md
           - RBAC Guidelines: trademandoc/software_instructions/RbacGuidelines.md
+          - Google SSO On GCP: trademandoc/software_instructions/googlesso/GoogleSSOonGCP.md
+
 
       - General Tech Guidelines: 
           - GitHub Repositories: trademandoc/tech_guidelines/GitHubRepos.md
