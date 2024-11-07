@@ -82,18 +82,20 @@ nav:
               - System Design (LLD+HLD): trademandoc/Projects/chitbox/SystemDesignLLD_HLD.md
               - Git WorkFlow: trademandoc/Projects/chitbox/GitWorkFlow.md
 
-      - Tech Guidelines:
-          - GitHub Repositories: trademandoc/tech_guidelines/GitHubRepos.md
-          - Commit Convention Guideline: trademandoc/tech_guidelines/CommitConventionGuideline.md
-          - Agent Creation Guidelines: trademandoc/tech_guidelines/AgentCreationGuideline.md
-          - RBAC Guidelines: trademandoc/tech_guidelines/RbacGuidelines.md
-          - Prompt Collection: trademandoc/tech_guidelines/PromptCollections.md
-      - Software Instructions:
+      - Software/Technology Instructions:
           - Coolify Phase1: trademandoc/software_instructions/CoolifyBeginPhase1.md
           - Coolify Instructions: trademandoc/software_instructions/CoolifyInstructions.md
           - Cloudflare Hosting: trademandoc/software_instructions/CloudflareHosting.md
           - Jio Router Config: trademandoc/software_instructions/JioRouterConfig.md
           - Payment Gateway Benefits Razorpay: trademandoc/software_instructions/PaymentGatewayBenefits.md
+          - Agent Creation Guidelines: trademandoc/software_instructions/AgentCreationGuideline.md
+          - RBAC Guidelines: trademandoc/software_instructions/RbacGuidelines.md
+
+      - General Tech Guidelines: 
+          - GitHub Repositories: trademandoc/tech_guidelines/GitHubRepos.md
+          - Commit Convention Guideline: trademandoc/tech_guidelines/CommitConventionGuideline.md
+          - Prompt Collection: trademandoc/tech_guidelines/PromptCollections.md
+          
       - Reports:
           - Tech Daily Report: trademandoc/reports/TechDailyReport.md
           - Development Schedule: trademandoc/reports/DevelopmentSch.md
