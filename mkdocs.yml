@@ -52,7 +52,9 @@ nav:
               - Account Standard Operating Procedures: serendipitydoc/accounts/accountingguide/AccountStandardOperatingProcedures.md
               - Account Transaction Scenarios: serendipitydoc/accounts/accountingguide/AccountTransactionScenarios.md
               - AccQT Prd: serendipitydoc/accounts/accountingguide/AccQTPrd.md
-              - Serendipity Business Requirements Plan: serendipitydoc/accounts/accountingguide/SerendipityBusinessRequirementsPlan.md
+              - VBA Macro - Tool within Excel: serendipitydoc/accounts/accountingguide/VBAExcelToolGuide.md
+              - GST Process: serendipitydoc/accounts/accountingguide/GSTProcess.md
+          - Serendipity Business Requirements Plan: serendipitydoc/accounts/SerendipityBusinessRequirementsPlan.md
       - HR Onboarding Library:
           - Employee Onboarding Guide: serendipitydoc/hronboardinglibrary/EmployeeOnboardingGuide.md
       - General Guidelines:
@@ -81,6 +83,7 @@ nav:
               - App Design Technical Documentation: trademandoc/Projects/chitbox/AppDesignTechnicalDocs.md
               - System Design (LLD+HLD): trademandoc/Projects/chitbox/SystemDesignLLD_HLD.md
               - Git WorkFlow: trademandoc/Projects/chitbox/GitWorkFlow.md
+              - Auction Process: trademandoc/Projects/chitbox/ChitboxAuctionProcess.md
 
       - Software/Technology Instructions:
           - Coolify Phase1: trademandoc/software_instructions/CoolifyBeginPhase1.md
@@ -108,6 +111,7 @@ nav:
       - Adobe Creative Suite: dhoomstudiosdoc/AdobeCreativeSuite.md
       - Script Guide: dhoomstudiosdoc/ScriptGuide.md
       - Old Man's Tale: dhoomstudiosdoc/OldMansTale.md
+      - Adobe Tools & Features Guide: dhoomstudiosdoc/AdobeGuide.md
 
 extra:
   social:
