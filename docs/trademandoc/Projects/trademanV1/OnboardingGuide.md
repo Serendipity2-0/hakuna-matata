@@ -1,4 +1,4 @@
-# TradeMan Account Creation Guide 
+# TradeMan Account Creation Guide
 
 ---
 
@@ -288,7 +288,7 @@ TradeMan
 
 ### Additional Client Communication
 
-1.Additions of funds confirmation message👇 (Send below message to our clients whenever they add funds further)
+1.**Additions of funds confirmation message👇** (Send below message to our clients whenever they add funds further)
 
 We are pleased to inform you that your recent fund addition of [Amount] has been successfully processed and credited to your TradeMan account. Your updated account balance is [Updated Balance].
 
@@ -296,7 +296,7 @@ If you have any questions or need further assistance, please feel free to reach 
 
 Thank you for choosing TradeMan.
 
-2.Withdraw of funds confirmation message 👇(Send below message to our clients whenever they needs funds withdrawal)
+2.**Withdraw of funds confirmation message 👇**(Send below message to our clients whenever they needs funds withdrawal)
 
 This is to confirm that your recent withdrawal request of [Amount] has been successfully processed. The funds have been debited from your trading account, and your updated account balance is [Updated Balance].
 
@@ -304,17 +304,7 @@ If you have any questions or need further assistance, please feel free to reach 
 
 Thank you for choosing TradeMan.
 
-3.Quarterly settlement by SEBI / Broker message 👇(Send below message to our clients when the quarterly settelment happens from Broker account(eg., Zerodha/Aliceblue/Firstock)
-
-We are pleased to inform you that the SEBI Quarterly Settlement from the broker account has been successfully completed.
-
-Your current funds of [amount] are now available in your account. You can choose to add more funds or continue trading with the available balance, depending on your investment strategy and goals.
-
-If you have any questions or need further assistance, please feel free to reach out to us.
-
-Thank you for choosing TradeMan.
-
-4. Commission message👇
+3. **Commission message👇**
 
 I.ON REQUEST(Send below message to our clients when they request commission amount)
 
@@ -334,11 +324,11 @@ Thank you for choosing TradeMan.
 
 **#TODO:**EVERYDAY MESSAGES TO SHARE WITH OUR CLIENTS
 
-Additional information
+### Additional information
 
-👇Use the below link to get each clients FIRSTOCK API_SECRET_KEY and VENDOR_ID 👇
+**👇Use the below link to get each clients FIRSTOCK API_SECRET_KEY and VENDOR_ID 👇**
 
-[Link](https://connect.thefirstock.com/)
+[Coonect API](https://connect.thefirstock.com/)
 
 steps
 1.Click on the above link
@@ -346,23 +336,23 @@ steps
 3.Enter User ID, Password, DOB/PAN and click on Login
 4.Click on the generate key and we will get API_SECRET_KEY and VENDOR_ID AND API_SECRET_KEY expiry date.
 
-👇LINK BELOW IS FOR FIRSTOCK MOBILE APPLICATION👇
+**👇LINK BELOW IS FOR FIRSTOCK MOBILE APPLICATION👇**
 
 Check out "Firstock - Investing Simplifie"
 
 [Firstock Mobile Application](https://play.google.com/store/apps/details?id=com.noren.firstock)
 
-👇LINK BELOW IS FOR FIRSTOCK COMMUNITY👇
+**👇LINK BELOW IS FOR FIRSTOCK COMMUNITY👇**
 
 This link is to discuss technical and non technical issues regarding Firstock connect[Login with user id , password and post the occuring issues and later we will be posted back with the solution]
 
 [Join Community](https://community.thefirstock.tech/)
 
-👇LINK BELOW IS FOR FIRSTOCK BROKER PRICING AND BROKER CHARGES👇
+**👇LINK BELOW IS FOR FIRSTOCK BROKER PRICING AND BROKER CHARGES👇**
 
 [View Pricing](https://thefirstock.com/pricing_and_charges.html)
 
-👇BIRTHDAY WISHES FORMAT👇
+**👇BIRTHDAY WISHES FORMAT👇**
 
 On behalf of the entire TradeMan team, I’d like to extend our warmest wishes on your birthday.
 
@@ -371,7 +361,7 @@ May your day be filled with joy, and the year ahead bring continued success and 
 Best regards,
 TradeMan
 
-👇Strategies change request success message👇(Send the below message when a client raises a request to change their strategy)
+**👇Strategies change request success message👇**(Send the below message when a client raises a request to change their strategy)
 
 We are pleased to inform you that your request to change your strategy has been approved.
 
@@ -383,13 +373,24 @@ If you have any questions or need assistance please feel free to reach out.
 
 Thank you for choosing TradeMan!
 
-👇Quarterly settlement from broker message format👇
+**👇Quarterly settlement from broker message format👇**
 
 Due to the quarterly settlement from Firstock, an amount of ₹160.00 has been credited to your account. You can re-add your funds to continue trading seamlessly.
 
 Let us know when you're ready, and we'll send you the UPI link for payment via GPay, PhonePe, or any UPI app.Alternatively, you can also select net banking for payment.
 
 If you have any questions or need further assistance, feel free to contact us.
+
+Thank you for choosing TradeMan!
+
+**👇Monthly settlement of unused funds from broker message format👇**
+
+Due to the unused funds in your account for the past month, a refund amount of ₹00.00 has been credited back to you.
+Please note that holdings are not considered an active investment. Since your account held funds unused due to these holdings, the refund has been processed accordingly.
+
+You may re-add these funds at any time to continue trading seamlessly. Let us know when you’re ready, and we’ll provide the UPI link for payment through GPay, PhonePe, or any UPI app. Alternatively, you can also select net banking for payment.
+
+If you have any questions or need further assistance, feel free to reach out.
 
 Thank you for choosing TradeMan!
 
