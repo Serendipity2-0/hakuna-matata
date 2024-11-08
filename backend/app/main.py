@@ -1,6 +1,6 @@
 from fastapi import (
     FastAPI, Depends, HTTPException, status, Request,
-    WebSocket, WebSocketDisconnect
+    WebSocket, WebSocketDisconnect, UploadFile, File, Form
 )
 from fastapi.middleware.cors import CORSMiddleware
 import logging
@@ -14,7 +14,9 @@ from agents.AssistantManager import generate_response, check_if_thread_exists, s
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordRequestForm
 from db.db_utils import (UserCreate, UserOut, Token, get_password_hash, 
-                         verify_password, create_access_token, require_role, get_db,User, Role)
+                         verify_password, create_access_token, require_role, get_db,User, Role, get_department_name)
+import os
+from typing import Optional
 
 
 logging.basicConfig(level=logging.INFO)
@@ -153,6 +155,126 @@ def login(
         }
     )
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+@app.post("/upload-file")
+async def upload_file(
+    file: UploadFile = File(...),
+    file_path: str = Form(...),
+    create_dir: Optional[bool] = Form(False),
+    current_user: User = Depends(require_role(['Admin', 'Manager'])),
+):
+    """
+    Upload an MD file to a specified directory.
+    
+    Args:
+        file (UploadFile): The MD file to upload
+        file_path (str): Destination path for the file
+        create_dir (bool, optional): Whether to create directory if it doesn't exist
+        current_user (User): Current authenticated user
+        db (Session): Database session
+    
+    Returns:
+        dict: Upload status and file details
+    """
+    # Validate file extension
+    if not file.filename.endswith('.md'):
+        raise HTTPException(
+            status_code=400,
+            detail="Only markdown (.md) files are allowed"
+        )
+
+    try:
+        # Create absolute path
+        docs_folder_path = os.getenv("DOCS_FOLDER_PATH")
+        # Determine the base directory path
+        base_dir_path = docs_folder_path
+
+        # Append department-specific path based on user role
+        if current_user.role.name == 'Admin':
+            dir_path = os.path.join(base_dir_path, file_path)
+        elif current_user.role.name == 'Manager':
+            department_id = current_user.department_id
+            department_name = get_department_name(department_id)
+            dir_path = os.path.join(base_dir_path, department_name, file_path)
+        else:
+            raise HTTPException(
+                status_code=403,
+                detail="User does not have permission to upload files"
+            )
+
+        # Ensure the directory path is absolute
+        abs_path = os.path.abspath(dir_path)
+        
+        # Check if directory exists
+        if not os.path.exists(dir_path):
+            if not create_dir:
+                return {
+                    "status": "error",
+                    "detail": "Directory does not exist",
+                    "create_dir_option": True,
+                    "path": dir_path
+                }
+            
+            # Create directory if requested
+            os.makedirs(dir_path, exist_ok=True)
+
+        # Read and write file content
+        file_content = await file.read()
+        
+        # Generate full file path including filename
+        full_file_path = os.path.join(abs_path, file.filename)
+        
+        # Write file
+        with open(full_file_path, "wb") as f:
+            f.write(file_content)
+
+        return {
+            "status": "success",
+            "detail": "File uploaded successfully",
+            "filename": file.filename,
+            "path": full_file_path
+        }
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error uploading file: {str(e)}"
+        )
+
+@app.post("/create-directory")
+async def create_directory(
+    file_path: str = Form(...),
+    current_user: User = Depends(require_role(['Admin', 'Manager'])),
+    db: Session = Depends(get_db)
+):
+    """
+    Create a new directory at the specified path.
+    
+    Args:
+        file_path (str): Path where to create the directory
+        current_user (User): Current authenticated user
+        db (Session): Database session
+    
+    Returns:
+        dict: Directory creation status
+    """
+    try:
+        abs_path = os.path.abspath(file_path)
+        os.makedirs(abs_path, exist_ok=True)
+        
+        return {
+            "status": "success",
+            "detail": "Directory created successfully",
+            "path": abs_path
+        }
+        
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error creating directory: {str(e)}"
+        )
+
 
 
 @app.post("/agents/scrape")
