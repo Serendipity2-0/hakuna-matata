@@ -17,6 +17,7 @@ from db.db_utils import (UserCreate, UserOut, Token, get_password_hash,
                          verify_password, create_access_token, require_role, get_db,User, Role, get_department_name)
 import os
 from typing import Optional
+from pathlib import Path
 
 
 logging.basicConfig(level=logging.INFO)
@@ -242,39 +243,168 @@ async def upload_file(
             detail=f"Error uploading file: {str(e)}"
         )
 
-@app.post("/create-directory")
-async def create_directory(
-    file_path: str = Form(...),
-    current_user: User = Depends(require_role(['Admin', 'Manager'])),
+@app.get("/view-docs")
+async def view_docs(
+    current_user: User = Depends(require_role(['Admin', 'Manager', 'User'])),
     db: Session = Depends(get_db)
 ):
     """
-    Create a new directory at the specified path.
+    Retrieve MD documents based on user's role and department.
     
     Args:
-        file_path (str): Path where to create the directory
         current_user (User): Current authenticated user
         db (Session): Database session
     
     Returns:
-        dict: Directory creation status
+        dict: List of documents with their metadata
     """
     try:
-        abs_path = os.path.abspath(file_path)
-        os.makedirs(abs_path, exist_ok=True)
+        docs_folder_path = os.getenv("DOCS_FOLDER_PATH")
+        if not docs_folder_path:
+            raise HTTPException(
+                status_code=500,
+                detail="DOCS_FOLDER_PATH not configured"
+            )
+
+        # Initialize list to store document information
+        documents = []
         
+        # Define base path for document search
+        if current_user.role.name == 'Admin':
+            # Admin can see all documents
+            search_path = Path(docs_folder_path)
+        else:
+            # Other users can only see their department's documents
+            department_name = get_department_name(current_user.department_id)
+            search_path = Path(docs_folder_path) / department_name
+            
+            # If department folder doesn't exist, return empty list
+            if not search_path.exists():
+                return {"documents": []}
+
+        # Recursively find all .md files
+        for md_file in search_path.rglob("*.md"):
+            # Get relative path from docs folder
+            rel_path = md_file.relative_to(Path(docs_folder_path))
+            
+            # Get file stats
+            stats = md_file.stat()
+            
+            documents.append({
+                "name": md_file.name,
+                "path": str(rel_path),
+                "full_path": str(md_file),
+                "modified_date": stats.st_mtime,
+                "size": stats.st_size,
+                "department": rel_path.parts[0] if len(rel_path.parts) > 1 else "root"
+            })
+
+        # Sort documents by modified date (newest first)
+        documents.sort(key=lambda x: x["modified_date"], reverse=True)
+
+
+        # For Admin, set department to "All Departments"
+        if current_user.role.name == 'Admin':
+            department = "All Departments"
+        else:
+            department = get_department_name(current_user.department_id)
+
         return {
-            "status": "success",
-            "detail": "Directory created successfully",
-            "path": abs_path
+            "documents": documents,
+            "user_role": current_user.role.name,
+            "department": department
         }
-        
+
     except Exception as e:
+        logger.error(f"Error fetching documents: {str(e)}", exc_info=True)
         raise HTTPException(
             status_code=500,
-            detail=f"Error creating directory: {str(e)}"
+            detail=f"Error fetching documents: {str(e)}"
         )
 
+@app.get("/view-doc/{doc_path:path}")
+async def read_document(
+    doc_path: str,
+    current_user: User = Depends(require_role(['Admin', 'Manager', 'User'])),
+    db: Session = Depends(get_db)
+):
+    """
+    Read and return the contents of a specific markdown document.
+    
+    Args:
+        doc_path (str): Path to the document relative to DOCS_FOLDER_PATH
+        current_user (User): Current authenticated user
+        db (Session): Database session
+    
+    Returns:
+        dict: Document content and metadata
+    """
+    try:
+        docs_folder_path = os.getenv("DOCS_FOLDER_PATH")
+        if not docs_folder_path:
+            raise HTTPException(
+                status_code=500,
+                detail="DOCS_FOLDER_PATH not configured"
+            )
+
+        # Construct full file path
+        full_path = Path(docs_folder_path) / doc_path
+
+        # Security check: Ensure the file is within docs_folder_path
+        if not str(full_path.resolve()).startswith(str(Path(docs_folder_path).resolve())):
+            raise HTTPException(
+                status_code=403,
+                detail="Access to this file path is forbidden"
+            )
+
+        # Check if file exists
+        if not full_path.exists() or not full_path.is_file():
+            raise HTTPException(
+                status_code=404,
+                detail="Document not found"
+            )
+
+        # Check user permissions
+        if current_user.role.name != 'Admin':
+            department_name = get_department_name(current_user.department_id)
+            # Check if the file is in user's department folder
+            if department_name not in str(full_path):
+                raise HTTPException(
+                    status_code=403,
+                    detail="You don't have permission to access this document"
+                )
+
+        # Read file content
+        try:
+            with open(full_path, 'r', encoding='utf-8') as file:
+                content = file.read()
+        except UnicodeDecodeError:
+            raise HTTPException(
+                status_code=400,
+                detail="File is not a valid text document"
+            )
+
+        # Get file stats
+        stats = full_path.stat()
+
+        return {
+            "content": content,
+            "metadata": {
+                "name": full_path.name,
+                "path": doc_path,
+                "modified_date": stats.st_mtime,
+                "size": stats.st_size
+            }
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error reading document: {str(e)}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error reading document: {str(e)}"
+        )
 
 
 @app.post("/agents/scrape")
@@ -393,3 +523,4 @@ async def websocket_endpoint(websocket: WebSocket):
 async def thread_exists(wa_id: str):
     thread_id = check_if_thread_exists(wa_id)
     return {"exists": thread_id is not None}
+

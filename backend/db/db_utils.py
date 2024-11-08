@@ -14,9 +14,9 @@ from sqlalchemy.orm import Session
 
 DIR_PATH = os.getcwd()
 
-DIR_PATH = os.path.dirname(os.getcwd())
+env_path = os.path.join(DIR_PATH, "kaas.env")
 
-load_dotenv(dotenv_path = "kaas.env")
+load_dotenv(dotenv_path = env_path)
 
 DB_PATH = os.getenv("DB_PATH")
 
