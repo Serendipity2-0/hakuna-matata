@@ -52,6 +52,12 @@ class Role(Base):
     users = relationship('User', back_populates='role')
 
 
+class Department(Base):
+    __tablename__ = 'departments'
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True)
+
 # Create the tables and initialize super admin
 Base.metadata.create_all(bind=engine)
 
@@ -147,3 +153,24 @@ def require_role(roles: List[str]):
             )
         return current_user
     return role_checker
+
+def get_department_name(department_id: int):
+    """
+    Fetch the department name by department id.
+
+    Args:
+        department_id (int): The ID of the department.
+        db (Session): Database session.
+
+    Returns:
+        str: The name of the department.
+    """
+    db = SessionLocal()
+    department = db.query(Department).filter(Department.id == department_id).first()
+    if department:
+        return department.name
+    else:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Department with id {department_id} not found"
+        )
