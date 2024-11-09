@@ -94,7 +94,7 @@ class UserOut(BaseModel):
     role_id: Optional[int] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class Token(BaseModel):
     access_token: str
@@ -174,3 +174,15 @@ def get_department_name(department_id: int):
             status_code=404,
             detail=f"Department with id {department_id} not found"
         )
+    
+def get_all_departments():
+    """
+    Fetch all departments.
+
+    Returns:
+        List[str]: List of department names.
+    """
+    db = SessionLocal()
+    departments = db.query(Department).all()
+    return [department.name for department in departments]
+
