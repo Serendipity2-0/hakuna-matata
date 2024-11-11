@@ -18,30 +18,34 @@ jobs:
           echo "DATABASE_URL=sqlite:///rbac_system.db" > kaas.env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> kaas.env
 
+      - name: Stop and Remove Old Container
+        run: |
+          # Stop and remove only our container
+          docker stop rbac-container || true
+          docker rm rbac-container || true
+          
+          # Remove only untagged/dangling images related to our app
+          docker images "rbac-app" -q | xargs -r docker rmi
+          docker images --filter "dangling=true" -q | xargs -r docker rmi
+
       - name: Build Docker image
         run: |
           docker build \
             --no-cache \
-            -t myapp:latest \
+            -t rbac-app:latest \
             .
-
-      - name: Stop and Remove Old Container
-        run: |
-          docker stop myapp || true
-          docker rm myapp || true
-          docker system prune -f
 
       - name: Run Docker container
         run: |
           docker run -d \
-            --name myapp \
+            --name rbac-container \
             -p 8052:8052 \
             -p 8051:8051 \
             --restart unless-stopped \
-            myapp:latest
+            rbac-app:latest
 
       - name: Check container health
         run: |
           sleep 10
-          docker ps | grep myapp
-          docker logs myapp --tail 50
+          docker ps | grep rbac-container
+          docker logs rbac-container --tail 50
