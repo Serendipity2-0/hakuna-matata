@@ -18,9 +18,7 @@ env_path = os.path.join(DIR_PATH, "kaas.env")
 
 load_dotenv(dotenv_path = env_path)
 
-DB_PATH = os.getenv("DB_PATH")
-
-DATABASE_URL = f"sqlite:///{DB_PATH}"
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///rbac_system.db")
 
 engine = create_engine(
     DATABASE_URL, connect_args={"check_same_thread": False}

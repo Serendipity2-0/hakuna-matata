@@ -1,0 +1,47 @@
+name: Docker CI/CD
+
+on:
+  push:
+    branches:
+      - 42-endpoint-for-endpoint-list
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
+
+      - name: Create environment file
+        run: |
+          echo "DATABASE_URL=sqlite:///rbac_system.db" > kaas.env
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> kaas.env
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            --no-cache \
+            -t myapp:latest \
+            .
+
+      - name: Stop and Remove Old Container
+        run: |
+          docker stop myapp || true
+          docker rm myapp || true
+          docker system prune -f
+
+      - name: Run Docker container
+        run: |
+          docker run -d \
+            --name myapp \
+            -p 8052:8052 \
+            -p 8051:8051 \
+            --restart unless-stopped \
+            myapp:latest
+
+      - name: Check container health
+        run: |
+          sleep 10
+          docker ps | grep myapp
+          docker logs myapp --tail 50
