@@ -68,18 +68,44 @@ nav:
           - TradeManV1:
               - Onboarding Guide: Trademan/Projects/trademanV1/OnboardingGuide.md
               - TradeManV1 Meetings: Trademan/Projects/trademanV1/TradeManMeetingAudio_Transcribe.md
+              - Frontend Refactoring: Trademan/Projects/trademanV1/FrontendRefactoringDoc.md
           - HakunaMatata:
               - HakunaMatata Dev Guide: Trademan/Projects/hakunamatata/HakunaMatataDevGuide.md
           - Kaas:
               - Kaas App Prompt: Trademan/Projects/kaas/KaasAppPrompt.md
               - Fabric Kaas: Trademan/Projects/kaas/FabricKaas.md
           - ChitBox:
+              - ChitBox Project: Trademan/Projects/chitbox/ChitBoxProject.md
               - API Sethu and Distributed Ledger Technology:
                   - API sethu documentation: Trademan/Projects/chitbox/apisethudocs/ApiSethuDocs.md
                   - DLT Implementation Guide: Trademan/Projects/chitbox/apisethudocs/DLTImplementationGuide.md
                   - DLT Entity Registration: Trademan/Projects/chitbox/apisethudocs/DLTEntityRegistration.md
                   - DLT Header Manual Ping: Trademan/Projects/chitbox/apisethudocs/DLTHeaderManualPing.md
                   - DLT Content Approval: Trademan/Projects/chitbox/apisethudocs/DLTContentApproval.md
+
+              - Flutter Code : 
+                  - Flutter Code Review Form: Trademan/Projects/chitbox/fluttercode/FlutterCodeReviewForm.md
+                  - Prompt Used: Trademan/Projects/chitbox/fluttercode/Prompt.md
+                  - Open Closed Principle: Trademan/Projects/chitbox/fluttercode/OpenClosedPrinciple.md
+                  - Liskov Substitution Principle: Trademan/Projects/chitbox/fluttercode/LISKOVPrinciple.md
+
+              - Project Management:
+                  - Project Management: Trademan/Projects/chitbox/projectmanagement/ProjectManagement.md
+                  - Creating-Account Created: Trademan/Projects/chitbox/projectmanagement/CreatingAccountCreated.md
+                  - Unit Test-Dashboard: Trademan/Projects/chitbox/projectmanagement/DashboardUnitTests.md
+                  - eKYC Verification: Trademan/Projects/chitbox/projectmanagement/eKYCVerificationScreen.md
+                  - eKYC Implementation and UT: Trademan/Projects/chitbox/projectmanagement/eKYCImplementationAndUT.md
+                  - Login page with OTP: Trademan/Projects/chitbox/projectmanagement/LoginPageandOTP.md
+                  - NavBar: Trademan/Projects/chitbox/projectmanagement/NavBar.md
+                  - Unit Test-OTP: Trademan/Projects/chitbox/projectmanagement/OTPUnitTests.md
+                  - Personal Details Form: Trademan/Projects/chitbox/projectmanagement/PersonalDetailsForm.md
+                  - Unit Test-Personal Details: Trademan/Projects/chitbox/projectmanagement/PersonalDetailsTestCases.md
+                  - Today's Task: Trademan/Projects/chitbox/projectmanagement/TodayTaskDocs.md
+                  - Functional Requirements: Trademan/Projects/chitbox/projectmanagement/FunctionalRequirements.md
+                  - System Design: Trademan/Projects/chitbox/projectmanagement/SystemDesign.md
+                  - TestFlight Docs: Trademan/Projects/chitbox/projectmanagement/TestFlightDocs.md
+                  - Google Playstore Account Creation: Trademan/Projects/chitbox/projectmanagement/GooglePlaystoreAccountCreation.md
+
 
               - App Design Technical Documentation: Trademan/Projects/chitbox/AppDesignTechnicalDocs.md
               - System Design (LLD+HLD): Trademan/Projects/chitbox/SystemDesignLLD_HLD.md
