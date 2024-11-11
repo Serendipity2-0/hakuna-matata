@@ -16,11 +16,11 @@ jobs:
       - name: Create environment file
         shell: pwsh
         run: |
-          @"
-          DATABASE_URL=${{ secrets.DATABASE_URL }}
-          SECRET_KEY=${{ secrets.SECRET_KEY }}
-          OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
-          "@ | Out-File -FilePath kaas.env -Encoding UTF8
+          Set-Content -Path kaas.env -Value @(
+            "DATABASE_URL=${{ secrets.DATABASE_URL }}",
+            "SECRET_KEY=${{ secrets.SECRET_KEY }}",
+            "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}"
+          )
 
       - name: Stop and Remove Old Container
         run: |
