@@ -3,7 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8000', // Make sure this matches your backend URL
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL, // Make sure this matches your backend URL
   timeout: 30000,
 });
 
