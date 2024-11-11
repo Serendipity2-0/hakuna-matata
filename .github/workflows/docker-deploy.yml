@@ -14,12 +14,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Create environment file
+        shell: pwsh
         run: |
-          cat << EOF > kaas.env
+          @"
           DATABASE_URL=${{ secrets.DATABASE_URL }}
           SECRET_KEY=${{ secrets.SECRET_KEY }}
           OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
-          EOF
+          "@ | Out-File -FilePath kaas.env -Encoding UTF8
 
       - name: Stop and Remove Old Container
         run: |
