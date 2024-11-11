@@ -16,6 +16,7 @@ ENV SECRET_KEY=${SECRET_KEY}
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 ENV NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
 
+
 # Install dependencies with proper error handling and package lists update
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -61,6 +62,7 @@ RUN npm install && \
     npm install -D tailwindcss postcss autoprefixer && \
     npm install -D @types/node @types/react @types/react-dom typescript && \
     npm run build
+
 
 # Setup backend and ensure proper permissions
 WORKDIR /app/backend
