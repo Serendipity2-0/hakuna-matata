@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
+    timeout-minutes: 20
 
     steps:
       - name: Check out the code
@@ -26,45 +27,28 @@ jobs:
       - name: Build Docker image
         shell: cmd
         run: |
-          docker build ^
-          --no-cache ^
-          --build-arg DATABASE_URL="%DATABASE_URL%" ^
-          --build-arg SECRET_KEY="%SECRET_KEY%" ^
-          --build-arg OPENAI_API_KEY="%OPENAI_API_KEY%" ^
-          --build-arg NEXT_PUBLIC_BASE_URL="https://hakuna-matata.trademan.ai/" ^
+          docker build --no-cache --build-arg DATABASE_URL="%DATABASE_URL%" --build-arg SECRET_KEY="%SECRET_KEY%" --build-arg OPENAI_API_KEY="%OPENAI_API_KEY%" --build-arg NEXT_PUBLIC_BASE_URL="https://hakuna-matata.trademan.ai/" -t rbac-app:latest . || exit /b 1
 
-          -t rbac-app:latest ^
-          .
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
-
 
 
       - name: Run Docker container
         shell: cmd
         run: |
-          docker run -d ^
-          --name rbac-container ^
-          -p 8052:8052 ^
-          -p 8051:8051 ^
-          --restart unless-stopped ^
-          -e DATABASE_URL="%DATABASE_URL%" ^
-          -e SECRET_KEY="%SECRET_KEY%" ^
-          -e OPENAI_API_KEY="%OPENAI_API_KEY%" ^
-          -e NEXT_PUBLIC_BASE_URL="https://hakuna-matata.trademan.ai/" ^
-          rbac-app:latest
+          docker run -d --name rbac-container -p 8052:8052 -p 8051:8051 --restart unless-stopped -e DATABASE_URL="%DATABASE_URL%" -e SECRET_KEY="%SECRET_KEY%" -e OPENAI_API_KEY="%OPENAI_API_KEY%" -e NEXT_PUBLIC_BASE_URL="https://hakuna-matata.trademan.ai/" rbac-app:latest
+
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
 
       - name: Check container health
         shell: cmd
         run: |
-          timeout /t 10 /nobreak
+          timeout /t 30 /nobreak
           docker ps | findstr "rbac-container" || exit /b 1
           docker logs rbac-container --tail 50
+          curl -f http://localhost:8051/health || exit /b 1

@@ -86,3 +86,10 @@ USER app_user
 
 # Command to start supervisord
 CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+
+# Add healthcheck to help monitor container status
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8051/health || exit 1
+
+# Consider adding .dockerignore if not present
+# Consider caching node_modules for faster builds
