@@ -13,6 +13,7 @@ ENV NODE_ENV=development
 ENV DATABASE_URL=${DATABASE_URL}
 ENV SECRET_KEY=${SECRET_KEY}
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
+ENV NEXT_PUBLIC_BASE_URL=https://hakuna-matata.trademan.ai/
 
 # Install dependencies with proper error handling and package lists update
 RUN apt-get update && \
@@ -57,7 +58,8 @@ RUN pip3 install --upgrade pip setuptools wheel && \
 WORKDIR /app/frontend
 RUN npm install && \
     npm install -D tailwindcss postcss autoprefixer && \
-    npm install -D @types/node @types/react @types/react-dom typescript
+    npm install -D @types/node @types/react @types/react-dom typescript && \
+    NEXT_PUBLIC_BASE_URL=http://localhost:8051 npm run build
 
 # Setup backend and ensure proper permissions
 WORKDIR /app/backend
