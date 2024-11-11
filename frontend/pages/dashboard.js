@@ -22,16 +22,22 @@ const DashboardPage = ({ userRole }) => {
   // Fetch documents on component mount
   useEffect(() => {
     fetchDocuments();
-  }, []);
+  }, [userRole]);
 
   const fetchDocuments = async () => {
     try {
       const response = await axios.get('/view-docs');
       setDocuments(response.data.documents);
       
-      // Extract unique departments
-      const uniqueDepartments = [...new Set(response.data.documents.map(doc => doc.department))];
-      setDepartments(uniqueDepartments.filter(dept => dept !== 'root'));
+      if (userRole === 'Admin') {
+        // Extract unique departments for admin
+        const uniqueDepartments = [...new Set(response.data.documents.map(doc => doc.department))];
+        setDepartments(uniqueDepartments.filter(dept => dept !== 'root'));
+      } else {
+        // For non-admin users, set their department automatically
+        const userDepartment = response.data.department;
+        setSelectedDepartment(userDepartment);
+      }
     } catch (error) {
       console.error('Error fetching documents:', error);
     }
@@ -164,21 +170,24 @@ const DashboardPage = ({ userRole }) => {
             <LogoutButton />
           </div>
         </div>
-        <div className="department-nav">
-          {departments.map(dept => (
-            <button
-              key={dept}
-              onClick={() => {
-                setSelectedDepartment(dept);
-                setCurrentPath([]);
-                setSelectedDocument(null);
-              }}
-              className={selectedDepartment === dept ? 'active' : ''}
-            >
-              {dept}
-            </button>
-          ))}
-        </div>
+        {/* Only show department navigation for Admin */}
+        {userRole === 'Admin' && (
+          <div className="department-nav">
+            {departments.map(dept => (
+              <button
+                key={dept}
+                onClick={() => {
+                  setSelectedDepartment(dept);
+                  setCurrentPath([]);
+                  setSelectedDocument(null);
+                }}
+                className={selectedDepartment === dept ? 'active' : ''}
+              >
+                {dept}
+              </button>
+            ))}
+          </div>
+        )}
       </header>
 
       <div className="content-container">
@@ -266,41 +275,39 @@ const DashboardPage = ({ userRole }) => {
           </div>
         )}
 
-        {/* Sidebar */}
-        {selectedDepartment && (
-          <div className="sidebar">
-            <div className="breadcrumb">
-              <span onClick={() => {
-                setCurrentPath([]);
-                setSelectedDocument(null);
-              }}>
-                {selectedDepartment}
-              </span>
-              {currentPath.map((path, index) => (
-                <span key={index}>
-                  {' > '}
-                  <span onClick={() => {
-                    setCurrentPath(currentPath.slice(0, index + 1));
-                    setSelectedDocument(null);
-                  }}>
-                    {path}
-                  </span>
+        {/* Sidebar - Show for all users */}
+        <div className="sidebar">
+          <div className="breadcrumb">
+            <span onClick={() => {
+              setCurrentPath([]);
+              setSelectedDocument(null);
+            }}>
+              {userRole === 'Admin' ? selectedDepartment : documents[0]?.department}
+            </span>
+            {currentPath.map((path, index) => (
+              <span key={index}>
+                {' > '}
+                <span onClick={() => {
+                  setCurrentPath(currentPath.slice(0, index + 1));
+                  setSelectedDocument(null);
+                }}>
+                  {path}
                 </span>
-              ))}
-            </div>
-            <div className="folder-list">
-              {getCurrentFolders().map(folder => (
-                <div
-                  key={folder}
-                  className="folder-item"
-                  onClick={() => handlePathSelect(folder)}
-                >
-                  {folder}
-                </div>
-              ))}
-            </div>
+              </span>
+            ))}
           </div>
-        )}
+          <div className="folder-list">
+            {getCurrentFolders().map(folder => (
+              <div
+                key={folder}
+                className="folder-item"
+                onClick={() => handlePathSelect(folder)}
+              >
+                {folder}
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Main Content */}
         <div className="main-content">
@@ -311,7 +318,7 @@ const DashboardPage = ({ userRole }) => {
             </div>
           ) : (
             <div className="welcome-message">
-              {!selectedDepartment 
+              {userRole === 'Admin' && !selectedDepartment 
                 ? "Please select a department from the header"
                 : "Select a folder or document from the sidebar"}
             </div>
