@@ -16,6 +16,7 @@ jobs:
       - name: Stop and Remove Old Container
         shell: cmd
         continue-on-error: true
+
         run: |
           docker stop rbac-container 2>nul || echo "Container not running"
           docker rm rbac-container 2>nul || echo "Container not found"
