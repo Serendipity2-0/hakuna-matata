@@ -21,6 +21,9 @@ from typing import Optional
 from pathlib import Path
 
 
+
+DOCS_FOLDER_PATH = os.path.join(os.getcwd(), "docs")
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -187,18 +190,13 @@ async def upload_file(
         )
 
     try:
-        # Create absolute path
-        docs_folder_path = os.getenv("DOCS_FOLDER_PATH")
-        # Determine the base directory path
-        base_dir_path = docs_folder_path
-
         # Append department-specific path based on user role
         if current_user.role.name == 'Admin':
-            dir_path = os.path.join(base_dir_path, file_path)
+            dir_path = os.path.join(DOCS_FOLDER_PATH, file_path)
         elif current_user.role.name == 'Manager':
             department_id = current_user.department_id
             department_name = get_department_name(department_id)
-            dir_path = os.path.join(base_dir_path, department_name, file_path)
+            dir_path = os.path.join(DOCS_FOLDER_PATH, department_name, file_path)
         else:
             raise HTTPException(
                 status_code=403,
@@ -260,24 +258,17 @@ async def view_docs(
         dict: List of documents with their metadata
     """
     try:
-        docs_folder_path = os.getenv("DOCS_FOLDER_PATH")
-        if not docs_folder_path:
-            raise HTTPException(
-                status_code=500,
-                detail="DOCS_FOLDER_PATH not configured"
-            )
-
         # Initialize list to store document information
         documents = []
         
         # Define base path for document search
         if current_user.role.name == 'Admin':
             # Admin can see all documents
-            search_path = Path(docs_folder_path)
+            search_path = Path(DOCS_FOLDER_PATH)
         else:
             # Other users can only see their department's documents
             department_name = get_department_name(current_user.department_id)
-            search_path = Path(docs_folder_path) / department_name
+            search_path = Path(DOCS_FOLDER_PATH) / department_name
             
             # If department folder doesn't exist, return empty list
             if not search_path.exists():
@@ -286,7 +277,7 @@ async def view_docs(
         # Recursively find all .md files
         for md_file in search_path.rglob("*.md"):
             # Get relative path from docs folder
-            rel_path = md_file.relative_to(Path(docs_folder_path))
+            rel_path = md_file.relative_to(Path(DOCS_FOLDER_PATH))
             
             # Get file stats
             stats = md_file.stat()
@@ -347,18 +338,11 @@ async def read_document(
         dict: Document content and metadata
     """
     try:
-        docs_folder_path = os.getenv("DOCS_FOLDER_PATH")
-        if not docs_folder_path:
-            raise HTTPException(
-                status_code=500,
-                detail="DOCS_FOLDER_PATH not configured"
-            )
-
         # Construct full file path
-        full_path = Path(docs_folder_path) / doc_path
+        full_path = Path(DOCS_FOLDER_PATH) / doc_path
 
         # Security check: Ensure the file is within docs_folder_path
-        if not str(full_path.resolve()).startswith(str(Path(docs_folder_path).resolve())):
+        if not str(full_path.resolve()).startswith(str(Path(DOCS_FOLDER_PATH).resolve())):
             raise HTTPException(
                 status_code=403,
                 detail="Access to this file path is forbidden"

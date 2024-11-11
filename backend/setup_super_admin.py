@@ -44,8 +44,8 @@ def create_super_admin():
                 admin_count = 0  # Initialize admin_count when admin_role does not exist
 
             # Get credentials from environment variables or input
-            admin_email = os.getenv('ADMIN_EMAIL') or input("Enter admin email: ").strip()
-            admin_phone_number = os.getenv('ADMIN_PHONE_NUMBER') or input("Enter admin phone number: ").strip()
+            admin_email = input("Enter admin email: ").strip()
+            admin_phone_number = input("Enter admin phone number: ").strip()
 
             # Check if email already exists
             existing_user = db.query(User).filter(User.email == admin_email).first()
@@ -53,7 +53,7 @@ def create_super_admin():
                 raise ValueError(f"User with email {admin_email} already exists. Please use a different email.")
 
             # Use getpass to securely input the password
-            admin_password = os.getenv('ADMIN_PASSWORD') or input("Enter admin password: ")
+            admin_password = input("Enter admin password: ")
 
             # Create admin role if it doesn't exist and under admin limit
             if not admin_role and admin_count < NO_OF_ADMINS:
