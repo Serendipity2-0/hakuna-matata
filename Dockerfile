@@ -17,6 +17,7 @@ ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 ENV NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
 
 
+
 # Install dependencies with proper error handling and package lists update
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
