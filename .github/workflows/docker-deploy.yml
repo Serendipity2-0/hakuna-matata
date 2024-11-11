@@ -14,36 +14,40 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Stop and Remove Old Container
+        shell: cmd
         run: |
-          docker stop rbac-container || true
-          docker rm rbac-container || true
-          docker images "rbac-app" -q | xargs -r docker rmi
-          docker images --filter "dangling=true" -q | xargs -r docker rmi
+          docker stop rbac-container 2>nul || echo "Container not running"
+          docker rm rbac-container 2>nul || echo "Container not found"
+          for /f "tokens=*" %%i in ('docker images rbac-app -q') do docker rmi %%i 2>nul || echo "Image not found"
+          for /f "tokens=*" %%i in ('docker images --filter "dangling=true" -q') do docker rmi %%i 2>nul || echo "No dangling images"
 
       - name: Build Docker image
+        shell: cmd
         run: |
-          docker build \
-            --no-cache \
-            --build-arg DATABASE_URL="${{ secrets.DATABASE_URL }}" \
-            --build-arg SECRET_KEY="${{ secrets.SECRET_KEY }}" \
-            --build-arg OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
-            -t rbac-app:latest \
-            .
+          docker build ^
+          --no-cache ^
+          --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }} ^
+          --build-arg SECRET_KEY=${{ secrets.SECRET_KEY }} ^
+          --build-arg OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} ^
+          -t rbac-app:latest ^
+          .
 
       - name: Run Docker container
+        shell: cmd
         run: |
-          docker run -d \
-            --name rbac-container \
-            -p 8052:8052 \
-            -p 8051:8051 \
-            --restart unless-stopped \
-            -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
-            -e SECRET_KEY="${{ secrets.SECRET_KEY }}" \
-            -e OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
-            rbac-app:latest
+          docker run -d ^
+          --name rbac-container ^
+          -p 8052:8052 ^
+          -p 8051:8051 ^
+          --restart unless-stopped ^
+          -e DATABASE_URL=${{ secrets.DATABASE_URL }} ^
+          -e SECRET_KEY=${{ secrets.SECRET_KEY }} ^
+          -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} ^
+          rbac-app:latest
 
       - name: Check container health
+        shell: cmd
         run: |
-          sleep 10
-          docker ps | grep rbac-container
+          timeout /t 10 /nobreak
+          docker ps | findstr "rbac-container"
           docker logs rbac-container --tail 50
