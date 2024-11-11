@@ -3,7 +3,7 @@ name: Docker CI/CD
 on:
   push:
     branches:
-      - 42-endpoint-for-endpoint-list
+      - CommitAgent
 
 jobs:
   deploy:
