@@ -11,6 +11,7 @@ from typing import List, Optional
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends, HTTPException,status
 from sqlalchemy.orm import Session
+from datetime import datetime, timedelta
 
 DIR_PATH = os.getcwd()
 
@@ -18,9 +19,7 @@ env_path = os.path.join(DIR_PATH, "kaas.env")
 
 load_dotenv(dotenv_path = env_path)
 
-DB_PATH = os.getenv("DB_PATH")
-
-DATABASE_URL = f"sqlite:///{DB_PATH}"
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///rbac_system.db")
 
 engine = create_engine(
     DATABASE_URL, connect_args={"check_same_thread": False}
@@ -94,7 +93,7 @@ class UserOut(BaseModel):
     role_id: Optional[int] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class Token(BaseModel):
     access_token: str
@@ -109,7 +108,11 @@ def verify_password(plain_password, hashed_password):
 
 def create_access_token(data: dict, expires_delta=None):
     to_encode = data.copy()
-    # Optionally add expiration
+    if expires_delta:
+        expire = datetime.now(datetime.timezone.utc) + expires_delta
+    else:
+        expire = datetime.now(datetime.timezone.utc) + timedelta(minutes=5)
+    to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
@@ -174,3 +177,15 @@ def get_department_name(department_id: int):
             status_code=404,
             detail=f"Department with id {department_id} not found"
         )
+    
+def get_all_departments():
+    """
+    Fetch all departments.
+
+    Returns:
+        List[str]: List of department names.
+    """
+    db = SessionLocal()
+    departments = db.query(Department).all()
+    return [department.name for department in departments]
+
