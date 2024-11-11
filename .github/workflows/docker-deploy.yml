@@ -13,15 +13,6 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v3
 
-      - name: Create environment file
-        shell: pwsh
-        run: |
-          Set-Content -Path kaas.env -Value @(
-            "DATABASE_URL=${{ secrets.DATABASE_URL }}",
-            "SECRET_KEY=${{ secrets.SECRET_KEY }}",
-            "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}"
-          )
-
       - name: Stop and Remove Old Container
         run: |
           docker stop rbac-container || true
