@@ -1,0 +1,100 @@
+# System Design plan
+
+### ChitFund System Plan
+
+- **Attributes**
+    - **User Attributes**
+        - User ID
+        - Name
+        - Email
+        - Phone Number
+        - Role
+        - Status (Active/Inactive)
+        - Registration Date
+    - **ChitFund Attributes**
+        - ChitFund ID
+        - Name
+        - Amount
+        - Duration
+        - Number of Members
+        - Status (Active/Completed)
+        - Start Date
+        - End Date
+    - **Bid Attributes**
+        - Bid ID
+        - ChitFund ID
+        - User ID
+        - Bid Amount
+        - Bid Time
+        - Status (Approved/Rejected)
+    - **Payment Attributes**
+        - Payment ID
+        - ChitFund ID
+        - User ID
+        - Amount
+        - Payment Method
+        - Transaction ID
+        - Status (Pending/Completed)
+        - Payment Date
+- **Backend Services and Functions**
+    - **User Registration & Login**
+        - Services: Authentication Service, User Service
+        - Functions: Register User, Login User, Verify Email/Phone
+    - **ChitFund Management**
+        - Services: ChitFund Service, User Service, Notification Service
+        - Functions: Create ChitFund, Update ChitFund, Join ChitFund, Leave ChitFund, Notify Members
+    - **Bidding System**
+        - Services: Bidding Service, Notification Service
+        - Functions: Start Bidding, Place Bid, Monitor Bids, Notify Bidders
+    - **Payment Processing**
+        - Services: Payment Service, ChitFund Service, Notification Service
+        - Functions: Process Payment, Verify Payment, Record Transaction, Notify User
+- **Database Schema Design**
+    - **Users Table**
+        - user_id (PK)
+        - name
+        - email
+        - phone
+        - password
+        - role
+        - status
+        - registration_date
+    - **ChitFunds Table**
+        - chitfund_id (PK)
+        - name
+        - amount
+        - duration
+        - num_members
+        - status
+        - start_date
+        - end_date
+    - **Bids Table**
+        - bid_id (PK)
+        - chitfund_id (FK)
+        - user_id (FK)
+        - bid_amount
+        - bid_time
+        - status
+    - **Payments Table**
+        - payment_id (PK)
+        - chitfund_id (FK)
+        - user_id (FK)
+        - amount
+        - payment_method
+        - transaction_id
+        - status
+        - payment_date
+    - **Notifications Table**
+        - notification_id (PK)
+        - user_id (FK)
+        - message
+        - notification_type
+        - status
+        - sent_date
+    - **Transactions Table**
+        - transaction_id (PK)
+        - user_id (FK)
+        - amount
+        - transaction_type
+        - status
+        - transaction_date
