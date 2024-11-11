@@ -1,9 +1,9 @@
 // pages/login.js
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import qs from 'qs';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
+import qs from 'qs';
+import axiosInstance from '../utils/axios';
 
 const LoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -30,8 +30,8 @@ const LoginPage = () => {
         password: password,
       };
       
-      const response = await axios.post(
-        'http://localhost:8000/login',
+      const response = await axiosInstance.post(
+        '/login',
         qs.stringify(data),
         {
           headers: {
