@@ -14,8 +14,9 @@ ENV DATABASE_URL=${DATABASE_URL}
 ENV SECRET_KEY=${SECRET_KEY}
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
+# Install dependencies with proper error handling and package lists update
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
     build-essential \
     curl \
     git \
@@ -28,9 +29,16 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-venv \
     tzdata \
-    npm \
-    supervisor \
-    && rm -rf /var/lib/apt/lists/*
+    supervisor && \
+    # Install Node.js using curl
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    # Clean up
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    # Verify installations
+    node --version && \
+    npm --version
 
 # Set working directory
 WORKDIR /app
