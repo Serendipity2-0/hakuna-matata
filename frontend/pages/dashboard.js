@@ -3,6 +3,8 @@ import withAuth from '../components/withAuth';
 import LogoutButton from '../components/LogoutButton';
 import { useState, useEffect } from 'react';
 import axios from '../utils/axios';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const DashboardPage = ({ userRole }) => {
   const [documents, setDocuments] = useState([]);
@@ -18,6 +20,8 @@ const DashboardPage = ({ userRole }) => {
   const [uploadError, setUploadError] = useState('');
   const [uploadSuccess, setUploadSuccess] = useState('');
   const [showUploadForm, setShowUploadForm] = useState(false);
+
+  const [expandedFolders, setExpandedFolders] = useState(new Set());
 
   // Fetch documents on component mount
   useEffect(() => {
@@ -43,51 +47,110 @@ const DashboardPage = ({ userRole }) => {
     }
   };
 
-  // Get folders for current path
-  const getCurrentFolders = () => {
-    if (!selectedDepartment) return [];
+  // Modified getCurrentFolders to get items at specific path
+  const getItemsAtPath = (path) => {
+    if (!selectedDepartment) return { folders: [], files: [] };
 
     const departmentDocs = documents.filter(doc => doc.department === selectedDepartment);
-    const currentFullPath = [selectedDepartment, ...currentPath].join('/');
+    const currentFullPath = path.join('/');
     
     const folders = new Set();
-    const currentLevel = currentPath.length + 1; // +1 because department is first level
+    const files = new Set();
     
     departmentDocs.forEach(doc => {
-      // Split the path into segments
-      const pathSegments = doc.path.split('/');
+      // Remove department from path for comparison
+      const relativePath = doc.path.substring(selectedDepartment.length + 1);
+      const segments = relativePath.split('/');
       
-      // Only process if the path has enough segments and starts with current path
-      if (pathSegments.length >= currentLevel && doc.path.startsWith(currentFullPath)) {
-        // Get the segment at current level
-        const segmentAtCurrentLevel = pathSegments[currentLevel];
-        if (segmentAtCurrentLevel) {
-          folders.add(segmentAtCurrentLevel);
+      // Check if this document is in the current path
+      const currentPathStr = path.slice(1).join('/'); // Remove department from comparison
+      if (relativePath.startsWith(currentPathStr)) {
+        // Get the next segment after current path
+        const nextSegmentIndex = path.length - 1;
+        const nextSegment = segments[nextSegmentIndex];
+        
+        if (nextSegment) {
+          if (nextSegment.endsWith('.md')) {
+            files.add(nextSegment);
+          } else {
+            folders.add(nextSegment);
+          }
         }
       }
     });
 
-    return Array.from(folders);
+    return {
+      folders: Array.from(folders),
+      files: Array.from(files)
+    };
+  };
+
+  const toggleFolder = (folderPath) => {
+    const pathKey = folderPath.join('/');
+    setExpandedFolders(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(pathKey)) {
+        newSet.delete(pathKey);
+      } else {
+        newSet.add(pathKey);
+      }
+      return newSet;
+    });
+  };
+
+  const FolderTree = ({ path = [selectedDepartment] }) => {
+    const { folders, files } = getItemsAtPath(path);
+    const pathKey = path.join('/');
+    const isExpanded = expandedFolders.has(pathKey);
+    const isRoot = path.length === 1;
+
+    return (
+      <div className="folder-tree">
+        {!isRoot && (
+          <div 
+            className="folder-item"
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleFolder(path);
+            }}
+          >
+            <span className="folder-icon">{isExpanded ? '▼' : '▶'}</span>
+            <span className="folder-name">{path[path.length - 1]}</span>
+          </div>
+        )}
+        
+        {(isRoot || isExpanded) && (
+          <div className="folder-content" style={{ marginLeft: '20px' }}>
+            {folders.map(folder => (
+              <FolderTree 
+                key={`${pathKey}/${folder}`} 
+                path={[...path, folder]} 
+              />
+            ))}
+            {files.map(file => (
+              <div 
+                key={file}
+                className="file-item"
+                onClick={() => handlePathSelect([...path, file].join('/'))}
+              >
+                <span className="file-icon">📄</span>
+                <span className="file-name">{file}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
   };
 
   // Handle folder/file selection
-  const handlePathSelect = async (item) => {
-    const newPath = [...currentPath, item];
-    const fullPath = [selectedDepartment, ...newPath].join('/');
-    
-    // Check if it's a markdown file
-    if (item.endsWith('.md')) {
-      try {
-        const response = await axios.get(`/view-doc/${fullPath}`);
-        setSelectedDocument(item);
-        setDocumentContent(response.data.content);
-      } catch (error) {
-        console.error('Error fetching document:', error);
-      }
-    } else {
-      setCurrentPath(newPath);
-      setSelectedDocument(null);
-      setDocumentContent('');
+  const handlePathSelect = async (fullPath) => {
+    try {
+      const response = await axios.get(`/view-doc/${fullPath}`);
+      setSelectedDocument(fullPath.split('/').pop()); // Get filename
+      setDocumentContent(response.data.content);
+    } catch (error) {
+      console.error('Error fetching document:', error);
     }
   };
 
@@ -275,56 +338,171 @@ const DashboardPage = ({ userRole }) => {
           </div>
         )}
 
-        {/* Sidebar - Show for all users */}
-        <div className="sidebar">
-          <div className="breadcrumb">
-            <span onClick={() => {
-              setCurrentPath([]);
-              setSelectedDocument(null);
-            }}>
-              {userRole === 'Admin' ? selectedDepartment : documents[0]?.department}
-            </span>
-            {currentPath.map((path, index) => (
-              <span key={index}>
-                {' > '}
-                <span onClick={() => {
-                  setCurrentPath(currentPath.slice(0, index + 1));
-                  setSelectedDocument(null);
-                }}>
-                  {path}
-                </span>
-              </span>
-            ))}
+        {/* Modified Sidebar */}
+        {selectedDepartment && (
+          <div className="sidebar">
+            <div className="folder-browser">
+              <FolderTree />
+            </div>
           </div>
-          <div className="folder-list">
-            {getCurrentFolders().map(folder => (
-              <div
-                key={folder}
-                className="folder-item"
-                onClick={() => handlePathSelect(folder)}
-              >
-                {folder}
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
 
         {/* Main Content */}
         <div className="main-content">
           {selectedDocument ? (
             <div className="document-viewer">
               <h2>{selectedDocument}</h2>
-              <pre>{documentContent}</pre>
+              <div className="markdown-content">
+                <ReactMarkdown 
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    // Custom components for markdown elements
+                    h1: ({node, ...props}) => <h1 className="md-h1" {...props} />,
+                    h2: ({node, ...props}) => <h2 className="md-h2" {...props} />,
+                    h3: ({node, ...props}) => <h3 className="md-h3" {...props} />,
+                    p: ({node, ...props}) => <p className="md-p" {...props} />,
+                    ul: ({node, ...props}) => <ul className="md-ul" {...props} />,
+                    ol: ({node, ...props}) => <ol className="md-ol" {...props} />,
+                    li: ({node, ...props}) => <li className="md-li" {...props} />,
+                    code: ({node, inline, ...props}) => (
+                      <code className={`md-code ${inline ? 'inline' : 'block'}`} {...props} />
+                    ),
+                    pre: ({node, ...props}) => <pre className="md-pre" {...props} />,
+                    blockquote: ({node, ...props}) => <blockquote className="md-blockquote" {...props} />,
+                    table: ({node, ...props}) => <table className="md-table" {...props} />,
+                    th: ({node, ...props}) => <th className="md-th" {...props} />,
+                    td: ({node, ...props}) => <td className="md-td" {...props} />,
+                  }}
+                >
+                  {documentContent}
+                </ReactMarkdown>
+              </div>
             </div>
           ) : (
             <div className="welcome-message">
-              {userRole === 'Admin' && !selectedDepartment 
+              {!selectedDepartment 
                 ? "Please select a department from the header"
                 : "Select a folder or document from the sidebar"}
             </div>
           )}
         </div>
       </div>
+
+      <style jsx global>{`
+        /* Markdown Styles */
+        .markdown-content {
+          padding: 20px;
+          line-height: 1.6;
+          color: #333;
+        }
+
+        .md-h1 {
+          font-size: 2em;
+          margin-bottom: 0.5em;
+          padding-bottom: 0.3em;
+          border-bottom: 1px solid #eaecef;
+        }
+
+        .md-h2 {
+          font-size: 1.5em;
+          margin-top: 1em;
+          margin-bottom: 0.5em;
+          padding-bottom: 0.3em;
+          border-bottom: 1px solid #eaecef;
+        }
+
+        .md-h3 {
+          font-size: 1.25em;
+          margin-top: 1em;
+          margin-bottom: 0.5em;
+        }
+
+        .md-p {
+          margin-bottom: 1em;
+        }
+
+        .md-ul, .md-ol {
+          padding-left: 2em;
+          margin-bottom: 1em;
+        }
+
+        .md-li {
+          margin-bottom: 0.5em;
+        }
+
+        .md-code {
+          font-family: 'Consolas', 'Monaco', 'Andale Mono', monospace;
+          background-color: #f6f8fa;
+          border-radius: 3px;
+          padding: 0.2em 0.4em;
+        }
+
+        .md-code.block {
+          display: block;
+          padding: 1em;
+          margin: 1em 0;
+          overflow-x: auto;
+        }
+
+        .md-pre {
+          background-color: #f6f8fa;
+          border-radius: 3px;
+          padding: 16px;
+          overflow: auto;
+        }
+
+        .md-blockquote {
+          padding: 0 1em;
+          color: #6a737d;
+          border-left: 0.25em solid #dfe2e5;
+          margin: 1em 0;
+        }
+
+        .md-table {
+          border-collapse: collapse;
+          width: 100%;
+          margin: 1em 0;
+        }
+
+        .md-th, .md-td {
+          padding: 6px 13px;
+          border: 1px solid #dfe2e5;
+        }
+
+        .md-th {
+          background-color: #f6f8fa;
+          font-weight: 600;
+        }
+
+        /* Syntax highlighting */
+        .md-code .keyword {
+          color: #d73a49;
+        }
+
+        .md-code .string {
+          color: #032f62;
+        }
+
+        .md-code .comment {
+          color: #6a737d;
+        }
+
+        /* Links */
+        .markdown-content a {
+          color: #0366d6;
+          text-decoration: none;
+        }
+
+        .markdown-content a:hover {
+          text-decoration: underline;
+        }
+
+        /* Images */
+        .markdown-content img {
+          max-width: 100%;
+          height: auto;
+        }
+      `}</style>
 
       <style jsx>{`
         .dashboard-container {
@@ -485,6 +663,86 @@ const DashboardPage = ({ userRole }) => {
         .success {
           color: #4caf50;
           margin: 0.5rem 0;
+        }
+
+        .folder-tree {
+          font-family: monospace;
+          user-select: none;
+          -webkit-user-select: none; /* Safari */
+          -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* IE10+/Edge */
+        }
+
+        .folder-item {
+          padding: 4px 0;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+        }
+
+        .folder-icon {
+          margin-right: 8px;
+          font-size: 12px;
+          width: 12px;
+          display: inline-block;
+          color: #0070f3;
+          cursor: pointer;
+          pointer-events: none;
+        }
+
+        .folder-name {
+          color: #0070f3;
+          cursor: pointer;
+          pointer-events: none;
+        }
+
+        .folder-content {
+          border-left: 1px dashed #ccc;
+          margin-left: 6px;
+          padding-left: 14px;
+        }
+
+        .file-item {
+          padding: 4px 0;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+        }
+
+        .file-icon {
+          margin-right: 8px;
+          font-size: 14px;
+          pointer-events: none;
+        }
+
+        .file-name {
+          color: #666;
+          cursor: pointer;
+          pointer-events: none;
+        }
+
+        .file-item:hover .file-name {
+          color: #0070f3;
+        }
+
+        .document-viewer {
+          background: white;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .document-viewer h2 {
+          margin-bottom: 20px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .document-viewer pre {
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          font-family: inherit;
+          line-height: 1.6;
         }
       `}</style>
     </div>
