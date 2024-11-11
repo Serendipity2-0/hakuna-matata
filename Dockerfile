@@ -4,16 +4,18 @@ FROM python:3.11-slim
 ARG DATABASE_URL
 ARG SECRET_KEY
 ARG OPENAI_API_KEY
+ARG NEXT_PUBLIC_BASE_URL
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 ENV TZ=Asia/Kolkata
-ENV NODE_ENV=development
+ENV NODE_ENV=production
 ENV DATABASE_URL=${DATABASE_URL}
 ENV SECRET_KEY=${SECRET_KEY}
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
-ENV NEXT_PUBLIC_BASE_URL=https://hakuna-matata.trademan.ai/
+ENV NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL%/}/
+
 
 # Install dependencies with proper error handling and package lists update
 RUN apt-get update && \
@@ -59,7 +61,8 @@ WORKDIR /app/frontend
 RUN npm install && \
     npm install -D tailwindcss postcss autoprefixer && \
     npm install -D @types/node @types/react @types/react-dom typescript && \
-    NEXT_PUBLIC_BASE_URL=http://localhost:8051 npm run build
+    npm run build
+
 
 # Setup backend and ensure proper permissions
 WORKDIR /app/backend
