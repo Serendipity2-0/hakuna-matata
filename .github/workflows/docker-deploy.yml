@@ -40,6 +40,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
 
+
       - name: Run Docker container
         shell: cmd
         run: |
@@ -51,7 +52,8 @@ jobs:
           -e DATABASE_URL="%DATABASE_URL%" ^
           -e SECRET_KEY="%SECRET_KEY%" ^
           -e OPENAI_API_KEY="%OPENAI_API_KEY%" ^
-          -e NEXT_PUBLIC_BASE_URL="http://localhost:8051" ^
+          -e NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}
+
           rbac-app:latest
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
