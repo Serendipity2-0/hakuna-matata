@@ -11,7 +11,7 @@ from typing import List, Optional
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends, HTTPException,status
 from sqlalchemy.orm import Session
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 DB_PATH = os.path.join(os.getcwd(), "rbac_system.db")
 ENV_PATH = os.path.join(os.getcwd(), "kaas.env")
@@ -109,9 +109,9 @@ def verify_password(plain_password, hashed_password):
 def create_access_token(data: dict, expires_delta=None):
     to_encode = data.copy()
     if expires_delta:
-        expire = datetime.now(datetime.timezone.utc) + expires_delta
+        expire = datetime.now(timezone.utc) + expires_delta
     else:
-        expire = datetime.now(datetime.timezone.utc) + timedelta(minutes=5)
+        expire = datetime.now(timezone.utc) + timedelta(minutes=5)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
