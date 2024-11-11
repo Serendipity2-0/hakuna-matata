@@ -21,8 +21,15 @@ from typing import Optional
 from pathlib import Path
 
 
+current_dir = os.getcwd()
+if os.path.basename(current_dir) == 'backend':
+    # Go one folder back
+    os.chdir('..')
+
+
 
 DOCS_FOLDER_PATH = os.path.join(os.getcwd(), "docs")
+print("DOCS_FOLDER_PATH", DOCS_FOLDER_PATH)
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
