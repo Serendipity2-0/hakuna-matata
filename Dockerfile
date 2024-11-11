@@ -5,18 +5,15 @@ ARG DATABASE_URL
 ARG SECRET_KEY
 ARG OPENAI_API_KEY
 ARG NEXT_PUBLIC_BASE_URL
-
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 ENV TZ=Asia/Kolkata
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 ENV DATABASE_URL=${DATABASE_URL}
 ENV SECRET_KEY=${SECRET_KEY}
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 ENV NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
-
-
 
 # Install dependencies with proper error handling and package lists update
 RUN apt-get update && \
@@ -61,9 +58,7 @@ RUN pip3 install --upgrade pip setuptools wheel && \
 WORKDIR /app/frontend
 RUN npm install && \
     npm install -D tailwindcss postcss autoprefixer && \
-    npm install -D @types/node @types/react @types/react-dom typescript && \
-    npm run build
-
+    npm install -D @types/node @types/react @types/react-dom typescript
 
 # Setup backend and ensure proper permissions
 WORKDIR /app/backend
@@ -86,10 +81,3 @@ USER app_user
 
 # Command to start supervisord
 CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
-
-# Add healthcheck to help monitor container status
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8051/health || exit 1
-
-# Consider adding .dockerignore if not present
-# Consider caching node_modules for faster builds
