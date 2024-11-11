@@ -31,6 +31,7 @@ if os.path.basename(current_dir) == 'backend':
 DOCS_FOLDER_PATH = os.path.join(os.getcwd(), "docs")
 print("DOCS_FOLDER_PATH", DOCS_FOLDER_PATH)
 
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
