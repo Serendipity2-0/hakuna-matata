@@ -13,13 +13,13 @@ from fastapi import Depends, HTTPException,status
 from sqlalchemy.orm import Session
 from datetime import datetime, timedelta
 
-DIR_PATH = os.getcwd()
+DB_PATH = os.path.join(os.getcwd(), "rbac_system.db")
+ENV_PATH = os.path.join(os.getcwd(), "kaas.env")
 
-env_path = os.path.join(DIR_PATH, "kaas.env")
+load_dotenv(dotenv_path = ENV_PATH)
 
-load_dotenv(dotenv_path = env_path)
+DATABASE_URL = f"sqlite:///{DB_PATH}"
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///rbac_system.db")
 
 engine = create_engine(
     DATABASE_URL, connect_args={"check_same_thread": False}
