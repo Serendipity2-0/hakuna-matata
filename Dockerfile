@@ -1,12 +1,18 @@
 FROM python:3.11-slim
 
+# Accept build arguments
+ARG DATABASE_URL
+ARG SECRET_KEY
+ARG OPENAI_API_KEY
+
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
 ENV TZ=Asia/Kolkata
 ENV NODE_ENV=development
-ENV DATABASE_URL="sqlite:///rbac_system.db"
-ENV SECRET_KEY="b1e7d8fa444004aea9165bdc74c6dff41d94152d1877b9540985a94750f06891"
+ENV DATABASE_URL=${DATABASE_URL}
+ENV SECRET_KEY=${SECRET_KEY}
+ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
