@@ -31,14 +31,13 @@ jobs:
           --build-arg DATABASE_URL="%DATABASE_URL%" ^
           --build-arg SECRET_KEY="%SECRET_KEY%" ^
           --build-arg OPENAI_API_KEY="%OPENAI_API_KEY%" ^
-          --build-arg NEXT_PUBLIC_BASE_URL="https://hakuna-matata.trademan.ai" ^
+          --build-arg NEXT_PUBLIC_BASE_URL="https://hakuna-matata.trademan.ai/" ^
           -t rbac-app:latest ^
           .
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-
 
       - name: Run Docker container
         shell: cmd
@@ -51,7 +50,7 @@ jobs:
           -e DATABASE_URL="%DATABASE_URL%" ^
           -e SECRET_KEY="%SECRET_KEY%" ^
           -e OPENAI_API_KEY="%OPENAI_API_KEY%" ^
-          -e NEXT_PUBLIC_BASE_URL="https://hakuna-matata.trademan.ai" ^
+          -e NEXT_PUBLIC_BASE_URL="https://hakuna-matata.trademan.ai/" ^
           rbac-app:latest
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
