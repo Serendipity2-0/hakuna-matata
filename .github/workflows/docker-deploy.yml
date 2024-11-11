@@ -1,0 +1,57 @@
+name: Docker CI/CD
+
+on:
+  push:
+    branches:
+      - CommitAgent
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
+
+      - name: Create environment file
+        run: |
+          cat << EOF > kaas.env
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          SECRET_KEY=${{ secrets.SECRET_KEY }}
+          OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+          EOF
+
+      - name: Stop and Remove Old Container
+        run: |
+          docker stop rbac-container || true
+          docker rm rbac-container || true
+          docker images "rbac-app" -q | xargs -r docker rmi
+          docker images --filter "dangling=true" -q | xargs -r docker rmi
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            --no-cache \
+            --build-arg DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+            --build-arg SECRET_KEY="${{ secrets.SECRET_KEY }}" \
+            --build-arg OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+            -t rbac-app:latest \
+            .
+
+      - name: Run Docker container
+        run: |
+          docker run -d \
+            --name rbac-container \
+            -p 8052:8052 \
+            -p 8051:8051 \
+            --restart unless-stopped \
+            -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+            -e SECRET_KEY="${{ secrets.SECRET_KEY }}" \
+            -e OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+            rbac-app:latest
+
+      - name: Check container health
+        run: |
+          sleep 10
+          docker ps | grep rbac-container
+          docker logs rbac-container --tail 50

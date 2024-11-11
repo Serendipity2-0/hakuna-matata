@@ -18,9 +18,7 @@ env_path = os.path.join(DIR_PATH, "kaas.env")
 
 load_dotenv(dotenv_path = env_path)
 
-DB_PATH = os.getenv("DB_PATH")
-
-DATABASE_URL = f"sqlite:///{DB_PATH}"
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///rbac_system.db")
 
 engine = create_engine(
     DATABASE_URL, connect_args={"check_same_thread": False}
@@ -94,7 +92,7 @@ class UserOut(BaseModel):
     role_id: Optional[int] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class Token(BaseModel):
     access_token: str
@@ -174,3 +172,15 @@ def get_department_name(department_id: int):
             status_code=404,
             detail=f"Department with id {department_id} not found"
         )
+    
+def get_all_departments():
+    """
+    Fetch all departments.
+
+    Returns:
+        List[str]: List of department names.
+    """
+    db = SessionLocal()
+    departments = db.query(Department).all()
+    return [department.name for department in departments]
+

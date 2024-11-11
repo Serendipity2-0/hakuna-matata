@@ -14,7 +14,8 @@ from agents.AssistantManager import generate_response, check_if_thread_exists, s
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordRequestForm
 from db.db_utils import (UserCreate, UserOut, Token, get_password_hash, 
-                         verify_password, create_access_token, require_role, get_db,User, Role, get_department_name)
+                         verify_password, create_access_token, require_role, get_db,User, Role, get_department_name,
+                         get_all_departments)
 import os
 from typing import Optional
 from pathlib import Path
@@ -321,6 +322,12 @@ async def view_docs(
             status_code=500,
             detail=f"Error fetching documents: {str(e)}"
         )
+    
+@app.get("/list-of-departments")
+async def list_of_departments(
+    current_user: User = Depends(require_role(['Admin'])),
+):
+    return {"departments": get_all_departments()}
 
 @app.get("/view-doc/{doc_path:path}")
 async def read_document(
