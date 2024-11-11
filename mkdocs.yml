@@ -44,76 +44,75 @@ nav:
   - Serendipity:
       - Accounts:
           - Kaas user Guide:
-              - Kaas MainSheet Summary: serendipitydoc/accounts/kaasuserguide/KaasMainSheetSummary.md
-              - Kaas Sheet Header Indexes: serendipitydoc/accounts/kaasuserguide/KaasSheetHeaderDescription.md
-              - Kaas Sheets Summary: serendipitydoc/accounts/kaasuserguide/KaasSheetsSummary.md
+              - Kaas MainSheet Summary: Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.md
+              - Kaas Sheet Header Indexes: Serendipity/accounts/kaasuserguide/KaasSheetHeaderDescription.md
+              - Kaas Sheets Summary: Serendipity/accounts/kaasuserguide/KaasSheetsSummary.md
           - Accounting Guide:
-              - Account Daily Report: serendipitydoc/accounts/accountingguide/AccountDailyReport.md
-              - Account Standard Operating Procedures: serendipitydoc/accounts/accountingguide/AccountStandardOperatingProcedures.md
-              - Account Transaction Scenarios: serendipitydoc/accounts/accountingguide/AccountTransactionScenarios.md
-              - AccQT Prd: serendipitydoc/accounts/accountingguide/AccQTPrd.md
-              - VBA Macro - Tool within Excel: serendipitydoc/accounts/accountingguide/VBAExcelToolGuide.md
-              - GST Process: serendipitydoc/accounts/accountingguide/GSTProcess.md
-              - Income Tax Deductions: serendipitydoc/accounts/accountingguide/IncomeTaxDeductions.md
-          - Serendipity Business Requirements Plan: serendipitydoc/accounts/SerendipityBusinessRequirementsPlan.md
+              - Account Daily Report: Serendipity/accounts/accountingguide/AccountDailyReport.md
+              - Account Standard Operating Procedures: Serendipity/accounts/accountingguide/AccountStandardOperatingProcedures.md
+              - Account Transaction Scenarios: Serendipity/accounts/accountingguide/AccountTransactionScenarios.md
+              - AccQT Prd: Serendipity/accounts/accountingguide/AccQTPrd.md
+              - VBA Macro - Tool within Excel: Serendipity/accounts/accountingguide/VBAExcelToolGuide.md
+              - GST Process: Serendipity/accounts/accountingguide/GSTProcess.md
+              - Income Tax Deductions: Serendipity/accounts/accountingguide/IncomeTaxDeductions.md
+          - Serendipity Business Requirements Plan: Serendipity/accounts/SerendipityBusinessRequirementsPlan.md
       - HR Onboarding Library:
-          - Employee Onboarding Guide: serendipitydoc/hronboardinglibrary/EmployeeOnboardingGuide.md
+          - Employee Onboarding Guide: Serendipity/hronboardinglibrary/EmployeeOnboardingGuide.md
       - General Guidelines:
-          - File Naming Guidelines: serendipitydoc/generalguidelines/FileNamingGuidelines.md
-          - Audio Meeting Guidelines: serendipitydoc/generalguidelines/AudioMeetingGuidelines.md
-          - DUNS Registration formalities: serendipitydoc/generalguidelines/DUNSRegFormalities.md
-      - View On Serendipity: serendipitydoc/ViewOnSerendipity.md
+          - File Naming Guidelines: Serendipity/generalguidelines/FileNamingGuidelines.md
+          - Audio Meeting Guidelines: Serendipity/generalguidelines/AudioMeetingGuidelines.md
+          - DUNS Registration formalities: Serendipity/generalguidelines/DUNSRegFormalities.md
+      - View On Serendipity: Serendipity/ViewOnSerendipity.md
   - TradeMan:
       - Projects:
           - TradeManV1:
-              - Onboarding Guide: trademandoc/Projects/trademanV1/OnboardingGuide.md
-              - TradeManV1 Meetings: trademandoc/Projects/trademanV1/TradeManMeetingAudio_Transcribe.md
+              - Onboarding Guide: Trademan/Projects/trademanV1/OnboardingGuide.md
+              - TradeManV1 Meetings: Trademan/Projects/trademanV1/TradeManMeetingAudio_Transcribe.md
           - HakunaMatata:
-              - HakunaMatata Dev Guide: trademandoc/Projects/hakunamatata/HakunaMatataDevGuide.md
+              - HakunaMatata Dev Guide: Trademan/Projects/hakunamatata/HakunaMatataDevGuide.md
           - Kaas:
-              - Kaas App Prompt: trademandoc/Projects/kaas/KaasAppPrompt.md
-              - Fabric Kaas: trademandoc/Projects/kaas/FabricKaas.md
+              - Kaas App Prompt: Trademan/Projects/kaas/KaasAppPrompt.md
+              - Fabric Kaas: Trademan/Projects/kaas/FabricKaas.md
           - ChitBox:
               - API Sethu and Distributed Ledger Technology:
-                  - API sethu documentation: trademandoc/Projects/chitbox/apisethudocs/ApiSethuDocs.md
-                  - DLT Implementation Guide: trademandoc/Projects/chitbox/apisethudocs/DLTImplementationGuide.md
-                  - DLT Entity Registration: trademandoc/Projects/chitbox/apisethudocs/DLTEntityRegistration.md
-                  - DLT Header Manual Ping: trademandoc/Projects/chitbox/apisethudocs/DLTHeaderManualPing.md
-                  - DLT Content Approval: trademandoc/Projects/chitbox/apisethudocs/DLTContentApproval.md
+                  - API sethu documentation: Trademan/Projects/chitbox/apisethudocs/ApiSethuDocs.md
+                  - DLT Implementation Guide: Trademan/Projects/chitbox/apisethudocs/DLTImplementationGuide.md
+                  - DLT Entity Registration: Trademan/Projects/chitbox/apisethudocs/DLTEntityRegistration.md
+                  - DLT Header Manual Ping: Trademan/Projects/chitbox/apisethudocs/DLTHeaderManualPing.md
+                  - DLT Content Approval: Trademan/Projects/chitbox/apisethudocs/DLTContentApproval.md
 
-              - App Design Technical Documentation: trademandoc/Projects/chitbox/AppDesignTechnicalDocs.md
-              - System Design (LLD+HLD): trademandoc/Projects/chitbox/SystemDesignLLD_HLD.md
-              - Git WorkFlow: trademandoc/Projects/chitbox/GitWorkFlow.md
-              - Auction Process: trademandoc/Projects/chitbox/ChitboxAuctionProcess.md
+              - App Design Technical Documentation: Trademan/Projects/chitbox/AppDesignTechnicalDocs.md
+              - System Design (LLD+HLD): Trademan/Projects/chitbox/SystemDesignLLD_HLD.md
+              - Git WorkFlow: Trademan/Projects/chitbox/GitWorkFlow.md
+              - Auction Process: Trademan/Projects/chitbox/ChitboxAuctionProcess.md
 
       - Software/Technology Instructions:
-          - Coolify Phase1: trademandoc/software_instructions/CoolifyBeginPhase1.md
-          - Coolify Instructions: trademandoc/software_instructions/CoolifyInstructions.md
-          - Cloudflare Hosting: trademandoc/software_instructions/CloudflareHosting.md
-          - Jio Router Config: trademandoc/software_instructions/JioRouterConfig.md
-          - Payment Gateway Benefits Razorpay: trademandoc/software_instructions/PaymentGatewayBenefits.md
-          - Agent Creation Guidelines: trademandoc/software_instructions/AgentCreationGuideline.md
-          - RBAC Guidelines: trademandoc/software_instructions/RbacGuidelines.md
-          - Google SSO On GCP: trademandoc/software_instructions/googlesso/GoogleSSOonGCP.md
+          - Coolify Phase1: Trademan/software_instructions/CoolifyBeginPhase1.md
+          - Coolify Instructions: Trademan/software_instructions/CoolifyInstructions.md
+          - Cloudflare Hosting: Trademan/software_instructions/CloudflareHosting.md
+          - Jio Router Config: Trademan/software_instructions/JioRouterConfig.md
+          - Payment Gateway Benefits Razorpay: Trademan/software_instructions/PaymentGatewayBenefits.md
+          - Agent Creation Guidelines: Trademan/software_instructions/AgentCreationGuideline.md
+          - RBAC Guidelines: Trademan/software_instructions/RbacGuidelines.md
+          - Google SSO On GCP: Trademan/software_instructions/googlesso/GoogleSSOonGCP.md
 
+      - General Tech Guidelines:
+          - GitHub Repositories: Trademan/tech_guidelines/GitHubRepos.md
+          - Commit Convention Guideline: Trademan/tech_guidelines/CommitConventionGuideline.md
+          - Prompt Collection: Trademan/tech_guidelines/PromptCollections.md
+          - Design Patterns: Trademan/tech_guidelines/DesignPatterns.md
 
-      - General Tech Guidelines: 
-          - GitHub Repositories: trademandoc/tech_guidelines/GitHubRepos.md
-          - Commit Convention Guideline: trademandoc/tech_guidelines/CommitConventionGuideline.md
-          - Prompt Collection: trademandoc/tech_guidelines/PromptCollections.md
-          - Design Patterns: trademandoc/tech_guidelines/DesignPatterns.md
-          
       - Reports:
-          - Tech Daily Report: trademandoc/reports/TechDailyReport.md
-          - Development Schedule: trademandoc/reports/DevelopmentSch.md
+          - Tech Daily Report: Trademan/reports/TechDailyReport.md
+          - Development Schedule: Trademan/reports/DevelopmentSch.md
 
   - DhoomStudios:
-      - Debt Reference: dhoomstudiosdoc/DebtReference.md
-      - Debt Reviewed: dhoomstudiosdoc/DebtReviewed.md
-      - Adobe Creative Suite: dhoomstudiosdoc/AdobeCreativeSuite.md
-      - Script Guide: dhoomstudiosdoc/ScriptGuide.md
-      - Old Man's Tale: dhoomstudiosdoc/OldMansTale.md
-      - Adobe Tools & Features Guide: dhoomstudiosdoc/AdobeGuide.md
+      - Debt Reference: Dhoomstudios/DebtReference.md
+      - Debt Reviewed: Dhoomstudios/DebtReviewed.md
+      - Adobe Creative Suite: Dhoomstudios/AdobeCreativeSuite.md
+      - Script Guide: Dhoomstudios/ScriptGuide.md
+      - Old Man's Tale: Dhoomstudios/OldMansTale.md
+      - Adobe Tools & Features Guide: Dhoomstudios/AdobeGuide.md
 
 extra:
   social:
