@@ -13,12 +13,24 @@ from fastapi import Depends, HTTPException,status
 from sqlalchemy.orm import Session
 from datetime import datetime, timedelta, timezone
 
+# Check if the code is running from the backend folder
+current_dir = os.getcwd()
+if os.path.basename(current_dir) == 'backend':
+    # Go one folder back
+    os.chdir('..')
+
+
 DB_PATH = os.path.join(os.getcwd(), "rbac_system.db")
 ENV_PATH = os.path.join(os.getcwd(), "kaas.env")
+
+print("DB_PATH", DB_PATH)
+print("ENV_PATH", ENV_PATH)
 
 load_dotenv(dotenv_path = ENV_PATH)
 
 DATABASE_URL = f"sqlite:///{DB_PATH}"
+print("DATABASE_URL", DATABASE_URL)
+
 
 
 engine = create_engine(
