@@ -58,6 +58,7 @@ nav:
           - Serendipity Business Requirements Plan: Serendipity/accounts/SerendipityBusinessRequirementsPlan.md
       - HR Onboarding Library:
           - Employee Onboarding Guide: Serendipity/hronboardinglibrary/EmployeeOnboardingGuide.md
+          - Service Management System: Serendipity/hronboardinglibrary/SMS.md
       - General Guidelines:
           - File Naming Guidelines: Serendipity/generalguidelines/FileNamingGuidelines.md
           - Audio Meeting Guidelines: Serendipity/generalguidelines/AudioMeetingGuidelines.md
@@ -137,8 +138,12 @@ nav:
       - Debt Reviewed: Dhoomstudios/DebtReviewed.md
       - Adobe Creative Suite: Dhoomstudios/AdobeCreativeSuite.md
       - Script Guide: Dhoomstudios/ScriptGuide.md
-      - Old Man's Tale: Dhoomstudios/OldMansTale.md
       - Adobe Tools & Features Guide: Dhoomstudios/AdobeGuide.md
+      - The Evolution of Investing: Dhoomstudios/EvolutionOfInvesting.md
+
+      - Old Man's Tale: 
+          - ShareMarket Script: Dhoomstudios/oldmanstale/ShareMarketScript.md
+          
 
 extra:
   social:
