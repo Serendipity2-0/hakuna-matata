@@ -11,31 +11,36 @@ jobs:
     timeout-minutes: 20
 
     steps:
+      - name: Configure Git
+        run: |
+          git config --global --add safe.directory "*"
+        shell: bash
+
       - name: Check out the code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Stop and Remove Old Container
-        shell: cmd
+        shell: bash
         continue-on-error: true
-
         run: |
-          docker stop rbac-container 2>nul || echo "Container not running"
-          docker rm rbac-container 2>nul || echo "Container not found"
-          for /f "tokens=*" %%i in ('docker images rbac-app -q') do docker rmi %%i 2>nul || echo "Image not found"
-          for /f "tokens=*" %%i in ('docker images --filter "dangling=true" -q') do docker rmi %%i 2>nul || echo "No dangling images"
+          docker stop rbac-container || echo "Container not running"
+          docker rm rbac-container || echo "Container not found"
+          docker images rbac-app -q | xargs -r docker rmi || echo "Image not found"
+          docker images --filter "dangling=true" -q | xargs -r docker rmi || echo "No dangling images"
 
       - name: Build Docker image
-        shell: cmd
+        shell: bash
         run: |
-          docker build ^
-          --no-cache ^
-          --build-arg DATABASE_URL="%DATABASE_URL%" ^
-          --build-arg SECRET_KEY="%SECRET_KEY%" ^
-          --build-arg OPENAI_API_KEY="%OPENAI_API_KEY%" ^
-          --build-arg NEXT_PUBLIC_BASE_URL="https://hakuna-matata.trademan.ai/" ^
-          -t rbac-app:latest ^
+          docker build \
+          --no-cache \
+          --build-arg DATABASE_URL="${DATABASE_URL}" \
+          --build-arg SECRET_KEY="${SECRET_KEY}" \
+          --build-arg OPENAI_API_KEY="${OPENAI_API_KEY}" \
+          --build-arg NEXT_PUBLIC_BASE_URL="${NEXT_PUBLIC_BASE_URL}" \
+          -t rbac-app:latest \
           .
-
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
@@ -43,19 +48,18 @@ jobs:
           NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
 
       - name: Run Docker container
-        shell: cmd
+        shell: bash
         run: |
-          docker run -d ^
-          --name rbac-container ^
-          -p 8052:8052 ^
-          -p 8051:8051 ^
-          --restart unless-stopped ^
-          -e DATABASE_URL="%DATABASE_URL%" ^
-          -e SECRET_KEY="%SECRET_KEY%" ^
-          -e OPENAI_API_KEY="%OPENAI_API_KEY%" ^
-          -e NEXT_PUBLIC_BASE_URL="%NEXT_PUBLIC_BASE_URL%" ^
+          docker run -d \
+          --name rbac-container \
+          -p 8052:8052 \
+          -p 8051:8051 \
+          --restart unless-stopped \
+          -e DATABASE_URL="${DATABASE_URL}" \
+          -e SECRET_KEY="${SECRET_KEY}" \
+          -e OPENAI_API_KEY="${OPENAI_API_KEY}" \
+          -e NEXT_PUBLIC_BASE_URL="${NEXT_PUBLIC_BASE_URL}" \
           rbac-app:latest
-
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
@@ -63,9 +67,9 @@ jobs:
           NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
 
       - name: Check container health
-        shell: cmd
+        shell: bash
         run: |
-          timeout /t 30 /nobreak
-          docker ps | findstr "rbac-container" || exit /b 1
+          sleep 30
+          docker ps | grep "rbac-container" || exit 1
           docker logs rbac-container --tail 50
 

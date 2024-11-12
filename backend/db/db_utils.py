@@ -11,15 +11,27 @@ from typing import List, Optional
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends, HTTPException,status
 from sqlalchemy.orm import Session
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
-DIR_PATH = os.getcwd()
+# Check if the code is running from the backend folder
+current_dir = os.getcwd()
+if os.path.basename(current_dir) == 'backend':
+    # Go one folder back
+    os.chdir('..')
 
-env_path = os.path.join(DIR_PATH, "kaas.env")
 
-load_dotenv(dotenv_path = env_path)
+DB_PATH = os.path.join(os.getcwd(), "rbac_system.db")
+ENV_PATH = os.path.join(os.getcwd(), "kaas.env")
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///rbac_system.db")
+print("DB_PATH", DB_PATH)
+print("ENV_PATH", ENV_PATH)
+
+load_dotenv(dotenv_path = ENV_PATH)
+
+DATABASE_URL = f"sqlite:///{DB_PATH}"
+print("DATABASE_URL", DATABASE_URL)
+
+
 
 engine = create_engine(
     DATABASE_URL, connect_args={"check_same_thread": False}
@@ -109,9 +121,9 @@ def verify_password(plain_password, hashed_password):
 def create_access_token(data: dict, expires_delta=None):
     to_encode = data.copy()
     if expires_delta:
-        expire = datetime.now(datetime.timezone.utc) + expires_delta
+        expire = datetime.now(timezone.utc) + expires_delta
     else:
-        expire = datetime.now(datetime.timezone.utc) + timedelta(minutes=5)
+        expire = datetime.now(timezone.utc) + timedelta(minutes=5)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
