@@ -97,7 +97,7 @@
     - Regular check-in meetings are scheduled during the first few weeks or months to assess progress, provide support, answer any questions, and offer constructive feedback. Guide them in company’s schedule of work like morning 10.30 am to 11.30 am typing test and learn about new things, update daily tasks in Telegram group in their own name, 11.30 am to 12.30 pm discussion about today’s work and 2.30 pm to 4.30 pm do their tasks. End of the day they have to update their tasks.
 
 20. 🎉 **OnboardingCompleted**  
-    - The onboarding process is formally completed, and the employee has successfully integrated into the team. This status signifies they are now fully operational in their role.
+    - The onboarding process is formally completed, and the employee has successfully integrated into the team. In this stage Employees daily active in Telegram group like Typing test, Todays task and at the end of the day Today's Update they will share in telegram group.Employees will also log in with their own google account and access the following sites like Telegram, any searches in chatGPT for learning,only Serendipity log in for office realeted websites.This status signifies they are now fully operational in their role.
 
 21. ⏳ **LongLeaveTaken**  
     - The employee takes an extended leave, and appropriate procedures are followed, including knowledge transfer and system access adjustment. Necessary documentation for leave approval is also handled and payroll settled.

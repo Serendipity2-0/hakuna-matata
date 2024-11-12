@@ -21,7 +21,6 @@ Welcome! Here you’ll find all the resources, guides, and tools you need to suc
 - [Adobe Creative Suite Guide](Dhoomstudios/AdobeCreativeSuite.md)
 - [Debt Reference](Dhoomstudios/DebtReference.md)
 - [Debt Reviewed](Dhoomstudios/DebtReviewed.md)
-- [Old Man's Tale](Dhoomstudios/OldMansTale.md)
 
 ---
 
