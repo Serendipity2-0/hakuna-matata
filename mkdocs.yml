@@ -70,8 +70,8 @@ nav:
               - Onboarding Guide: Trademan/Projects/trademanV1/OnboardingGuide.md
               - TradeManV1 Meetings: Trademan/Projects/trademanV1/TradeManMeetingAudio_Transcribe.md
               - Frontend Refactoring: Trademan/Projects/trademanV1/FrontendRefactoringDoc.md
-              # - Testing Discord for V1: Trademan/Projects/trademanV1/DiscordTesting.md
-              # - Telegram EOD Report Testing: Trademan/Projects/trademanV1/EODReportTesting.md
+              - Testing Discord for V1: Trademan/Projects/trademanV1/DiscordTesting.md
+              - Telegram EOD Report Testing: Trademan/Projects/trademanV1/EODReportTesting.md
           - HakunaMatata:
               - HakunaMatata Dev Guide: Trademan/Projects/hakunamatata/HakunaMatataDevGuide.md
           - Kaas:
