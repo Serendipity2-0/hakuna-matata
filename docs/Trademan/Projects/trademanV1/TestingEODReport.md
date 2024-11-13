@@ -19,12 +19,12 @@ Enter Client ID and Password and TOTP
 
 TOTO is accessible from the 2FA Authenticator app pinned on the serendipity account
 
-<a href="./Images/Totp.png" style="margin-bottom: 20px; display: inline-block; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
-    <img src="./Images/Totp.png" alt="Untitled" style="width: 100%; height: auto;">
+<a href="./Image/Totp.png" style="margin-bottom: 20px; display: inline-block; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+    <img src="./Image/Totp.png" alt="Untitled" style="width: 100%; height: auto;">
 </a>
 
-<a href="./Images/Totp1.png" style="margin-bottom: 20px; display: inline-block; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
-    <img src="./Images/Totp1.png" alt="Untitled" style="width: 100%; height: auto;">
+<a href="./Image/Totp1.png" style="margin-bottom: 20px; display: inline-block; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+    <img src="./Image/Totp1.png" alt="Untitled" style="width: 100%; height: auto;">
 </a>
 
 Note : The client ID and password should be collected personally from the manager 
@@ -46,20 +46,20 @@ This account value present in our Telegram EOD report should be equal to the sum
 ## 5. Reference Images
 
 **Telegram Message example**
-<a href="./Images/Tele.png" style="margin-bottom: 20px; display: inline-block; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
-    <img src="./Images/Tele.png" alt="Untitled" style="width: 100%; height: auto;">
+<a href="./Image/Tele.png" style="margin-bottom: 20px; display: inline-block; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+    <img src="./Image/Tele.png" alt="Untitled" style="width: 100%; height: auto;">
 </a>
 
 **Firstock Account**
-<a href="./Images/Firstock1.png" style="margin-bottom: 20px; display: inline-block; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
-    <img src="./Images/Firstock1.png" alt="Untitled" style="width: 100%; height: auto;">
+<a href="./Image/Firstock1.png" style="margin-bottom: 20px; display: inline-block; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+    <img src="./Image/Firstock1.png" alt="Untitled" style="width: 100%; height: auto;">
 </a>
 
 ## 6. Excel Report
 
 By doing the above steps, you can fill the below excel report with the appropriate values
 
-<a href="./Images/EODExcel.png" style="margin-bottom: 20px; display: inline-block; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
-    <img src="./Images/EODExcel.png" alt="Untitled" style="width: 100%; height: auto;">
+<a href="./Image/EODExcel.png" style="margin-bottom: 20px; display: inline-block; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+    <img src="./Image/EODExcel.png" alt="Untitled" style="width: 100%; height: auto;">
 </a>
 
