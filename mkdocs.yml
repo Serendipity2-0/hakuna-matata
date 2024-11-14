@@ -146,7 +146,13 @@ nav:
 
       - Old Man's Tale: 
           - ShareMarket Script: Dhoomstudios/oldmanstale/ShareMarketScript.md
-          
+      - Share Market:
+          - ShareMarket Short: Dhoomstudios/sharemarket/ShareMarketShort.md
+          - ShareMarket Webseries: Dhoomstudios/sharemarket/ShareMarketWebseries.md   
+      - Debt:
+          - Debt Webseries Script: Dhoomstudios/debt/DebtWebseriesScript.md
+      - Insurance:
+          - Insurance Short: Dhoomstudios/insurance/InsuranceShort.md
 
 extra:
   social:
