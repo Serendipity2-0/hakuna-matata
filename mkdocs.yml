@@ -125,6 +125,7 @@ nav:
           - Agent Creation Guidelines: Trademan/software_instructions/AgentCreationGuideline.md
           - RBAC Guidelines: Trademan/software_instructions/RbacGuidelines.md
           - Google SSO On GCP: Trademan/software_instructions/googlesso/GoogleSSOonGCP.md
+          - WhatsApp API Creation: Trademan/software_instructions/WhatsappAPIIntegration.md
 
       - General Tech Guidelines:
           - GitHub Repositories: Trademan/tech_guidelines/GitHubRepos.md
