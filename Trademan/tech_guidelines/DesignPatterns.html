@@ -1,0 +1,5861 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="PromptCollections.html">
+      
+      
+        <link rel="next" href="../reports/TechDailyReport.html">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Design Patterns - Serendipity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#design-patterns-singleton-pattern" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Serendipity" class="md-header__button md-logo" aria-label="Serendipity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Serendipity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Design Patterns
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.html" class="md-tabs__link">
+          
+  
+  Serendipity
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Projects/trademanV1/OnboardingGuide.html" class="md-tabs__link">
+          
+  
+  TradeMan
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Dhoomstudios/DebtReference.html" class="md-tabs__link">
+          
+  
+  DhoomStudios
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Serendipity" class="md-nav__button md-logo" aria-label="Serendipity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Serendipity
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Serendipity
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Serendipity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accounts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Accounts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kaas user Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Kaas user Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas MainSheet Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/kaasuserguide/KaasSheetHeaderDescription.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas Sheet Header Indexes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/kaasuserguide/KaasSheetsSummary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas Sheets Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accounting Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Accounting Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/AccountDailyReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Daily Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/AccountStandardOperatingProcedures.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Standard Operating Procedures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/AccountTransactionScenarios.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Transaction Scenarios
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/AccQTPrd.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AccQT Prd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/VBAExcelToolGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VBA Macro - Tool within Excel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/GSTProcess.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GST Process
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/IncomeTaxDeductions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Income Tax Deductions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/SerendipityBusinessRequirementsPlan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serendipity Business Requirements Plan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HR Onboarding Library
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            HR Onboarding Library
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/hronboardinglibrary/EmployeeOnboardingGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Employee Onboarding Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/hronboardinglibrary/SMS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Management System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            General Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/generalguidelines/FileNamingGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File Naming Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/generalguidelines/AudioMeetingGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Audio Meeting Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/generalguidelines/DUNSRegFormalities.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DUNS Registration formalities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/ViewOnSerendipity.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    View On Serendipity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    TradeMan
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            TradeMan
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    TradeManV1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            TradeManV1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/trademanV1/OnboardingGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Onboarding Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/trademanV1/TradeManMeetingAudio_Transcribe.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TradeManV1 Meetings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/trademanV1/FrontendRefactoringDoc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frontend Refactoring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/trademanV1/TestingEODReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing EOD Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/trademanV1/TestingDiscord.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing Discord
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HakunaMatata
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            HakunaMatata
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/hakunamatata/HakunaMatataDevGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HakunaMatata Dev Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kaas
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kaas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/kaas/KaasAppPrompt.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas App Prompt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/kaas/FabricKaas.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Kaas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ChitBox
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            ChitBox
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/ChitBoxProject.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChitBox Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_2" id="__nav_3_1_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API Sethu and Distributed Ledger Technology
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            API Sethu and Distributed Ledger Technology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/apisethudocs/ApiSethuDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API sethu documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/apisethudocs/DLTImplementationGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Implementation Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/apisethudocs/DLTEntityRegistration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Entity Registration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/apisethudocs/DLTHeaderManualPing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Header Manual Ping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/apisethudocs/DLTContentApproval.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Content Approval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_3" id="__nav_3_1_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Flutter Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Flutter Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/fluttercode/FlutterCodeReviewForm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flutter Code Review Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/fluttercode/Prompt.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Used
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/fluttercode/OpenClosedPrinciple.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Open Closed Principle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/fluttercode/LISKOVPrinciple.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Liskov Substitution Principle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_4" id="__nav_3_1_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Project Management
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Project Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/ProjectManagement.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/CreatingAccountCreated.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating-Account Created
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/DashboardUnitTests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-Dashboard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/eKYCVerificationScreen.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eKYC Verification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/eKYCImplementationAndUT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eKYC Implementation and UT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/LoginPageandOTP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Login page with OTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/NavBar.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NavBar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/OTPUnitTests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-OTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/PersonalDetailsForm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Personal Details Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/PersonalDetailsTestCases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-Personal Details
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/TodayTaskDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Today's Task
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/FunctionalRequirements.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functional Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/SystemDesign.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/TestFlightDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TestFlight Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/projectmanagement/GooglePlaystoreAccountCreation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google Playstore Account Creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/AppDesignTechnicalDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    App Design Technical Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/SystemDesignLLD_HLD.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Design (LLD+HLD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/GitWorkFlow.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git WorkFlow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/chitbox/ChitboxAuctionProcess.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auction Process
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software/Technology Instructions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Software/Technology Instructions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software_instructions/CoolifyBeginPhase1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coolify Phase1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software_instructions/CoolifyInstructions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coolify Instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software_instructions/CloudflareHosting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloudflare Hosting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software_instructions/JioRouterConfig.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jio Router Config
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software_instructions/PaymentGatewayBenefits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Payment Gateway Benefits Razorpay
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software_instructions/AgentCreationGuideline.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agent Creation Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software_instructions/RbacGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RBAC Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software_instructions/googlesso/GoogleSSOonGCP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google SSO On GCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software_instructions/WhatsappAPIIntegration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WhatsApp API Creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General Tech Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            General Tech Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="GitHubRepos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CommitConventionGuideline.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commit Convention Guideline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="PromptCollections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Collection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Design Patterns
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="DesignPatterns.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Design Patterns
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#agenda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agenda
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#singleton-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Singleton Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Singleton Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-is-it-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why is it important?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-how-does-it-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. How does it work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Problem Statement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-when-should-we-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. When should we use it?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#builder-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Builder Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Builder Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-is-it-important_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why is it important?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-how-does-it-work_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. How does it work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-problem-statement_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Problem statement:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-when-should-we-use-it_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. When should we use it?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt used
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bridge Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bridge Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-is-it-important_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why is it important?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-how-does-it-work_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. How does it work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-problem-statement_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Problem statement:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-when-should-we-use-it_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. When should we use it?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fascade-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fascade Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fascade Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-is-it-important_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why is it important?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-how-does-it-work_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. How does it work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-problem-statement_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Problem statement:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-when-should-we-use-it_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. When should we use it?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iterator-and-chain-of-reponsibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iterator and chain of reponsibility
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Iterator and chain of reponsibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-agenda" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Agenda:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iterator-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iterator Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the Concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-the-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why the Name?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-what-problems-does-it-solve" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. What Problems Does it Solve?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-common-scenarios-to-apply-the-iterator-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Common Scenarios to Apply the Iterator Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-why-use-the-iterator-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Why Use the Iterator Pattern?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-how-is-it-implemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. How Is It Implemented?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-what-makes-it-unique" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. What Makes It Unique?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-problem-statement-of-use-case-zerodha-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Problem Statement of Use Case: Zerodha Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chain-of-responsibility-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chain of Responsibility Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chain of Responsibility Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the Concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-the-name_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why the Name?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-what-problems-does-it-solve_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. What Problems Does it Solve?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-common-scenarios-to-apply-the-chain-of-responsibility-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Common Scenarios to Apply the Chain of Responsibility Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-why-use-the-chain-of-responsibility-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Why Use the Chain of Responsibility Pattern?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-how-is-it-implemented_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. How Is It Implemented?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-what-makes-it-unique_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. What Makes It Unique?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-problem-statement-of-use-case-zerodha-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Problem Statement of Use Case: Zerodha Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observer-command-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observer &amp; Command Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Observer & Command Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Prompts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-agenda" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Agenda
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observer-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observer Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Observer Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the Concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-the-name_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why the Name?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3what-problems-does-it-solve" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.What Problems Does it Solve?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Common Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-why-use-the-observer-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Why Use the Observer Pattern?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-how-does-it-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. How Does It Work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-what-makes-it-unique_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. What Makes It Unique?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Command Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the Concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-the-name_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why the Name?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-what-problems-does-it-solve_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. What Problems Does it Solve?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-common-use-cases_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Common Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-why-use-the-command-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Why Use the Command Pattern?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-how-does-it-work_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. How Does It Work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-what-makes-it-unique_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. What Makes It Unique?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Discussion :
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quiz
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reports
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reports
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reports/TechDailyReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tech Daily Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reports/DevelopmentSch.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Schedule
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DhoomStudios
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            DhoomStudios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dhoomstudios/DebtReference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dhoomstudios/DebtReviewed.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Reviewed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dhoomstudios/AdobeCreativeSuite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adobe Creative Suite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dhoomstudios/ScriptGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Script Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dhoomstudios/AdobeGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adobe Tools & Features Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dhoomstudios/EvolutionOfInvesting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Evolution of Investing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Old Man's Tale
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            Old Man's Tale
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dhoomstudios/oldmanstale/ShareMarketScript.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Share Market
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Share Market
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dhoomstudios/sharemarket/ShareMarketShort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Short
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dhoomstudios/sharemarket/ShareMarketWebseries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Webseries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Debt
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            Debt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dhoomstudios/debt/DebtWebseriesScript.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Webseries Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Insurance
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            Insurance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dhoomstudios/insurance/InsuranceShort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Insurance Short
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#agenda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agenda
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#singleton-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Singleton Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Singleton Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-is-it-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why is it important?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-how-does-it-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. How does it work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Problem Statement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-when-should-we-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. When should we use it?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#builder-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Builder Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Builder Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-is-it-important_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why is it important?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-how-does-it-work_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. How does it work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-problem-statement_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Problem statement:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-when-should-we-use-it_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. When should we use it?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt used
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bridge Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bridge Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-is-it-important_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why is it important?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-how-does-it-work_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. How does it work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-problem-statement_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Problem statement:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-when-should-we-use-it_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. When should we use it?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fascade-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fascade Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fascade Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-is-it-important_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why is it important?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-how-does-it-work_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. How does it work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-problem-statement_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Problem statement:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-when-should-we-use-it_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. When should we use it?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iterator-and-chain-of-reponsibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iterator and chain of reponsibility
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Iterator and chain of reponsibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-agenda" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Agenda:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iterator-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iterator Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the Concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-the-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why the Name?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-what-problems-does-it-solve" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. What Problems Does it Solve?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-common-scenarios-to-apply-the-iterator-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Common Scenarios to Apply the Iterator Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-why-use-the-iterator-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Why Use the Iterator Pattern?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-how-is-it-implemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. How Is It Implemented?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-what-makes-it-unique" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. What Makes It Unique?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-problem-statement-of-use-case-zerodha-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Problem Statement of Use Case: Zerodha Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chain-of-responsibility-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chain of Responsibility Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chain of Responsibility Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the Concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-the-name_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why the Name?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-what-problems-does-it-solve_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. What Problems Does it Solve?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-common-scenarios-to-apply-the-chain-of-responsibility-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Common Scenarios to Apply the Chain of Responsibility Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-why-use-the-chain-of-responsibility-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Why Use the Chain of Responsibility Pattern?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-how-is-it-implemented_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. How Is It Implemented?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-what-makes-it-unique_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. What Makes It Unique?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-problem-statement-of-use-case-zerodha-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Problem Statement of Use Case: Zerodha Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observer-command-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observer &amp; Command Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Observer & Command Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Prompts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-agenda" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Agenda
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observer-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observer Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Observer Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the Concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-the-name_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why the Name?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3what-problems-does-it-solve" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.What Problems Does it Solve?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Common Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-why-use-the-observer-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Why Use the Observer Pattern?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-how-does-it-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. How Does It Work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-what-makes-it-unique_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. What Makes It Unique?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Command Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-the-concept_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is the Concept?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-why-the-name_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Why the Name?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-what-problems-does-it-solve_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. What Problems Does it Solve?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-common-use-cases_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Common Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-why-use-the-command-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Why Use the Command Pattern?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-how-does-it-work_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. How Does It Work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-what-makes-it-unique_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. What Makes It Unique?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of Discussion :
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quiz
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="design-patterns-singleton-pattern">Design Patterns: Singleton Pattern</h1>
+<h2 id="agenda">Agenda</h2>
+<ol>
+<li><strong>What is the concept?</strong></li>
+<li><strong>Why is it important?</strong></li>
+<li><strong>How does it work?</strong></li>
+<li><strong>What problems does the Singleton Pattern solve?</strong></li>
+<li><strong>When should we use it?</strong></li>
+</ol>
+<p>This guide also includes a Zerodha-based use case, with code examples in Django, Flutter, Next.js, Python, JavaScript, Dart, and TypeScript.</p>
+<hr />
+<h2 id="singleton-pattern">Singleton Pattern</h2>
+<h3 id="1-what-is-the-concept">1. <strong>What is the concept?</strong></h3>
+<p>The Singleton Pattern is a design pattern that ensures a class has only <strong>one instance</strong> and provides a global point of access to that instance. It restricts the creation of multiple objects of the same class and returns the same instance every time it’s called.</p>
+<h3 id="2-why-is-it-important">2. <strong>Why is it important?</strong></h3>
+<ul>
+<li><strong>Control resource usage</strong>: Singleton is useful when you want to limit resource consumption, like managing database connections or logging systems.</li>
+<li><strong>Consistency</strong>: Ensures consistent access to shared resources. For example, in an application that interacts with an API, only one instance manages that communication.</li>
+<li><strong>Global access</strong>: Provides easy global access to objects from different parts of an application.</li>
+</ul>
+<h3 id="3-how-does-it-work">3. <strong>How does it work?</strong></h3>
+<p>To implement the Singleton pattern:
+   - Make the constructor <strong>private</strong> or <strong>restricted</strong>.
+   - Use a static method to <strong>create</strong> or <strong>return</strong> the instance.
+   - Ensure the class can’t be instantiated more than once.</p>
+<h3 id="4-problem-statement">4. <strong>Problem Statement</strong></h3>
+<p>Suppose you’re building a trading platform (like Zerodha). You only need <strong>one database connection</strong> shared across your entire application to maintain efficiency and reduce costs. Opening multiple connections for each user session could overload the database server.</p>
+<h3 id="5-when-should-we-use-it">5. <strong>When should we use it?</strong></h3>
+<ul>
+<li><strong>Database connection pools</strong>: As in Zerodha's case, where one shared database connection reduces resource load.</li>
+<li><strong>Logging systems</strong>: One logger instance that writes to a file or console suffices.</li>
+<li>
+<p><strong>Configuration managers</strong>: A single object can manage the application’s settings.</p>
+</li>
+<li>
+<p>Code Examples</p>
+<ul>
+<li><strong>Django (Python)</strong>:</li>
+</ul>
+<p>python</p>
+<pre><code>class DatabaseConnection:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(DatabaseConnection, cls).__new__(cls)
+            # Initialize the database connection here
+        return cls._instance
+
+# Using Singleton
+db1 = DatabaseConnection()
+db2 = DatabaseConnection()
+
+print(db1 == db2)  # True, both instances are the same
+</code></pre>
+<ul>
+<li><strong>Flutter (Dart)</strong>:    </li>
+</ul>
+<p>Dart</p>
+<pre><code>class DatabaseConnection {
+    static final DatabaseConnection _instance = DatabaseConnection._internal();
+
+    factory DatabaseConnection() {
+      return _instance;
+    }
+
+    DatabaseConnection._internal();  // Private constructor
+}
+
+// Using Singleton
+final db1 = DatabaseConnection();
+final db2 = DatabaseConnection();
+
+print(db1 == db2);  // True
+</code></pre>
+<ul>
+<li><strong>Next.js (JavaScript/TypeScript)</strong>:</li>
+</ul>
+<p>JavaScript/TypeScript</p>
+<pre><code>class DatabaseConnection {
+    static instance;
+
+    constructor() {
+        if (!DatabaseConnection.instance) {
+            this.connection = "DB connection";
+            DatabaseConnection.instance = this;
+        }
+        return DatabaseConnection.instance;
+    }
+}
+</code></pre>
+<p>const db1 = new DatabaseConnection();
+   const db2 = new DatabaseConnection();</p>
+<p>console.log(db1 === db2);  // True</p>
+</li>
+</ul>
+<hr />
+<h2 id="builder-pattern">Builder Pattern</h2>
+<h3 id="1-what-is-the-concept_1">1. <strong>What is the concept?</strong></h3>
+<p>The Builder Pattern is a design pattern used to construct complex objects step by step. Unlike the Singleton, it doesn’t restrict you to a single instance, but instead provides a way to construct an object by separating its construction logic from its representation.</p>
+<h3 id="2-why-is-it-important_1">2. <strong>Why is it important?</strong></h3>
+<ul>
+<li><strong>Simplifies complex object creation</strong>: If an object has multiple optional properties or settings, Builder Pattern simplifies object creation by making it readable and flexible.</li>
+<li><strong>Separation of concerns</strong>: It separates the logic of object construction from the actual object itself.</li>
+<li><strong>Fluent interface</strong>: You can build objects step by step in a readable and intuitive way.</li>
+</ul>
+<h3 id="3-how-does-it-work_1">3. <strong>How does it work?</strong></h3>
+<p>In the Builder pattern:</p>
+<ul>
+<li>You create a <strong>builder class</strong> that has methods to set the various attributes of the object.</li>
+<li>Once all parts of the object are set, you <strong>build</strong> the final object.</li>
+</ul>
+<h3 id="4-problem-statement_1">4. <strong>Problem statement</strong>:</h3>
+<p>Imagine Zerodha wants to create a trade order where users can set a variety of properties (e.g., buy/sell, stock symbol, limit price, stop loss, etc.). A simple constructor might not handle all of these options in an intuitive way. The Builder Pattern allows you to gradually set up the trade order with optional configurations before finalizing it.</p>
+<h3 id="5-when-should-we-use-it_1">5. <strong>When should we use it?</strong></h3>
+<ul>
+<li><strong>Complex objects</strong> with lots of optional properties.</li>
+<li><strong>Fluent API design</strong>: If you want a clean, step-by-step object creation process.</li>
+<li>
+<p><strong>Immutable objects</strong>: You can use a builder to create objects and ensure they are immutable once built.</p>
+</li>
+<li>
+<p>Code Examples</p>
+<ul>
+<li><strong>Django (Python)</strong>:</li>
+</ul>
+<p>python</p>
+<pre><code>class TradeOrder:
+    def __init__(self, stock_symbol, quantity, order_type, price=None):
+        self.stock_symbol = stock_symbol
+        self.quantity = quantity
+        self.order_type = order_type
+        self.price = price
+
+class TradeOrderBuilder:
+    def __init__(self):
+        self._stock_symbol = None
+        self._quantity = None
+        self._order_type = None
+        self._price = None
+
+    def set_stock_symbol(self, symbol):
+        self._stock_symbol = symbol
+        return self
+
+    def set_quantity(self, quantity):
+        self._quantity = quantity
+        return self
+
+    def set_order_type(self, order_type):
+        self._order_type = order_type
+        return self
+
+    def set_price(self, price):
+        self._price = price
+        return self
+
+    def build(self):
+        return TradeOrder(self._stock_symbol, self._quantity, self._order_type, self._price)
+
+# Usage:
+builder = TradeOrderBuilder()
+order = builder.set_stock_symbol('AAPL').set_quantity(100).set_order_type('buy').set_price(150).build()
+print(order.__dict__)
+</code></pre>
+<ul>
+<li><strong>Flutter (Dart)</strong>:</li>
+</ul>
+<p>Dart</p>
+<pre><code>class TradeOrder {
+    String stockSymbol;
+    int quantity;
+    String orderType;
+    double? price;
+
+    TradeOrder({required this.stockSymbol, required this.quantity, required this.orderType, this.price});
+}
+
+class TradeOrderBuilder {
+    String? _stockSymbol;
+    int? _quantity;
+    String? _orderType;
+    double? _price;
+
+    TradeOrderBuilder setStockSymbol(String symbol) {
+        _stockSymbol = symbol;
+        return this;
+    }
+
+    TradeOrderBuilder setQuantity(int quantity) {
+        _quantity = quantity;
+        return this;
+    }
+
+    TradeOrderBuilder setOrderType(String orderType) {
+        _orderType = orderType;
+        return this;
+    }
+
+    TradeOrderBuilder setPrice(double price) {
+        _price = price;
+        return this;
+    }
+
+    TradeOrder build() {
+        return TradeOrder(
+            stockSymbol: _stockSymbol!, quantity: _quantity!, orderType: _orderType!, price: _price);
+    }
+}
+
+// Usage
+final order = TradeOrderBuilder()
+    .setStockSymbol('AAPL')
+    .setQuantity(100)
+    .setOrderType('buy')
+    .setPrice(150)
+    .build();
+
+print(order);
+</code></pre>
+<ul>
+<li><strong>Nextjs (JavaScript/TypeScript)</strong>:</li>
+</ul>
+<p>JavaScript/TypeScript</p>
+<pre><code>class TradeOrder {
+    constructor(public stockSymbol: string, public quantity: number, public orderType: string, public price?: number) {}
+}
+
+class TradeOrderBuilder {
+    private stockSymbol: string | null = null;
+    private quantity: number | null = null;
+    private orderType: string | null = null;
+    private price?: number;
+
+    setStockSymbol(symbol: string): this {
+        this.stockSymbol = symbol;
+        return this;
+    }
+
+    setQuantity(quantity: number): this {
+        this.quantity = quantity;
+        return this;
+    }
+
+    setOrderType(orderType: string): this {
+        this.orderType = orderType;
+        return this;
+    }
+
+    setPrice(price: number): this {
+        this.price = price;
+        return this;
+    }
+
+    build(): TradeOrder {
+        return new TradeOrder(this.stockSymbol!, this.quantity!, this.orderType!, this.price);
+    }
+}
+
+// Usage:
+const order = new TradeOrderBuilder()
+    .setStockSymbol("AAPL")
+    .setQuantity(100)
+    .setOrderType("buy")
+    .setPrice(150)
+    .build();
+
+console.log(order);
+</code></pre>
+</li>
+</ul>
+<h3 id="prompt-used">Prompt used</h3>
+<pre><code>can you structures this one with this  below structureAgenda :
+what is concept
+why
+how
+what problem statement  that 2. Singleton Pattern
+3. Builder Pattern   solves   in which scenerio we have to use
+
+Problrm  statement of usecase
+Discuss each topic in detail what is  and why we have to take decission to use this pattern single patterns and builder pattern  only
+what concept is all about and then talk problem in usecse what is 2. Singleton Pattern
+3. Builder Pattern hoow can we utilize this : 2. Singleton Pattern
+3. Builder Pattern   and what problems solves with usecase one by one with  what is 2. Singleton Pattern
+3. Builder Pattern how can we use 2. Singleton Pattern
+3. Builder Pattern to utilize this pattern
+
+can you  discuss Zerodha usecase  for this pattern
+with code examples  discussing frameworks and language
+real world example in django,  Flutter , Nextjs and  as well as python ,js and dart and typescript
+make it  very and laymann terms so that everyone can understand about this in 20 minutes wee discuss about this pattern
+</code></pre>
+<hr />
+<h2 id="bridge-pattern">Bridge Pattern</h2>
+<h3 id="1-what-is-the-concept_2">1. <strong>What is the concept?</strong></h3>
+<p>The Bridge Pattern is a structural design pattern that decouples an abstraction from its implementation, allowing them to vary independently. Essentially, it separates the "interface" from the "implementation" and allows the two to evolve separately without affecting each other.</p>
+<h3 id="2-why-is-it-important_2">2. <strong>Why is it important?</strong></h3>
+<ul>
+<li><strong>Flexibility</strong>: It allows you to change both the abstraction (interface) and implementation independently, which is useful when you have many possible classes or implementations that need to interact with each other.</li>
+<li><strong>Maintainability</strong>: By separating the abstraction and implementation, changes to one side don’t affect the other, making the code easier to maintain.</li>
+<li><strong>Reduces complexity</strong>: In systems where both abstraction and implementation can have multiple variations, it helps reduce the complexity of class hierarchies.</li>
+</ul>
+<h3 id="3-how-does-it-work_2">3. <strong>How does it work?</strong></h3>
+<p>The Bridge Pattern works by creating two separate class hierarchies:</p>
+<ul>
+<li><strong>Abstraction hierarchy</strong>: Defines the high-level control interface.</li>
+<li><strong>Implementation hierarchy</strong>: Defines the low-level operations.</li>
+</ul>
+<p>The abstraction has a reference to an object in the implementation hierarchy, and it can delegate work to the implementation. This way, you can mix and match implementations without rewriting code</p>
+<h3 id="4-problem-statement_2">4. <strong>Problem statement</strong>:</h3>
+<p>Let’s say you are building a <strong>payment gateway</strong> in an e-commerce platform (like Amazon). You need different types of payment methods like <strong>credit card, bank transfer, and digital wallets</strong>. You also want to support different platforms such as <strong>web and mobile apps</strong>. Without the Bridge Pattern, you would need to create a separate class for each combination of payment method and platform, leading to a bloated and complex class structure</p>
+<h3 id="5-when-should-we-use-it_2">5. <strong>When should we use it?</strong></h3>
+<ul>
+<li>When both the abstraction and the implementation can evolve independently.</li>
+<li>When you want to avoid a proliferation of classes.</li>
+<li>
+<p>When your code has complex hierarchies of classes with multiple variations.</p>
+</li>
+<li>
+<p>Code Examples        </p>
+<ul>
+<li><strong>Django (Python)</strong>:</li>
+</ul>
+<p>python</p>
+<pre><code>class PaymentMethod:
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
+
+class CreditCard(PaymentMethod):
+    def __init__(self, name, description, card_number, expiry_date):
+        super().__init__(name, description)
+        self.card_number = card_number
+        self.expiry_date = expiry_date
+
+class BankTransfer(PaymentMethod):
+    def __init__(self, name, description, account_number, routing_number):
+        super().__init__(name, description)
+        self.account_number = account_number
+        self.routing_number = routing_number
+
+# Abstraction hierarchy
+class PaymentProcessor:
+    def __init__(self, payment_method):
+        self.payment_method = payment_method
+
+    def pay(self, amount):
+        return self.payment_gateway.
+        process_payment(amount)
+
+# Usage
+payment_method = PaymentProcessor(CreditCardPayment())
+print(payment_method.pay(1000))  # Processing credit card payment of 1000
+</code></pre>
+<ul>
+<li><strong>Flutter (Dart)</strong>:                        </li>
+</ul>
+<p>Dart</p>
+<pre><code>    // Implementation Hierarchy
+    abstract class PaymentGateway {
+      String processPayment(double amount);
+    }
+
+    class CreditCardPayment implements PaymentGateway {
+      @override
+      String processPayment(double amount) =&gt; "Processing credit card payment of $amount";
+    }
+
+    class BankTransferPayment implements PaymentGateway {
+      @override
+      String processPayment(double amount) =&gt; "Processing bank transfer payment of $amount";
+    }
+
+    // Abstraction Hierarchy
+    class PaymentProcessor {
+      final PaymentGateway paymentGateway;
+
+      PaymentProcessor(this.paymentGateway);
+
+      String pay(double amount) {
+        return paymentGateway.processPayment(amount);
+      }
+    }
+
+    // Usage
+    final paymentProcessor = PaymentProcessor(CreditCardPayment());
+    print(paymentProcessor.pay(1000));  // Processing credit card payment of 1000
+</code></pre>
+<ul>
+<li><strong>Nextjs (JavaScript/TypeScript)</strong>:</li>
+</ul>
+<p>JavaScript/TypeScript </p>
+<pre><code>                // Implementation Hierarchy
+    interface PaymentGateway {
+      processPayment(amount: number): string;
+    }
+
+    class CreditCardPayment implements PaymentGateway {
+      processPayment(amount: number): string {
+        return `Processing credit card payment of ${amount}`;
+      }
+    }
+
+    class BankTransferPayment implements PaymentGateway {
+      processPayment(amount: number): string {
+        return `Processing bank transfer payment of ${amount}`;
+      }
+    }
+
+    // Abstraction Hierarchy
+    class PaymentProcessor {
+      constructor(private paymentGateway: PaymentGateway) {}
+
+      pay(amount: number): string {
+        return this.paymentGateway.processPayment(amount);
+      }
+    }
+
+    // Usage
+    const paymentProcessor = new PaymentProcessor(new CreditCardPayment());
+    console.log(paymentProcessor.pay(1000));  // Processing credit card payment of 1000
+</code></pre>
+</li>
+</ul>
+<h2 id="fascade-pattern">Fascade Pattern</h2>
+<h3 id="1-what-is-the-concept_3">1. <strong>What is the concept?</strong></h3>
+<p>The Facade Pattern is a structural design pattern that provides a simplified interface to a complex system of classes, libraries, or frameworks. It "hides" the complexity of the system behind a single unified interface that is easier to understand and use.</p>
+<h3 id="2-why-is-it-important_3">2. <strong>Why is it important?</strong></h3>
+<ul>
+<li><strong>Simplifies complex systems</strong>: When a system becomes too complex or has too many classes, a Facade can simplify interaction with it by hiding unnecessary details.</li>
+<li><strong>Encapsulation</strong>: It keeps the implementation details hidden from the client, promoting encapsulation.</li>
+<li><strong>Ease of use</strong>: Users interact with a cleaner, more intuitive interface without needing to understand the inner workings of the system.</li>
+</ul>
+<h3 id="3-how-does-it-work_3">3. <strong>How does it work?</strong></h3>
+<p>The Facade acts as a wrapper class that calls multiple underlying systems or APIs, hiding their complexity. The client only interacts with the Facade, which delegates the required functionality to appropriate classes.</p>
+<h3 id="4-problem-statement_3">4. <strong>Problem statement</strong>:</h3>
+<p>Suppose you are building a <strong>trading application</strong> (like Zerodha). You have various subsystems such as <strong>order placement</strong>, <strong>portfolio management</strong>, and <strong>market data retrieval</strong>. Instead of exposing the complexity of interacting with each of these systems, you provide a simple Facade for users, allowing them to place orders or view their portfolio with a single call.</p>
+<h3 id="5-when-should-we-use-it_3">5. <strong>When should we use it?</strong></h3>
+<ul>
+<li>When you need to <strong>simplify</strong> the interaction with a complex system.</li>
+<li>When you want to provide a clean, unified interface for a set of APIs or libraries.</li>
+<li>
+<p>When you want to decouple a client from complex subsystems.</p>
+</li>
+<li>
+<p>Code Examples        </p>
+<ul>
+<li>
+<p><strong>Django (Python)</strong>:</p>
+<pre><code># Complex subsystems
+class OrderPlacement:
+    def place_order(self, stock_symbol, quantity):
+        return f"Order placed for {quantity} shares of {stock_symbol}"
+
+class PortfolioManagement:
+    def view_portfolio(self):
+        return "Viewing portfolio details"
+
+class MarketDataRetrieval:
+    def get_market_data(self):
+        return "Retrieving market data"
+
+# Facade
+class TradingFacade:
+    def __init__(self):
+        self.order_placement = OrderPlacement()
+        self.portfolio_management = PortfolioManagement()
+        self.market_data = MarketDataRetrieval()
+
+    def place_order(self, stock_symbol, quantity):
+        return self.order_placement.place_order(stock_symbol, quantity)
+
+    def view_portfolio(self):
+        return self.portfolio_management.view_portfolio()
+
+    def get_market_data(self):
+        return self.market_data.get_market_data()
+
+# Usage
+trading_facade = TradingFacade()
+print(trading_facade.place_order("AAPL", 100))
+print(trading_facade.view_portfolio())
+print(trading_facade.get_market_data())
+</code></pre>
+</li>
+<li>
+<p><strong>Flutter (Dart)</strong>:                        </p>
+<pre><code>// Complex subsystems
+class OrderPlacement {
+  String placeOrder(String stockSymbol, int quantity) {
+    return "Order placed for $quantity shares of $stockSymbol";
+  }
+}
+
+class PortfolioManagement {
+  String viewPortfolio() {
+    return "Viewing portfolio details";
+  }
+}
+
+class MarketDataRetrieval {
+  String getMarketData() {
+    return "Retrieving market data";
+  }
+}
+
+// Facade
+class TradingFacade {
+  final OrderPlacement _orderPlacement = OrderPlacement();
+  final PortfolioManagement _portfolioManagement = PortfolioManagement();
+  final MarketDataRetrieval _marketData = MarketDataRetrieval();
+
+  String placeOrder(String stockSymbol, int quantity) {
+    return _orderPlacement.placeOrder(stockSymbol, quantity);
+  }
+
+  String viewPortfolio() {
+    return _portfolioManagement.viewPortfolio();
+  }
+
+  String getMarketData() {
+    return _marketData.getMarketData();
+  }
+}
+
+// Usage
+final tradingFacade = TradingFacade();
+print(tradingFacade.placeOrder("AAPL", 100));
+print(tradingFacade.viewPortfolio());
+print(tradingFacade.getMarketData());
+</code></pre>
+</li>
+<li>
+<p><strong>Nextjs</strong>        </p>
+<pre><code>// Complex subsystems
+class OrderPlacement {
+  placeOrder(stockSymbol: string, quantity: number): string {
+    return `Order placed for ${quantity} shares of ${stockSymbol}`;
+  }
+}
+
+class PortfolioManagement {
+  viewPortfolio(): string {
+    return "Viewing portfolio details";
+  }
+}
+
+class MarketDataRetrieval {
+  getMarketData(): string {
+    return "Retrieving market data";
+  }
+}
+
+// Facade
+class TradingFacade {
+  private orderPlacement = new OrderPlacement();
+  private portfolioManagement = new PortfolioManagement();
+  private marketData = new MarketDataRetrieval();
+
+  placeOrder(stockSymbol: string, quantity: number): string {
+    return this.orderPlacement.placeOrder(stockSymbol, quantity);
+  }
+
+  viewPortfolio(): string {
+    return this.portfolioManagement.viewPortfolio();
+  }
+
+  getMarketData(): string {
+    return this.marketData.getMarketData();
+  }
+}
+
+// Usage
+const tradingFacade = new TradingFacade();
+console.log(tradingFacade.placeOrder("AAPL", 100));
+console.log(tradingFacade.viewPortfolio());
+console.log(tradingFacade.getMarketData());
+</code></pre>
+</li>
+</ul>
+<h3 id="_1"></h3>
+</li>
+</ul>
+<h2 id="iterator-and-chain-of-reponsibility">Iterator and chain of reponsibility</h2>
+<h3 id="reference">Reference</h3>
+<p><a href="https://refactoring.guru/design-patterns">https://refactoring.guru/design-patterns</a></p>
+<pre><code>    ### Prompts
+
+    Act as   GOF Author Expert in Design  patterns
+
+    Go through this reference refactoring guru :
+    Search  web on below link  take concepts
+
+    Task:
+
+    and then do below tasks
+
+    can you structures this one with this  below structure
+    -Agenda :
+    -what is concept
+
+    - why the name has given to that pattern
+    - what problems solves to common problem
+    - in what common problems we can apply this usecase
+    -why
+    - how
+    - what makes it unique
+    what problem statement that Iterator Pattern
+    Chain of Responsibility solves in which scenerio we have to use
+    - Problem statement of usecase
+    Discuss each topic in detail what is and why we have to take decission to use this pattern single patterns and builder pattern only
+    what concept is all about and then talk problem in usecse what isIterator Pattern
+    Chain of Responsibility hoow can we utilize this :Iterator Pattern
+    Chain of Responsibility and what problems solves with usecase one by one with what is Iterator Pattern
+    Chain of Responsibility how can we use Iterator Pattern
+    Chain of Responsibility to utilize this pattern
+
+    can you  discuss Zerodha usecase  for this pattern
+    with code examples  in python
+
+    make it  very and laymann terms so that everyone can understand about this in 20 minutes wee discuss about this pattern
+</code></pre>
+<h3 id="1-agenda">1. Agenda:</h3>
+<ol>
+<li><strong>What is the Concept?</strong></li>
+<li><strong>Why the Name?</strong></li>
+<li><strong>What Common Problems Do These Patterns Solve?</strong></li>
+<li><strong>Common Scenarios Where We Apply Them</strong></li>
+<li><strong>Why These Patterns Work</strong></li>
+<li><strong>How They Are Implemented</strong></li>
+<li><strong>What Makes Them Unique?</strong></li>
+<li><strong>Problem Statements in Use Cases</strong></li>
+<li><strong>Using These Patterns in Zerodha with Code Examples</strong></li>
+</ol>
+<h3 id="iterator-pattern">Iterator Pattern</h3>
+<h3 id="1-what-is-the-concept_4">1. <strong>What is the Concept?</strong></h3>
+<p>The <strong>Iterator Pattern</strong> is a design pattern that provides a way to access elements of a collection (like a list, set, or array) sequentially without exposing its underlying structure. Think of it like a playlist of songs where you can "play next" or "rewind" to previous songs without needing to know the inner details of the playlist's structure.</p>
+<h3 id="2-why-the-name">2. <strong>Why the Name?</strong></h3>
+<p>The name "Iterator" signifies its purpose: it "iterates" or goes through a collection step by step. It’s like a guide that leads you through the collection one item at a time.</p>
+<h3 id="3-what-problems-does-it-solve">3. <strong>What Problems Does it Solve?</strong></h3>
+<p>In programming, different collections (like lists, stacks, or trees) store items differently. Without the Iterator pattern, you would need to know each collection's structure to navigate it. Iterator solves this by providing a standard way to traverse any collection.</p>
+<h3 id="4-common-scenarios-to-apply-the-iterator-pattern">4. <strong>Common Scenarios to Apply the Iterator Pattern</strong></h3>
+<ol>
+<li>Navigating through complex collections without knowing their underlying structures.</li>
+<li>Performing sequential operations on items in a collection (e.g., summing numbers, finding matches).</li>
+<li>Simplifying code by removing direct references to collection structures.</li>
+</ol>
+<h3 id="5-why-use-the-iterator-pattern">5. <strong>Why Use the Iterator Pattern?</strong></h3>
+<p>This pattern makes it easier to add new types of collections because it provides a consistent interface for accessing elements, regardless of the collection type.</p>
+<h3 id="6-how-is-it-implemented">6. <strong>How Is It Implemented?</strong></h3>
+<p>The Iterator pattern typically involves:</p>
+<ul>
+<li><strong>Iterator</strong>: Defines methods to traverse a collection (e.g., <code>next</code>, <code>has_next</code>).</li>
+<li><strong>ConcreteIterator</strong>: Implements the traversal.</li>
+<li><strong>Aggregate</strong>: Collection interface.</li>
+<li><strong>ConcreteAggregate</strong>: The specific collection (e.g., list, array) being iterated.</li>
+</ul>
+<h3 id="7-what-makes-it-unique">7. <strong>What Makes It Unique?</strong></h3>
+<p>Its ability to abstract the traversal process, allowing you to work with collections interchangeably without modifying the traversal code.</p>
+<h3 id="8-problem-statement-of-use-case-zerodha-example">8. <strong>Problem Statement of Use Case: Zerodha Example</strong></h3>
+<p>In Zerodha’s platform, let’s say we need to track stock prices from multiple lists (like watchlists or portfolios) and access them one by one to check conditions (e.g., price limit alerts). We can use the Iterator pattern to abstract the access.</p>
+<ul>
+<li>
+<p>Code Examples        </p>
+<ul>
+<li><strong>Django (Python)</strong>:</li>
+</ul>
+<p>python</p>
+<pre><code>class StockIterator:        
+    def __init__(self, stocks):
+        self.stocks = stocks
+        self.index = 0
+
+    def has_next(self):
+        return self.index &lt; len(self.stocks)
+
+    def next(self):
+        if self.has_next():
+            stock = self.stocks[self.index]
+            self.index += 1
+            return stock
+        else:
+            raise StopIteration
+
+class StockCollection:
+    def __init__(self):
+        self.stocks = []
+
+    def add_stock(self, stock):
+        self.stocks.append(stock)
+
+    def __iter__(self):
+        return StockIterator(self.stocks)
+
+# Zerodha Use Case
+portfolio = StockCollection()
+portfolio.add_stock("Tata Motors")
+portfolio.add_stock("Reliance")
+portfolio.add_stock("Infosys")
+
+for stock in portfolio:
+    print(f"Tracking stock: {stock}")
+</code></pre>
+<p>This example iterates over a portfolio of stocks, printing each one. The Iterator pattern ensures that Zerodha’s system can work with any collection of stocks seamlessly.</p>
+<hr />
+<h2 id="chain-of-responsibility-pattern">Chain of Responsibility Pattern</h2>
+<h3 id="1-what-is-the-concept_5">1. <strong>What is the Concept?</strong></h3>
+<p>The <strong>Chain of Responsibility Pattern</strong> is a behavioral pattern where a request is passed along a chain of objects (handlers) until one of them processes it. Think of it as customer service where your call is routed to different agents based on your query, and each agent can decide whether to handle the request or pass it on.</p>
+<h3 id="2-why-the-name_1">2. <strong>Why the Name?</strong></h3>
+<p>The term "Chain of Responsibility" captures the essence of passing requests along a chain until a handler "takes responsibility" for the request.</p>
+<h3 id="3-what-problems-does-it-solve_1">3. <strong>What Problems Does it Solve?</strong></h3>
+<p>This pattern helps manage and process requests without needing to know which object will handle them, making it ideal for scenarios requiring multiple handling steps (like in error handling or workflows).</p>
+<h3 id="4-common-scenarios-to-apply-the-chain-of-responsibility-pattern">4. <strong>Common Scenarios to Apply the Chain of Responsibility Pattern</strong></h3>
+<ol>
+<li>Implementing request-handling pipelines (e.g., log processing, request validation).</li>
+<li>Handling requests that may need different processing or actions.</li>
+<li>Designing flexible systems where new handlers can be added without modifying existing code.</li>
+</ol>
+<h3 id="5-why-use-the-chain-of-responsibility-pattern">5. <strong>Why Use the Chain of Responsibility Pattern?</strong></h3>
+<p>It decouples the sender and receiver, allowing you to add or remove processing steps dynamically, making the request handling process much more flexible and manageable.</p>
+<h3 id="6-how-is-it-implemented_1">6. <strong>How Is It Implemented?</strong></h3>
+<p>The Chain of Responsibility pattern involves:</p>
+<ul>
+<li><strong>Handler Interface</strong>: Declares a method for handling requests.</li>
+<li><strong>Concrete Handler</strong>: Processes requests it can handle; otherwise, it passes it to the next handler.</li>
+<li><strong>Client</strong>: Initiates the request and sends it to the handler.</li>
+</ul>
+<h3 id="7-what-makes-it-unique_1">7. <strong>What Makes It Unique?</strong></h3>
+<p>Its flexibility to add, remove, or reorder request handlers dynamically without modifying client code.</p>
+<h3 id="8-problem-statement-of-use-case-zerodha-example_1">8. <strong>Problem Statement of Use Case: Zerodha Example</strong></h3>
+<p>In Zerodha, we might have a chain of checks on a user’s trade: (1) Check if the user has sufficient balance, (2) validate compliance with regulations, and (3) check if the market is open. Using Chain of Responsibility, each check can act as a handler, passing the trade request if it doesn’t apply.</p>
+</li>
+<li>
+<p>Code Examples        </p>
+<ul>
+<li><strong>Django (Python)</strong>:                        </li>
+</ul>
+<p>python</p>
+<pre><code>class TradeHandler:
+    def __init__(self):     
+        self.next_handler = None
+            def set_next(self, handler):
+    self.next_handler = handler
+
+    def handle(self, request):
+        if self.next_handler:
+            return self.next_handler.handle(request)
+        return None
+
+class BalanceCheckHandler(TradeHandler):
+    def handle(self, request):
+        if request['balance'] &gt;= request['trade_amount']:
+            print("Balance check passed.")
+            return super().handle(request)
+         else:
+            print("Insufficient balance.")
+            return "Trade blocked due to balance."
+
+class ComplianceHandler(TradeHandler):
+    def handle(self, request):
+        if request['is_compliant']:
+            print("Compliance check passed.")
+            return super().handle(request)
+        else:
+            print("Trade non-compliant.")
+            return "Trade blocked due to compliance."
+
+class MarketOpenHandler(TradeHandler):
+    def handle(self, request):
+        if request['market_open']:
+            print("Market check passed.")
+            return super().handle(request)
+        else:
+            print("Market closed.")
+            return "Trade blocked due to market closure."
+
+Zerodha Use Case
+trade_request = {
+    'balance': 1000,
+    'trade_amount': 500,
+    'is_compliant': True,
+    'market_open': True
+}
+
+# Chain setup
+balance_handler = BalanceCheckHandler()
+compliance_handler = ComplianceHandler()
+market_handler = MarketOpenHandler()
+
+balance_handler.set_next(compliance_handler)
+compliance_handler.set_next(market_handler)
+
+# Process trade
+result = balance_handler.handle(trade_request)
+print("Trade Result:", result)
+
+In this example, each handler checks one aspect of the trade request, passing it down if it meets requirements. 
+This Chain of Responsibility allows flexibility and modularity in how Zerodha can handle trade validations.
+</code></pre>
+<hr />
+</li>
+</ul>
+<h2 id="observer-command-pattern">Observer &amp; Command Pattern</h2>
+<h3 id="1-prompts">1. Prompts</h3>
+<p>Act as   GOF Author Expert in Design  patterns</p>
+<p>Go through this reference refactoring guru :
+Search  web on below link  take concepts
+<a href="https://refactoring.guru/design-patterns">https://refactoring.guru/design-patterns</a></p>
+<p>Task:</p>
+<p>and then do below tasks</p>
+<p>can you structures this one with this  below structure
+-Agenda :
+-what is concept</p>
+<ul>
+<li>why the name has given to that pattern</li>
+<li>what problems solves to common problem</li>
+<li>in what common problems we can apply this usecase
+-why</li>
+<li>how- what makes it unique
+what problem statement that Observer Pattern &amp; Command pattern solves in which scenerio we have to use</li>
+<li>Problem statement of usecase
+Discuss each topic in detail what is and why we have to take decission to use this pattern Observer Pattern &amp; Command pattern only
+what concept is all about and then talk problem in usecse</li>
+<li>what isObserver Pattern &amp; Command pattern</li>
+<li>hoow can we utilize this :Observer Pattern &amp; Command pattern and</li>
+<li>what problems solves with usecase one by one with
+what is Observer Pattern &amp; Command pattern how can we useObserver Pattern &amp; Command pattern to utilize this pattern</li>
+</ul>
+<p>can you  discuss any usecase from any usecase that matches which fits  into design pattern   for this pattern
+with code examples  in python</p>
+<p>make it  very and laymann terms so that everyone can understand  even begineer should understand  in very simple terms  avoid jargons  about this in 20 minutes wee discuss about this pattern</p>
+<ul>
+<li>Agenda and discussion</li>
+</ul>
+<hr />
+<h3 id="2-agenda">2. <strong>Agenda</strong></h3>
+<ol>
+<li><strong>What is the Concept?</strong></li>
+<li><strong>Why the Name?</strong></li>
+<li><strong>What Problems Do They Solve?</strong></li>
+<li><strong>Common Scenarios for Use Cases</strong></li>
+<li><strong>Why These Patterns?</strong></li>
+<li><strong>How They Work</strong></li>
+<li><strong>Uniqueness</strong></li>
+<li><strong>Use Case Examples with Code</strong></li>
+</ol>
+<hr />
+<h2 id="observer-pattern"><strong>Observer Pattern</strong></h2>
+<h3 id="1-what-is-the-concept_6">1. <strong>What is the Concept?</strong></h3>
+<p>The <strong>Observer Pattern</strong> allows objects (called observers) to “watch” or observe another object (called the subject) and get automatically updated whenever the subject changes. This pattern is useful when changes in one part of your code need to trigger updates in other parts.</p>
+<h3 id="2-why-the-name_2">2. <strong>Why the Name?</strong></h3>
+<p>The term "Observer" refers to how objects act like “observers” by keeping an eye on a subject. They only respond when there’s a change, much like how a person only reacts when they see something of interest.</p>
+<h3 id="3what-problems-does-it-solve">3.<strong>What Problems Does it Solve?</strong></h3>
+<p>The Observer Pattern solves the problem of keeping different parts of a system in sync without creating a tightly coupled system. If multiple components rely on updates from a central piece, the observer allows them to stay up-to-date without direct dependencies.</p>
+<h3 id="4-common-use-cases">4. <strong>Common Use Cases</strong></h3>
+<ul>
+<li><strong>User Interface Updates</strong>: UI components can automatically refresh when data changes.</li>
+<li><strong>Notification Systems</strong>: Users can be notified when certain conditions are met (e.g., a new post is added).</li>
+<li><strong>Real-time Data Feeds</strong>: Observers like dashboards or news feeds that need to update with incoming data changes.</li>
+</ul>
+<h3 id="5-why-use-the-observer-pattern">5. <strong>Why Use the Observer Pattern?</strong></h3>
+<p>The Observer Pattern is ideal when different parts of your program need to react to changes in a centralized object without tight coupling. It promotes code that’s easier to maintain and extend because observers can be added or removed independently.</p>
+<h3 id="6-how-does-it-work">6. <strong>How Does It Work?</strong></h3>
+<ul>
+<li>The <strong>Subject</strong> (the observed object) keeps a list of observers.</li>
+<li>When a change occurs, the subject <strong>notifies</strong> all its observers by calling an update method on each one.</li>
+<li>Observers <strong>react</strong> based on the change.</li>
+</ul>
+<h3 id="7-what-makes-it-unique_2">7. <strong>What Makes It Unique?</strong></h3>
+<p>It decouples the subject from the observers, allowing each to evolve independently, which is excellent for complex systems where frequent changes happen.</p>
+<ul>
+<li>
+<p>Code Examples</p>
+<ul>
+<li><strong>Python</strong>:</li>
+</ul>
+<p>Let's say we’re creating a news app.  <br />
+Whenever a new article is published, subscribed users (observers) should receive notifications.</p>
+<pre><code>    python
+    # The Subject
+    class NewsPublisher:
+        def __init__(self):
+            self.subscribers = []
+
+        def subscribe(self, observer):
+            self.subscribers.append(observer)
+
+        def unsubscribe(self, observer):
+            self.subscribers.remove(observer)
+
+        def notify_observers(self, news):
+            for observer in self.subscribers:
+                observer.update(news)
+
+    # The Observer
+    class Subscriber:
+        def __init__(self, name):
+            self.name = name
+
+        def update(self, news):
+            print(f'{self.name} received news update: {news}')
+
+    # Using the Pattern
+    publisher = NewsPublisher()
+
+    subscriber1 = Subscriber("Alice")
+    subscriber2 = Subscriber("Bob")
+
+    publisher.subscribe(subscriber1)
+    publisher.subscribe(subscriber2)
+
+    # Publishing news    
+    publisher.notify_observers("Breaking News: Observer Pattern Explained!")
+</code></pre>
+</li>
+</ul>
+<h3 id="reference_1">Reference</h3>
+<p><a href="https://chatgpt.com/share/6721c3b3-bc00-8006-a227-94e803c82264">ChatGPT</a></p>
+<h2 id="command-pattern"><strong>Command Pattern</strong></h2>
+<h3 id="1-what-is-the-concept_7">1. <strong>What is the Concept?</strong></h3>
+<p>The <strong>Command Pattern</strong> encapsulates a request as an object, which allows you to parameterize methods, delay execution, queue requests, and support undoable actions. Think of it as a way to handle commands in a more structured and flexible way.</p>
+<h3 id="2-why-the-name_3">2. <strong>Why the Name?</strong></h3>
+<p>Each operation or request is treated like a “command” that can be executed independently, queued, or logged. Just as in a command center, orders are organized and issued in a controlled manner.</p>
+<h3 id="3-what-problems-does-it-solve_2">3. <strong>What Problems Does it Solve?</strong></h3>
+<p>The Command Pattern simplifies tasks that involve delayed execution, logging, undo, or stacking up commands. It provides flexibility and a higher level of abstraction for handling requests, useful when dealing with multiple actions.</p>
+<h3 id="4-common-use-cases_1">4. <strong>Common Use Cases</strong></h3>
+<ul>
+<li><strong>Undo/Redo Operations</strong>: Command objects can store states and undo operations if necessary.</li>
+<li><strong>Macro Recording</strong>: Storing a sequence of commands for playback.</li>
+<li><strong>Task Queues</strong>: Useful for queueing commands to be executed in sequence.</li>
+</ul>
+<h3 id="5-why-use-the-command-pattern">5. <strong>Why Use the Command Pattern?</strong></h3>
+<p>The Command Pattern provides flexibility in executing, reversing, or tracking commands. It’s especially valuable for applications that require complex command management.</p>
+<h3 id="6-how-does-it-work_1">6. <strong>How Does It Work?</strong></h3>
+<ul>
+<li><strong>Command Object</strong>: Contains information about the action to be performed.</li>
+<li><strong>Invoker</strong>: Triggers the command.</li>
+<li><strong>Receiver</strong>: The object that actually performs the command when it’s executed.</li>
+</ul>
+<h3 id="7-what-makes-it-unique_3">7. <strong>What Makes It Unique?</strong></h3>
+<p>Commands can be stored, delayed, and executed independently, making the Command Pattern useful for apps that require complex command handling and control.</p>
+<ul>
+<li>
+<p>Code Examples</p>
+<ul>
+<li><strong>Python</strong>:</li>
+</ul>
+<p>Imagine we’re building a text editor that needs undo and redo functionalities.</p>
+<pre><code>    python
+    # Command Interface
+    class Command:
+        def execute(self):
+            pass
+
+        def undo(self):
+            pass
+
+    # Concrete Command for writing text
+    class WriteCommand(Command):
+        def __init__(self, editor, text):
+            self.editor = editor
+            self.text = text
+
+        def execute(self):
+            self.editor.write(self.text)
+
+        def undo(self):
+            self.editor.undo_write(self.text)
+
+    # Receiver
+    class TextEditor:
+        def __init__(self):
+            self.content = ""
+
+        def write(self, text):
+            self.content += text
+            print(f"Editor Content: {self.content}")
+
+        def undo_write(self, text):
+            self.content = self.content[:-len(text)]
+            print(f"Editor Content after undo: {self.content}")
+
+    # Invoker
+    class TextEditorApp:
+        def __init__(self):
+            self.history = []
+
+        def execute_command(self, command):
+            command.execute()
+            self.history.append(command)
+
+        def undo_last_command(self):
+            if self.history:
+                command = self.history.pop()
+                command.undo()
+
+    # Using the Command Pattern
+    editor = TextEditor()
+    app = TextEditorApp()
+
+    command1 = WriteCommand(editor, "Hello, World! ")            
+    app.execute_command(command1)
+
+    command2 = WriteCommand(editor, "Design Patterns are fun!")
+    app.execute_command(command2)
+
+    # Undo last command
+    app.undo_last_command()
+</code></pre>
+</li>
+</ul>
+<h2 id="summary-of-discussion"><strong>Summary of Discussion :</strong></h2>
+<ul>
+<li>The Observer Pattern allows you to manage dynamic, automatic updates between components in your program. It’s perfect for things like notifications and UI updates when something changes.</li>
+<li>The <strong>Command Pattern</strong> is excellent for encapsulating actions as objects, which makes it possible to queue them, execute them later, or undo them if needed. It shines in applications like text editors and task schedulers where command management is essential.</li>
+</ul>
+<p>By understanding these patterns, we  can improve the flexibility, maintainability, and readability of your code, especially in complex applications. Both patterns promote better organization and cleaner separation of responsibilities, which are foundational to writing high-quality code.</p>
+<h2 id="prompts">Prompts</h2>
+<pre><code>        create an quiz   with    various  domains  at least 20 different domains   so that  team mates will mastering design pattern in such a way  that :
+
+        ```
+         - test crictical thinking of team members
+         - Problem based specific from above topic Observer and command pattern
+         - first  team will talk about their solutions
+         - give solutioon at last with prooper reasoninig why  what discussing about usecase for all domain
+
+        ```
+</code></pre>
+<h2 id="quiz">Quiz</h2>
+<p><strong>Quiz on Observer and Command Patterns</strong></p>
+<hr />
+<p><strong>1. Social Media Platform (Observer Pattern)</strong></p>
+<hr />
+<ul>
+<li>A social media platform needs to notify users whenever someone they follow posts a new update. How would you structure this system to efficiently notify users without overloading the server?</li>
+</ul>
+<p><strong>2. Video Game Development (Command Pattern)</strong></p>
+<ul>
+<li>A player in a game should be able to perform actions such as “move forward,” “jump,” and “attack,” and also undo the last action performed. How would you implement this feature to allow action history tracking and undo capability?</li>
+</ul>
+<p><strong>3. Stock Market App (Observer Pattern)</strong></p>
+<ul>
+<li>In a stock market app, users want to get updates on stock prices for companies they are interested in. Describe how you would set up the system to notify users of real-time stock changes.</li>
+</ul>
+<p><strong>4. Smart Home System (Command Pattern)</strong></p>
+<ul>
+<li>A smart home application should allow users to issue commands like “turn on lights,” “set thermostat to 70°F,” and “lock doors.” These commands should be queued and can be undone. Design a system that handles these commands effectively.</li>
+</ul>
+<p><strong>5. News Aggregator Website (Observer Pattern)</strong></p>
+<ul>
+<li>A news aggregator site updates articles in real-time from multiple sources. How would you ensure that all users are kept up-to-date when new articles are posted by their preferred news sources?</li>
+</ul>
+<p><strong>6. Online Learning Platform (Command Pattern)</strong></p>
+<ul>
+<li>In an online course platform, learners should be able to mark lessons as complete and undo this action if needed. How would you design this system using the Command Pattern to manage lesson completion?</li>
+</ul>
+<p><strong>7. E-commerce Notifications (Observer Pattern)</strong></p>
+<ul>
+<li>An e-commerce site needs to inform customers about order status changes (e.g., order shipped, order delivered). Describe how you’d set up a notification system to keep customers informed without checking statuses continuously.</li>
+</ul>
+<p><strong>8. Banking System (Command Pattern)</strong></p>
+<ul>
+<li>A banking app allows users to schedule fund transfers, which they can later cancel if needed. How would you use the Command Pattern to handle both the scheduling and cancellation of these transfers?</li>
+</ul>
+<p><strong>9. Sports App (Observer Pattern)</strong></p>
+<ul>
+<li>A sports app wants to notify fans about live score updates for their favorite teams. What kind of Observer setup would be efficient for managing these real-time updates?</li>
+</ul>
+<p><strong>10. Email Client (Command Pattern)</strong></p>
+<ul>
+<li>In an email client, users should be able to compose, send, and undo sending an email within a few seconds after pressing "send." How would you use the Command Pattern to achieve this functionality?</li>
+</ul>
+<p><strong>11. Logistics &amp; Delivery Tracking (Observer Pattern)</strong></p>
+<ul>
+<li>A logistics company wants to track and notify customers about delivery status changes in real time. How would you design this using the Observer Pattern to provide timely updates?</li>
+</ul>
+<p><strong>12. Video Streaming Service (Command Pattern)</strong></p>
+<ul>
+<li>A streaming service allows users to add movies to a "watch later" list. They should also be able to undo their last addition. How would you apply the Command Pattern to manage these add and undo actions?</li>
+</ul>
+<p><strong>13. Medical Monitoring System (Observer Pattern)</strong></p>
+<ul>
+<li>A hospital wants to monitor patients' vital signs and receive alerts when critical changes occur. Design a solution that ensures all relevant medical staff are notified immediately upon any significant vital sign change.</li>
+</ul>
+<p><strong>14. Task Management Software (Command Pattern)</strong></p>
+<ul>
+<li>Task management software needs to allow users to mark tasks as completed, with the option to undo this action. How would you implement this using the Command Pattern to manage task status changes?</li>
+</ul>
+<p><strong>15. Weather App (Observer Pattern)</strong></p>
+<ul>
+<li>A weather app provides real-time weather updates to users who subscribe to specific locations. What would your Observer setup look like to ensure all subscribers receive timely updates?</li>
+</ul>
+<p><strong>16. Library Management System (Command Pattern)</strong></p>
+<ul>
+<li>A library management system allows librarians to add and remove books from the library catalog. They should also be able to undo these actions. Describe how the Command Pattern would be used to manage book catalog updates.</li>
+</ul>
+<p><strong>17. Fitness Tracker (Observer Pattern)</strong></p>
+<ul>
+<li>A fitness app sends notifications to users whenever their friends complete a workout. How would you set up an Observer Pattern to keep users updated about their friends’ activities?</li>
+</ul>
+<p><strong>18. Online Auction System (Observer Pattern)</strong></p>
+<ul>
+<li>An online auction system needs to notify participants whenever there’s a new bid on an item they are watching. How would you apply the Observer Pattern to handle bid updates for multiple items?</li>
+</ul>
+<p><strong>19. Restaurant Order Management (Command Pattern)</strong></p>
+<ul>
+<li>In a restaurant POS system, servers should be able to send orders to the kitchen and also cancel them if necessary. Design a solution using the Command Pattern to manage these order and cancellation requests.</li>
+</ul>
+<p><strong>20. Real Estate Listing App (Observer Pattern)</strong></p>
+<ul>
+<li>A real estate app notifies users when new properties are listed in areas of interest. How would you implement an Observer Pattern to provide timely updates to users based on their specified locations?</li>
+</ul>
+<hr />
+<p><strong>Solutions  from chatgpt (it may  change  scenerio  generated just randomly )</strong></p>
+<p><strong>Note</strong>: After discussing solutions, here’s an explanation of each question and how the Observer or Command pattern solves the problem.</p>
+<ol>
+<li><strong>Social Media Platform</strong>: Use Observer Pattern to let users subscribe to updates. The platform notifies them automatically when there’s new content, reducing server load.</li>
+<li><strong>Video Game Development</strong>: Use Command Pattern to queue actions like "jump" and "move." Each command can be undone, making it easier to manage actions.</li>
+<li><strong>Stock Market App</strong>: Observer Pattern is ideal for notifying interested users of stock changes without continuous polling.</li>
+<li><strong>Smart Home System</strong>: Command Pattern allows commands to be queued, executed, and undone, creating a flexible and manageable system.</li>
+<li><strong>News Aggregator Website</strong>: Observer Pattern enables real-time article updates, pushing content to users who subscribed.</li>
+<li><strong>Online Learning Platform</strong>: Command Pattern lets users mark and unmark lessons as complete, giving flexibility in lesson tracking.</li>
+<li><strong>E-commerce Notifications</strong>: Observer Pattern sends updates when order statuses change, reducing the need for manual checking.</li>
+<li><strong>Banking System</strong>: Command Pattern handles fund transfer scheduling and cancellation, giving users control over future transfers.</li>
+<li><strong>Sports App</strong>: Observer Pattern manages live score updates, notifying fans without delays.</li>
+<li><strong>Email Client</strong>: Command Pattern allows for delayed execution, enabling an undo option for sent emails within seconds.</li>
+<li><strong>Logistics Tracking</strong>: Observer Pattern ensures delivery updates reach customers as soon as statuses change.</li>
+<li><strong>Video Streaming Service</strong>: Command Pattern manages adding and undoing movies in a "watch later" list.</li>
+<li><strong>Medical Monitoring System</strong>: Observer Pattern ensures critical updates on vitals reach all medical staff immediately.</li>
+<li><strong>Task Management Software</strong>: Command Pattern allows marking and undoing task completions, offering flexible task management.</li>
+<li><strong>Weather App</strong>: Observer Pattern provides location-specific weather updates, delivering timely information to users.</li>
+<li><strong>Library Management System</strong>: Command Pattern manages additions/removals in the catalog and allows undoing changes when necessary.</li>
+<li><strong>Fitness Tracker</strong>: Observer Pattern keeps users informed of friends’ activities in real-time, promoting engagement.</li>
+<li><strong>Online Auction System</strong>: Observer Pattern notifies users of new bids, keeping them engaged in auctions of interest.</li>
+<li><strong>Restaurant Order Management</strong>: Command Pattern allows order creation and cancellation, making order management efficient.</li>
+<li><strong>Real Estate Listing App</strong>: Observer Pattern provides timely notifications for property listings based on user preferences.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="PromptCollections.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Prompt Collection">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Prompt Collection
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../reports/TechDailyReport.html" class="md-footer__link md-footer__link--next" aria-label="Next: Tech Daily Report">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Tech Daily Report
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Serendipity2-0" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/trademanv1?s=21&t=bBTay4-vvjkbqF5YnSYrog" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/trademan.v1?igsh=NnZ6dDR2M2Nhc3h5" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141m0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7m146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8m76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:your-email@example.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l217.6 163.2c11.4 8.5 27 8.5 38.4 0l217.6-163.2c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 176v208c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V176L294.4 339.2a63.9 63.9 0 0 1-76.8 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "toggle.dark_mode", "navigation.footer"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

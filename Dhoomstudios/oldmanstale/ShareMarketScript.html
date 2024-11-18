@@ -1,0 +1,3614 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../EvolutionOfInvesting.html">
+      
+      
+        <link rel="next" href="../sharemarket/ShareMarketShort.html">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>ShareMarket Script - Serendipity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#share-market" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../index.html" title="Serendipity" class="md-header__button md-logo" aria-label="Serendipity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Serendipity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ShareMarket Script
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.html" class="md-tabs__link">
+          
+  
+  Serendipity
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Trademan/Projects/trademanV1/OnboardingGuide.html" class="md-tabs__link">
+          
+  
+  TradeMan
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../DebtReference.html" class="md-tabs__link">
+          
+  
+  DhoomStudios
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="Serendipity" class="md-nav__button md-logo" aria-label="Serendipity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Serendipity
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Serendipity
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Serendipity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accounts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Accounts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kaas user Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Kaas user Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas MainSheet Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/kaasuserguide/KaasSheetHeaderDescription.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas Sheet Header Indexes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/kaasuserguide/KaasSheetsSummary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas Sheets Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accounting Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Accounting Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/AccountDailyReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Daily Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/AccountStandardOperatingProcedures.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Standard Operating Procedures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/AccountTransactionScenarios.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Transaction Scenarios
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/AccQTPrd.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AccQT Prd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/VBAExcelToolGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VBA Macro - Tool within Excel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/GSTProcess.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GST Process
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/accountingguide/IncomeTaxDeductions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Income Tax Deductions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/accounts/SerendipityBusinessRequirementsPlan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serendipity Business Requirements Plan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HR Onboarding Library
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            HR Onboarding Library
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/hronboardinglibrary/EmployeeOnboardingGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Employee Onboarding Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/hronboardinglibrary/SMS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Management System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            General Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/generalguidelines/FileNamingGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File Naming Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/generalguidelines/AudioMeetingGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Audio Meeting Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/generalguidelines/DUNSRegFormalities.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DUNS Registration formalities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Serendipity/ViewOnSerendipity.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    View On Serendipity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    TradeMan
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            TradeMan
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    TradeManV1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            TradeManV1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/trademanV1/OnboardingGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Onboarding Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/trademanV1/TradeManMeetingAudio_Transcribe.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TradeManV1 Meetings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/trademanV1/FrontendRefactoringDoc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frontend Refactoring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/trademanV1/TestingEODReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing EOD Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/trademanV1/TestingDiscord.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing Discord
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HakunaMatata
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            HakunaMatata
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/hakunamatata/HakunaMatataDevGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HakunaMatata Dev Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kaas
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kaas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/kaas/KaasAppPrompt.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas App Prompt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/kaas/FabricKaas.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Kaas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ChitBox
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            ChitBox
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/ChitBoxProject.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChitBox Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_2" id="__nav_3_1_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API Sethu and Distributed Ledger Technology
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            API Sethu and Distributed Ledger Technology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/apisethudocs/ApiSethuDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API sethu documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/apisethudocs/DLTImplementationGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Implementation Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/apisethudocs/DLTEntityRegistration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Entity Registration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/apisethudocs/DLTHeaderManualPing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Header Manual Ping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/apisethudocs/DLTContentApproval.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Content Approval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_3" id="__nav_3_1_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Flutter Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Flutter Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/fluttercode/FlutterCodeReviewForm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flutter Code Review Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/fluttercode/Prompt.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Used
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/fluttercode/OpenClosedPrinciple.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Open Closed Principle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/fluttercode/LISKOVPrinciple.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Liskov Substitution Principle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_4" id="__nav_3_1_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Project Management
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Project Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/ProjectManagement.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/CreatingAccountCreated.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating-Account Created
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/DashboardUnitTests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-Dashboard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/eKYCVerificationScreen.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eKYC Verification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/eKYCImplementationAndUT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eKYC Implementation and UT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/LoginPageandOTP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Login page with OTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/NavBar.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NavBar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/OTPUnitTests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-OTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/PersonalDetailsForm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Personal Details Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/PersonalDetailsTestCases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-Personal Details
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/TodayTaskDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Today's Task
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/FunctionalRequirements.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functional Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/SystemDesign.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/TestFlightDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TestFlight Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/projectmanagement/GooglePlaystoreAccountCreation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google Playstore Account Creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/AppDesignTechnicalDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    App Design Technical Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/SystemDesignLLD_HLD.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Design (LLD+HLD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/GitWorkFlow.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git WorkFlow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/Projects/chitbox/ChitboxAuctionProcess.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auction Process
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software/Technology Instructions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Software/Technology Instructions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/software_instructions/CoolifyBeginPhase1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coolify Phase1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/software_instructions/CoolifyInstructions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coolify Instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/software_instructions/CloudflareHosting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloudflare Hosting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/software_instructions/JioRouterConfig.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jio Router Config
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/software_instructions/PaymentGatewayBenefits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Payment Gateway Benefits Razorpay
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/software_instructions/AgentCreationGuideline.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agent Creation Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/software_instructions/RbacGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RBAC Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/software_instructions/googlesso/GoogleSSOonGCP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google SSO On GCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/software_instructions/WhatsappAPIIntegration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WhatsApp API Creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General Tech Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            General Tech Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/tech_guidelines/GitHubRepos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/tech_guidelines/CommitConventionGuideline.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commit Convention Guideline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/tech_guidelines/PromptCollections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Collection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/tech_guidelines/DesignPatterns.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reports
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reports
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/reports/TechDailyReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tech Daily Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Trademan/reports/DevelopmentSch.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Schedule
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    DhoomStudios
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            DhoomStudios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DebtReference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DebtReviewed.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Reviewed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AdobeCreativeSuite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adobe Creative Suite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ScriptGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Script Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AdobeGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adobe Tools & Features Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EvolutionOfInvesting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Evolution of Investing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Old Man's Tale
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            Old Man's Tale
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ShareMarket Script
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ShareMarketScript.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Script
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scene-1-the-modern-living-room" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 1: The Modern Living Room
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-2-the-old-mans-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 2: The Old Man's Message
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-3-the-historical-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 3: The Historical Journey
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-4-the-industrial-revolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 4: The Industrial Revolution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-5-the-present-day" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 5: The Present Day
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-6-a-new-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 6: A New Perspective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ending-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ending Message
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Share Market
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Share Market
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharemarket/ShareMarketShort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Short
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharemarket/ShareMarketWebseries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Webseries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Debt
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            Debt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debt/DebtWebseriesScript.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Webseries Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Insurance
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            Insurance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../insurance/InsuranceShort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Insurance Short
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scene-1-the-modern-living-room" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 1: The Modern Living Room
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-2-the-old-mans-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 2: The Old Man's Message
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-3-the-historical-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 3: The Historical Journey
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-4-the-industrial-revolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 4: The Industrial Revolution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-5-the-present-day" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 5: The Present Day
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scene-6-a-new-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scene 6: A New Perspective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ending-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ending Message
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="share-market">Share Market</h1>
+<h2 id="scene-1-the-modern-living-room">Scene 1: The Modern Living Room</h2>
+<p>The setting is a modern, stylish living room. The two friends are comfortably seated on an L-shaped sofa, surrounded by sleek furniture, soft lighting, and a large window that lets in the golden afternoon sunlight. They are casually dressed, absorbed in their smartphones, which glow softly in their hands. A flat-screen TV is on in the background, playing a financial news channel, but they pay little attention to it.</p>
+<p><strong>Dialogue</strong></p>
+<p><strong>Friend 1</strong>: (Eyes glued to his phone, he leans forward, showing the screen to his friend with excitement)<br />
+Bro, do you think I should invest in this stock?<br />
+(The screen shows a stock trading app, the graph for a stock soaring upwards, with green numbers flashing positively.)</p>
+<p><strong>Friend 2</strong>: (Takes a quick glance at the phone, then nods confidently, leaning back into the sofa with an easy smile)<br />
+Yeah bro, invest around 80k on this. You’ll definitely make double in a few days. Trust me, it’s a no-brainer.<br />
+(He gives a casual wave of his hand, as if dismissing any concerns.)</p>
+<p><strong>Friend 1</strong>: (Eyes lighting up, he smiles broadly, clearly excited by the prospect of easy money)<br />
+Done! Thanks, bro. You’re the best.<br />
+(He eagerly taps the “Buy” button on his phone, and the camera zooms in to show his thumb pressing down, followed by the confirmation screen on the phone.)</p>
+<p><strong>The Arrival of the Old Man</strong></p>
+<p>As the transaction completes, the room is suddenly filled with a strange gust of wind. The curtains flutter wildly, papers from a nearby desk fly up into the air, and the sound of wind howling fills the room.</p>
+<p>The two friends exchange confused glances, their phones forgotten for a moment as they look around the room. The wind seems unnatural, and the air grows heavy, as if something extraordinary is about to happen.</p>
+<p>Out of nowhere, an old man appears. He is dressed in weathered, old-fashioned clothes—faded tunic, rough trousers, and worn boots. His white beard flows down to his chest, and his hair is wild, as though he’s just stepped off a ship after a long journey. He looks around the room, his expression one of mild annoyance, as if he's been pulled from some faraway place unexpectedly.</p>
+<h2 id="scene-2-the-old-mans-message">Scene 2: The Old Man's Message</h2>
+<p><strong>Old Man</strong>: (Wipes his brow theatrically, then sighs, exasperated)<br />
+Ah, things are so easy for these young men nowadays. (He gestures broadly towards them) Look at you, making profits with just a single click!<br />
+(His voice is rich, echoing slightly, as if coming from another time entirely.)</p>
+<p>The friends sit frozen, their eyes wide in shock, unsure whether they’re seeing a ghost, a time traveler, or something else entirely. One of them instinctively holds up his phone as if to protect himself, the other looks at the old man with a confused half-smile.</p>
+<p><strong>Friend 2</strong>: (Still trying to process the scene, he raises an eyebrow)<br />
+Uh... who are you?</p>
+<p><strong>Old Man</strong>: (Huffs, brushing off the question with a wave of his hand)<br />
+Who am I? I’m someone who’s seen the real struggles of investing! In my time, (he leans in dramatically) we had to cross vast seas, go days without food, and face storms just to earn a single share of profit!<br />
+(He shakes his head in disbelief at how easy things have become.)</p>
+<p>The two friends exchange glances again. One of them mouths the words “Is he serious?” to the other.</p>
+<p><strong>Old Man</strong>: (Eyes narrowing at their skepticism, he straightens up, his voice deepening)<br />
+What! You don’t believe me? Come, let me show you the hardships we had to bear to enjoy the benefits of profit.</p>
+<p>The camera begins to blur as the room starts to shimmer and fade. The walls of the modern living room melt away, replaced by the open seas, large wooden ships swaying in the waves. The colors shift to a more muted, sepia tone, as if stepping back in time to a place filled with both danger and opportunity.</p>
+<h2 id="scene-3-the-historical-journey">Scene 3: The Historical Journey</h2>
+<p><strong>The 15th-Century Port</strong></p>
+<p>The scene changes to a bustling port in the 15th century. Sailors and merchants gather by the docks, overseeing the loading of crates onto large wooden ships. The sound of creaking timbers, seagulls calling, and waves crashing fills the air. The ships are setting out on long voyages, seeking spices and other valuable goods from distant lands.</p>
+<p><strong>Narrator (Old Man’s Voice)</strong>: (Voiceover)<br />
+Yes, this is how the share market began in our times. Men would stand in line, eagerly investing their hard-earned money in ships bound for perilous voyages. Profits weren’t calculated on screens or news bulletins. No, we had to wait months—sometimes years—to even know if our investments were still afloat!</p>
+<p>The camera pans across the scene, showing anxious investors huddled together, handing over gold coins to captains and merchants, hoping their investments would return safely. Ships drift off into the horizon, with uncertainty hanging over them.</p>
+<p>The screen then transitions from the cobblestone streets of the port to high-rise buildings slowly being constructed in the background. Time speeds up, showing the evolution of trade and commerce—markets grow busier, paper bonds and stocks are exchanged, industrial machinery begins to appear, symbolizing the dawn of the Industrial Revolution.</p>
+<h2 id="scene-4-the-industrial-revolution">Scene 4: The Industrial Revolution</h2>
+<p>The old man is now standing at the open door of a moving train from the 19th century, looking out over vast tracks of newly laid railroads. Steam billows up from the engine as the train speeds along, carrying passengers and goods to new cities.</p>
+<p><strong>Old Man</strong>: (With a look of pride)<br />
+Soon enough, people realized the power of investing together. Huge projects—factories, railways, bridges—were built with collective savings. We put everything we had into these ventures. Your modern conveniences (he gestures to the surroundings) are the result of those investments.</p>
+<p>The camera zooms out to reveal sprawling factories, bridges spanning great distances, and bustling cities rising up. Workers and investors alike contribute to the growing economy, building the infrastructure that future generations would take for granted.</p>
+<h2 id="scene-5-the-present-day">Scene 5: The Present Day</h2>
+<p>The scene fades to the present day. The old man walks through a fast-paced modern trading floor, surrounded by digital screens displaying stock charts, numbers flashing in green and red. Traders on their phones make transactions in seconds. He pauses to observe how effortlessly people are making investments now.</p>
+<p><strong>Old Man</strong>: (Turning back to the camera, with a soft sigh)<br />
+You see, we faced countless challenges just for a few more profits. What you achieve today with just one click, we had to cross oceans for.</p>
+<p>The camera cuts back to the friends, sitting on their sofa, now watching the old man intently, their expressions more serious and thoughtful.</p>
+<p><strong>Old Man</strong>: (With a knowing smile)<br />
+But remember, just because it’s easy doesn’t mean it’s risk-free. Always respect the value of money and the power of investing wisely.</p>
+<p>The old man gives them a final look, full of wisdom, before slowly fading away, as mysteriously as he arrived.</p>
+<h2 id="scene-6-a-new-perspective">Scene 6: A New Perspective</h2>
+<p>The two friends sit in silence for a moment, processing what they’ve just experienced.</p>
+<p><strong>Friend 1</strong>: (Turning to his friend, half-joking but clearly more thoughtful now)<br />
+Maybe I should rethink this investment?</p>
+<p><strong>Friend 2</strong>: (Nods slowly, smiling but also a bit more serious)<br />
+Yeah... maybe we should do a bit more research first.</p>
+<p>They both laugh, but it’s clear the conversation has taken on a deeper meaning.</p>
+<hr />
+<h2 id="ending-message">Ending Message</h2>
+<p>The screen fades out as the words appear:</p>
+<p>"Investing has evolved, but wisdom is timeless. Invest responsibly."</p>
+<hr />
+<h1 id="how-to-bring-this-to-life">How to Bring This to Life</h1>
+<p>To effectively produce this expanded script using Adobe tools like Premiere Pro, After Effects, and Audition, here’s a step-by-step guide tailored to bring out the best in each scene:</p>
+<h2 id="1-scene-setup-and-editing-premiere-pro">1. Scene Setup and Editing (Premiere Pro)</h2>
+<h3 id="scene-1-casual-conversation">Scene 1 (Casual Conversation)</h3>
+<ul>
+<li>Start with clean cuts between the two friends as they converse. Use simple over-the-shoulder shots or medium close-ups to keep the casual, modern vibe. Ensure the room lighting is soft but warm, matching the laid-back tone.
+  When Friend 1 shows the stock app on the phone, consider using a split-screen effect or an insert shot of the phone display for clarity. Use motion tracking (in Premiere Pro or After Effects) to focus the audience’s attention on the stock chart.
+  Keep the background music low and subtle at this point—something modern and relaxed (like lo-fi or a soft ambient track). You can adjust the volume with keyframes in Premiere Pro to fade in and out at natural moments in the conversation.</li>
+</ul>
+<h3 id="old-mans-entrance-transition">Old Man’s Entrance (Transition):</h3>
+<ul>
+<li>For the gust of wind, use slow-motion effects for added drama. You can film the curtains and papers fluttering and then slow down the footage in Premiere Pro. Use Adobe’s Warp Stabilizer to smooth any shaky shots and enhance the effect.
+  Add a wind sound effect (import into Premiere Pro), adjusting the timing and intensity to match the visual cues.
+  For the old man's sudden appearance, use After Effects for a subtle “fade-in” or “whirlwind” effect. You can create a masked dissolve transition with a layer of wind-like motion using particle simulations or dust effects in After Effects to make the old man’s entrance magical yet believable.</li>
+</ul>
+<h2 id="2-visual-effects-after-effects">2. Visual Effects (After Effects)</h2>
+<h3 id="old-mans-introduction">Old Man’s Introduction:</h3>
+<ul>
+<li>
+<p>Apply a soft glow effect around the old man as he appears. This can be done in After Effects using the Glow effect (under the Effects panel), which can help him stand out in the scene as someone out of time.
+  Add subtle environmental changes, such as a slight color shift or vignette (in Premiere Pro) when the old man speaks, creating a subconscious cue that something magical or important is happening.
+  Historical Transition (15th Century Flashback):</p>
+</li>
+<li>
+<p>When transitioning to the past, use a Gaussian blur effect in Premiere Pro as the screen starts to fade and transform into the historical scene. Combine this with time-lapse effects or a speed ramp to show the world moving rapidly from the present to the past.</p>
+</li>
+<li>
+<p>For the ships and sea voyages scene, use stock footage or render custom visuals in After Effects. You can apply color grading (sepia tones or desaturation) in Lumetri Color to give the historical scenes an old-world, vintage look.
+  Camera tracking in After Effects will allow you to integrate the old man into historical scenes seamlessly. This will make him appear as if he’s walking alongside the crowd in the 15th century.</p>
+</li>
+</ul>
+<h2 id="3-motion-graphics-after-effects">3. Motion Graphics (After Effects)</h2>
+<h3 id="old-mans-monologue">Old Man’s Monologue:</h3>
+<ul>
+<li>
+<p>During the narration, use motion graphics to visually represent key historical facts or milestones. For example:
+  Animate coins falling into a chest as he talks about early profits from voyages.
+  Create map animations showing trade routes and voyages across the seas. After Effects' motion tracking and shape layers are great for this.</p>
+</li>
+<li>
+<p>Use text overlays to highlight important concepts like "The Industrial Revolution" or "Collective Investment." These can be done with text animations in After Effects, where the text appears or fades in time with the old man’s words.
+  Time-lapse Construction of Buildings:</p>
+</li>
+<li>
+<p>As the scene transitions from cobblestone streets to high-rise buildings, use 2D motion graphics or 3D layer animations in After Effects to simulate buildings rising and factories being constructed. You can use a scaling effect to show this gradual evolution quickly.</p>
+</li>
+</ul>
+<h2 id="4-color-grading-premiere-pro">4. Color Grading (Premiere Pro)</h2>
+<h3 id="tone-shifts-between-scenes">Tone Shifts Between Scenes:</h3>
+<ul>
+<li>
+<p>Scene 1 (Present Day): Use a warm color palette to reflect the modern, laid-back environment. Keep the tones soft and vibrant.</p>
+</li>
+<li>
+<p>Scene 2 (Historical Flashback): Switch to cooler or sepia tones to suggest the past. You can do this in Lumetri Color by adjusting the temperature and adding slight grain for an old-film look. Use vignette effects to focus the audience's attention on specific actions, like sailors boarding ships or investors handing over coins.</p>
+</li>
+</ul>
+<h3 id="scene-transitions-past-to-present">Scene Transitions (Past to Present):</h3>
+<ul>
+<li>Use gradual color shifts when transitioning back to the modern day. For example, as the old man moves from the past into the modern stock trading floor, brighten the colors and remove the sepia tones slowly, symbolizing the leap back into the present.</li>
+</ul>
+<h2 id="5-sound-design-audition">5. Sound Design (Audition)</h2>
+<h3 id="old-mans-appearance-sound-effects">Old Man’s Appearance (Sound Effects):</h3>
+<ul>
+<li>
+<p>In Adobe Audition, create a dramatic soundscape for the old man’s entrance. Layer different sound effects, such as wind gusts, magical chimes, or eerie whispers. Use reverb and echo to give the sound a mysterious quality.
+  Adjust the old man’s voice slightly by adding a slight reverb in Audition, making it sound like his voice has a bit of “age” to it, adding depth to the character.
+  Background Music &amp; Transitions:</p>
+</li>
+<li>
+<p>In Audition, layer the suggested background music tracks for different scenes. Use audio crossfades to blend the upbeat music in Scene 1 with the more dramatic orchestral music during the historical flashback.
+  When transitioning between different eras, add appropriate soundscapes—for the past, layer in sounds of ships creaking, market chatter, and distant horns. For the Industrial Revolution, mix in mechanical noises like factory machinery and train whistles.</p>
+</li>
+</ul>
+<h3 id="dialog-clarity">Dialog Clarity:</h3>
+<ul>
+<li>Ensure all dialogue is clean and clear by using vocal enhancement effects in Audition. You can apply noise reduction to remove any background hum and equalize the voices for a crisper sound. Match audio levels so the dialogue stands out over the music and sound effects.</li>
+</ul>
+<h2 id="6-title-and-end-message-after-effects">6. Title and End Message (After Effects)</h2>
+<h3 id="final-message-motion-graphics">Final Message (Motion Graphics):</h3>
+<ul>
+<li>For the final message, “Investing has evolved, but wisdom is timeless. Invest responsibly,” create a sleek text animation in After Effects. Have the text appear letter by letter, with a soft glow or fade-in effect.
+  Use keyframe animations for smooth transitions between different parts of the message. Keep the font bold yet elegant, reinforcing the theme of timeless wisdom.
+  You can also add a subtle animated logo or branding at the end using motion paths and opacity keyframes in After Effects to give it a polished, professional touch.</li>
+</ul>
+<h2 id="7-transitions-and-effects-premiere-pro-after-effects">7. Transitions and Effects (Premiere Pro &amp; After Effects)</h2>
+<ul>
+<li>Use dissolve transitions between scenes to avoid abrupt cuts, especially when moving between time periods.
+  Use dynamic zooms in Premiere Pro for specific shots (like when the friends first see the old man or when the old man fades away).
+  Motion blur effects can be applied during fast transitions (like the gust of wind or when the old man walks through history) for a smoother, more natural visual flow.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../EvolutionOfInvesting.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: The Evolution of Investing">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                The Evolution of Investing
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../sharemarket/ShareMarketShort.html" class="md-footer__link md-footer__link--next" aria-label="Next: ShareMarket Short">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                ShareMarket Short
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Serendipity2-0" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/trademanv1?s=21&t=bBTay4-vvjkbqF5YnSYrog" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/trademan.v1?igsh=NnZ6dDR2M2Nhc3h5" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141m0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7m146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8m76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:your-email@example.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l217.6 163.2c11.4 8.5 27 8.5 38.4 0l217.6-163.2c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 176v208c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V176L294.4 339.2a63.9 63.9 0 0 1-76.8 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "toggle.dark_mode", "navigation.footer"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

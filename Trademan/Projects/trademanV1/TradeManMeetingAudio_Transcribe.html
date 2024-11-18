@@ -1,0 +1,4052 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="OnboardingGuide.html">
+      
+      
+        <link rel="next" href="FrontendRefactoringDoc.html">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>TradeManV1 Meetings - Serendipity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trademan-meeting-audio-1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="Serendipity" class="md-header__button md-logo" aria-label="Serendipity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Serendipity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TradeManV1 Meetings
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.html" class="md-tabs__link">
+          
+  
+  Serendipity
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="OnboardingGuide.html" class="md-tabs__link">
+          
+  
+  TradeMan
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Dhoomstudios/DebtReference.html" class="md-tabs__link">
+          
+  
+  DhoomStudios
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="Serendipity" class="md-nav__button md-logo" aria-label="Serendipity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Serendipity
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Serendipity
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Serendipity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accounts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Accounts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kaas user Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Kaas user Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas MainSheet Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/kaasuserguide/KaasSheetHeaderDescription.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas Sheet Header Indexes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/kaasuserguide/KaasSheetsSummary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas Sheets Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accounting Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Accounting Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccountDailyReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Daily Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccountStandardOperatingProcedures.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Standard Operating Procedures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccountTransactionScenarios.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Transaction Scenarios
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccQTPrd.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AccQT Prd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/VBAExcelToolGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VBA Macro - Tool within Excel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/GSTProcess.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GST Process
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/IncomeTaxDeductions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Income Tax Deductions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/SerendipityBusinessRequirementsPlan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serendipity Business Requirements Plan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HR Onboarding Library
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            HR Onboarding Library
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/hronboardinglibrary/EmployeeOnboardingGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Employee Onboarding Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/hronboardinglibrary/SMS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Management System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            General Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/generalguidelines/FileNamingGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File Naming Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/generalguidelines/AudioMeetingGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Audio Meeting Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/generalguidelines/DUNSRegFormalities.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DUNS Registration formalities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/ViewOnSerendipity.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    View On Serendipity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    TradeMan
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            TradeMan
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    TradeManV1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            TradeManV1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OnboardingGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Onboarding Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    TradeManV1 Meetings
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="TradeManMeetingAudio_Transcribe.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    TradeManV1 Meetings
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#trademan-meeting-audio-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      TradeMan Meeting Audio 1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trademan-meeting-audio-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      TradeMan Meeting Audio 2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trademan-meeting-audio-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      TradeMan Meeting Audio 3
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="FrontendRefactoringDoc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frontend Refactoring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="TestingEODReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing EOD Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="TestingDiscord.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing Discord
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HakunaMatata
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            HakunaMatata
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hakunamatata/HakunaMatataDevGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HakunaMatata Dev Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kaas
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kaas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kaas/KaasAppPrompt.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas App Prompt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kaas/FabricKaas.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Kaas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ChitBox
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            ChitBox
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/ChitBoxProject.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChitBox Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_2" id="__nav_3_1_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API Sethu and Distributed Ledger Technology
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            API Sethu and Distributed Ledger Technology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/apisethudocs/ApiSethuDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API sethu documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/apisethudocs/DLTImplementationGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Implementation Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/apisethudocs/DLTEntityRegistration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Entity Registration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/apisethudocs/DLTHeaderManualPing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Header Manual Ping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/apisethudocs/DLTContentApproval.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Content Approval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_3" id="__nav_3_1_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Flutter Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Flutter Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/fluttercode/FlutterCodeReviewForm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flutter Code Review Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/fluttercode/Prompt.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Used
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/fluttercode/OpenClosedPrinciple.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Open Closed Principle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/fluttercode/LISKOVPrinciple.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Liskov Substitution Principle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_4" id="__nav_3_1_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Project Management
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Project Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/ProjectManagement.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/CreatingAccountCreated.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating-Account Created
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/DashboardUnitTests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-Dashboard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/eKYCVerificationScreen.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eKYC Verification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/eKYCImplementationAndUT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eKYC Implementation and UT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/LoginPageandOTP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Login page with OTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/NavBar.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NavBar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/OTPUnitTests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-OTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/PersonalDetailsForm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Personal Details Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/PersonalDetailsTestCases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-Personal Details
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/TodayTaskDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Today's Task
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/FunctionalRequirements.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functional Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/SystemDesign.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/TestFlightDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TestFlight Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/projectmanagement/GooglePlaystoreAccountCreation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google Playstore Account Creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/AppDesignTechnicalDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    App Design Technical Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/SystemDesignLLD_HLD.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Design (LLD+HLD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/GitWorkFlow.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git WorkFlow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chitbox/ChitboxAuctionProcess.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auction Process
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software/Technology Instructions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Software/Technology Instructions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/CoolifyBeginPhase1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coolify Phase1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/CoolifyInstructions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coolify Instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/CloudflareHosting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloudflare Hosting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/JioRouterConfig.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jio Router Config
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/PaymentGatewayBenefits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Payment Gateway Benefits Razorpay
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/AgentCreationGuideline.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agent Creation Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/RbacGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RBAC Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/googlesso/GoogleSSOonGCP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google SSO On GCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/WhatsappAPIIntegration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WhatsApp API Creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General Tech Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            General Tech Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/GitHubRepos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/CommitConventionGuideline.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commit Convention Guideline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/PromptCollections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Collection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/DesignPatterns.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reports
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reports
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/TechDailyReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tech Daily Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/DevelopmentSch.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Schedule
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DhoomStudios
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            DhoomStudios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/DebtReference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/DebtReviewed.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Reviewed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/AdobeCreativeSuite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adobe Creative Suite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/ScriptGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Script Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/AdobeGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adobe Tools & Features Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/EvolutionOfInvesting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Evolution of Investing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Old Man's Tale
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            Old Man's Tale
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/oldmanstale/ShareMarketScript.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Share Market
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Share Market
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/sharemarket/ShareMarketShort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Short
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/sharemarket/ShareMarketWebseries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Webseries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Debt
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            Debt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/debt/DebtWebseriesScript.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Webseries Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Insurance
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            Insurance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/insurance/InsuranceShort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Insurance Short
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#trademan-meeting-audio-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      TradeMan Meeting Audio 1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trademan-meeting-audio-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      TradeMan Meeting Audio 2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trademan-meeting-audio-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      TradeMan Meeting Audio 3
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>TradeManV1 Meetings</h1>
+
+<h3 id="trademan-meeting-audio-1">TradeMan Meeting Audio 1</h3>
+<p><audio id="audioPlayer" controls="controls" preload="auto" style="width: 100%; max-width: 500px;">
+  <source src="/media/TMVoiceTranscribeNote1.ogg" type="audio/ogg">
+  Your browser does not support the audio element.
+</audio></p>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('audioPlayer');
+
+    if (audio) {
+        // Check if the audio element has any source files available
+        const sources = audio.querySelectorAll('source');
+        let hasValidSource = false;
+
+        sources.forEach((source) => {
+            if (source.src) {
+                hasValidSource = true;
+            }
+        });
+
+        if (!hasValidSource) {
+            console.warn("No valid audio source available.");
+            alert("Unable to load audio files. Please check the file paths and try again.");
+        }
+
+        // Handle audio errors
+        audio.addEventListener('error', function(e) {
+            console.error('Error occurred while loading audio:', e);
+            alert('An error occurred while loading the audio file. Please try again.');
+        });
+    }
+});
+</script>
+
+<div style="font-style: italic; color: gray; margin-top: 5px;">
+  <strong>Transcription:</strong> 
+  # Trade Man Project
+
+<p>Ok, so out of 6 7 people here Even you don't know much about the Trademen. Or rather the trade man even what it is, ok? All of them, all of including you you might realize it a greater point. चिट box is a major part of 10. It will be a major part, it's already ease.<p>
+
+<p>Only thing is right now that we working it as a 2 separate project. So we will merge it. That is the reason why I want you to sit and understand what is project is what. And when I said every day morning when you come, 1 hour spend on, you know, latest technology what you are working on, what's happening in the world. A part of it is always put towards understanding actually what is the perspective?<p>
+
+<p>Why are we doing it? What is the perspective? Ok? I'll be speaking more in English for the late reason to that so but I am trying to keep in English. So first what this trade man is like you know I want to give you a little bit of original story.<p>
+
+<p>Not the name itself but like you know what is full idea about. It's very simply it's about mind. Money. It is like I, I used to work in corporate, like you know, long time back, मैं लिया ही, 20 14 to 20 73 years and wherever I was working, I have no interest in whatever the I mean, here not Intel the incentivize what is project is over, what is all about. It's all about you to get this worked.<p>
+
+<p>It is more focus on technology technology ना कि how can we get the deadlines? We will decrease this pricing, you know? Deliverables. हां? In the top level, it's all about share holders and the share holders, it's all about money.<p>
+
+<p>Ok? See, which need all lead back money money. Why I was working for money? Why manager was working for money? Why manager's manager are working for money?<p>
+
+<p>Why manager's here all this were working? Money? So anyway we are all working for money but it was not continuous. Some share holders he needs money, he has invested in a quality based on somebody speech in the beginning. Somebody else they are going this etcetera etcetera and they get invested, so they invested money.<p>
+
+<p>And manager again, you know, he was like you know again promotion and little bit of something. Apart from money there is other aspects also. But I thought of कि money is something what we need. I have 1 more experience actually. So my background is not in computer science.<p>
+
+<p>It's not even computer Sir civil engineer. So once I did civil engineer, I went to US to do my masters. And my rooms are all 1 from, 2 from computer science and 1 from something. See, even when I have already joined engineering told don't join civil and all, it's like you will not get paid. If you want to get really paid, go join electronics or a CAs, that's where the money is.<p>
+
+<p>But for me, this was closer to my house. Resigned. But once I realized, you know, when my graduation came and I was in US. So, I will be applying for jobs. I also tried like looking of the jobs and I didn't really put effort honestly.<p>
+
+<p>But like my friends, my classmates and all, they were applying for jobs, now ok, what's your best package? There is in terms of dollars. So, some guys like 50000 dollars and 1 of my better students in our class, he was like k d 55. That's like wow. And here in ACS and knowledge.<p>
+
+<p>They are getting you original package hundred k, hundred thousand dollars. Another friend is getting 1 20000 dollars. Another guy is getting paid 55 dollars per hour. Like what am I doing like when I have to, you know, worth 3 years, in not to make 1 years of the account. It's not even 3 years, it's actually 6 years.<p>
+
+<p>The reason being there is like fixeded cost anyway I have spent some amount of money anyway. Apart from the, what do I say is very little compared to what they can say? So in order to match the savings, I have to probably 1 year of the savings like 5 years of. No, it's not and I realize something called as you can go into this consultancy where is simply fake yourself. I was what 23 at that time and I I was 9 years experience.<p>
+
+<p>And by fortunately unfortunately when I went and join this They just gave me 1 week of training in Java. I had no other experience in Java. Forget Java, I don't know what what is support and even the engineering, they teach you little bit of computer science. But I hardly to or 3 classes so I know I want this and also my teacher first thing it came and like what is program you know first right a program he has normal, 8 is send free the syllabus. I do understand in cartoon so now I am starting from 0 here.<p>
+
+<p>Straight way my question is like, in the resume, currently there is like lot of, I forget the names actually. Something else there I don't know what these are. How I track the interview is literally, it was a telephonic interview. I had a scene in front of me and I called like whatever, yes sir yes sir, Google Google answer. And many times, you know, we speak about something else because they have limited time.<p>
+
+<p>20 minutes they need to face to me. So 20 minutes you just have to impress them and then you are interested पड़ेगा. Then track the first thing to learn. But I know, I know nothing about tenure subject. So straight away I am in a job, very high paying job.<p>
+
+<p>More more payment than what many of the friends could get actually. They are getting what 60 dollars per hour, I was getting 01:20 dollars, 01:30 dollars per hour straight But I have 0 experience. So I went there, so my manager just is here, I'm I'm allowing here. So he is like no, we do know how to do this? Yeah yeah, we can do that thing, what is this?<p>
+
+<p>It's very difficult Google also because right here. So you have to whenever this attention somewhere you cannot Google it and it was becoming unbering so luckily 1 of my CS friend has a connection in India. Who was expert in whatever this thing was. I don't know what that is. Arif and all these things.<p>
+
+<p>So whatever they told, like mentally recorded and all, he has record of this research and every night, Indian time it's day time. Right? As a sit and this is the work. I don't know what's happening. I'm just sitting there in the, like, now he is finish some work, and next day morning, ok, what did you have to make me understand and I will go ahead kind of tell the anything to manager and he said something else again.<p>
+
+<p>Ok. So this happened for about 1 month and I could not take it. Because I don't know anything and like it was getting very very stressful. Yes, I was getting paid as a living luxurious and all this thing but then it it was very very difficult because I'm not getting what's happening. But then you know, I'm in between this election.<p>
+
+<p>It was not pleasant. So then I keeps of job. Manage something. But then nowadays getting difficult. When I went to the second job, I think there also I think something happened.<p>
+
+<p>I I didn't work out. I think I stayed there for a month or so. Third job came to comcashs which is you must have heard universe pictures shown by comcash So there, these people are like, my manager she was a Bangladeshi. Luckily she was much bus than in in technology in the hotel. She has no anything at all.<p>
+
+<p>And she gave me 2 people who knew better than on practical consultant. So again I didn't know anything now, but at least I have some support now. At least I have 2 people to get the work done. Whatever she said, I may or may not understand but these 2 people understood and then I kind of can learn from them and you know how to solve this? You know how this works?<p>
+
+<p>नहीं he is saying, yeah yeah, this is correct. Perfect. There again for next 6 months, I was with this team. My manager was extremely extremely relaxed and the 2 guys under me in a very competition. So literally, I probably did 10 percent of the work.<p>
+
+<p>That is again, the Indian guy was in when he was there. He was working for me and then other of it is managed. So happy days. And then 7 months later, 6 months later, for whatever reason, our team got this managed. And according to that, I was a better better performer.<p>
+
+<p>So other 2 guys lost the top and I was for good because eventually they both married in a better job. You know, 1 way he like it says bank, 1 way united you know. So it's good for them also. But now I was putting to another team. But at least 6 months even by you know passive hearing you cannot understand what is all about.<p>
+
+<p>Maybe still have, still have not learn coding, I still don't know how to code. Ok, so I have no, because I have no incentive to learn the code And now I was putting a team where I have to go. Ok. Luckily there his not was manager but like more like a mentor course kind of a borssing multiple projects come on consult us. Come back to money you know.<p>
+
+<p>So, knowing entire 1 and a half 2 years or even 2 and a half years of practice. I never got to understand what I am working on, why I am working on? I mean I understand to some extent to make it present to someone else, but what is, how does this fit someone else. But what's, how does this fit into the whole organization? What am I doing?<p>
+
+<p>Where does this all coming to picture? Am I really bringing value? Because 1 of the core things is, am I bringing value or not? I might be cold something. Another experience happened.<p>
+
+<p>This is a very much related to that when I, whenever the sudden happened, right? So, suddens imagine they have spent resources on me and 2 other guys easily about 200 dollars are easily they spent about close to a million dollars on the project. And 1 5 day morning my manager comes and he says check it below this percent. Like literally, like this, like how much money this company must have to say to spend over a million and say it's ok, you know, my mood is not like to adjust. Not do this project.<p>
+
+<p>And I realized ok there is something about coding means you know that is why you know all the top companies see are the coding companies, ok? There is money here for sure. So I will not go back to CIBIL. Again fast forward all these things and because still very the corporate life was, we can still earn only that much. We can't really earn much rather than that the US there is more important level.<p>
+
+<p>Time of, can't do anything what you like. More like a ponded level. So that's when I can have decided ok, I want to have my own freedom and where can you video feedback. So, I decide to move back. So I decide to move back, ok?<p>
+
+<p>I didn't have that much money but then I could survive for 2 1 or 2 years, That much savings was there. But then again if I come back and I have go back to corporate life, I didn't like it. So I just made a deal over there only तो मैंने मना देता है can move to move to India. But you have to pay in US sir. Is it fine?<p>
+
+<p>Go find yourself Indian employee who is our consultant. So the usual guys the CDS and the TCS. CDS TCS is TATA Consultancy Services. So I post you will connect with me with the request of manager again 1 more manager. I spoke with manager सैकड़ों, I am getting paid this much over here, you take 10% not keep 20 percent, remaining हटते.<p>
+
+<p>He said I'll keep 80 percent, you keep 10 percent. He offered me like 12 lakh per annum salary. Like I had to work to US team and then he is offering me somewhere around 40 50 lakhs. This guy is saying no 12 lakhs per annum, you have to work. No, I don't want.<p>
+
+<p>So now I am jobless, I have to do something. Right? That's the original story. Great. Again, not right there.<p>
+
+<p>Meanwhile, ok, now I knew that the money is there, now I have no idea about stock market. What is all about, etcetera etcetera. But then again, we had a, in our house we had a couple of rented people who my mother had told everyday they are earning like you know 40000 everyday. Like you go see all that these days, if I make an amount make 40000 rupees per day. Ok, this is interesting.<p>
+
+<p>I wanna know how to make 40000 rupees per day. So, when I came and ask what is the good stock market, you know, kind of you know, buy, sell, extra etcetera and ok, what's the basis of your buying and sell? Why you, ok? How are you going to buy? When are you going to sell, etcetera, etcetera.<p>
+
+<p>So, for that, you have to take a course. Ok, how much? 80000 rupees course. And the course also it was all, like, you know, some charge is there you have to draw line like this, this this. But I did not feel secured, I did not feel guaranteed.<p>
+
+<p>Like now, ok, on what basis? You tell I put the money and it's going to and I actually give them 10 life, ok, you you you trade, you know, on behalf of thing and from the very beginning are 50 50. अंगों बढ़ा, नहीं हो बढ़ा? Ok, I am giving you the money. You do the trading.<p>
+
+<p>What are the profit or loss will take. Is that fine? And in a initial days and I did the course and I was not satisfied with any of their others. They were a, they have multiple methodology which we will discuss soon what I learn, etcetera, etcetera, because it's very imprative for your understanding of this project. English journey.<p>
+
+<p>Now it was back in 20 17 end or something. So I said, ok, apart from other things also, right? Which is not relevant for this. Probably relevant but later point. So this is the premise of trade man.<p>
+
+<p>Ok? How it started? Or is it story? I'll take a break here. Now I want each 1 of you to tell me what money means you.<p>
+
+<p>Ok, so now you understood the payment. It's all about money. Ok? I will correct the sentence later. It's not about money.<p>
+
+<p>It's not always about money. But to begin with decided as it's all about money. Ok? That was the first thing. It's all about money.<p>
+
+<p>Ok? So what is your perspective, अमनदीप? What I mean by that is? I was went to do, like you know, with respect to my, you don't care if I give salary for another 3 months. Will you be ok with it?<p>
+
+<p>No? So you are dependent on that money. Ok. Ok, will you be satisfied if I give the same salary for next 10 years? Will you be interested in working forward or the repayment salary?<p>
+
+<p>But for the rest of your life. Will it be ok? Every month or I'll give you a open word. Open world means open bank account or like a blank thing. You can draw how much of money you want at any point of time but like later in a blank cheque you know with unlimited amount of money in the line.<p>
+
+<p>I'll give you that option. Ok? You can write how much you want but you have to work for me. You know? How about you?<p>
+
+<p>You take it off? It depends. Ok, depends on what. That's what I'm asking. What does it depend of I want to know, I am give you what say full plan check, everything you know, you can write whatever you want and I'll make sure it there will all and never gones.<p>
+
+<p>You know? But you have to work as per my wish for the rest of your life. My wish car, like curiosity still karo. If we want also you keep your curiosity. But is this offer fair or not?<p>
+
+<p>Like for example, 3 years back you might have some vision of money like I want this much then I will be ok. How much money will you feel secure with? Let's say how much money you have in your account? Right now, I am very sure this is not your dream job or you did never thought you know 5 years back like you know 1 day I was in IIT, I don't think I thought about that. Maybe it's not about Google, maybe it's not about Amazon or I don't know whatever Microsoft.<p>
+
+<p>But this is not in your top company, not in not your top job list, right? It's not does not, it is not 9 or so connected to your so, right? So if I were to give you that money freedom, what do you right, do right now? What idea is it? What right?<p>
+
+<p>Like each and every company. And every company. I have to create a platform for that. A project platform. Yeah.<p>
+
+<p>Ok ok. What what would you do? Saking. Then you have I'll give you all the money you want. What would you be, where would you rather be, what would you be right do it right now?<p>
+
+<p>Vacation, travel. He didn't tell you security till now. Today is like I have to tell you 1 thing, I am a billionaire. I just wanted to test you all is well, how you are. Today I believe you are saying and guess your will and all.<p>
+
+<p>Have a work for a day? No. Nice. What about you? What sir.<p>
+
+<p>But see, you are taking a project and developing, I understand. Is it your product or someone else's product? Someone else's project. But you already have the money. Why would you give a time What about you, sir?<p>
+
+<p>I want to like make 1 big real estate project. Ok. Not for money, but I want to make something achieve, like the. Show case people that I have done something. So I want to do in some real estate, like, to contribution in real estate.<p>
+
+<p>Ok. See, at least you guys all have better reason than me when I thought about it. So, in my mind, ok, I go by simple mathematics calculation particular like you know like I have some amount. The principles would never get over. But in the interest will keep on coming, so that way I am and everybody you know in the future.<p>
+
+<p>So not future, but like you know or rather let's put it this way. Usually when you go to restaurant. Earlier I should see on the right side of the you know, column is the cheapest now you have to find and it's not that comes consumer. Just said now there are certain areas where I rather not spend. For example, you would rather not spend money on expensive clothes.<p>
+
+<p>Somebody, I hated spending big amount on food for whatever reason. I don't mind spending, you know, whatever 15 lakh on इडली machine. But I don't spend think twice. I think if you just say, 15 rupees more for the food. I'll be like, why is it over charging?<p>
+
+<p>It is to trigger. Not not for elephants. Because I'm fine to pay whatever he has. Some other area clothes even today. I can't accept to buy a cloth shirt which is like 5000 rupees per shirt.<p>
+
+<p>I mean irrespective of what even till today it's there. I'm telling you with food I have over commit but then not with respect to clause some other areas. So all this last 7 years when I started thinking about this whole money concept. So I wanted a system or a way to basically perpetially give me money, you know, that is not what I started with to be honest. I wanted to basically come and make some money and then if I find another opportunity until I make 5 crore rupees, very मौज, 5 crore rupees the moment I make, I said to myself that I am 20 70, I am gonna give the staff money.<p>
+
+<p>But I want very fast, I don't want to be, I don't have patience. I have absolutely no cases. Because I thought it was all, this 1 in that stock market, right? It's a intellectual access. That means, like, you know, it's some mathematics, some statistics, you kind of, you work this like this, like this I figure out some methodology and then that methodology put kind of, you know, it will figure out you know, tell you कि tomorrow like in a crystal call.<p>
+
+<p>I wanna tell you what's gonna happen tomorrow morning and then you know, drop all the money. Next day morning your reach and close the shop, tata by back. Again travel only in the money. I mean only the interest not the not the principal. And do whatever you want to know with just interest not because that's why I calculate.<p>
+
+<p>500 rupees monthly how much interest. I thought I think it was around 8 percent 5 8 za 4 4 lakhs. Like, fine, make sense. And then the reality setting. Ok.<p>
+
+<p>So I start giving you a simple example of what you call as a perfection cycle. So 1 of the first things I realized is this a stupid triangle. Can anybody explain here what it is about or any idea what it is about? So, we want to do something. This babies.<p>
+
+<p>Correct. There is also like if you take a larger view of life, like you take a normal human being and I have an individual. When your kid or when your rein, you have all the time, you have all the energy. However, you don't have money to spend on it. Ok?<p>
+
+<p>And then once you pass your graduation and you are in the state as where you are right now, then what happens? You have energy, you probably have money also you know, I mean to buy most of things. What you not have? Should rather be shopping than be here. Unfortunately because he doesn't have money.<p>
+
+<p>She has to give you energy and time here. Ok finally you know your own yourself you go to the top position or whatever and again by 40 or 50 years like now, yes and I have all the money now and then you retire and you realize your all the time also. Now I have money and all the time. What do you not have? Energy.<p>
+
+<p>It's a very vicious cycle you see. Right? Yes. I am going, I went through this अंचल going through this. What about you guys?<p>
+
+<p>इधर You guys because as a, because right now we are in a phase. As a kid probably don't think that much about money. As a, what you say, once you grow old, you'll probably not think about money or time. You'll probably think about it. I wish, I could do Sky dialing.<p>
+
+<p>I wish, I could do whatever few word I need. I wish, you know, rotate ऐश्वर्या, right? So but then all the 3 of them those they seemed like 3 separate entities. They all represent 1 common thing. What is that?<p>
+
+<p>They all represent 1 common thing. They are all form of something. Can we think of it? All 3 of them they all are kind of Again solve situation for you present tell me what is the common thing ok Like for example, take right now. Ok?<p>
+
+<p>Right now you will have energy and money but you don't have time. Right? You can trade off. You can say again or what? Whatever little I have.<p>
+
+<p>I'm going to, I don't want, what is say, money. I'm going to trade off it for my time. You can trade your money for time. So you say I have to 1 month off. You are not, you are not going to get paid, but you're getting the time.<p>
+
+<p>So, you are can rate something for other things, correct? If you can trade energy for, let's say, ok, I am gonna go for fitness, I am not gonna care about money. I am gonna give that. So, you will get probably an energy back. Correct?<p>
+
+<p>So it is possible to trade off the amount is this. Am I right? Only thing is you may not choose to exercise that, you may not choose to exercise that option. I'm telling is I want you to understand what is product is work, same thing for chip works also. It's the same, again you are still feel in the same realm of money, time and energy.<p>
+
+<p>We are not beyond that, irrespective of what positive. Ok? So these 3 overall again you know whatever I put is a very raw form. I can easily find up for example, there is a time it's not about time for your family etcetera etcetera. Money means you know, it's like it could be like a property, could be like a good bike or whatever.<p>
+
+<p>When I say energy mean like you know whatever kind of things you can do with your body you know or you know whatever you can perform. All these 3 kind of they all represent something called as, Ok? Wealth, using a 3 way equation. Let me solve that 1, the wealth. Right?<p>
+
+<p>सो नो the moment यू take योर I mean specially now आई am telling you right now यू are all डी most of डी फॉक्स on money because दिस डी यूथ इस where यू can make lot of money left right दिस where यू can go again यू can have lot of aspiration Right? I am not saying everybody is extremely attached with money. But money is the major focus for all of us. Whether we like it or not? Yes sir.<p>
+
+<p>Ok? Same same was mine. So we need to kind of, I need to make money. I need to make money. I don't care about my my health right now.<p>
+
+<p>I don't care about you know what time you know may not be giving time to my own family. I may not be giving time to my you know, love ones or word right? But the focus is money. So if I make money you know eventually they'll allow come, they'll allow come. How many of your health get her राकेश झुनझुनवाला?<p>
+
+<p>राकेश झुनझुनवाला? जिंदल राकेश वाला? No. राकेश झुनझुनवाला? राकेश झुनझुनवाला?<p>
+
+<p>I'm thinking of other Varlon Buffet. Vorlon Buffet. So, ok the point was राकेश झुनझुनवाला, the is known as वरुण buffet of India. Ok? Now, you know Warren Buffett then I don't know about that.<p>
+
+<p>But he's the, so he's 1 of the best investors in the entire country, was there. So somewhere, during the interview somebody asked him. Sir, now that now you are the, he recently passed away. I think just 1 year back, or something, 1 and half year back. So somebody has them he write the reports since some 60 years something that's all.<p>
+
+<p>Somebody maintain as him, out of all your investment what is the best investment? I think he told, I think tie down, some company name and what is your investment? My health. Ok, so here energy means it's also for health. So you can work on all your product, you can ignore about your own body size, you know, your hair is doing, you know, you have other things coming and all.<p>
+
+<p>But you ignore all that money. Ok? We ignore all that for 1 thing money. And I was the same too and even now a part of me, I mean money is something, you know. I am not saying it's completely unnecessary but if you want to really achieve an harmony in your life to achieve that balance you want wealth not health.<p>
+
+<p>Sorry, not money. Ok? So this is the whole premises for trade member. Ok? So once you started trade में like it was not called trade में it is just a trading.<p>
+
+<p>You want to trade trade trade. So we want to make a lot of money. And I want to figure out the perfection way continuously you invest in something. We keep on getting money money money money, ok? And initially when we started trading how we used to trade was this is not very far back 20 18.<p>
+
+<p>India got this जिओ internet in 20 15 or something. I I think 20 18 or 20 19 until that of that point of time. If right now we are sitting here right? You know we are we are trading as of now trading वाला. Until I until I thought of this I didn't realize we are trading you know?<p>
+
+<p>I'm right now trading. You didn't know, you guys didn't know, right? हां? Did you know, I'm still right now? Did you know, did you know?<p>
+
+<p>6. As can you know the last time I actually open the thing. Where was the last time actually saw what. I don't really understand. Ok.<p>
+
+<p>Ask me where the stock market is right now? I don't know. Ask me about Infosys, ask me about Reliance, I don't know. And I did not know. I don't have to know ए specific फॉर So it is not possible because the technology was not there.<p>
+
+<p>Technology in India if you had to trade, you had to play manually this whole algorithm with trading. You know kind of came into picture. Who knows here a little bit of a Albert trading? You know? Can you tell them little bit?<p>
+
+<p>What a Albert trading is about? Sir, generally, You have to be allowed, you know. Everyone should be able to clear you. Ok? It is a generally a rule like probability like, probability of training actually, you know, हिंदू build certain rules actually, so you अच्छा तनिष्क, what is Is it a good idea?<p>
+
+<p>I'll go trading? Is it it work? This just by whatever you said. Again, I don't know, I know not except for him and him, you guys are not that much expert in the stock market. But like you know, letting a computer trade on behalf of is it a good idea or what do you think about that?<p>
+
+<p>Or do you believe in the computer? Would you rather would you elaborate? Don't know. Imagine you had a rule or something. Would you elaborate?<p>
+
+<p>Would you do alter trading? Would you trust your money with computer? Would you trust your money with computer? You have no other option. Will you trust your money with the computer?<p>
+
+<p>How about you? 50 50. So Sir, here comes up and the guys are all into digital transactions, UPI and all. Before you understand to answer yes or no or let me what is the good? Let me ask you, first would you ask about stock market how much you know or not?<p>
+
+<p>Sir I also showed that I am participating in stock market right now as you are speaking. Have you participate in stock market before? No. Currently also doing. Limited risk.<p>
+
+<p>Limited risk? Yeah. How about you? How about you? Right now?<p>
+
+<p>What about you? I purchase before 1 day Sir? Thank you. What about in 20 14? Where you in, where you involved in stock market, 20 14?<p>
+
+<p>10 years back. 10 years back. 10 years back? 13 14 ये सारे logistics market रहेंगे. Ok?<p>
+
+<p>But I would like to say all of us participated in stock market even then even now, even tomorrow we will do. Not directly. Not that indirectly also, pretty much directly only. Like, between direct and indirect. Can you explain how not you?<p>
+
+<p>How much you involve to stop locate 24 days? Before that, did you ever buying Parle G biscuit? They were participating in stock market? हां? Did you, Maggi?<p>
+
+<p>So, you have some capacity but your trading has become what you say, sorry, your participation has become extremely most significant with our single passing date. Do you realize how? Earlier it used to be like just that you know, 5 GB scale or something. Now the chair you are sitting on, the bag you are getting, the laptop you are having, Even the electricity you are, you know, ok, I'll I'll have a concept, I'm gonna give somebody amongst us 1 lakh piece. Ok, 1 lakh is too much, let me.<p>
+
+<p>Is not a stock market. Show me 1 thing, ok, this is, this thing is not in stock market. This is show me I give you 1 lakh, which can do it whatever. And and do that no that is in stock market. Go ahead, you know, look, see any product you see, ok?<p>
+
+<p>Any product or anything, you know, this is not a stuff. Certificate, paper. Open whatever paper commission. I'm not talking about the paper Yes, they will do a certification and not give that certificate, what are they going to do? Where are they going to print it on?<p>
+
+<p>And this paper in the stock market? That same. Yeah understand? If you What about that, right? Anything else?<p>
+
+<p>Anything else you think of? हां? What are, oh my heart. What is water in stock market? Need not even pay 5 rupees rupees free worth.<p>
+
+<p>It's because of them you are paying 5 rupees. You realize, how, how many people pay 5 rupees for pure water just like 200 years back. तो 3, now you are paying 5 rupees and think now it's very cheap. Why you think it's cheaper is coming at 30 rupees per 1 liter. So you think go 1, you in your mind you have said that what the price of 1 liter of water is, good water is 20 rupees.<p>
+
+<p>That's the kind of mindset we are using today. Ok? That's ok. No no we are not here for corporate batching or you know we are not here to reform our society, you know, go fighting against any of these people. We are here to understand and make wealth.<p>
+
+<p>And that wealth will be all inclusive. When I say all inclusive, Then you see, when you can balance all the 3, right? You try to create wealth by by by balance all the 3. It is impossible for the society to be poor when you are going to pay. It's impossible for the society to be poor or to be in a bad shape.<p>
+
+<p>If, if we are well balanced. Unfortunately, we are so much, so much held up on this aspect, this aspect, this aspect. Even if you want to fit this you have to pay money. That to what whatever, you know, there is so many tablets, you know, you can keep a tablet, etcetera etcetera. अच्छा, ok.<p>
+
+<p>Let's not let's not corporate pricing or you know let's not but this is the current state of our mind and the society also. So now you realize everything, every single thing is being touch by the stock market. Ok. Hundred percent. Right.<p>
+
+<p>Life issues also. Why are telling, I mean see look, I'll give you an example. Where did this system from? Stop nearby. Ok.<p>
+
+<p>Where does the shop get electricity from? It is so well correct, forget that. I not, I am not just 1 source, I will give you hundred source. That guy hundred percent plastic water he came in, it's coming from there. The water we already discussed.<p>
+
+<p>Now, you you decide every single, every single aspect you decide. The bank is getting loan from stock market. The bank is paying back to stock market. The रेलs is going, cement stock market. Ok?<p>
+
+<p>You can literally go to, So before demonetization, it is possible that you know, you earn something and I give you that money. You got your home in your old jeans pocket, you are the capital, you know salary and a write will come and pickup, pickup and go and throw it to the garbage. You can throw it to garbage. So, entire day's worth of whatever work period is in the train now. Systemal response given.<p>
+
+<p>What would like you know, Marwadi c to CW0DL. All the money you keep, it will go inside a very secured तिजोरी, it will be kept in stags, in stags, ok? Ok. So Paplass Tabad is a drug lot. Drug lot like you know, back in Mexico.<p>
+
+<p>No no, Columbia. Ok. So in Columbia he was a drug dealer. So used to sell cocaine to people, you know, across, you know, he used to make, he used to keep people happy, basically. And the amount of money he used to get like later this is like you can go Google it and everything.<p>
+
+<p>Every day like at least, yeah yeah yeah it means like a packet. People used to pick up everyday and like you know put money inside it and then put it in a money bag and just dump it. Because they didn't know where to keep money and they were afraid that you know, eventually it's all all place it will be difficult. So, even till today I think the recent discovery was back in 20 15 something. People are still taking and they are still finding money, old money, which is literally useless now.<p>
+
+<p>The currency is useless. So, you know where that money came from? Just give you example. I mean he was selling drugs to America etcetera. There are a lot of people who would have worked the entire day from morning to evening to on the 20 hours, 30 hours, the hundred hours and that hundred dollars is per 50 hours of booking.<p>
+
+<p>That 50 dollars was there. So whatever the entire day they work half an hour that they spend on cocaine and what it वापस spend it on? Putting it to earth. Ok? Yeah yeah, physical money means that was the limitation of physical money.<p>
+
+<p>Now with the digital money, all hundred percent is wasted. Later I'll tell you how, but I mean right now it keep as useful. Until you through it's not useful. Ok? So we all thought money was very very useful.<p>
+
+<p>Now we realize, no it's not the money itself. Do you agree on this? Everybody is, no no, money is only more important, I don't care about the energy at time. I want like a big bad of money and buying it. You know or rather would you rather choose wealth or money.<p>
+
+<p>Wealth or money or like money or wealth? Self or money. Health or money. Correct? Ok.<p>
+
+<p>Now coming back to this thing. Now you understand that how every single rupees you earn or every single minute you spend ए wherever that is how much everybody is in the stock market. Do you agree? So we are all in the stock market, it's a very integral part of our life, stock market. Ok, we agree upon that.<p>
+
+<p>So everybody whether we like it or not. Whether we understand it or not. Whether we acknowledge it or not. We are a major integral part of the stock market. Ok?<p>
+
+<p>Next 1 more.<p>
+
+
+</div>
+
+<h3 id="trademan-meeting-audio-2">TradeMan Meeting Audio 2</h3>
+<p><audio id="audioPlayer" controls="controls" preload="auto" style="width: 100%; max-width: 500px;">
+  <source src="/media/TMVoiceTranscribeNote1.ogg" type="audio/ogg">
+  Your browser does not support the audio element.
+</audio></p>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('audioPlayer');
+
+    if (audio) {
+        // Check if the audio element has any source files available
+        const sources = audio.querySelectorAll('source');
+        let hasValidSource = false;
+
+        sources.forEach((source) => {
+            if (source.src) {
+                hasValidSource = true;
+            }
+        });
+
+        if (!hasValidSource) {
+            console.warn("No valid audio source available.");
+            alert("Unable to load audio files. Please check the file paths and try again.");
+        }
+
+        // Handle audio errors
+        audio.addEventListener('error', function(e) {
+            console.error('Error occurred while loading audio:', e);
+            alert('An error occurred while loading the audio file. Please try again.');
+        });
+    }
+});
+</script>
+
+<div style="font-style: italic; color: gray; margin-top: 5px;">
+  <strong>Transcription:</strong> 
+  # Trade Man Project
+<p>But before that I want you do observe few more general plans. The bigger trends of what's happening. So I've explained this thing many times maybe to few other people too. Also made 1 more claim now. So earlier that the occasion story that you put the half yearly money is gone to the right side.</p>
+
+<p>And now it's rigidization. All other money is going to go waste and all. When dear thing, so all your hundred percent money is waste. Let me repeat it You have aspirations when when comes and do that and do this and do et cetera et cetera et cetera et cetera et cetera et cetera t cetera et cetera t cetera tanna t and t millions billions, I don't know, quatarillians depending on your arithmetic ability to count zeros, ok? Irrespect of what that is?</p>
+
+<p>It is gonna become very irrelevant very soon. So अभी select. Right now, whatever the money you have, right, very soon, that money will become extremely extremely irrelevant. So I have 2 years, 02:50 52 lakh. Very good, very good.</p>
+
+<p>That's a very big big a problem. Again, you don't have to get convince about what I say now or rather think about it. Something think about. A part of me says yes. A part of me still says no.</p>
+
+<p>A part of me is 50 50. So I'm all of you right now. Ok, my answer is all of 3, but let me give you 1 perspective, right? Anybody gone after 2000? After 2000 ना?</p>
+
+<p>4000. If you want, you can just after a Paytm loan, 1 lakh rupees since 5 minutes will be लखपति, All of us or whatever the. You are capable of, you know, generating 1 back like this. Am I true? Right?</p>
+
+<p>What was that significant just a while back. Just within a span of 20 years, right in front of, right in front of our eyes, things have changed extremely drastically. Today people don't speak about लखपति. People speak about lakh crores. लक्ष्य very sure this building is more than 2 3 crores something, like you know every house every house is representation of the not least few crores.</p>
+
+<p>Right? You understand? Yes. How did this happen? Right?</p>
+
+<p>Just in 20 years, you know, from lakh to 1 crore, you need hundred lakhs for 1 crore. Hundred lakhs for 1 crore. Yes. But today we are talking about lakh crores, right? How did this happen in last 20 days?</p>
+
+<p>What happened? What is happening? You're still talking about money बनर्जी. Your favorite topic. Land prices are boom.</p>
+
+<p>You know? Land prices are boom. Ok, it will boom right? You have to do like afff active production and sales have to No no, for this only, somebody has to pay 2 crores. Not Not possible.</p>
+
+<p>Very much possible. Ok? हां? No no, I'm talking about this only. Whatever this thing in my hand, right?</p>
+
+<p>What features will you add, ok? You will you will add remote control so that No no, talking about this particular thing, this particular object, this particular which time, that 1. Either a airporting. Can it become not possible? Not possible.</p>
+
+<p>Not possible. How many of you are aware of a country code as Zimbabwe? सिंघाबे, ok. And where? हां?</p>
+
+<p>In there it will be true to growth. Now I can give me the point. हां? I can give you. Currency, that, right?</p>
+
+<p>You're also aware of that, right? Yeah. So whatever your money call, right? It's a representation. You missed a lot of things, but it's in the recording.</p>
+
+<p>You know, night time. This is, no don't call your girlfriend. You listen to my my daughter. All the people. Ok?</p>
+
+<p>Less than thousand, maybe 2000 rupees max. Is that the material, right? The cheapest, how much invoice you prefer for? Expense Ok. That's what you can do that.</p>
+
+<p>But the code functionality of is? Ok. I'll give you a diamond set at you know slipper. But all the diamond point is there is lower such finger. Ent 70 crores.</p>
+
+<p>I'll give a diamond straight slipper. Yeah. But on the point, is towards the slipper. हां? Right?</p>
+
+<p>Irrespective of what you do? The course on side is comfortable on this. Correct? Ok. I know that you know some film actors have this big pencil thing wherein you know, it's like literally like it is not at all comfortable but it's comfortable of their soul, on their heart, you know.</p>
+
+<p>It makes them feel good, whatever that is, right? It's comfortable somewhere, maybe not on the foot. Right? So, you have people in society who are paying 70 rupees for a slipper. You also have people who are paying 70 crores per a sleepper.</p>
+
+<p>And like we discussed the remaining 69 crores bla bla bla bla bla blah last 600, no, 09:30 rupees. It's been added somewhere else. That being, that is being added somewhere else. Let me give you another example. Now you are the richest person, I already made a richest person, the morning will I made very rich, right?</p>
+
+<p>I give you all plan 6, ok? Best food. Ok? To spend on. Ok?</p>
+
+<p>How much can you spend on a बिरयानी? And I want to spend maximum. Only that much. You have unlimited amount in your bank. Now.</p>
+
+<p>If you are having unlimited amount but we cannot pay unlimited food to customer now. No, eat that much only maybe you add like I don't know what a tuffles, I don't know you add gold plain, I don't know, I don't know, I don't know, you think of it you add whatever you know make very expensive and you have go out yourself making the expensive for 1000000 rupees, sorry. 1 lakh rupees on a billion platform. 01:31, 1 lakh rupees. You give him a task.</p>
+
+<p>What can I do? I understand? Or rather Just the preparation. हां. A देखो, ask your chef maybe he can try and do all those things but you as a consumer if I ask you to eat the both of the बिरयानी, a 10 rupees बिरयानी you can check कि अकेला, लाऊंगा, you know, अकेला, तड़का, you know, Google कहां से दे रहे हैं.</p>
+
+<p>I give 300 rupees, may be you get the special चक्र मुर्गों from South Africa from you know this rice from कंबोडिया and you can do that and you know somehow. Maybe up to you know 900 rupees you will feel a special काम body this is very nice you will feel I can feel this is very nice but beyond like you know 5000 rupees of the उदयपुरा, we cannot add something significant to that, your facing experience. Positive cannot. So even if you become a multi billionaire, billionaire whatever thing, there is a limitation on how much you can range feel with that money. Ok?</p>
+
+<p>With the money can only take it that far. Even if that 70 crores slipper or whatever maybe you will get a 5 minutes of attention of you know having all the diamonds and your thing etcetera. But the values rapid divisions like second time or third time you wear it. Especially in the same round. Ok.</p>
+
+<p>So why I am telling you this is our run behind the money, right? Beyond a certain point cannot add any significant experience to your life. Ok? Only money. Ok, only money.</p>
+
+<p>Ok? At the same time, I also wanted to notice, I remember again that लक्ष्य, लक्ष्य Morning the raw product which was like 50 rupees has become a 500 rupees product with a little bit of work. And like this, right now out of 700000000000 people excluding these 7 people who are not working, everywhere everywhere else is working. In a 700 people, vilion popies in entire world, every day morning I mean give example except of few insignificant once, they are working towards the GDP. Other, the general net value, that I can increase.</p>
+
+<p>Maybe like you know when you are like a केवल man or sometime you people didn't care about working. They didn't go for a job. As far as we have been seeing very much our entire life time Ok, this is the society law, right? Because of whatever this thing is, we are all working. And right in front of her eyes, 2 major even around, you know, the time 2 major break to has happened.</p>
+
+<p>In fact, right now 3 is the, we will come to that, which has happened very recently. These 2 are air travel and internet. So, what happened with you know, how these to change our life, which has change our life significantly, every week. Air travel and internet has made our life extremely extremely what do you say, advance advance advance is the right word but we have an influence you know so much Just just like just before our lifetime. You know just like before 2000 how everything was almost local.</p>
+
+<p>Today you take if I take this product I am very sure you know something is coming china, something is coming from, I don't know, I don't know where it now it is coming from. Even if your food, right? It's coming from, I don't know where it is coming from. Early आईटी इसमें maximum वन रहा है नमो संत है नमो संत के लिए number है what वास रिक्शा इन local ok what kind of flow यू can gate ok maximum within date from small parts throughout the world. It's assembleed by people of so many different culture.</p>
+
+<p>शिव mother, हां. My माल्या. माल्या. See, I'm from. So for whatever reason we are Kerala, Malatro.</p>
+
+<p>Ok? See, we are all here for because of for 2 reasons. Internet and air travel. If I didn't have a flight ticket back to India, we would have not make it. If I didn't have flight It has made everything ideas have been shared throughout the world.</p>
+
+<p>You know today, right now we're using technology I don't know. We are using live release, you are using software. It's done by from various parts of the world, I don't know, I am very sure more than hundred national You know work on this what are the products we are you know may be all the nationalities. Such how much diversification, we are, since today you know, all our dressing has changed because of the western entrance. इधर यार हो आई हो तो उसने यार इधर बटाया number चलता.</p>
+
+<p>It's it's become very have note be able तू जूम out and see ok this has happened within my life time just 50 years this was back unthincable just 30 just 1 generation back this was untincable and this is happened today. This 1 generation back लगभग the other ले लेते. Do you understand, just giving you a perspective of how fast things are going without your own knowledge, without you, without us even feeling that that much. I have, I have no idea how to feel that way. Right?</p>
+
+<p>Similarly, our life has been turning to such an extent and we are not even aware of that. So why I am saying is, you soon the money will come irrelevant and the होता. So you saw how money went from लक्ष्य court, लक्ष्य got you go through. हां, मिले. You also saw Jazsmond a and then came the third name in the cafen.</p>
+
+<p>The third aspect which until this 2 it was probably you know money was going to be relevant for next 4 civil future with without air travel, how much product you are having? I mean, technically. Ok? Like know that from raw product to panel product. Without, you remove Airtel, without internet.</p>
+
+<p>I'll remove internet and Airtel I will remove you know, electric इतनी ज़रूरत नहीं है. Now you write a software. You know, putting to some you know, how much effort went into this first fund just like 20 years back, somebody will have put सो मच effort on this phone, so much effort on this phone. यह we take it all for branded and if I ask who it is? अभिषेक it is.</p>
+
+<p>Did अभिषेक really do this? अभिषेक, right, we rapid in the present and Yeah, नमित AI, we can take credit for somebody else's work much easily. We don't even have to work. Ok? We can take credit for somebody else work, present it is our work, and we can work.</p>
+
+<p>He has to go you know, make his own firewood and then come make the same pencil on the plate brain. Otsaaaaaaaaaaaaaaai, you know fire wood बिरयानी, fire wood pizza. Fire wood लेना बदल है. तो, fire wood काठमांडू, दंगा होगा ना coaching दिन. Right?</p>
+
+<p>All around the process things are become easier, easier, easier, easier to get to your final product. From your idea to execution, what used to be a long process? Is just at you know, your wish is my comment. That's how the, you know, the world has come to. So just 10:15 years back without internet, without air travel, without any ideas from anywhere in the world People figure out how to go from Lakhpati to Lakhshya.</p>
+
+<p>Now with AI and all these 3. Now you tell me how how significant will your money be? Right? How significant will your money be? So even then you the whole point of having all the money was, money was a democracy.</p>
+
+<p>In fact, stock market is the biggest democracy there is. Stock market here I can tell all about you know ए मोदी sarila, lunara, Ral Gandhi Sarila, right? You didn't where in the stock market you have to put money where your, you know, where your mind is, else it can't work. Even to It's like me indirectly voting for McDonald's and saying that Every single thing you are spending on is your indirectly voting on. See, this voting has happened once in 5 years.</p>
+
+<p>With money you are voting every single moment, every single minute. If you decide to buy this whatever this product is that companies won't go. Right? It is your literal democracy. You can vote into what this society is gonna become, what they gonna become, what you want in and around, Correct?</p>
+
+<p>So now tell people participate in stock market above. Ok? Do you think it's important for people to, you know. See, not technical risk is the biggest. So I shift your entire statement.</p>
+
+<p>That's what I'm saying. Based upon their risk. So everybody should take risk. Everybody, which means that they'll be in the stock market. Ok?</p>
+
+<p>This much this, that much this, whatever the amount of this, that we will come to later, ok? But the premises is should everybody be in stock market or not? Ok? Yes, yes? Trademan are there, Indian, they are they are they are they are they are, they are between the stock market?</p>
+
+<p>How to become more democratic? How to make this democracy work for you? You know? That is the whole idea of how, it's not trade means, you know, it's a channel to implement that. So rather you know, it's a way of you know, understanding this but it's not that you know, I invented thing आ लेते हैं, it's just that and giving you the broadest perspective there is to you know what you think money and stock market etcetera.</p>
+
+<p>I wanted to give the broader perspective. Not like, you know, ok, now we are working on a product, you were comments. He has been working from 2, 3 He is writing test on that time, he is like a test working. Today self pass pre fail. Of course, I have spoken to him, some he has been there for past 4 and a 5 years.</p>
+
+<p>So, So, पचास ही कोई score नहीं जा रहा है. You have just started. So why this topic comes now is, so July starting July second. We are releasing the first part of the treadmill officially to public. Public means like a still mostly amongst our friends and family.</p>
+
+<p>You know, and and this is also I'm I'm inviting all of you. I need to create a invitation same for treatment To participate in this particular project. Ok? How I'll I'll explore, you know, how do we deal with money? Because still, right now this is a broader perspective of our money, wealth and you know, what the money means, right?</p>
+
+<p>We are very narrow, genuinely focus on I want money, I want money, I want money. But like you know this stock is about even I wanted money but I realize why I want money और what is money what about the money I like it. Ok? Money gives me the whatever I want to eat. Money gives me option to where what I want to travel, whatever he say, right?</p>
+
+<p>Money enables to do that. Right? That's the whole idea of the why we are out here. Again, I'll give you like 10 minutes break. So, today and I want to just speak about 1 more topic.</p>
+
+<p>Ok? There will stop stop there and tomorrow we will get into little more integritys integrity. So that I don't care, you know, how many features you build today, how many hours you work today. I care about, do you really understand what is politics about and what is your role in a project? You might have role clarity, ok?</p>
+
+<p>You are also part of this project. You are also part of this product. You are also part of this product. They are all you know, right now trade में is what we have. Like a told, whether you like it or not, where all part of this project.</p>
+
+<p>Ok? Not to what capacity to what extent and what is my role? That clarity which I've given in part I've told you की you are a designer, ok? You are totally you are a friend developer. I've told you you are like you are already working on qC.</p>
+
+<p>I have told you you are in a united cities. I have told you upon accounts. I have told you, you know, you work on certain project. I've told you about marketing, right? That these are your roles.</p>
+
+<p>In order to understand your role, shouldn't you not understand the project? Right? So this was about the where it's all came up. Next, how are we going to present ourselves to the market is what we'll speak in, you know, and we'll take contact, 10 minutes break, then we will end at</p>
+
+</div>
+
+<h3 id="trademan-meeting-audio-3">TradeMan Meeting Audio 3</h3>
+<p><audio id="audioPlayer" controls="controls" preload="auto" style="width: 100%; max-width: 500px;">
+  <source src="/media/TMVoiceTranscribeNote1.ogg" type="audio/ogg">
+  Your browser does not support the audio element.
+</audio></p>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('audioPlayer');
+
+    if (audio) {
+        // Check if the audio element has any source files available
+        const sources = audio.querySelectorAll('source');
+        let hasValidSource = false;
+
+        sources.forEach((source) => {
+            if (source.src) {
+                hasValidSource = true;
+            }
+        });
+
+        if (!hasValidSource) {
+            console.warn("No valid audio source available.");
+            alert("Unable to load audio files. Please check the file paths and try again.");
+        }
+
+        // Handle audio errors
+        audio.addEventListener('error', function(e) {
+            console.error('Error occurred while loading audio:', e);
+            alert('An error occurred while loading the audio file. Please try again.');
+        });
+    }
+});
+</script>
+
+<div style="font-style: italic; color: gray; margin-top: 5px;">
+  <strong>Transcription:</strong> 
+  # Trade Man Project
+<p>So trade when on boarding you want to do, right? So starting from now, when is the release? I said, so I was giving you overview of what the product is. Right? And you missed the first beautiful half.</p>
+
+<p>First I told them why they don't need money? Why you don't need to go for self? Right? So PDICI like all the, we have given you the primise of what the thing is. Now let's understand what this, how we are going to achieve that, you know.</p>
+
+<p>Now we know that we all whether we like it or not, inner in part of the stock market, right? Directly or indirectly we are doing. Ok? And he rightly said 1 thing. Ok, it's a good thing and everybody should be in stock market.</p>
+
+<p>But based on the what? Rescapted. Rescapted. So it's based on the risk capital. Make sense, Now let's understand ok, we all like to participate etcetera, correct?</p>
+
+<p>Based on our receipt. What is our receipt or rather now, I Just to give a little bit of tax to your stock market itself which I'm let me ask, मुरली sir, 1 second, I want to ask you something. So he, specially 1234, ok and I was explaining them about my venture in stock market world all, or rather than my view of money stock market etcetera but I have not spoken much about stock market itself and I wanted to he is the most better authority to speak about staff market. Sir link बोलता है where you know where staff market started, Tomorrow is started a trading. हां?</p>
+
+<p>Pardon. Ok ok. Future is breaking. Ok. So and single and श्रीमल I think these 3 people started it.</p>
+
+<p>Ok. Anybody is aware of where stock market concept started in the whole world, where it become very pleasant to limit. Almost, हां? Very broad answer. I want like you know, and and we are all aware of this company where you know, where you started company.</p>
+
+<p>That's India company. Sorry, not that's India that's, so it's a touch people. How with डी stock market स्मॉल story of यू नो हो it's started सो back दें यू नो वंस दिस होल सी trading has बिन not, sir not about trading, I am talking specifically about share market. Welcome what share market is in a while. I am really not about what stock market is the exact meaning of stock market share market can understand.</p>
+
+<p>So what happened this so initially you know all the things they used to give money to this, you know, adventurous people like you know, go out and find a new land for me, from there get me all your you know, spices or whatever you know, products to use in lobby. But it was the touch people, so instead of the king sponsoring their voices to go out in the CA, et cetera, The rest people said you know what instead of us going through the king, the traders themselves, they said ok what we are gonna make it a company and we will collect the money together and let's send these people who can die for us and find the sources. All it is. Voices, ok. The whatever they get back from there, we own that and the profits will be shared based on your investment.</p>
+
+<p>That is the first thing of company, it's a company, right? It's also group of traders performance. Of course it's under the enge and right now you are under the SEBI. Similarly these people it was under the you know king. However these people had the majority of the share.</p>
+
+<p>Compared to earlier where registered to मोना the king used to get all the main you know or rather he he has distribute distribute. He may or may not distribute to the people who work for it, right? So this was the first concept of share market which kind of came into existence and then you see what is to updated to India, right? Ok? So why I am telling this is, I wanted you to first understand, now you understand whether we like it or not, they are all in the stock market.</p>
+
+<p>Now how to really really make use of the, you know, see this is a, I'm very sure you know, somebody else tight but who made money? The people in the company share, right? Similarly today we don't know, we don't have to send people into ocean to get killed even otherwise we can actually stock market stock of गंस इन तेल or something you know Sir साथ market जो share market with this area? Group of shares actually company concept of stock actually. Ok ok ok.</p>
+
+<p>Group of shares is stock option. Yes. It's a different different share and stock. Ok ok ok ok. See in my mind all of you have been, I have been saying stock market very recently we discussed that you know it's better to call it a share market.</p>
+
+<p>Because share, ok. What do, what is share market mean and how can it really a why average participate that we all it is but to what capacity? Ok, like for example, let say, ok what is the first steps before going to that लेट actually take this money and will do little bit of understanding of how money once? Ok, how it has been working? You guys are aware of banks It has a certain nature to it.</p>
+
+<p>Whatever you mean the certain nature to it. So whatever the money you put in a bank, right? Tomorrow morning let's say you not spend anything for a month, ok? And this is a 0 balance account, they don't charge you. So 1 month later you come back and see, what will be the amount?</p>
+
+<p>So you have put certain amount in let's say you put 10000 rupees ना, no balance, sorry no, 0 balance account or whatever, no maintenance, etcetera etcetera, ok? And 1 month later if you come, what do you expect to see in your bank account? How much money do you need to expect in your bank So it will be above 10000, right? How would you feel if it is 6000 rupees? Ok?</p>
+
+<p>You have put a money in a in a bank account and again they have told you know 4 percent interest whatever and for it's a, I mean, you are not interested bank account for entire month and you come back and see, it's 6 7 rupees. How would it be? See back. Right? Now again same 10000 rupees.</p>
+
+<p>Ok, instead of putting in the bank account let's say you're investing 1 of stocks. Ok? Again, you're not registered entire month. You come back and see. Ok?</p>
+
+<p>It's 6000 rupees. How you feel? You feel. If you are tired on this, but not that bad also. Here, you can go and you can literally bank employees how the hell you know why have you done?</p>
+
+<p>In stock market can you do that? For whatever reason you are paying like no. Ok you have all, you know, not here somewhere along right, and you pay insurance, right? So same thing you would have paid, I don't know, 10000 of rupees for your car or something you know. 1 month later, you go and see it's 0.</p>
+
+<p>I mean there is no money left, unless you get into an accident. How you feel about that? You your response to money is different. Like for example, here even if it's say 9000 rupees 500 rupees you are going to go to a bank and you are going to make sure that. However, imagine you actually put 10000 rupees in Reliance and month end Reliance declared bankruptcy.</p>
+
+<p>इसे you know, we will liquid our assets. I mean if you are really desperate, you can go to their office and say, I have a share. I am a share with, right? And say I have a share, I am a share, right? You can actually go and you can get 1 chair.</p>
+
+<p>But at the end of the transaction you don't think about it money anymore. You remember it's lost but you know you can't do anything about it money. Correct? Where एस bank 500 rupees लो यू bill make सर यू bill right ए complaint 2 month 3 month यू bill make you will go to any extent to get a 5 rupees back to last extent, right? With insurance you will literally, you know, you're helpless at this setting.</p>
+
+<p>So why I'm telling you this is by default, so that's why I first said this concept of wealth. I'll tell you later like right now I'm coming to money. But you know what money is kind of an indirect wealth. Ok, I come back to you know how whether we like it or not the nature of wealth has 3 waste. Ok?</p>
+
+<p>What are those depth? Equitynt insurance. Again whether you like it or not, whether we understand it or not, whether we acknowledge it or not. We have been investing in all these 3 times all the way. Like right now, the salary whatever you're getting right, is it equity or debt or instance?</p>
+
+<p>Tell me what? Equity. Ok. So everybody is getting, I am assuming everybody is getting salary. If you are not, don't tell me.</p>
+
+<p>Right, you are all, you are all getting salary, right? Is it equity, debt or excellence? I give an example, right? What time is it? Okay?</p>
+
+<p>Yeah, for most part it is that. I'll tell you why? What is your weekly salary? If I give you 500 rupees for it? Will you contest or not?</p>
+
+<p>I will give you like ok. You You have given 8 hours of your time or rather you know if you don't come on time what would निखिल do? He is like why have a lot of time? So he saw him, it's a commitment between 2 people is a depth. Only thing is you can't see, that's a probably you are not even, you don't visualize why it's a depth.</p>
+
+<p>10000 rupees per week, ok? So 800 per day 2000 rupees. Invariably your mind is thinking my time is worth 2000 rupees per day. Ok. Invariably the owner or who is thinking I am giving 2000 rupees per hour, sorry per day.</p>
+
+<p>Ok. There is non negotiable. Of course, here we are farm more linatic से देख सकते हैं but in in reality you got a corporate word your time and your what is say? The salary is non negotiable. Once it's, once it's fixed.</p>
+
+<p>Once you go and fix with your bank again I want to get 7% per annum. Later if somebody से 4% it's non negotiable and you have you have a deep security. Security of course government में छोड़ो बोलोगे तो bank में छोड़ो बोलोगे that's a, that's a, we forget that portion will come to that. See, nothing can be pure equity, nothing can be pure debt, nothing can be pure insurance. Ok?</p>
+
+<p>Everything has a certain amount of pressure to it. Product bill gate इन specific of date देवर again तेल lot मोर पर एग्जांपल चिप box it's किड of ए वेरिएबल डेप्थ Ok, so I want to understand the concept of these 3, you know, the nature of these 3. This gives you security. This gives you growth. Insurance gives you it's like lottery.</p>
+
+<p>Sometimes good, sometimes bad. You might have to lose your leg for getting 10 lakhs. Sometimes you know, you can nicely purchase the lot and talking about the nature. So today if I have hundred rupees, contract अलसो तू सम accident इन दिस कैसे it वास मोर like आ जब but इसे पर एग्जांपल लेट से आई have जिवन यू ए contract ok right 100 test right by end of today I can give you today. If you right by end of 1 year I can give you right there it is इसे नो fix आई can फिनिश आईटी एलियर आई can फिनिश आईटी later सो आई नो यू can have little bit of कन्फ्यूजन because नो product is hundred percent equity or debt of overlaps.</p>
+
+<p>So what are I talking I am kind of removing that part and talking about exactly the major component of these limits. सो आईटी इस non पर security सो यू are इनडायरेक्ट इन यू नो date दे bill अलसो को और by इंश्योरेंस सो यू are kind of policy जो e more salary for a, ok? So why I am telling is this now I am explaining about the product, our own product you know trade man what it is about और वे डू of आ तीसरी तू पीपल ok तो जो of स including but don't expect it to grow that much. Ok. A product wherein you can go for growth but don't expect that much stability or security or you can invest in something called as lottery in that have no expectation also.</p>
+
+<p>Because that's not my work there. Ok? It it will happen there's another major non again going back to the same concept. Ok, Remember we talked about you know, our energy speak when we are children or child. This is youth.</p>
+
+<p>This is your बुढ़ापा. Correct? Other the government, government factor you have all the energy as a kid. You have very muched money and you have time, but we know that But this is the big factor, right? Somehow this is linked to this.</p>
+
+<p>Can everybody on algorithm thinking that and this, you know, that and this same. That also tells rare to, you know, invest. That itself is a rule. It tell you you know as a child what should be focused on as a youth what should be be focus on. Once you become mood what product would you like?</p>
+
+<p>Ok. What would you focus once you become old? Security level. Security. Ok.</p>
+
+<p>Now what your focus is on? Are you a child or a youth or an old no? Which category you call into? You, you, you, what? What is your major focus of right now.</p>
+
+<p>Ok, let me give you this day. Ok, he's right ok I'll I'll नो, would you want to go about best 1. Out of hundred, how much will you put on that equity and insurance? Ok? Can you do it?</p>
+
+<p>Out of 100, yeah yeah. Ok? Please write, write down and you can paste it over here. Ok, don't show answers. People are हां?</p>
+
+<p>You take the different pass, I think you have multiple phones. याद So this was a tricky question by the way. This was a question to determine your mental age. Now to tell you how is an of your old mentally. Who is this?</p>
+
+<p>आकाश, 33 ना? Ok ok. आकाश age is 33 and then. आनंद is 30. मुरली there is 30.</p>
+
+<p>Your age? Your actually age is 30. अर्जुन is 40 years old. Age लगा, देख लो हां. If you wanna know their mental age.</p>
+
+<p>हां. Ok. Ok, wait wait. Hundred minus I am matter on the line. I don't have been age.</p>
+
+<p>Washita is also 30 years old. कार्तिक is 40. Amol is also 40. आनंद, the bit goes to आनंद. आनंद is engaged.</p>
+
+<p>How much? आनंद is 30 years old. अभिषेक, अभिषेक is 25. अभिषेक is They say whatever is your age that should be your depth. Why?</p>
+
+<p>You will go with you know you only gave the insurance, right? If I am a kid what to buy, I would try, buy insurance. Ok? If I am you know youth, you would rather go in kid. आधे अलग सेना रहा है.</p>
+
+<p>So he is also you know, 33 33 33 33 33 33 उरदा की तो शायद उसको safe. आनंद आनंद is big on equity. I mean, it's fine. Ok? Depends on your exposure in life actually.</p>
+
+<p>I hope my head is for spent in equity market. So more towards equity. हां. Now, I am just giving you a general base thing, of course they are not, I am not pressurizing, it's not, it's not the point is not preccising. And giving a based and something of.</p>
+
+<p>So I will give you a example. Images is already a multi millionaires she is also a billionaire. Why the hell would she want like you know, she need not have much insurance और याद है doctor का बंदा, यंत्र का बंदा ये है hospital. अरे not proper whatever reason, right? आई एम गिविंग ए base line आई एम note क्रिटिसाइजिंग और 3 selling दिस इस right और रंग और यू नो what दिस आई am giving ए basis on which यू can decide of course दिस इस वन of डी basis दिस इस like एन असमिंग वे जो settle with 0 or child there या not really looking for security.</p>
+
+<p>Security means are not trying to go I mean imagine your kid let say you are like right now, most of you will go on put your money in a bank account and stay in a bank account, ok but if you have something issues तो से यू would most likely कोंन like public पट देवर right ऐसा इन्होंने gold इसे actually equity यू me note even real life think it's security all 3 of them has different confidence but peoples general the way of thinking right they don't realize that the thing property is safe, property is an equity. Major, let's say major equity product. Ok? They think it's सीकर वही आई एम टेलिंग दिस इस what इस हैपेंड इन today market today डियर इस बिन एन miss असाइनमेंट of what इस what what the true nature of that product?</p>
+
+<p>Why I am saying this is what is bold? Ok, let me give you examples What is people do? Mutual funds. यह ना mutual funds सही है ना, mutual funds है यह. Ok. What is mutual funds?</p>
+
+<p>Where does it come? हां? Equity. What do you think? What do you think?</p>
+
+<p>Equity. What do you think? Both equity. Both So in reality, it can be of all of 3 kinds. Like for example, there are multiple step funds.</p>
+
+<p>Ok? There are like equity growth gold? Is it equity or is it debt or insurance? Equity. Equity.</p>
+
+<p>Ok. Again not much people know about you know last cap, mid cap, small cap, who is aware of you guys not aware of that? Well forget that. So now let's come back to this numbers only. Ideally this number if I ask like few months later it will change again already you guys have moved away from the base line for various reasons for your own reasons, right?</p>
+
+<p>So he is very experienced with his things, so he is ok with going with more equity. Even at, you know, you know, हां, is going 40 percent equity. 30 percent, sir 30 percent insurance can you say why you want 30 percent insurance? See, as you agree that you know whatever he said, how many of you agree or well you know what is your point of view like he is saying he has put how much 30 percent in insurance, ok and he is saying he is doing that because with row the older hero you will need insurance on your part k which how many of you are be and how many of you say insurer will make sure it is as good as you know, your paying for yourself.</p>
+
+<p>Even if you don't buy insurance, you go directly to the hospital date भी से match as it as your premium almost depending on योर status नो how old ही right सो देवर इस very little benefit of it's nature we actually go to a doctor for order argument ok it will cost me 70000 rupees may be 10000 rupees will say paying sometimes 50000 rupees insurance only is more ok सो whether we like it or note यू नो इंश्योरेंस premium जहां से ही ए रहे होंगे डी nature of लॉटरी reduces.</p>
+
+<p>Correct? So I am not saying he is right or wrong here but in this case this product is gonna be of very reduced to right. The same amount the 60000 rupees if you had gone put in depth, the 60 would have been 60 and that would have covered the same medical distance. In the in the sense इंश्योरेंस security और डी think इस हर डी इंश्योर may और may note give image give डी same teacher his लांगेस्ट find वे तू 98 around यू ok hair ही head ही rather needs security</p>
+
+<p>Why I am, why I am telling this, this is tomorrow when we are today, you go to the stock market at the air, you go outside and you go speak to people nobody talks about any of these things date तेल you know that shares going up you invest. This factory is going up you invest your percentages will change. You will be far more rooted to your reality, far more rooted to understanding of this particular wealth. Concept.</p>
+
+<p>There are, there can be people लिखना, see I will not contest him going 14 percent equity because may be he has a vision to build an empire, at this age why not, I am not saying no, this is fine I am ok with the equity. Equity you can put like for example that apart from death and insurance equity is वन person as per ratio. There is नो mean as long as your somebody might be first ok अभिषेक की security तुम 25% date ok ही can be what यू से around 70% equity अलसो आते what ever आगे हा गा first air सीकर और ऐसे सीकर यू miss योर family like what ever योर monthly expenses are, you know whatever 6 months you know your loss should be cash free.</p>
+
+<p>Without that let's say you you know you are getting married you know things happen in life you don't have you don't understand you know because you are locked in. That's another aspect we will speak about. Liberty and that will come to later. So half the issue today, today in the world we are living a situation. There is money everywhere but everybody has many problems.</p>
+
+<p>Do you have any problem? Do you have any problem? Do अभिषेक, they have we feel again some money problem half So now once you understand now with this you see, you go and you will probably make a better reasons with these too. You know how much insurance you should have? You know how much security you should have?</p>
+
+<p>The rest is all equity. Ok? This will change as you, this is, these both are age dependent, right? So these both age dependent are in or the day data. So now this is again a very very broad classification.</p>
+
+<p>Ok. So however when you actually go see the product, for example both gold and let's say property, Both of them are equity. Right? But these are they both same? What is the reason?</p>
+
+<p>Property booming is different compared to gold like this. Ok, what else? It depends upon the city or anything property, but gold is like amount to accommodate. Ok. Liquidity.</p>
+
+<p>So ऐसे ही other property, I will say, give me, I want that money immediately, ok? What is it more easier to limited gold or you know property? Gold gold gold gold. Gold. So it comes to the actual time of need से first of all you let me मिल लेते हैं under make your understanding sir.</p>
+
+<p>We all need money for, why people have money but have money problems is same thing. They don't understand this core concept of liquidity. Now we would like to have even we want not like you know some property the other 1 high India what to 60 percent population of India falls between this you know that range Nobody tells now how it's supposed to behave and you are invariably put into a you know you are license to go and buy gold. Whereas you know, you don't need security you know. So compared to gold and property gold gives you more security, ok compare to land so now you understand what are the categories.</p>
+
+<p>Now let me explain what our product does and rather what the trade means. So the trade will first thing is making an educate about this concept के वाटेवर आई टोल्ड यू दिस एंटायरेल दे यू have तू mean note यू but software like यू are making एन marketing आई don't आई एम not going very शब्द आई एम not going तू से की what ever आई said ok result audio नो वे want तू it डी से experience first यू understand what दिस इस नो वे have कम्युनिकेट दिस तू योर post यू have तू communication दिस तू योर front यू have date इस किड of यू have तू understand दिस एवं writing एन code यू have तू understand what इस program इस going ok seat box इस actually date it's very well date सो what time going forward when ever आई gate वे want face game नो product पर एग्जांपल आई bill give यू एग्जांपल what इसे दिस यू are सपोज तू कैटिवाइज me इन दिस 3 और other what इस एन core nature of it और then यू री understand where where यू have पुट तू match money ok Most of 40 percent insurance for lottery. Lot about a lottery.</p>
+
+<p>How much insurance should 1 take or rather how much insurance should 1 have or what is the base it is how much insurance you have? Income. You need to like if he is getting like 10000 per month. He should like thousand rupees yes, age we already discussed you know why age is far more related to depth. Age factor, I mean of course it's everything is correlated, I am not saying you know but I am saying majority of your age, depending on your race you should have, you should think about security.</p>
+
+<p>What is your insurance factor? Like how much you say, sir when I say insurance you know first let me be very clear here. हर think of आईटी lot like इंश्योरेंस सो इंश्योरेंस यू never नो when it's going तू कम back इन what form it's going तू कम back हो it's going तू कम back ये यू apply पट सम amount सम where ok understand what I mean इंश्योरेंस However you will not know when it's gonna happen. See here time is kind of binding with everything here if you are doing it's more like you know what you say it's like a it's a lot of unknown ok? So you are literally putting your money to an unknown entity, not even expecting any return.</p>
+
+<p>It's like no zone of no expectation. 40 percent salary 33 percent, you are second best candidate. 30 percent मुरली. Sir, हिंदू देव only. अभिषेक 25 percent safe super super.</p>
+
+<p>So this, entire insurance concept really should depend on what किड of lifestyle यू want तू live दिस इस दिस किड of इस always डी present आते डी दिस present डी present दिस bill किड of आ रिप्रेजेंट यू नो पास मेंस हो में आगे यू are हो match आगे इस ऑलरेडी हैपेंड और ये आगे थे security देखो दिस इसे योर future fast present future future like पर एग्जांपल but यू don't नो when हो इन what form where दिस इसे किड of यू नो what should be योर present यू नो योर day today यू नो growth means what ever इसे दिस इस किड of a present scenario based on date यू decide हो match गोस over here.</p>
+
+<p>नो वे want तू date on what basis should यू decide on जो सी यू understand ok सो where what trade मां दस इस वे have option पर पीपल तू take इधर date equity letter. We are again providing the NSE for debt. I am there to take as much debt as possible. Don't worry. I will give you returns also.</p>
+
+<p>Ok? So all the people who are coming into trade and again we are not like you know, going selling to people or you know that's not our aim at all. So when people come it's our duty to basically put their money in the right basket at the appropriate time. This again we told is say I will give example.</p>
+
+<p>So let say I am heavily investment in between. For whatever reason, I have some sort of a mate, I got to know that I have a mailment. Now I am probably more to debt than probably you know let's say for whatever I already got a lottery. Then I might invest more in lottery. So this whatever result I give यू ए starting एग्जांपल tomorrow वे bill discuss डी dynaism of हो तू mix और match हो तू play with दिस यू नो हो तू move from हर on what basis यू नो move from 1 तू other what इसे यू नो understand date स्टेटिक picture यू understand today bill को with मोर डायनामिक्स but एवं दिस वन यू नो 25 inch date इन दिस 0.5 it's like date ok things change सो यू should be it's note fix आईटी और like आईटी और वन स्लीप और नो आई have एन form डी आई want स्लीप पर डी सफर आईटी bill change और यू should आई mean note यू योर money should become very very डायनामिक based on योर आईटी should reflect योर on reality डी होल आइडिया इस योर money where ever आईटी इसे देवर आईटी should reflect योर on reality मेंस योर on मेंटालिटी योर on फाइनेंशियल डिस्पोजन योर on family conditions योर on date it इस ए डायनेमिक think और product वे will make डेम first understand date यू नो वे don't नो एक्जेक्टली where वे are not अवेयर of दिस think date अवेयरनेस हन और दें it इस time पर यू expect यू should make दिस note me but everybody इस going बिहाइंड friends advisor other going बिहाइंड some other thing</p>
+
+<p>In reality they have made it very very complicated go first of stock market you know education you will get some hundred YouTube channel some 500 blogs initially डी internet और एरोप्लेन whatever date वजन advantage तू society नो देवर और नो it आई with डी third वन नो देवर अलसो making lot of मक अननेसेसरी कसम हो आई want से truth जो दिस तू figure out एक्जेक्टली what यू need everybody इस advice can be ok but दिस इस रीजन because यू have already being Bombayed by सो much conditioning where is society well like आई will give यू एग्जांपल everyone here कम से कम we have ए being free और being creative यू नो being हेविंग सो equity हज एन good mix of बहुत दिस और दिस security अलसो it has security also, it has that aspiration of growth also and I want you all to be in this space more than if you stay in the center at the you know in the present moment working towards both 1 step at a time 1 time ऐवेंंचुअली दिस तू will fall इन place दिस इस our product and again वे have a software aspect and now we will discuss later ok.</p>
+
+<p>I wanted to first understand what is product please about. So once you see the product once you go I don't know how we want to explain this to your friends but you know whoever who are coming this should be the basis of what this product is. Ok? Yeah. Thank you.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="OnboardingGuide.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Onboarding Guide">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Onboarding Guide
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="FrontendRefactoringDoc.html" class="md-footer__link md-footer__link--next" aria-label="Next: Frontend Refactoring">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Frontend Refactoring
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Serendipity2-0" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/trademanv1?s=21&t=bBTay4-vvjkbqF5YnSYrog" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/trademan.v1?igsh=NnZ6dDR2M2Nhc3h5" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141m0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7m146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8m76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:your-email@example.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l217.6 163.2c11.4 8.5 27 8.5 38.4 0l217.6-163.2c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 176v208c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V176L294.4 339.2a63.9 63.9 0 0 1-76.8 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "toggle.dark_mode", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

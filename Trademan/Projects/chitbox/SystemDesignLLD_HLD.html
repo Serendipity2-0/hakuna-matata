@@ -1,0 +1,6621 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="AppDesignTechnicalDocs.html">
+      
+      
+        <link rel="next" href="GitWorkFlow.html">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>System Design (LLD+HLD) - Serendipity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#system-designlld-hld" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="Serendipity" class="md-header__button md-logo" aria-label="Serendipity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Serendipity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              System Design (LLD+HLD)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.html" class="md-tabs__link">
+          
+  
+  Serendipity
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../trademanV1/OnboardingGuide.html" class="md-tabs__link">
+          
+  
+  TradeMan
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Dhoomstudios/DebtReference.html" class="md-tabs__link">
+          
+  
+  DhoomStudios
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="Serendipity" class="md-nav__button md-logo" aria-label="Serendipity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Serendipity
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Serendipity
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Serendipity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accounts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Accounts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kaas user Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Kaas user Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas MainSheet Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/kaasuserguide/KaasSheetHeaderDescription.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas Sheet Header Indexes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/kaasuserguide/KaasSheetsSummary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas Sheets Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accounting Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Accounting Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccountDailyReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Daily Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccountStandardOperatingProcedures.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Standard Operating Procedures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccountTransactionScenarios.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Transaction Scenarios
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccQTPrd.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AccQT Prd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/VBAExcelToolGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VBA Macro - Tool within Excel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/GSTProcess.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GST Process
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/IncomeTaxDeductions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Income Tax Deductions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/SerendipityBusinessRequirementsPlan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serendipity Business Requirements Plan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HR Onboarding Library
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            HR Onboarding Library
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/hronboardinglibrary/EmployeeOnboardingGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Employee Onboarding Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/hronboardinglibrary/SMS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Management System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            General Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/generalguidelines/FileNamingGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File Naming Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/generalguidelines/AudioMeetingGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Audio Meeting Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/generalguidelines/DUNSRegFormalities.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DUNS Registration formalities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/ViewOnSerendipity.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    View On Serendipity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    TradeMan
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            TradeMan
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    TradeManV1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            TradeManV1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trademanV1/OnboardingGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Onboarding Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trademanV1/TradeManMeetingAudio_Transcribe.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TradeManV1 Meetings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trademanV1/FrontendRefactoringDoc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frontend Refactoring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trademanV1/TestingEODReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing EOD Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trademanV1/TestingDiscord.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing Discord
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HakunaMatata
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            HakunaMatata
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hakunamatata/HakunaMatataDevGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HakunaMatata Dev Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kaas
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kaas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kaas/KaasAppPrompt.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas App Prompt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kaas/FabricKaas.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Kaas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ChitBox
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            ChitBox
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ChitBoxProject.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChitBox Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_2" id="__nav_3_1_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API Sethu and Distributed Ledger Technology
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            API Sethu and Distributed Ledger Technology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apisethudocs/ApiSethuDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API sethu documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apisethudocs/DLTImplementationGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Implementation Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apisethudocs/DLTEntityRegistration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Entity Registration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apisethudocs/DLTHeaderManualPing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Header Manual Ping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apisethudocs/DLTContentApproval.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Content Approval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_3" id="__nav_3_1_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Flutter Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Flutter Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fluttercode/FlutterCodeReviewForm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flutter Code Review Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fluttercode/Prompt.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Used
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fluttercode/OpenClosedPrinciple.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Open Closed Principle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fluttercode/LISKOVPrinciple.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Liskov Substitution Principle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_4" id="__nav_3_1_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Project Management
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Project Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/ProjectManagement.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/CreatingAccountCreated.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating-Account Created
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/DashboardUnitTests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-Dashboard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/eKYCVerificationScreen.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eKYC Verification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/eKYCImplementationAndUT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eKYC Implementation and UT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/LoginPageandOTP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Login page with OTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/NavBar.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NavBar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/OTPUnitTests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-OTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/PersonalDetailsForm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Personal Details Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/PersonalDetailsTestCases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-Personal Details
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/TodayTaskDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Today's Task
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/FunctionalRequirements.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functional Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/SystemDesign.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/TestFlightDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TestFlight Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/GooglePlaystoreAccountCreation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google Playstore Account Creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="AppDesignTechnicalDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    App Design Technical Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    System Design (LLD+HLD)
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="SystemDesignLLD_HLD.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    System Design (LLD+HLD)
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chit-box-app-system-design-high-level-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chit-Box App System Design: High-Level Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-phase-one-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Phase One Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Components:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Diagram:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component Descriptions:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Workflow:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Flow Diagram:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-measures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Measures:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chitbox-high-level-system-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChitBox High-Level System Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objective_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-phase-one-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Phase One Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Components Explained
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-workflow_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Workflow:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-registration-and-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Registration and Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kyc-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      KYC Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bank-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bank Information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chit-fund-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chit Fund Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bidding-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bidding System
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notifications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-diagram-simplified" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Flow Diagram (Simplified):
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-measures_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Measures:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#low-level-design-lld-for-chitbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low-Level Design (LLD) for ChitBox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-user-registration-and-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. User Registration and Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-kyc-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. KYC Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bank-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Bank Information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-chit-fund-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Chit Fund Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-bidding-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Bidding System
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#51-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Notifications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-user-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. User Profile
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#71-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#72-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-design-hld-flow-chart-and-workflow-for-chitbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-Level Design (HLD) Flow Chart and Workflow for ChitBox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-hld-flow-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. HLD Flow Chart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-hld-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. HLD Workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hld-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      HLD Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-workflow-for-key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed Workflow for Key Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#low-level-design-lld-flowchart-and-implementation-for-chitbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low-Level Design (LLD) Flowchart and Implementation for ChitBox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-user-registration-and-authentication_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. User Registration and Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-kyc-verification_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. KYC Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bank-information_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Bank Information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-chit-fund-management_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Chit Fund Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-bidding-system_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Bidding System
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#51-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-notifications_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Notifications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-user-profile-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. User Profile Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#71-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#72-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="GitWorkFlow.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git WorkFlow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ChitboxAuctionProcess.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auction Process
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software/Technology Instructions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Software/Technology Instructions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/CoolifyBeginPhase1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coolify Phase1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/CoolifyInstructions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coolify Instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/CloudflareHosting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloudflare Hosting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/JioRouterConfig.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jio Router Config
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/PaymentGatewayBenefits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Payment Gateway Benefits Razorpay
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/AgentCreationGuideline.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agent Creation Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/RbacGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RBAC Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/googlesso/GoogleSSOonGCP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google SSO On GCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/WhatsappAPIIntegration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WhatsApp API Creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General Tech Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            General Tech Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/GitHubRepos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/CommitConventionGuideline.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commit Convention Guideline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/PromptCollections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Collection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/DesignPatterns.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reports
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reports
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/TechDailyReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tech Daily Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/DevelopmentSch.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Schedule
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DhoomStudios
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            DhoomStudios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/DebtReference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/DebtReviewed.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Reviewed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/AdobeCreativeSuite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adobe Creative Suite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/ScriptGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Script Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/AdobeGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adobe Tools & Features Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/EvolutionOfInvesting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Evolution of Investing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Old Man's Tale
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            Old Man's Tale
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/oldmanstale/ShareMarketScript.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Share Market
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Share Market
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/sharemarket/ShareMarketShort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Short
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/sharemarket/ShareMarketWebseries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Webseries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Debt
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            Debt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/debt/DebtWebseriesScript.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Webseries Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Insurance
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            Insurance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/insurance/InsuranceShort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Insurance Short
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chit-box-app-system-design-high-level-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chit-Box App System Design: High-Level Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-phase-one-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Phase One Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Components:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Diagram:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component Descriptions:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Workflow:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Flow Diagram:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-measures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Measures:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chitbox-high-level-system-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChitBox High-Level System Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objective_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-phase-one-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Phase One Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-components-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Components Explained
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-workflow_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Workflow:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-registration-and-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Registration and Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kyc-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      KYC Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bank-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bank Information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chit-fund-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chit Fund Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bidding-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bidding System
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notifications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-diagram-simplified" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Flow Diagram (Simplified):
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-measures_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Measures:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#low-level-design-lld-for-chitbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low-Level Design (LLD) for ChitBox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-user-registration-and-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. User Registration and Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-kyc-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. KYC Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bank-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Bank Information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-chit-fund-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Chit Fund Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-bidding-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Bidding System
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#51-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Notifications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-user-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. User Profile
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#71-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#72-detailed-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Detailed Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-design-hld-flow-chart-and-workflow-for-chitbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-Level Design (HLD) Flow Chart and Workflow for ChitBox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-hld-flow-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. HLD Flow Chart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-hld-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. HLD Workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hld-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      HLD Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-workflow-for-key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed Workflow for Key Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#low-level-design-lld-flowchart-and-implementation-for-chitbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low-Level Design (LLD) Flowchart and Implementation for ChitBox
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-user-registration-and-authentication_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. User Registration and Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-kyc-verification_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. KYC Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bank-information_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Bank Information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-chit-fund-management_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Chit Fund Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-bidding-system_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Bidding System
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#51-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-notifications_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Notifications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-user-profile-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. User Profile Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#71-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Flowchart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#72-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Implementation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="system-designlld-hld">System design(LLD +HLD)</h1>
+<p>Status: Done
+Team: Engineering</p>
+<h3 id="chit-box-app-system-design-high-level-overview">Chit-Box App System Design: High-Level Overview</h3>
+<h3 id="objective">Objective:</h3>
+<p>Design a simplified high-level system architecture for ChitBox, ensuring that it is comprehensible to non-technical stakeholders while effectively communicating the key components and their interactions.</p>
+<h3 id="1-introduction">1. Introduction</h3>
+<p>ChitBox is a digital platform aimed at simplifying and modernizing the traditional chit fund process. This document outlines the design, features for Phase One, and the rationale behind data collection from users.</p>
+<h3 id="2-phase-one-features">2. Phase One Features</h3>
+<p>Phase One of ChitBox focuses on essential functionalities that enable users to join, manage, and participate in chit funds seamlessly.</p>
+<h3 id="system-architecture">System Architecture</h3>
+<h3 id="key-components">Key Components:</h3>
+<ol>
+<li><strong>User Interface (UI)</strong></li>
+<li><strong>API Gateway</strong></li>
+<li><strong>Authentication Service</strong></li>
+<li><strong>User Service</strong></li>
+<li><strong>KYC Verification Service</strong></li>
+<li><strong>Banking Service</strong></li>
+<li><strong>Chit Fund Management Service</strong></li>
+<li><strong>Bidding System</strong></li>
+<li><strong>Notification Service</strong></li>
+<li><strong>Database</strong></li>
+<li><strong>External Integrations</strong></li>
+</ol>
+<h3 id="architecture-diagram">Architecture Diagram:</h3>
+<p><img alt="https://user-images.githubusercontent.com/75741287/230128237-934f9f79-13c6-45c6-87f5-13b8dfdf92d2.png" src="https://user-images.githubusercontent.com/75741287/230128237-934f9f79-13c6-45c6-87f5-13b8dfdf92d2.png" /></p>
+<h3 id="component-descriptions">Component Descriptions:</h3>
+<ol>
+<li><strong>User Interface (UI):</strong><ul>
+<li><strong>Frontend:</strong> Built using Flutter for cross-platform support (iOS, Android).</li>
+<li><strong>Functionality:</strong> Registration, authentication, KYC submission, viewing/joining chit funds, bidding in auctions, profile management.</li>
+</ul>
+</li>
+<li><strong>API Gateway:</strong><ul>
+<li><strong>Role:</strong> Acts as a single entry point for all client requests. It routes requests to the appropriate backend services.</li>
+<li><strong>Features:</strong> Load balancing, request authentication, rate limiting.</li>
+</ul>
+</li>
+<li><strong>Authentication Service:</strong><ul>
+<li><strong>Role:</strong> Manages user sign-up, login, and two-factor authentication (2FA) via OTP.</li>
+<li><strong>Technology:</strong> JWT-based authentication.</li>
+</ul>
+</li>
+<li><strong>User Service:</strong><ul>
+<li><strong>Role:</strong> Handles user-related operations like profile management and storing user details.</li>
+<li><strong>Interactions:</strong> Communicates with the Authentication Service and KYC Verification Service.</li>
+</ul>
+</li>
+<li><strong>KYC Verification Service:</strong><ul>
+<li><strong>Role:</strong> Integrates with Digilocker for document verification and handles KYC-related data processing.</li>
+<li><strong>Features:</strong> Personal and identification details verification.</li>
+</ul>
+</li>
+<li><strong>Banking Service:</strong><ul>
+<li><strong>Role:</strong> Manages collection and verification of bank details.</li>
+<li><strong>Functionality:</strong> Adds bank details, verifies account ownership.</li>
+</ul>
+</li>
+<li><strong>Chit Fund Management Service:</strong><ul>
+<li><strong>Role:</strong> Manages chit funds, including viewing available chit funds, joining them, and viewing details.</li>
+<li><strong>Interactions:</strong> Communicates with the Bidding System and Notification Service.</li>
+</ul>
+</li>
+<li><strong>Bidding System:</strong><ul>
+<li><strong>Role:</strong> Manages live auctions and automatic bidding for chit funds.</li>
+<li><strong>Features:</strong> Real-time bidding, automatic bid setup.</li>
+</ul>
+</li>
+<li><strong>Notification Service:</strong><ul>
+<li><strong>Role:</strong> Sends real-time notifications to users for bids, fund status, upcoming payments, and auctions.</li>
+<li><strong>Technology:</strong> Push notifications, SMS, and email alerts.</li>
+</ul>
+</li>
+<li><strong>Database:</strong><ul>
+<li><strong>Type:</strong> PostgreSQL for relational data, with possible integration of Redis for caching.</li>
+<li><strong>Role:</strong> Stores user data, KYC information, bank details, chit fund details, and bidding history.</li>
+</ul>
+</li>
+<li><strong>External Integrations:</strong><ul>
+<li><strong>Digilocker API:</strong> For KYC verification.</li>
+<li><strong>Banking APIs:</strong> For account verification.</li>
+</ul>
+</li>
+</ol>
+<h3 id="system-workflow">System Workflow:</h3>
+<ol>
+<li><strong>User Registration and Authentication:</strong><ul>
+<li>User signs up via email or mobile number.</li>
+<li>OTP sent for 2FA.</li>
+<li>User selects role (User/Agent).</li>
+</ul>
+</li>
+<li><strong>KYC Verification:</strong><ul>
+<li>User submits personal and identification details.</li>
+<li>Digilocker API used for document verification.</li>
+<li>KYC status updated in the User Service.</li>
+</ul>
+</li>
+<li><strong>Bank Information:</strong><ul>
+<li>User enters bank details.</li>
+<li>Banking Service verifies account ownership.</li>
+</ul>
+</li>
+<li><strong>Chit Fund Management:</strong><ul>
+<li>User views available chit funds.</li>
+<li>User joins a chit fund.</li>
+<li>Chit Fund Management Service updates user participation.</li>
+</ul>
+</li>
+<li><strong>Bidding System:</strong><ul>
+<li>User participates in live auctions.</li>
+<li>Real-time bids updated and managed.</li>
+<li>Automatic bidding feature can be configured.</li>
+</ul>
+</li>
+<li><strong>Notifications:</strong><ul>
+<li>User receives real-time updates on bids, chit fund status, and upcoming payments.</li>
+</ul>
+</li>
+</ol>
+<h3 id="data-flow-diagram">Data Flow Diagram:</h3>
+<pre><code>+-------------------+       +--------------+       +------------------+
+| User Interface    | &lt;---&gt; | API Gateway  | &lt;---&gt; | Authentication   |
+| (Flutter App)     |       +--------------+       | Service          |
++-------------------+       +--------------+       +------------------+
+       |                        |                        |
+       v                        v                        v
++-------------------+       +--------------+       +------------------+
+| KYC Verification  | &lt;---&gt; | User Service | &lt;---&gt; | Banking Service  |
+| Service           |       +--------------+       +------------------+
++-------------------+             |
+       |                           v
+       v                 +------------------+
++-------------------+    | Chit Fund        |
+| Notification      |&lt;--&gt; | Management      |
+| Service           |    | Service          |
++-------------------+    +------------------+
+       |
+       v
++-------------------+
+| Bidding System    |
++-------------------+
+
+</code></pre>
+<h3 id="security-measures">Security Measures:</h3>
+<ol>
+<li><strong>Encryption:</strong> AES-256 encryption for sensitive data.</li>
+<li><strong>Authentication:</strong> Two-factor authentication (2FA) and OAuth for third-party integrations.</li>
+<li><strong>Data Masking:</strong> Mask personal data displayed in the app.</li>
+<li><strong>Regular Audits:</strong> Periodic security audits and compliance checks.</li>
+</ol>
+<h3 id="conclusion">Conclusion</h3>
+<p>This high-level system design provides a simplified yet comprehensive view of ChitBox's architecture. It outlines the essential components, their interactions, and the data flow, ensuring a secure and efficient platform for managing chit funds. This approach ensures that both technical and non-technical stakeholders can understand the system's functionality and design.</p>
+<h3 id="chitbox-high-level-system-design">ChitBox High-Level System Design</h3>
+<h3 id="objective_1">Objective:</h3>
+<p>To provide a clear and simple understanding of the ChitBox system architecture, enabling non-technical stakeholders to grasp how the platform works.</p>
+<h3 id="1-introduction_1">1. Introduction</h3>
+<p>ChitBox is a digital platform designed to simplify and modernize the traditional chit fund process. The system allows users to join, manage, and participate in chit funds easily.</p>
+<h3 id="2-phase-one-features_1">2. Phase One Features</h3>
+<p>The initial phase of ChitBox focuses on essential functionalities such as user registration, KYC (Know Your Customer) verification, bank information management, chit fund management, bidding, notifications, and user profile management.</p>
+<h3 id="system-architecture-overview">System Architecture Overview</h3>
+<p>The system architecture consists of the following key components:</p>
+<ol>
+<li><strong>User Interface (UI)</strong></li>
+<li><strong>API Gateway</strong></li>
+<li><strong>Authentication Service</strong></li>
+<li><strong>User Service</strong></li>
+<li><strong>KYC Verification Service</strong></li>
+<li><strong>Banking Service</strong></li>
+<li><strong>Chit Fund Management Service</strong></li>
+<li><strong>Bidding System</strong></li>
+<li><strong>Notification Service</strong></li>
+<li><strong>Database</strong></li>
+<li><strong>External Integrations</strong></li>
+</ol>
+<h3 id="key-components-explained">Key Components Explained</h3>
+<ol>
+<li><strong>User Interface (UI)</strong><ul>
+<li><strong>What It Is:</strong> The part of the system that users interact with directly, typically through a mobile app or website.</li>
+<li><strong>Functionality:</strong> Allows users to register, log in, submit KYC documents, view and join chit funds, participate in auctions, and manage their profiles.</li>
+<li><strong>Technology:</strong> Developed using Flutter for creating cross-platform mobile applications.</li>
+</ul>
+</li>
+<li><strong>API Gateway</strong><ul>
+<li><strong>What It Is:</strong> A single entry point for all client requests.</li>
+<li><strong>Functionality:</strong> Routes incoming requests to the appropriate backend services and ensures secure communication.</li>
+<li><strong>Benefits:</strong> Simplifies client-server interactions, improves security, and handles load balancing.</li>
+</ul>
+</li>
+<li><strong>Authentication Service</strong><ul>
+<li><strong>What It Is:</strong> Manages user registration and login processes.</li>
+<li><strong>Functionality:</strong> Handles sign-ups, logins, and two-factor authentication (2FA) using OTPs (one-time passwords).</li>
+<li><strong>Benefits:</strong> Ensures secure access to the system.</li>
+</ul>
+</li>
+<li><strong>User Service</strong><ul>
+<li><strong>What It Is:</strong> Manages user-related data and operations.</li>
+<li><strong>Functionality:</strong> Stores and handles user details, profile management, and interactions with the KYC service.</li>
+<li><strong>Benefits:</strong> Centralizes user information and profile management.</li>
+</ul>
+</li>
+<li><strong>KYC Verification Service</strong><ul>
+<li><strong>What It Is:</strong> Handles verification of user identity and documents.</li>
+<li><strong>Functionality:</strong> Integrates with Digilocker for document verification and processes KYC-related data.</li>
+<li><strong>Benefits:</strong> Ensures compliance with regulatory requirements and builds trust by verifying user identities.</li>
+</ul>
+</li>
+<li><strong>Banking Service</strong><ul>
+<li><strong>What It Is:</strong> Manages the collection and verification of users' bank details.</li>
+<li><strong>Functionality:</strong> Stores bank account information and verifies account ownership.</li>
+<li><strong>Benefits:</strong> Ensures accurate and secure financial transactions.</li>
+</ul>
+</li>
+<li><strong>Chit Fund Management Service</strong><ul>
+<li><strong>What It Is:</strong> Manages the lifecycle of chit funds.</li>
+<li><strong>Functionality:</strong> Allows users to view available chit funds, join them, and view detailed information about each fund.</li>
+<li><strong>Benefits:</strong> Centralizes chit fund operations and data.</li>
+</ul>
+</li>
+<li><strong>Bidding System</strong><ul>
+<li><strong>What It Is:</strong> Manages the auction process for chit funds.</li>
+<li><strong>Functionality:</strong> Provides real-time bidding features and supports automatic bidding setups.</li>
+<li><strong>Benefits:</strong> Facilitates fair and transparent bidding processes.</li>
+</ul>
+</li>
+<li><strong>Notification Service</strong><ul>
+<li><strong>What It Is:</strong> Manages notifications and alerts to users.</li>
+<li><strong>Functionality:</strong> Sends real-time notifications for bids, fund statuses, upcoming payments, and auctions via push notifications, SMS, and emails.</li>
+<li><strong>Benefits:</strong> Keeps users informed and engaged.</li>
+</ul>
+</li>
+<li><strong>Database</strong><ul>
+<li><strong>What It Is:</strong> Stores all the data used by the system.</li>
+<li><strong>Functionality:</strong> Maintains user information, KYC details, bank data, chit fund records, and bidding histories.</li>
+<li><strong>Technology:</strong> Uses PostgreSQL for relational data storage and Redis for caching.</li>
+<li><strong>Benefits:</strong> Ensures data integrity and performance.</li>
+</ul>
+</li>
+<li><strong>External Integrations</strong><ul>
+<li><strong>What It Is:</strong> Interfaces with external systems for additional functionalities.</li>
+<li><strong>Functionality:</strong> Integrates with Digilocker for KYC verification and banking APIs for account verification.</li>
+<li><strong>Benefits:</strong> Enhances system capabilities by leveraging external services.</li>
+</ul>
+</li>
+</ol>
+<h3 id="system-workflow_1">System Workflow:</h3>
+<h3 id="user-registration-and-authentication">User Registration and Authentication</h3>
+<ol>
+<li><strong>User Sign-Up/Login:</strong><ul>
+<li>Users register or log in using their email or mobile number.</li>
+<li>OTP is sent for two-factor authentication.</li>
+<li>Users select their role (User or Agent).</li>
+</ul>
+</li>
+</ol>
+<h3 id="kyc-verification">KYC Verification</h3>
+<ol>
+<li><strong>KYC Document Submission:</strong><ul>
+<li>Users submit personal details and identification documents.</li>
+<li>KYC Verification Service checks documents via Digilocker.</li>
+<li>Verification status is updated.</li>
+</ul>
+</li>
+</ol>
+<h3 id="bank-information">Bank Information</h3>
+<ol>
+<li><strong>Bank Details Submission:</strong><ul>
+<li>Users enter their bank account details.</li>
+<li>Banking Service verifies the ownership of the account.</li>
+</ul>
+</li>
+</ol>
+<h3 id="chit-fund-management">Chit Fund Management</h3>
+<ol>
+<li><strong>View and Join Chit Funds:</strong><ul>
+<li>Users browse available chit funds.</li>
+<li>Users join chosen chit funds.</li>
+<li>Chit Fund Management Service records participation.</li>
+</ul>
+</li>
+</ol>
+<h3 id="bidding-system">Bidding System</h3>
+<ol>
+<li><strong>Auction Participation:</strong><ul>
+<li>Users participate in live auctions.</li>
+<li>Bidding System handles real-time bid updates and automatic bidding.</li>
+</ul>
+</li>
+</ol>
+<h3 id="notifications">Notifications</h3>
+<ol>
+<li><strong>Receive Notifications:</strong><ul>
+<li>Users get real-time updates on bids, fund status, and payment reminders through the Notification Service.</li>
+</ul>
+</li>
+</ol>
+<h3 id="data-flow-diagram-simplified">Data Flow Diagram (Simplified):</h3>
+<pre><code>+-------------------+       +--------------+       +------------------+
+| User Interface    | &lt;---&gt; | API Gateway  | &lt;---&gt; | Authentication   |
+| (Mobile App)      |       +--------------+       | Service          |
++-------------------+       +--------------+       +------------------+
+       |                        |                        |
+       v                        v                        v
++-------------------+       +--------------+       +------------------+
+| KYC Verification  | &lt;---&gt; | User Service | &lt;---&gt; | Banking Service  |
+| Service           |       +--------------+       +------------------+
++-------------------+             |
+       |                           v
+       v                 +------------------+
++-------------------+    | Chit Fund        |
+| Notification      |&lt;--&gt; | Management      |
+| Service           |    | Service          |
++-------------------+    +------------------+
+       |
+       v
++-------------------+
+| Bidding System    |
++-------------------+
+
+</code></pre>
+<h3 id="security-measures_1">Security Measures:</h3>
+<ol>
+<li><strong>Encryption:</strong> All sensitive data is encrypted using AES-256 encryption.</li>
+<li><strong>Authentication:</strong> Users must pass two-factor authentication (2FA) and OAuth is used for third-party integrations.</li>
+<li><strong>Data Masking:</strong> Personal data displayed in the app is masked to prevent unauthorized access.</li>
+<li><strong>Regular Audits:</strong> Security audits and compliance checks are conducted periodically to ensure system integrity.</li>
+</ol>
+<h3 id="conclusion_1">Conclusion</h3>
+<p>This high-level system design provides a clear and simplified view of ChitBox's architecture. By outlining the key components and their interactions, the design ensures that non-technical stakeholders can understand the system's functionality and workflow. This approach highlights the system's security, data flow, and essential services, providing a comprehensive overview of the ChitBox platform.</p>
+<h3 id="low-level-design-lld-for-chitbox">Low-Level Design (LLD) for ChitBox</h3>
+<hr />
+<h3 id="1-user-registration-and-authentication">1. User Registration and Authentication</h3>
+<h3 id="11-workflow-diagram">1.1 Workflow Diagram</h3>
+<p><strong>User Registration and Authentication Workflow:</strong></p>
+<ol>
+<li>User opens the app.</li>
+<li>User selects Sign Up/Sign In.</li>
+<li>User enters email/mobile number.</li>
+<li>System sends OTP to the provided email/mobile.</li>
+<li>User enters OTP.</li>
+<li>System verifies OTP.</li>
+<li>User is registered/logged in.</li>
+</ol>
+<p><a href="https://example.com/authentication-workflow">https://example.com/authentication-workflow</a></p>
+<h3 id="12-detailed-design">1.2 Detailed Design</h3>
+<p><strong>Components</strong>:</p>
+<ul>
+<li><strong>Sign Up/Sign In Screen</strong>:<ul>
+<li><strong>Inputs</strong>: Email/Mobile, OTP</li>
+<li><strong>Buttons</strong>: Request OTP, Verify OTP</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints</strong>:</p>
+<ul>
+<li>
+<p><code>POST /api/auth/signup</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "email_or_mobile": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "otp_sent": true
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/auth/signin</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "email_or_mobile": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "otp_sent": true
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/auth/verify-otp</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "email_or_mobile": "string",
+  "otp": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "token": "jwt_token",
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="2-kyc-verification">2. KYC Verification</h3>
+<h3 id="21-workflow-diagram">2.1 Workflow Diagram</h3>
+<p><strong>KYC Verification Workflow:</strong></p>
+<ol>
+<li>User navigates to KYC section.</li>
+<li>User fills in personal details (Name, DOB, Address).</li>
+<li>User uploads documents (Aadhar, PAN).</li>
+<li>System integrates with Digilocker to verify documents.</li>
+<li>System updates KYC status.</li>
+</ol>
+<p><a href="https://example.com/kyc-workflow">https://example.com/kyc-workflow</a></p>
+<h3 id="22-detailed-design">2.2 Detailed Design</h3>
+<p><strong>Components</strong>:</p>
+<ul>
+<li><strong>Personal Details Form</strong>:<ul>
+<li><strong>Fields</strong>: Name, DOB, Address</li>
+</ul>
+</li>
+<li><strong>Document Upload Form</strong>:<ul>
+<li><strong>Fields</strong>: Aadhar, PAN</li>
+<li><strong>Button</strong>: Digilocker Integration</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints</strong>:</p>
+<ul>
+<li>
+<p><code>POST /api/kyc/verify</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "name": "string",
+  "dob": "YYYY-MM-DD",
+  "address": "string",
+  "aadhar": "string",
+  "pan": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "kyc_status": "pending"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>GET /api/kyc/status</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "kyc_status": "verified"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="3-bank-information">3. Bank Information</h3>
+<h3 id="31-workflow-diagram">3.1 Workflow Diagram</h3>
+<p><strong>Bank Information Workflow:</strong></p>
+<ol>
+<li>User navigates to Bank Information section.</li>
+<li>User fills in bank details (Account Number, IFSC Code).</li>
+<li>User clicks on verify button.</li>
+<li>System verifies account ownership.</li>
+<li>System updates bank verification status.</li>
+</ol>
+<p><a href="https://example.com/bank-info-workflow">https://example.com/bank-info-workflow</a></p>
+<h3 id="32-detailed-design">3.2 Detailed Design</h3>
+<p><strong>Components</strong>:</p>
+<ul>
+<li><strong>Bank Details Form</strong>:<ul>
+<li><strong>Fields</strong>: Account Number, IFSC Code</li>
+<li><strong>Button</strong>: Verify Account</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints</strong>:</p>
+<ul>
+<li>
+<p><code>POST /api/bank/add</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "account_number": "string",
+  "ifsc_code": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "bank_status": "verification_pending"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>GET /api/bank/verify</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "bank_status": "verified"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="4-chit-fund-management">4. Chit Fund Management</h3>
+<h3 id="41-workflow-diagram">4.1 Workflow Diagram</h3>
+<p><strong>Chit Fund Management Workflow:</strong></p>
+<ol>
+<li>User navigates to Chit Fund section.</li>
+<li>User views list of available chit funds.</li>
+<li>User selects a chit fund to view details.</li>
+<li>User joins the selected chit fund.</li>
+</ol>
+<p><a href="https://example.com/chit-fund-management-workflow">https://example.com/chit-fund-management-workflow</a></p>
+<h3 id="42-detailed-design">4.2 Detailed Design</h3>
+<p><strong>Components</strong>:</p>
+<ul>
+<li><strong>Chit Fund List</strong>:<ul>
+<li><strong>Display</strong>: List of chit funds</li>
+</ul>
+</li>
+<li><strong>Chit Fund Details</strong>:<ul>
+<li><strong>Display</strong>: Detailed information about a chit fund</li>
+<li><strong>Button</strong>: Join Chit Fund</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints</strong>:</p>
+<ul>
+<li>
+<p><code>GET /api/chitfunds</code></p>
+<ul>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "chitfunds": [
+    {
+      "id": "string",
+      "name": "string",
+      "amount": "number",
+      "premium": "number",
+      "start_date": "YYYY-MM-DD",
+      "slots": "number"
+    }
+  ]
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>GET /api/chitfunds/:id</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "chitfund_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "id": "string",
+  "name": "string",
+  "amount": "number",
+  "premium": "number",
+  "start_date": "YYYY-MM-DD",
+  "slots": "number"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/chitfunds/join</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string",
+  "chitfund_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "joined"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="5-bidding-system">5. Bidding System</h3>
+<h3 id="51-workflow-diagram">5.1 Workflow Diagram</h3>
+<p><strong>Bidding System Workflow:</strong></p>
+<ol>
+<li>User navigates to the Auction section.</li>
+<li>User views current highest bid.</li>
+<li>User places a new bid.</li>
+<li>User sets up automatic bidding if desired.</li>
+<li>Auction concludes and user is notified of the result.</li>
+</ol>
+<p><a href="https://example.com/bidding-system-workflow">https://example.com/bidding-system-workflow</a></p>
+<h3 id="52-detailed-design">5.2 Detailed Design</h3>
+<p><strong>Components</strong>:</p>
+<ul>
+<li><strong>Live Auction Screen</strong>:<ul>
+<li><strong>Display</strong>: Current highest bid, new bid input field</li>
+<li><strong>Button</strong>: Place Bid</li>
+</ul>
+</li>
+<li><strong>Automatic Bid Setup</strong>:<ul>
+<li><strong>Fields</strong>: Min Bid, Max Bid</li>
+<li><strong>Button</strong>: Save</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints</strong>:</p>
+<ul>
+<li>
+<p><code>GET /api/auction/:id</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "auction_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "current_bid": "number",
+  "auction_end_time": "YYYY-MM-DDTHH:MM:SSZ"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/auction/bid</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string",
+  "auction_id": "string",
+  "bid_amount": "number"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "bid_placed"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/auction/auto-bid</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string",
+  "auction_id": "string",
+  "min_bid": "number",
+  "max_bid": "number"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "auto_bid_set"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="6-notifications">6. Notifications</h3>
+<h3 id="61-workflow-diagram">6.1 Workflow Diagram</h3>
+<p><strong>Notifications Workflow:</strong></p>
+<ol>
+<li>System generates notifications based on user actions.</li>
+<li>User receives real-time notifications.</li>
+<li>User views notifications.</li>
+<li>User manages notification settings.</li>
+</ol>
+<p><a href="https://example.com/notifications-workflow">https://example.com/notifications-workflow</a></p>
+<h3 id="62-detailed-design">6.2 Detailed Design</h3>
+<p><strong>Components</strong>:</p>
+<ul>
+<li><strong>Notification List</strong>:<ul>
+<li><strong>Display</strong>: List of notifications</li>
+<li><strong>Option</strong>: Mark as Read</li>
+</ul>
+</li>
+<li><strong>Notification Settings</strong>:<ul>
+<li><strong>Toggle</strong>: Enable/Disable notifications</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints</strong>:</p>
+<ul>
+<li>
+<p><code>GET /api/notifications</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "notifications": [
+    {
+      "id": "string",
+      "type": "string",
+      "message": "string",
+      "read": "boolean"
+    }
+  ]
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/notifications/read</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "notification_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "read"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="7-user-profile">7. User Profile</h3>
+<p>Management</p>
+<h3 id="71-workflow-diagram">7.1 Workflow Diagram</h3>
+<p><strong>User Profile Management Workflow:</strong></p>
+<ol>
+<li>User navigates to Profile section.</li>
+<li>User edits personal details.</li>
+<li>User views linked bank accounts.</li>
+<li>User manages notification settings.</li>
+</ol>
+<p><a href="https://example.com/profile-management-workflow">https://example.com/profile-management-workflow</a></p>
+<h3 id="72-detailed-design">7.2 Detailed Design</h3>
+<p><strong>Components</strong>:</p>
+<ul>
+<li><strong>Profile Edit Form</strong>:<ul>
+<li><strong>Fields</strong>: Name, DOB, Address</li>
+<li><strong>Button</strong>: Save</li>
+</ul>
+</li>
+<li><strong>Linked Banks List</strong>:<ul>
+<li><strong>Display</strong>: List of linked bank accounts</li>
+<li><strong>Options</strong>: Edit, Remove</li>
+</ul>
+</li>
+<li><strong>Notification Settings</strong>:<ul>
+<li><strong>Toggle</strong>: Enable/Disable notifications</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints</strong>:</p>
+<ul>
+<li>
+<p><code>GET /api/profile</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "name": "string",
+  "dob": "YYYY-MM-DD",
+  "address": "string"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/profile/update</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string",
+  "name": "string",
+  "dob": "YYYY-MM-DD",
+  "address": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "updated"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>GET /api/banks</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "banks": [
+    {
+      "id": "string",
+      "account_number": "string",
+      "ifsc_code": "string"
+    }
+  ]
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/banks/add</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string",
+  "account_number": "string",
+  "ifsc_code": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "added"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>DELETE /api/banks/:id</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "bank_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "removed"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>This low-level design (LLD) provides detailed workflows, component descriptions, and API specifications for the ChitBox app, ensuring clear guidelines for developers and a comprehensive understanding of the system's inner workings.</p>
+<h3 id="high-level-design-hld-flow-chart-and-workflow-for-chitbox">High-Level Design (HLD) Flow Chart and Workflow for ChitBox</h3>
+<h3 id="1-hld-flow-chart">1. HLD Flow Chart</h3>
+<p><strong>Architecture Overview:</strong></p>
+<pre><code>                +-------------------------+
+                |      Mobile/Web App      |
+                +-----------+-------------+
+                            |
+                            |
+                            v
+                +-----------+-------------+
+                |        Authentication Service        |
+                +-----------+-------------+
+                            |
+                            v
+                +-----------+-------------+
+                |           KYC Service            |
+                +-----------+-------------+
+                            |
+                            v
+                +-----------+-------------+
+                |         Banking Service        |
+                +-----------+-------------+
+                            |
+                            v
+                +-----------+-------------+
+                |        Chit Fund Service       |
+                +-----------+-------------+
+                            |
+                            v
+                +-----------+-------------+
+                |         Auction Service         |
+                +-----------+-------------+
+                            |
+                            v
+                +-----------+-------------+
+                |       Notification Service      |
+                +-----------+-------------+
+                            |
+                            v
+                +-----------+-------------+
+                |          User Service           |
+                +-------------------------+
+
+</code></pre>
+<hr />
+<h3 id="2-hld-workflow">2. HLD Workflow</h3>
+<p><strong>User Registration and Authentication:</strong></p>
+<ol>
+<li>User opens the Mobile/Web App.</li>
+<li>User selects Sign Up/Sign In.</li>
+<li>User enters email/mobile number.</li>
+<li>Authentication Service sends OTP to the provided email/mobile.</li>
+<li>User enters OTP.</li>
+<li>Authentication Service verifies OTP.</li>
+<li>User is registered/logged in.</li>
+</ol>
+<p><strong>KYC Verification:</strong></p>
+<ol>
+<li>User navigates to the KYC section in the app.</li>
+<li>User fills in personal details (Name, DOB, Address).</li>
+<li>User uploads documents (Aadhar, PAN).</li>
+<li>KYC Service integrates with Digilocker to verify documents.</li>
+<li>KYC Service updates the KYC status.</li>
+</ol>
+<p><strong>Bank Information:</strong></p>
+<ol>
+<li>User navigates to the Bank Information section in the app.</li>
+<li>User fills in bank details (Account Number, IFSC Code).</li>
+<li>User clicks on the verify button.</li>
+<li>Banking Service verifies account ownership.</li>
+<li>Banking Service updates bank verification status.</li>
+</ol>
+<p><strong>Chit Fund Management:</strong></p>
+<ol>
+<li>User navigates to the Chit Fund section in the app.</li>
+<li>User views a list of available chit funds.</li>
+<li>User selects a chit fund to view details.</li>
+<li>User joins the selected chit fund.</li>
+</ol>
+<p><strong>Bidding System:</strong></p>
+<ol>
+<li>User navigates to the Auction section in the app.</li>
+<li>User views the current highest bid.</li>
+<li>User places a new bid.</li>
+<li>User sets up automatic bidding if desired.</li>
+<li>Auction concludes, and the user is notified of the result.</li>
+</ol>
+<p><strong>Notifications:</strong></p>
+<ol>
+<li>System generates notifications based on user actions.</li>
+<li>User receives real-time notifications.</li>
+<li>User views notifications in the app.</li>
+<li>User manages notification settings.</li>
+</ol>
+<p><strong>User Profile Management:</strong></p>
+<ol>
+<li>User navigates to the Profile section in the app.</li>
+<li>User edits personal details.</li>
+<li>User views linked bank accounts.</li>
+<li>User manages notification settings.</li>
+</ol>
+<hr />
+<h3 id="hld-workflow-diagram">HLD Workflow Diagram</h3>
+<p>Here's a visual representation of the high-level workflow for ChitBox:</p>
+<p><a href="https://example.com/hld-workflow-diagram">https://example.com/hld-workflow-diagram</a></p>
+<hr />
+<h3 id="detailed-workflow-for-key-features">Detailed Workflow for Key Features</h3>
+<p><strong>1. User Registration and Authentication</strong></p>
+<pre><code>+---------------------------+
+| Mobile/Web App            |
+|---------------------------|
+| - User selects Sign Up/In |
+| - User enters details     |
++------------+--------------+
+             |
+             v
++------------+--------------+
+| Authentication Service    |
+|---------------------------|
+| - Sends OTP               |
+| - Verifies OTP            |
++---------------------------+
+
+</code></pre>
+<p><strong>2. KYC Verification</strong></p>
+<pre><code>+---------------------------+
+| Mobile/Web App            |
+|---------------------------|
+| - User enters KYC details |
+| - Uploads documents       |
++------------+--------------+
+             |
+             v
++------------+--------------+
+| KYC Service               |
+|---------------------------|
+| - Verifies details        |
+| - Integrates with Digilocker |
++---------------------------+
+
+</code></pre>
+<p><strong>3. Bank Information</strong></p>
+<pre><code>+---------------------------+
+| Mobile/Web App            |
+|---------------------------|
+| - User enters bank details|
+| - Verifies account        |
++------------+--------------+
+             |
+             v
++------------+--------------+
+| Banking Service           |
+|---------------------------|
+| - Verifies account ownership |
++---------------------------+
+
+</code></pre>
+<p><strong>4. Chit Fund Management</strong></p>
+<pre><code>+---------------------------+
+| Mobile/Web App            |
+|---------------------------|
+| - Views chit funds        |
+| - Joins selected chit fund|
++------------+--------------+
+             |
+             v
++------------+--------------+
+| Chit Fund Service         |
+|---------------------------|
+| - Manages chit funds      |
++---------------------------+
+
+</code></pre>
+<p><strong>5. Bidding System</strong></p>
+<pre><code>+---------------------------+
+| Mobile/Web App            |
+|---------------------------|
+| - User views bids         |
+| - Places new bid          |
+| - Sets automatic bids     |
++------------+--------------+
+             |
+             v
++------------+--------------+
+| Auction Service           |
+|---------------------------|
+| - Manages auctions        |
++---------------------------+
+
+</code></pre>
+<p><strong>6. Notifications</strong></p>
+<pre><code>+---------------------------+
+| Mobile/Web App            |
+|---------------------------|
+| - Views notifications     |
+| - Manages settings        |
++------------+--------------+
+             |
+             v
++------------+--------------+
+| Notification Service      |
+|---------------------------|
+| - Sends notifications     |
++---------------------------+
+
+</code></pre>
+<p><strong>7. User Profile Management</strong></p>
+<pre><code>+---------------------------+
+| Mobile/Web App            |
+|---------------------------|
+| - Edits profile details   |
+| - Manages bank accounts   |
+| - Manages notification settings |
++------------+--------------+
+             |
+             v
++------------+--------------+
+| User Service              |
+|---------------------------|
+| - Manages user data       |
++---------------------------+
+
+</code></pre>
+<hr />
+<p>This high-level design flow chart and workflow provide a comprehensive overview of the ChitBox system's architecture and interactions, ensuring a clear understanding of the system for both technical and non-technical stakeholders.</p>
+<h3 id="low-level-design-lld-flowchart-and-implementation-for-chitbox">Low-Level Design (LLD) Flowchart and Implementation for ChitBox</h3>
+<hr />
+<h3 id="1-user-registration-and-authentication_1">1. User Registration and Authentication</h3>
+<h3 id="11-flowchart">1.1 Flowchart</h3>
+<p><strong>User Registration and Authentication Flowchart:</strong></p>
+<pre><code class="language-mermaid">flowchart TD
+    A[User] --&gt;|Opens App| B[Sign Up/Sign In Screen]
+    B --&gt; C{Enter Email/Mobile}
+    C --&gt; D[Request OTP]
+    D --&gt;|Send Request| E[Authentication Service]
+    E --&gt;|Send OTP| F[OTP Service]
+    F --&gt; G[User Receives OTP]
+    G --&gt;|Enter OTP| H[OTP Verification Screen]
+    H --&gt;|Send OTP| I[Authentication Service]
+    I --&gt;|Verify OTP| J[Generate JWT Token]
+    J --&gt; K[User Logged In]
+
+</code></pre>
+<h3 id="12-implementation">1.2 Implementation</h3>
+<p><strong>Components:</strong></p>
+<ul>
+<li><strong>Sign Up/Sign In Screen</strong>:<ul>
+<li><strong>Inputs</strong>: Email/Mobile</li>
+<li><strong>Buttons</strong>: Request OTP, Verify OTP</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints:</strong></p>
+<ul>
+<li>
+<p><code>POST /api/auth/signup</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "email_or_mobile": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "otp_sent": true
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/auth/signin</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "email_or_mobile": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "otp_sent": true
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/auth/verify-otp</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "email_or_mobile": "string",
+  "otp": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "token": "jwt_token",
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="2-kyc-verification_1">2. KYC Verification</h3>
+<h3 id="21-flowchart">2.1 Flowchart</h3>
+<p><strong>KYC Verification Flowchart:</strong></p>
+<pre><code class="language-mermaid">flowchart TD
+    A[User] --&gt;|Navigate to KYC Section| B[Enter Personal Details]
+    B --&gt; C[Upload Documents]
+    C --&gt; D[Submit KYC Request]
+    D --&gt;|Send Request| E[KYC Service]
+    E --&gt; F[Integrate with Digilocker]
+    F --&gt;|Verify Documents| G[Update KYC Status]
+    G --&gt; H[User KYC Verified]
+
+</code></pre>
+<h3 id="22-implementation">2.2 Implementation</h3>
+<p><strong>Components:</strong></p>
+<ul>
+<li><strong>Personal Details Form</strong>:<ul>
+<li><strong>Fields</strong>: Name, DOB, Address</li>
+</ul>
+</li>
+<li><strong>Document Upload Form</strong>:<ul>
+<li><strong>Fields</strong>: Aadhar, PAN</li>
+<li><strong>Button</strong>: Digilocker Integration</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints:</strong></p>
+<ul>
+<li>
+<p><code>POST /api/kyc/verify</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "name": "string",
+  "dob": "YYYY-MM-DD",
+  "address": "string",
+  "aadhar": "string",
+  "pan": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "kyc_status": "pending"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>GET /api/kyc/status</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "kyc_status": "verified"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="3-bank-information_1">3. Bank Information</h3>
+<h3 id="31-flowchart">3.1 Flowchart</h3>
+<p><strong>Bank Information Flowchart:</strong></p>
+<pre><code class="language-mermaid">flowchart TD
+    A[User] --&gt;|Navigate to Bank Information Section| B[Enter Bank Details]
+    B --&gt; C[Submit Bank Details]
+    C --&gt;|Send Request| D[Banking Service]
+    D --&gt;|Verify Account Ownership| E[Update Bank Verification Status]
+    E --&gt; F[Bank Account Verified]
+
+</code></pre>
+<h3 id="32-implementation">3.2 Implementation</h3>
+<p><strong>Components:</strong></p>
+<ul>
+<li><strong>Bank Details Form</strong>:<ul>
+<li><strong>Fields</strong>: Account Number, IFSC Code</li>
+<li><strong>Button</strong>: Verify Account</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints:</strong></p>
+<ul>
+<li>
+<p><code>POST /api/bank/add</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "account_number": "string",
+  "ifsc_code": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "bank_status": "verification_pending"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>GET /api/bank/verify</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "bank_status": "verified"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="4-chit-fund-management_1">4. Chit Fund Management</h3>
+<h3 id="41-flowchart">4.1 Flowchart</h3>
+<p><strong>Chit Fund Management Flowchart:</strong></p>
+<pre><code class="language-mermaid">flowchart TD
+    A[User] --&gt;|Navigate to Chit Fund Section| B[View List of Available Chit Funds]
+    B --&gt; C[Select Chit Fund]
+    C --&gt; D[View Chit Fund Details]
+    D --&gt; E[Join Chit Fund]
+    E --&gt;|Send Request| F[Chit Fund Service]
+    F --&gt; G[Confirm Chit Fund Joining]
+    G --&gt; H[User Joined Chit Fund]
+
+</code></pre>
+<h3 id="42-implementation">4.2 Implementation</h3>
+<p><strong>Components:</strong></p>
+<ul>
+<li><strong>Chit Fund List</strong>:<ul>
+<li><strong>Display</strong>: List of chit funds</li>
+</ul>
+</li>
+<li><strong>Chit Fund Details</strong>:<ul>
+<li><strong>Display</strong>: Detailed information about a chit fund</li>
+<li><strong>Button</strong>: Join Chit Fund</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints:</strong></p>
+<ul>
+<li>
+<p><code>GET /api/chitfunds</code></p>
+<ul>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "chitfunds": [
+    {
+      "id": "string",
+      "name": "string",
+      "amount": "number",
+      "premium": "number",
+      "start_date": "YYYY-MM-DD",
+      "slots": "number"
+    }
+  ]
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>GET /api/chitfunds/:id</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "chitfund_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "id": "string",
+  "name": "string",
+  "amount": "number",
+  "premium": "number",
+  "start_date": "YYYY-MM-DD",
+  "slots": "number"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/chitfunds/join</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string",
+  "chitfund_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "joined"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="5-bidding-system_1">5. Bidding System</h3>
+<h3 id="51-flowchart">5.1 Flowchart</h3>
+<p><strong>Bidding System Flowchart:</strong></p>
+<pre><code class="language-mermaid">flowchart TD
+    A[User] --&gt;|Navigate to Auction Section| B[View Current Highest Bid]
+    B --&gt; C[Place New Bid]
+    C --&gt;|Send Request| D[Auction Service]
+    D --&gt; E[Update Highest Bid]
+    E --&gt; F[Bid Placed]
+    B --&gt; G[Set Up Automatic Bidding]
+    G --&gt;|Send Request| H[Auction Service]
+    H --&gt; I[Update Auto Bid Settings]
+    I --&gt; J[Automatic Bidding Set]
+
+</code></pre>
+<h3 id="52-implementation">5.2 Implementation</h3>
+<p><strong>Components:</strong></p>
+<ul>
+<li><strong>Live Auction Screen</strong>:<ul>
+<li><strong>Display</strong>: Current highest bid, new bid input field</li>
+<li><strong>Button</strong>: Place Bid</li>
+</ul>
+</li>
+<li><strong>Automatic Bid Setup</strong>:<ul>
+<li><strong>Fields</strong>: Min Bid, Max Bid</li>
+<li><strong>Button</strong>: Save</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints:</strong></p>
+<ul>
+<li>
+<p><code>GET /api/auction/:id</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "auction_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "current_bid": "number",
+  "auction_end_time": "YYYY-MM-DDTHH:MM:SSZ"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/auction/bid</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string",
+  "auction_id": "string",
+  "bid_amount": "number"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "bid_placed"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/auction/auto-bid</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string",
+  "auction_id": "string",
+  "min_bid": "number",
+  "max_bid": "number"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "auto_bid_set"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="6-notifications_1">6. Notifications</h3>
+<h3 id="61-flowchart">6.1 Flowchart</h3>
+<p><strong>Notifications Flowchart:</strong></p>
+<pre><code class="language-mermaid">flowchart TD
+    A[System] --&gt;|Generate Notification| B[Notification Service]
+    B --&gt;|Send Notification| C[User]
+    C --&gt;|View Notification| D[Notification List]
+    D --&gt; E[Mark as Read]
+    E --&gt;|Send Request| F[Notification Service]
+    F --&gt; G
+
+[Update Notification Status]
+    G --&gt; H[Notification Marked as Read]
+
+</code></pre>
+<h3 id="62-implementation">6.2 Implementation</h3>
+<p><strong>Components:</strong></p>
+<ul>
+<li><strong>Notification List</strong>:<ul>
+<li><strong>Display</strong>: List of notifications</li>
+<li><strong>Option</strong>: Mark as Read</li>
+</ul>
+</li>
+<li><strong>Notification Settings</strong>:<ul>
+<li><strong>Toggle</strong>: Enable/Disable notifications</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints:</strong></p>
+<ul>
+<li>
+<p><code>GET /api/notifications</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "notifications": [
+    {
+      "id": "string",
+      "type": "string",
+      "message": "string",
+      "read": "boolean"
+    }
+  ]
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/notifications/read</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "notification_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "read"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="7-user-profile-management">7. User Profile Management</h3>
+<h3 id="71-flowchart">7.1 Flowchart</h3>
+<p><strong>User Profile Management Flowchart:</strong></p>
+<pre><code class="language-mermaid">flowchart TD
+    A[User] --&gt;|Navigate to Profile Section| B[View/Edit Personal Details]
+    B --&gt; C[Submit Profile Updates]
+    C --&gt;|Send Request| D[User Service]
+    D --&gt; E[Update Profile]
+    E --&gt; F[Profile Updated]
+    A --&gt; G[View Linked Bank Accounts]
+    G --&gt; H[Manage Linked Banks]
+    H --&gt;|Send Request| I[Banking Service]
+    I --&gt; J[Update Bank Accounts]
+    J --&gt; K[Bank Account Managed]
+    A --&gt; L[Manage Notification Settings]
+    L --&gt; M[Update Notification Settings]
+    M --&gt;|Send Request| N[Notification Service]
+    N --&gt; O[Notification Settings Updated]
+
+</code></pre>
+<h3 id="72-implementation">7.2 Implementation</h3>
+<p><strong>Components:</strong></p>
+<ul>
+<li><strong>Profile Edit Form</strong>:<ul>
+<li><strong>Fields</strong>: Name, DOB, Address</li>
+<li><strong>Button</strong>: Save</li>
+</ul>
+</li>
+<li><strong>Linked Banks List</strong>:<ul>
+<li><strong>Display</strong>: List of linked bank accounts</li>
+<li><strong>Options</strong>: Edit, Remove</li>
+</ul>
+</li>
+<li><strong>Notification Settings</strong>:<ul>
+<li><strong>Toggle</strong>: Enable/Disable notifications</li>
+</ul>
+</li>
+</ul>
+<p><strong>API Endpoints:</strong></p>
+<ul>
+<li>
+<p><code>GET /api/profile</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "name": "string",
+  "dob": "YYYY-MM-DD",
+  "address": "string"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/profile/update</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string",
+  "name": "string",
+  "dob": "YYYY-MM-DD",
+  "address": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "updated"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>GET /api/banks</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "banks": [
+    {
+      "id": "string",
+      "account_number": "string",
+      "ifsc_code": "string"
+    }
+  ]
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>POST /api/banks/add</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "user_id": "string",
+  "account_number": "string",
+  "ifsc_code": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "added"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>DELETE /api/banks/:id</code></p>
+<ul>
+<li>
+<p><strong>Request</strong>:</p>
+<p>```json
+{
+  "bank_id": "string"
+}</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<p>```json
+{
+  "status": "removed"
+}</p>
+<p>```</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>This low-level design (LLD) flowchart and implementation provide detailed workflows and component interactions for key features of the ChitBox app, ensuring clear guidelines for developers and a comprehensive understanding of the system's inner workings.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="AppDesignTechnicalDocs.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: App Design Technical Documentation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                App Design Technical Documentation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="GitWorkFlow.html" class="md-footer__link md-footer__link--next" aria-label="Next: Git WorkFlow">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Git WorkFlow
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Serendipity2-0" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/trademanv1?s=21&t=bBTay4-vvjkbqF5YnSYrog" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/trademan.v1?igsh=NnZ6dDR2M2Nhc3h5" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141m0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7m146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8m76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:your-email@example.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l217.6 163.2c11.4 8.5 27 8.5 38.4 0l217.6-163.2c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 176v208c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V176L294.4 339.2a63.9 63.9 0 0 1-76.8 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "toggle.dark_mode", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

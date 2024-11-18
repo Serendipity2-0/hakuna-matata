@@ -1,0 +1,3791 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="GitWorkFlow.html">
+      
+      
+        <link rel="next" href="../../software_instructions/CoolifyBeginPhase1.html">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Auction Process - Serendipity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#documentation-for-chitbox-auction-process" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="Serendipity" class="md-header__button md-logo" aria-label="Serendipity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Serendipity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Auction Process
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.html" class="md-tabs__link">
+          
+  
+  Serendipity
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../trademanV1/OnboardingGuide.html" class="md-tabs__link">
+          
+  
+  TradeMan
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Dhoomstudios/DebtReference.html" class="md-tabs__link">
+          
+  
+  DhoomStudios
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="Serendipity" class="md-nav__button md-logo" aria-label="Serendipity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Serendipity
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Serendipity
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Serendipity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accounts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Accounts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kaas user Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Kaas user Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas MainSheet Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/kaasuserguide/KaasSheetHeaderDescription.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas Sheet Header Indexes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/kaasuserguide/KaasSheetsSummary.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas Sheets Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accounting Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Accounting Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccountDailyReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Daily Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccountStandardOperatingProcedures.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Standard Operating Procedures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccountTransactionScenarios.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account Transaction Scenarios
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/AccQTPrd.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AccQT Prd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/VBAExcelToolGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VBA Macro - Tool within Excel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/GSTProcess.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GST Process
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/accountingguide/IncomeTaxDeductions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Income Tax Deductions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/accounts/SerendipityBusinessRequirementsPlan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Serendipity Business Requirements Plan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HR Onboarding Library
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            HR Onboarding Library
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/hronboardinglibrary/EmployeeOnboardingGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Employee Onboarding Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/hronboardinglibrary/SMS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Service Management System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            General Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/generalguidelines/FileNamingGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File Naming Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/generalguidelines/AudioMeetingGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Audio Meeting Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/generalguidelines/DUNSRegFormalities.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DUNS Registration formalities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Serendipity/ViewOnSerendipity.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    View On Serendipity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    TradeMan
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            TradeMan
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    TradeManV1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            TradeManV1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trademanV1/OnboardingGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Onboarding Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trademanV1/TradeManMeetingAudio_Transcribe.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TradeManV1 Meetings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trademanV1/FrontendRefactoringDoc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frontend Refactoring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trademanV1/TestingEODReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing EOD Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trademanV1/TestingDiscord.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing Discord
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HakunaMatata
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            HakunaMatata
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hakunamatata/HakunaMatataDevGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HakunaMatata Dev Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kaas
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kaas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kaas/KaasAppPrompt.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kaas App Prompt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kaas/FabricKaas.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fabric Kaas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ChitBox
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            ChitBox
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ChitBoxProject.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChitBox Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_2" id="__nav_3_1_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API Sethu and Distributed Ledger Technology
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            API Sethu and Distributed Ledger Technology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apisethudocs/ApiSethuDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API sethu documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apisethudocs/DLTImplementationGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Implementation Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apisethudocs/DLTEntityRegistration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Entity Registration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apisethudocs/DLTHeaderManualPing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Header Manual Ping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="apisethudocs/DLTContentApproval.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLT Content Approval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_3" id="__nav_3_1_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Flutter Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Flutter Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fluttercode/FlutterCodeReviewForm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flutter Code Review Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fluttercode/Prompt.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Used
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fluttercode/OpenClosedPrinciple.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Open Closed Principle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fluttercode/LISKOVPrinciple.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Liskov Substitution Principle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4_4" id="__nav_3_1_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Project Management
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_1_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Project Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/ProjectManagement.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/CreatingAccountCreated.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating-Account Created
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/DashboardUnitTests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-Dashboard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/eKYCVerificationScreen.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eKYC Verification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/eKYCImplementationAndUT.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eKYC Implementation and UT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/LoginPageandOTP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Login page with OTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/NavBar.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NavBar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/OTPUnitTests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-OTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/PersonalDetailsForm.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Personal Details Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/PersonalDetailsTestCases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit Test-Personal Details
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/TodayTaskDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Today's Task
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/FunctionalRequirements.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functional Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/SystemDesign.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/TestFlightDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TestFlight Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projectmanagement/GooglePlaystoreAccountCreation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google Playstore Account Creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="AppDesignTechnicalDocs.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    App Design Technical Documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SystemDesignLLD_HLD.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Design (LLD+HLD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="GitWorkFlow.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git WorkFlow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Auction Process
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ChitboxAuctionProcess.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Auction Process
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#auctionscreen-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      AuctionScreen Documentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ui-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      UI Components
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Handling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dialogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dialogs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts-of-bid-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Concepts of Bid Calculation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-the-bid-calculation-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of the Bid Calculation Process
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software/Technology Instructions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Software/Technology Instructions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/CoolifyBeginPhase1.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coolify Phase1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/CoolifyInstructions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coolify Instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/CloudflareHosting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloudflare Hosting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/JioRouterConfig.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jio Router Config
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/PaymentGatewayBenefits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Payment Gateway Benefits Razorpay
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/AgentCreationGuideline.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agent Creation Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/RbacGuidelines.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RBAC Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/googlesso/GoogleSSOonGCP.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google SSO On GCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software_instructions/WhatsappAPIIntegration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WhatsApp API Creation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General Tech Guidelines
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            General Tech Guidelines
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/GitHubRepos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/CommitConventionGuideline.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commit Convention Guideline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/PromptCollections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompt Collection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tech_guidelines/DesignPatterns.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reports
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reports
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/TechDailyReport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tech Daily Report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/DevelopmentSch.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development Schedule
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DhoomStudios
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            DhoomStudios
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/DebtReference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/DebtReviewed.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Reviewed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/AdobeCreativeSuite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adobe Creative Suite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/ScriptGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Script Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/AdobeGuide.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adobe Tools & Features Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/EvolutionOfInvesting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Evolution of Investing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Old Man's Tale
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            Old Man's Tale
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/oldmanstale/ShareMarketScript.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Share Market
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Share Market
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/sharemarket/ShareMarketShort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Short
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/sharemarket/ShareMarketWebseries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ShareMarket Webseries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Debt
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            Debt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/debt/DebtWebseriesScript.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debt Webseries Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Insurance
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            Insurance
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dhoomstudios/insurance/InsuranceShort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Insurance Short
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#auctionscreen-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      AuctionScreen Documentation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ui-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      UI Components
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Handling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dialogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dialogs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts-of-bid-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Concepts of Bid Calculation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-the-bid-calculation-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of the Bid Calculation Process
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="documentation-for-chitbox-auction-process">Documentation for chitbox auction process</h1>
+<h3 id="auctionscreen-documentation"><strong>AuctionScreen Documentation</strong></h3>
+<h2 id="overview"><strong>Overview</strong></h2>
+<p>The <code>AuctionScreen</code> is a core UI component in the ChitBox app that facilitates a live auction process for chit funds. It handles user interactions, animations, sounds, bid placement, and displays real-time updates on auction status. The screen is stateful and uses multiple controllers and state management tools to manage the complex auction flow.</p>
+<p>This documentation outlines the core components, properties, methods, and functionality of the <code>AuctionScreen</code> class.</p>
+<hr />
+<h2 id="key-features"><strong>Key Features</strong></h2>
+<ul>
+<li><strong>Live Auction Interface</strong>: Displays auction data, including current bids, group dividends, and prize money.</li>
+<li><strong>Bid Placement</strong>: Allows users to place bids via a sliding panel and provides real-time feedback.</li>
+<li><strong>Timers and Sounds</strong>: Handles countdown timers and plays a ticking sound to create urgency during the final seconds of the auction.</li>
+<li><strong>Dialogs and Feedback</strong>: Presents dialogs for bid confirmation, auction results, and handling edge cases like duplicate bids.</li>
+</ul>
+<hr />
+<h2 id="class-structure"><strong>Class Structure</strong></h2>
+<p><strong>AuctionScreen</strong>:</p>
+<p>The main <code>AuctionScreen</code> class is a <code>StatefulWidget</code> that displays the auction screen UI. It consists of the following key components:</p>
+<ol>
+<li><strong>State Management:</strong><ul>
+<li><code>AuctionScreenState</code>: The state class for <code>AuctionScreen</code>, which manages the auction data, timers, bid amounts, and UI updates.</li>
+</ul>
+</li>
+<li><strong>Controllers:</strong><ul>
+<li><code>PanelController _panelController</code>: Controls the sliding panel that displays bid options.</li>
+<li><code>PageController _pageController</code>: Handles navigation between different pages of the app (New Chits, My Chits, Auction, Profile).</li>
+<li><code>TabController _tabController</code>: Controls the tab switching between "Live Auction" and "Upcoming Auction."</li>
+</ul>
+</li>
+<li><strong>Key Variables:</strong><ul>
+<li><strong>Auction Variables</strong>:<ul>
+<li><code>double currentHighestBid</code>: Stores the current highest bid in the auction.</li>
+<li><code>double maxBidAmount</code>: The maximum allowed bid based on the chit amount and configured bid percentage.</li>
+<li><code>double groupDividend</code>: The calculated dividend for the group, after subtracting the foreman's commission.</li>
+<li><code>double prizeMoney</code>: The remaining prize money after the highest bid is subtracted from the chit amount.</li>
+</ul>
+</li>
+<li><strong>Timers &amp; Animation</strong>:<ul>
+<li><code>Timer? _countdownTimer</code>: A countdown timer used to track remaining auction time.</li>
+<li><code>AudioPlayer _audioPlayer</code>: Manages playing of audio files (e.g., tick sound when auction is about to end).</li>
+</ul>
+</li>
+<li><strong>Bid Data</strong>:<ul>
+<li><code>List&lt;Map&lt;String, String&gt;&gt; bidTableData</code>: Stores the bids placed by users during the auction.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="methods"><strong>Methods</strong></h2>
+<p><strong>1. initState</strong></p>
+<p>Initializes the state of the <code>AuctionScreen</code>. It sets up the tab controller, initial bid amounts, and starts the timer and arrow animation.</p>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Initializes <code>TabController</code>.</li>
+<li>Sets the initial highest bid and max bid amounts.</li>
+<li>Starts a periodic timer that handles the countdown.</li>
+<li>Triggers UI updates through <code>setState()</code>.</li>
+</ul>
+<hr />
+<p><strong>2. dispose</strong></p>
+<p>Cleans up resources used by the <code>AuctionScreen</code>. This includes disposing of the countdown timer, page controller, and audio player to prevent memory leaks.</p>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Cancels timers.</li>
+<li>Disposes of controllers and resources.</li>
+</ul>
+<hr />
+<p><strong>3. _calculateGroupDividendAndPrizeMoney</strong></p>
+<p>Calculates the group dividend and prize money after deducting the foreman’s commission from the chit amount.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li>No parameters.</li>
+</ul>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Uses the <code>Config</code> class to get chit amounts and commission rates.</li>
+<li>Updates the state with the new dividend and prize money values.</li>
+</ul>
+<hr />
+<p><strong>4. _startArrowAnimation</strong></p>
+<p>Starts a periodic timer to toggle the visibility of an arrow animation every second. This is used to indicate the slide-up functionality for placing bids.</p>
+<hr />
+<p><strong>5. _startCountdownTimer</strong></p>
+<p>Starts the auction countdown timer and plays a ticking sound when the auction is about to end (less than 10 seconds remaining).</p>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Decrements the remaining time every second.</li>
+<li>Plays a sound when the countdown reaches 10 seconds or less.</li>
+</ul>
+<hr />
+<p><strong>6. _endAuction</strong></p>
+<p>Ends the auction and triggers post-auction dialogs and actions. It closes the sliding panel, marks the auction as ended, and shows a custom countdown dialog for announcing the winner.</p>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Stops the auction timer.</li>
+<li>Closes the slide-up panel and shows the winner countdown dialog.</li>
+</ul>
+<hr />
+<p><strong>7. _showCountdownDialog</strong></p>
+<p>Displays a custom countdown dialog that indicates the auction has ended and a winner will be announced soon. It plays a ticking sound during the countdown.</p>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Shows a custom dialog.</li>
+<li>Plays a sound for each second of the countdown.</li>
+</ul>
+<hr />
+<p><strong>8. _announceWinner</strong></p>
+<p>Determines the winner by finding the highest bid from the <code>bidTableData</code>. If no valid bids are present, it shows a "No Winner" dialog.</p>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Loops through the bid data to find the highest bid.</li>
+<li>Displays a dialog announcing the winner or indicating no winner.</li>
+</ul>
+<hr />
+<p><strong>9. _placeBid</strong></p>
+<p>Places a new bid after validating the bid amount. It updates the bid table and recalculates the group dividend and prize money. Also, checks for duplicate bids.</p>
+<p><strong>Responsibilities</strong>:</p>
+<ul>
+<li>Adds a new bid entry to <code>bidTableData</code>.</li>
+<li>Updates the current highest bid and recalculates financial data.</li>
+<li>Checks for duplicate bids and shows appropriate dialogs if needed.</li>
+</ul>
+<hr />
+<h2 id="ui-components"><strong>UI Components</strong></h2>
+<p><strong>AppBar and Bottom Navigation</strong></p>
+<p>The AppBar is dynamically rendered based on the current screen:</p>
+<ul>
+<li>On the auction page, it shows a custom title and live indicator.</li>
+<li>On other pages (e.g., Profile, My Chits), it shows a simple centered title.</li>
+</ul>
+<p>The bottom navigation bar allows switching between the app's major screens (<code>New Chits</code>, <code>My Chits</code>, <code>Auction</code>, <code>Profile</code>).</p>
+<p><strong>SlidingUpPanel</strong></p>
+<p>This panel allows users to place a bid in the live auction. It includes:</p>
+<ul>
+<li>A slider to select the bid amount.</li>
+<li>A button to confirm the bid.</li>
+<li>Bid options are limited by the max bid amount and current highest bid.</li>
+</ul>
+<p><strong>BidInfoCard</strong></p>
+<p>Displays financial information about the auction, such as the current highest bid, prize money, and group dividend.</p>
+<hr />
+<h2 id="event-handling"><strong>Event Handling</strong></h2>
+<p><strong>AuctionBloc and Events</strong></p>
+<p>The screen uses the <code>AuctionBloc</code> to manage the auction state. The bloc handles:</p>
+<ul>
+<li>Starting the auction timer.</li>
+<li>Managing live updates for bids.</li>
+<li>Handling the end of the auction and announcing winners.</li>
+</ul>
+<h2 id="dialogs"><strong>Dialogs</strong></h2>
+<ul>
+<li><strong>Bid Confirmation Dialog</strong>: Prompts the user to confirm their bid before submitting.</li>
+<li><strong>Winner Announcement Dialog</strong>: Displays the auction winner and offers a reward claim option.</li>
+<li><strong>Duplicate Bid Dialog</strong>: Informs the user if they attempt to place a duplicate bid.</li>
+<li><strong>No Winner Dialog</strong>: Shown when no valid bids were placed in the auction.</li>
+</ul>
+<hr />
+<h2 id="code-dependencies"><strong>Code Dependencies</strong></h2>
+<ul>
+<li><strong>Config Class</strong>: Holds the configuration for the auction, such as chit amount, bid size, commission rate, etc.</li>
+<li><strong>AuctionBloc and AuctionEvent</strong>: Handles business logic and event-driven state management for the auction.</li>
+<li><strong>AudioPlayer</strong>: Responsible for playing sound effects during the auction.</li>
+</ul>
+<hr />
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+<p>The <code>AuctionScreen</code> integrates multiple components to create a feature-rich auction experience. It follows key principles of separating UI, logic, and state management, making it easier to maintain and extend. However, improvements can be made by further splitting large methods and abstracting business logic from the UI.</p>
+<p>For more efficient and scalable development, consider the following:</p>
+<ul>
+<li><strong>Refactor large methods</strong>: Breaking down complex methods into smaller, single-responsibility functions can enhance readability and maintainability.</li>
+<li><strong>Separate concerns</strong>: Move business logic (e.g., bid calculations) into services or helper classes, aligning better with the clean code principles of separation of concerns.</li>
+</ul>
+<p>Calculation of bid :</p>
+<p><strong>Understanding Bid Calculation in ChitBox Auction System</strong></p>
+<p>The bid calculation in the ChitBox auction system is designed to ensure a fair and transparent process for both bidders and organizers, while maintaining key principles of a chit fund. The calculation primarily revolves around determining the current highest bid, the group dividend, and the prize money, considering various factors like the chit amount and foreman commission. Here's an explanation of how the bidding system works:</p>
+<hr />
+<h2 id="core-concepts-of-bid-calculation"><strong>Core Concepts of Bid Calculation</strong></h2>
+<p><strong>1. Chit Amount</strong></p>
+<p>The <strong>chit amount</strong> represents the total fund value for which the participants are bidding. In a chit fund, members contribute a fixed amount regularly, and the collected amount is auctioned among the participants. The total chit amount is the value up for bidding and serves as the base for calculating various financial outcomes during the auction.</p>
+<hr />
+<p><strong>2. Foreman Commission</strong></p>
+<p>The <strong>foreman</strong> is the person or entity managing the chit fund, and they charge a commission for their services. In the ChitBox auction system, the foreman's commission is calculated as a percentage of the total chit amount. This commission is deducted from the current bid to determine how much of the bid will be distributed among the group participants.</p>
+<ul>
+<li><strong>Example</strong>: If the foreman commission rate is 5% and the chit amount is ₹2,00,000, the foreman commission will be ₹10,000.</li>
+</ul>
+<hr />
+<p><strong>3. Current Highest Bid</strong></p>
+<p>The <strong>current highest bid</strong> is the amount that a participant is willing to bid for the chit amount. This bid is essential because it determines the final prize money and group dividend. Bidders compete by offering higher bids, and the one who bids the highest by the end of the auction wins the chit.</p>
+<hr />
+<p><strong>4. Group Dividend</strong></p>
+<p>The <strong>group dividend</strong> is the portion of the current highest bid that is distributed among the other participants (non-winners). It is calculated by subtracting the foreman’s commission from the highest bid. This incentivizes the rest of the group, as they receive a portion of the winning bid amount as compensation.</p>
+<ul>
+<li>
+<p><strong>Formula</strong>:</p>
+<p><code>Group Dividend = Current Highest Bid - Foreman Commission</code></p>
+<ul>
+<li><strong>Example</strong>:
+If the current highest bid is ₹50,000 and the foreman commission is ₹10,000, the group dividend would be ₹40,000. This amount is shared among the other members of the chit fund.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p><strong>5. Prize Money</strong></p>
+<p>The <strong>prize money</strong> is the amount the highest bidder takes home. It is calculated by subtracting the current highest bid from the total chit amount. The lower the winning bid, the higher the prize money the winner receives.</p>
+<ul>
+<li>
+<p><strong>Formula</strong>:</p>
+<p><code>Prize Money = Chit Amount - Current Highest Bid</code></p>
+<ul>
+<li><strong>Example</strong>:
+If the chit amount is ₹2,00,000 and the highest bid is ₹50,000, the winner receives ₹1,50,000 as prize money.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p><strong>6. Bid Increment</strong></p>
+<p>To maintain structure and prevent trivial bidding, the ChitBox auction system has a <strong>fixed bid increment</strong>. This means that every new bid must increase by a specific amount (in this case, ₹500). This ensures smoother and more organized bidding, reducing the chances of minor incremental bids that would slow down the auction.</p>
+<hr />
+<p><strong>7. Maximum Bid</strong></p>
+<p>The <strong>maximum bid</strong> is a limit set to ensure that the participants do not bid too high and leave little to no prize money. In ChitBox, the maximum bid is capped at 30% of the chit amount, meaning no bid can exceed 30% of the total chit value.</p>
+<ul>
+<li><strong>Example</strong>:
+If the chit amount is ₹2,00,000, the maximum allowed bid is ₹60,000. This ensures that there is always a significant amount of prize money left for the winning participant.</li>
+</ul>
+<hr />
+<h2 id="summary-of-the-bid-calculation-process"><strong>Summary of the Bid Calculation Process</strong></h2>
+<p>In the ChitBox auction system:</p>
+<ol>
+<li>The total <strong>chit amount</strong> is set, which is the amount participants are bidding for.</li>
+<li>The <strong>foreman commission</strong> is deducted from the highest bid.</li>
+<li>The remaining amount from the highest bid becomes the <strong>group dividend</strong>, distributed to non-winners.</li>
+<li>The <strong>prize money</strong> is the chit amount minus the highest bid, which goes to the winning bidder.</li>
+<li>Bids must follow a predefined <strong>increment</strong> and cannot exceed the <strong>maximum bid</strong> limit (30% of the chit amount).</li>
+</ol>
+<p>By structuring the bid calculation this way, ChitBox ensures that both the foreman and the participants benefit, while maintaining a balanced and fair auction process.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="GitWorkFlow.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Git WorkFlow">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Git WorkFlow
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../software_instructions/CoolifyBeginPhase1.html" class="md-footer__link md-footer__link--next" aria-label="Next: Coolify Phase1">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Coolify Phase1
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Serendipity2-0" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/trademanv1?s=21&t=bBTay4-vvjkbqF5YnSYrog" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/trademan.v1?igsh=NnZ6dDR2M2Nhc3h5" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141m0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7m146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8m76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:your-email@example.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l217.6 163.2c11.4 8.5 27 8.5 38.4 0l217.6-163.2c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 176v208c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V176L294.4 339.2a63.9 63.9 0 0 1-76.8 0z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "toggle.dark_mode", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
