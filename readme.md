@@ -1,80 +1,136 @@
-# Hakuna Matata Project
+# Hakuna Matata Development Project
 
-Welcome to the Hakuna Matata project! This document will guide you through the process of running the project using Docker and how to use its APIs.
+A comprehensive full-stack development project featuring FastAPI backend, Next.js frontend, and AI-powered agent system.
 
-## Prerequisites
+## 🌟 Features
 
-- Docker installed on your system
-- Bash shell (for Unix-based systems) or Git Bash (for Windows)
+### Current Features
+- AI-powered Code Runner Agent System
+- Multiple specialized agents:
+  - Web Scraper Agent
+  - Analyst Agent
+  - Campaign Idea Agent
+  - Copywriter Agent
+  - User Interface Agent
+  - Snowy Writer Agent (for script generation)
+  - Nikhil Raghu Agent (for financial analysis)
+- FastAPI Backend Integration
+- Next.js Frontend with TypeScript
+- Role-Based Access Control (RBAC)
+- Documentation System with MkDocs
 
-## Getting Started
+### Upcoming Features
+Referenced from:
 
-To run the project, follow these simple steps:
+## 🏗 Project Structure
 
-1. Clone the repository to your local machine:
-   ```
-   git clone <repository-url>
-   cd hakuna-matata
-   ```
+root/
+│
+├── backend/
+│ ├── agents/ # AI Agents
+│ │ ├── coderunner.py
+│ │ ├── NikhilRaghu.py
+│ │ └── snowywriter.py
+│ ├── patterns/ # Guidelines and patterns
+│ ├── routes/ # API routes
+│ └── requirements.txt
+│
+├── frontend/
+│ ├── app/
+│ ├── components/
+│ ├── services/
+│ └── package.json
+│
+└── docs/ # Documentation
+├── serendipitydoc/
+├── trademandoc/
+└── mkdocs.yml
 
-2. Make sure the `start_docker.sh` script is executable:
-   ```
-   chmod +x startup_control/start_docker.sh
-   ```
+## 🚀 Getting Started
 
-3. Run the `start_docker.sh` script:
-   ```
-   ./startup_control/start_docker.sh
-   ```
+### Prerequisites
+Referenced from:
 
-This script will:
-- Build the Docker image if it doesn't exist
-- Stop and remove any existing container with the same name
-- Start a new container named "hakuna-matata"
-- Map port 8000 from the container to port 8000 on your host machine
-- Set the container to restart automatically unless stopped manually
+### Backend Setup
+Referenced from:
 
-## Accessing the Application
+### Frontend Setup
+Referenced from:
 
-Once the container is running, you can access the application at:
+## 🤖 Agent System
 
-## APIs Flow
+The project features multiple AI agents for different purposes:
 
-The project provides two main API endpoints for processing meeting data and retrieving wisdom files. Here's how to use them:
+1. **CodeRunner Agent**: Analyzes documentation and generates coding plans
+2. **NikhilRaghu Agent**: Handles financial analysis and reporting
+3. **SnowyWriter Agent**: Generates script outlines based on research
 
-### 1. Submit Meeting Transcription
+To create new agents, follow:
 
-**Endpoint:** `POST /meeting/submit-meeting`
+## 📅 Development Schedule
 
-This API allows you to submit a meeting for transcription and knowledge base building.
-
-**Parameters:**
-- `language` (string): The language of the meeting audio.
-- `meeting_subject` (string): The subject or topic of the meeting.
-- `knowledge_patterns` (array): List of knowledge patterns to extract.
-- `department` (string): The department associated with the meeting.
-- `audio_file` (file): The audio file of the meeting to be transcribed.
-
-**Example using cURL:**
+Project development is scheduled from October 18 to October 31, 2024. For detailed timeline, see:
+```markdown:docs/trademandoc/reports/developmentSch.MD
+startLine: 1
+endLine: 57
 ```
-curl --location 'http://0.0.0.0:80/meeting/submit-meeting' \
---form 'audio_file=@"/Users/satyarthraghuvanshi/Downloads/sample_meeting.m4a"' \
---form 'language="en"' \
---form 'meeting_subject="Random Meetings"' \
---form 'knowledge_patterns="idea_compass, keynote"' \
---form 'department="trademan"'
+
+## 🔐 RBAC System
+
+The project implements a comprehensive Role-Based Access Control system with:
+- Department management
+- Role-based permissions
+- User authentication
+- Access logging
+- Admin dashboard
+
+## 💻 Development Guidelines
+
+### Commit Convention
+We follow strict commit message guidelines. See:
+```markdown:backend/patterns/git_commit_guidelines.md
+startLine: 16
+endLine: 26
 ```
 
-### 2. Download Wisdom File
-
-**Endpoint:** `GET /meeting/wisdom-file`
-
-This API allows you to download a specific wisdom file.
-
-**Parameters:**
-- `file_path` (string): The path to the wisdom file you want to download.
-
-**Example using cURL:**
+### Coding Standards
+```markdown:docs/SerendipityDoc/PromptCollections.md
+startLine: 1
+endLine: 3
 ```
-curl --location 'http://0.0.0.0:80/meeting/wisdom-file/20240725_120000_UTC_idea_compass_trademan.md'
+
+## 🧪 Testing
+
+The project includes comprehensive testing:
+- Backend: pytest for API and unit testing
+- Frontend: Jest for component testing
+- Integration testing across all modules
+
+## 📚 Documentation
+
+Documentation is built using MkDocs with Material theme. To run locally:
+```bash
+mkdocs serve
 ```
+
+For deployment:
+```bash
+mkdocs gh-deploy
+```
+
+## 🔑 Keyboard Shortcuts
+
+Referenced from:
+```markdown:frontend/README.md
+startLine: 38
+endLine: 53
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Follow our commit guidelines
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+

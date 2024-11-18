@@ -1,0 +1,174 @@
+site_name: Serendipity
+docs_dir: docs # Tell MkDocs to look in the 'docs/' folder for Markdown files
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - toggle.dark_mode
+    - navigation.footer # Enables dark mode toggle (required for the toggle to appear)
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+      primary: custom
+      accent: custom
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+plugins:
+  - search
+  - awesome-pages
+
+use_directory_urls: false
+
+nav:
+  - Home: index.md
+
+  - Serendipity:
+      - Accounts:
+          - Kaas user Guide:
+              - Kaas MainSheet Summary: Serendipity/accounts/kaasuserguide/KaasMainSheetSummary.md
+              - Kaas Sheet Header Indexes: Serendipity/accounts/kaasuserguide/KaasSheetHeaderDescription.md
+              - Kaas Sheets Summary: Serendipity/accounts/kaasuserguide/KaasSheetsSummary.md
+          - Accounting Guide:
+              - Account Daily Report: Serendipity/accounts/accountingguide/AccountDailyReport.md
+              - Account Standard Operating Procedures: Serendipity/accounts/accountingguide/AccountStandardOperatingProcedures.md
+              - Account Transaction Scenarios: Serendipity/accounts/accountingguide/AccountTransactionScenarios.md
+              - AccQT Prd: Serendipity/accounts/accountingguide/AccQTPrd.md
+              - VBA Macro - Tool within Excel: Serendipity/accounts/accountingguide/VBAExcelToolGuide.md
+              - GST Process: Serendipity/accounts/accountingguide/GSTProcess.md
+              - Income Tax Deductions: Serendipity/accounts/accountingguide/IncomeTaxDeductions.md
+          - Serendipity Business Requirements Plan: Serendipity/accounts/SerendipityBusinessRequirementsPlan.md
+      - HR Onboarding Library:
+          - Employee Onboarding Guide: Serendipity/hronboardinglibrary/EmployeeOnboardingGuide.md
+          - Service Management System: Serendipity/hronboardinglibrary/SMS.md
+      - General Guidelines:
+          - File Naming Guidelines: Serendipity/generalguidelines/FileNamingGuidelines.md
+          - Audio Meeting Guidelines: Serendipity/generalguidelines/AudioMeetingGuidelines.md
+          - DUNS Registration formalities: Serendipity/generalguidelines/DUNSRegFormalities.md
+      - View On Serendipity: Serendipity/ViewOnSerendipity.md
+  - TradeMan:
+      - Projects:
+          - TradeManV1:
+              - Onboarding Guide: Trademan/Projects/trademanV1/OnboardingGuide.md
+              - TradeManV1 Meetings: Trademan/Projects/trademanV1/TradeManMeetingAudio_Transcribe.md
+              - Frontend Refactoring: Trademan/Projects/trademanV1/FrontendRefactoringDoc.md
+              - Testing EOD Report: Trademan/Projects/trademanV1/TestingEODReport.md
+              - Testing Discord: Trademan/Projects/trademanV1/TestingDiscord.md
+            
+          - HakunaMatata:
+              - HakunaMatata Dev Guide: Trademan/Projects/hakunamatata/HakunaMatataDevGuide.md
+          - Kaas:
+              - Kaas App Prompt: Trademan/Projects/kaas/KaasAppPrompt.md
+              - Fabric Kaas: Trademan/Projects/kaas/FabricKaas.md
+          - ChitBox:
+              - ChitBox Project: Trademan/Projects/chitbox/ChitBoxProject.md
+              - API Sethu and Distributed Ledger Technology:
+                  - API sethu documentation: Trademan/Projects/chitbox/apisethudocs/ApiSethuDocs.md
+                  - DLT Implementation Guide: Trademan/Projects/chitbox/apisethudocs/DLTImplementationGuide.md
+                  - DLT Entity Registration: Trademan/Projects/chitbox/apisethudocs/DLTEntityRegistration.md
+                  - DLT Header Manual Ping: Trademan/Projects/chitbox/apisethudocs/DLTHeaderManualPing.md
+                  - DLT Content Approval: Trademan/Projects/chitbox/apisethudocs/DLTContentApproval.md
+
+              - Flutter Code : 
+                  - Flutter Code Review Form: Trademan/Projects/chitbox/fluttercode/FlutterCodeReviewForm.md
+                  - Prompt Used: Trademan/Projects/chitbox/fluttercode/Prompt.md
+                  - Open Closed Principle: Trademan/Projects/chitbox/fluttercode/OpenClosedPrinciple.md
+                  - Liskov Substitution Principle: Trademan/Projects/chitbox/fluttercode/LISKOVPrinciple.md
+
+              - Project Management:
+                  - Project Management: Trademan/Projects/chitbox/projectmanagement/ProjectManagement.md
+                  - Creating-Account Created: Trademan/Projects/chitbox/projectmanagement/CreatingAccountCreated.md
+                  - Unit Test-Dashboard: Trademan/Projects/chitbox/projectmanagement/DashboardUnitTests.md
+                  - eKYC Verification: Trademan/Projects/chitbox/projectmanagement/eKYCVerificationScreen.md
+                  - eKYC Implementation and UT: Trademan/Projects/chitbox/projectmanagement/eKYCImplementationAndUT.md
+                  - Login page with OTP: Trademan/Projects/chitbox/projectmanagement/LoginPageandOTP.md
+                  - NavBar: Trademan/Projects/chitbox/projectmanagement/NavBar.md
+                  - Unit Test-OTP: Trademan/Projects/chitbox/projectmanagement/OTPUnitTests.md
+                  - Personal Details Form: Trademan/Projects/chitbox/projectmanagement/PersonalDetailsForm.md
+                  - Unit Test-Personal Details: Trademan/Projects/chitbox/projectmanagement/PersonalDetailsTestCases.md
+                  - Today's Task: Trademan/Projects/chitbox/projectmanagement/TodayTaskDocs.md
+                  - Functional Requirements: Trademan/Projects/chitbox/projectmanagement/FunctionalRequirements.md
+                  - System Design: Trademan/Projects/chitbox/projectmanagement/SystemDesign.md
+                  - TestFlight Docs: Trademan/Projects/chitbox/projectmanagement/TestFlightDocs.md
+                  - Google Playstore Account Creation: Trademan/Projects/chitbox/projectmanagement/GooglePlaystoreAccountCreation.md
+
+
+              - App Design Technical Documentation: Trademan/Projects/chitbox/AppDesignTechnicalDocs.md
+              - System Design (LLD+HLD): Trademan/Projects/chitbox/SystemDesignLLD_HLD.md
+              - Git WorkFlow: Trademan/Projects/chitbox/GitWorkFlow.md
+              - Auction Process: Trademan/Projects/chitbox/ChitboxAuctionProcess.md
+
+      - Software/Technology Instructions:
+          - Coolify Phase1: Trademan/software_instructions/CoolifyBeginPhase1.md
+          - Coolify Instructions: Trademan/software_instructions/CoolifyInstructions.md
+          - Cloudflare Hosting: Trademan/software_instructions/CloudflareHosting.md
+          - Jio Router Config: Trademan/software_instructions/JioRouterConfig.md
+          - Payment Gateway Benefits Razorpay: Trademan/software_instructions/PaymentGatewayBenefits.md
+          - Agent Creation Guidelines: Trademan/software_instructions/AgentCreationGuideline.md
+          - RBAC Guidelines: Trademan/software_instructions/RbacGuidelines.md
+          - Google SSO On GCP: Trademan/software_instructions/googlesso/GoogleSSOonGCP.md
+          - WhatsApp API Creation: Trademan/software_instructions/WhatsappAPIIntegration.md
+
+      - General Tech Guidelines:
+          - GitHub Repositories: Trademan/tech_guidelines/GitHubRepos.md
+          - Commit Convention Guideline: Trademan/tech_guidelines/CommitConventionGuideline.md
+          - Prompt Collection: Trademan/tech_guidelines/PromptCollections.md
+          - Design Patterns: Trademan/tech_guidelines/DesignPatterns.md
+
+      - Reports:
+          - Tech Daily Report: Trademan/reports/TechDailyReport.md
+          - Development Schedule: Trademan/reports/DevelopmentSch.md
+
+  - DhoomStudios:
+      - Debt Reference: Dhoomstudios/DebtReference.md
+      - Debt Reviewed: Dhoomstudios/DebtReviewed.md
+      - Adobe Creative Suite: Dhoomstudios/AdobeCreativeSuite.md
+      - Script Guide: Dhoomstudios/ScriptGuide.md
+      - Adobe Tools & Features Guide: Dhoomstudios/AdobeGuide.md
+      - The Evolution of Investing: Dhoomstudios/EvolutionOfInvesting.md
+
+      - Old Man's Tale: 
+          - ShareMarket Script: Dhoomstudios/oldmanstale/ShareMarketScript.md
+      - Share Market:
+          - ShareMarket Short: Dhoomstudios/sharemarket/ShareMarketShort.md
+          - ShareMarket Webseries: Dhoomstudios/sharemarket/ShareMarketWebseries.md   
+      - Debt:
+          - Debt Webseries Script: Dhoomstudios/debt/DebtWebseriesScript.md
+      - Insurance:
+          - Insurance Short: Dhoomstudios/insurance/InsuranceShort.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Serendipity2-0
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/trademanv1?s=21&t=bBTay4-vvjkbqF5YnSYrog
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/trademan.v1?igsh=NnZ6dDR2M2Nhc3h5
+    - icon: fontawesome/solid/envelope
+      link: mailto:your-email@example.com # Replace with your actual email
+
+  # Including media folder so audio can be served properly
+  include:
+    - media/
+
+extra_css:
+  - css/custom.css

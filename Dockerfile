@@ -1,12 +1,25 @@
 FROM python:3.11-slim
 
+# Accept build arguments
+ARG DATABASE_URL
+ARG SECRET_KEY
+ARG OPENAI_API_KEY
+ARG NEXT_PUBLIC_BASE_URL
+ARG NO_OF_ADMINS
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED=1
 ENV TZ=Asia/Kolkata
+ENV NODE_ENV=development
+ENV DATABASE_URL=${DATABASE_URL}
+ENV SECRET_KEY=${SECRET_KEY}
+ENV OPENAI_API_KEY=${OPENAI_API_KEY}
+ENV NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
+ENV NO_OF_ADMINS=${NO_OF_ADMINS}
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
+# Install dependencies with proper error handling and package lists update
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
     build-essential \
     curl \
     git \
@@ -19,22 +32,54 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-venv \
     tzdata \
-    && rm -rf /var/lib/apt/lists/*
+    supervisor && \
+    # Install Node.js using curl
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    # Clean up
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    # Verify installations
+    node --version && \
+    npm --version
 
-
-# set working directory
+# Set working directory
 WORKDIR /app
 
-# Copy the requirements file and key to the container
-COPY requirements.txt .
-
-RUN pip3 install --upgrade setuptools && \
-    pip3 install wheel && \
-    pip3 install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Copy the rest of the application code to the container
+# Copy the entire application code
 COPY . .
 
-RUN chmod +x ./worker.sh
-CMD ["./worker.sh"]
+# Copy supervisord configuration file explicitly
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Install Python dependencies
+RUN pip3 install --upgrade pip setuptools wheel && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Install frontend dependencies and build
+WORKDIR /app/frontend
+RUN npm install && \
+    npm install -D tailwindcss postcss autoprefixer && \
+    npm install -D @types/node @types/react @types/react-dom typescript
+
+# Setup backend and ensure proper permissions
+WORKDIR /app/backend
+RUN mkdir -p /app/backend && \
+    touch rbac_system.db && \
+    chmod 777 rbac_system.db
+
+# Create a non-root user
+RUN useradd -m -U app_user && \
+    chown -R app_user:app_user /app
+
+# Set working directory back to root
+WORKDIR /app
+
+# Expose ports for frontend and backend
+EXPOSE 8052 8051
+
+# Switch to non-root user
+USER app_user
+
+# Command to start supervisord
+CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
