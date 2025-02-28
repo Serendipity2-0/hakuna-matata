@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import RectangleComponent from './RectangleComponent';
 
-const AdaptiveLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [activeRectangle, setActiveRectangle] = useState<string | null>(null);
+export default function AdaptiveLayout({ children }: { children: React.ReactNode }) {
+  const [activeRectangle, setActiveRectangle] = React.useState<string | null>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.ctrlKey || event.metaKey) {
         switch (event.key.toLowerCase()) {
@@ -62,6 +62,4 @@ const AdaptiveLayout: React.FC<{ children: React.ReactNode }> = ({ children }) =
       <RectangleComponent position="left" shortcut="a" />
     </div>
   );
-};
-
-export default AdaptiveLayout;
+}
