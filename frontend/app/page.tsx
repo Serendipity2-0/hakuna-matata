@@ -1,14 +1,5 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
-
-const ClientSideHome = dynamic(() => import('@/components/ClientSideHome'), {
-  ssr: false,
-  loading: () => <p>Loading...</p>
-});
-
-const DynamicAdaptiveLayout = dynamic(() => import('@/components/AdaptiveLayout'), {
-  ssr: false,
-});
+import ClientPageWrapper from '@/components/ClientPageWrapper';
 
 export const metadata: Metadata = {
   title: 'Serendipity Task Assistant',
@@ -16,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return (
-    <DynamicAdaptiveLayout>
-      <ClientSideHome />
-    </DynamicAdaptiveLayout>
-  );
+  return <ClientPageWrapper />;
 }
