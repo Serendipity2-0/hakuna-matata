@@ -1,4 +1,12 @@
 .vscode
 __pycache__
 kaas.env
-hm
+
+
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pywz
+.venv/
