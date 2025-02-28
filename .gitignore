@@ -10,3 +10,11 @@ kaas.env
 *.pyz
 *.pywz
 .venv/
+
+/node_modules
+/dist
+/build
+/coverage
+/logs
+/temp
+/cache
