@@ -2,3 +2,10 @@
 __pycache__
 kaas.env
 hm
+/node_modules
+/dist
+/build
+/coverage
+/logs
+/temp
+/cache
