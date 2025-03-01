@@ -18,3 +18,5 @@ kaas.env
 /logs
 /temp
 /cache
+hm
+.venv
