@@ -17,7 +17,7 @@ const transformDatabaseData = (data: any[]): ContentPost[] => {
   }));
 };
 
-export default function ContentCalendarPage() {
+export default function ContentPage() {
   const [posts, setPosts] = useState<ContentPost[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -36,9 +36,20 @@ export default function ContentCalendarPage() {
         const result = await response.json();
         console.log('API response:', result); // For debugging
         
-        // Transform the data based on the structure we received
-        const transformedData = transformDatabaseData(result.data || []);
-        setPosts(transformedData);
+        // Check if we have data
+        if (!result.data || result.data.length === 0) {
+          console.log('No data returned from API');
+          setError('No content data available. The database might be empty.');
+          setPosts([]);
+          return;
+        }
+        
+        // Log the first item to see its structure
+        console.log('First data item:', result.data[0]);
+        
+        // The API now returns already transformed data
+        console.log('API response data:', result.data);
+        setPosts(result.data || []);
         setError(null);
       } catch (err) {
         console.error('Error fetching calendar data:', err);

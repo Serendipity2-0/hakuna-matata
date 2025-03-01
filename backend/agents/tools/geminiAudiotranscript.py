@@ -10,14 +10,6 @@ dotenv.load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 
-
-def transcribe_youtube_video(url: str) -> str:
-    response = client.models.generate_content(
-        model="gemini-2.0-flash", contents=f"Transcribe this youtube link: {url}"
-    )
-    return response.text
-
-
 def convert_audio_format(audio_file: str) -> str:
     # convert m4a to wav
     audio = AudioSegment.from_file(audio_file, format="m4a")
@@ -64,16 +56,14 @@ def convert_m4a_to_mp3(input_file_path, output_file_path):
         print(f"Error converting file: {e}")
 
 
-
-
-
 if __name__ == "__main__":
-    mp3_file = "/Users/mforce/Desktop/hakuna-matata/Test.mp3"
+    mp3_file = "/Users/mforce/Desktop/hakuna-matata/KaasDis1.mp3"
     transcription = transcribe_audio(mp3_file)
     print("Transcription:", transcription)
-    transcription_file = open("transcription.md", "w")
+    transcription_file = open("KaasDis1_transcription.md", "+a")
     transcription_file.write(transcription)
     transcription_file.close()
+
 
 
 
