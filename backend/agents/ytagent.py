@@ -68,12 +68,19 @@ def convert_m4a_to_mp3(input_file_path, output_file_path):
 
 
 if __name__ == "__main__":
-    mp3_file = "/Users/mforce/Desktop/hakuna-matata/Test.mp3"
+    mp3_file = "/Users/mforce/Desktop/hakuna-matata/KaasDis1.mp3"
     transcription = transcribe_audio(mp3_file)
     print("Transcription:", transcription)
-    transcription_file = open("transcription.md", "w")
+    transcription_file = open("KaasDis1_transcription.md", "+a")
     transcription_file.write(transcription)
     transcription_file.close()
+
+    # youtube_url = "https://www.youtube.com/watch?v=6Nv7g4NdYPY&ab_channel=WorldofAI"
+    # yt_transcription = transcribe_youtube_video(youtube_url)
+    # print("YT Transcription:", yt_transcription)
+    # yt_transcription_file = open("yt_transcription.md", "w")
+    # yt_transcription_file.write(yt_transcription)
+    # yt_transcription_file.close()
 
 
 
