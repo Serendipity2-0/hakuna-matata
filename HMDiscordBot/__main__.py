@@ -64,7 +64,8 @@ async def load_cogs():
         'HMDiscordBot.cogs.calendar_views',
         'HMDiscordBot.cogs.audio_transcript_commands',
         'HMDiscordBot.cogs.coding_calendar_commands',
-        'HMDiscordBot.cogs.serendipity_calendar_commands'
+        'HMDiscordBot.cogs.serendipity_calendar_commands',
+        'HMDiscordBot.cogs.dms_commands'  # Add the DMS commands cog
     ]
     
     for cog in cogs:
@@ -112,6 +113,15 @@ async def on_ready():
                 await serendipity_channel.send("Serendipity Calendar Bot is now online! Use `/serendipity_help` to see available commands.")
             else:
                 logger.warning(f"Could not find serendipity calendar channel with ID {serendipity_channel_id}")
+                
+        # Send a message to the DMS channel if provided
+        dms_channel_id = os.getenv('DISCORD_DMS_CHANNEL_ID')
+        if dms_channel_id and dms_channel_id != channel_id and dms_channel_id != coding_channel_id and dms_channel_id != serendipity_channel_id:
+            dms_channel = bot.get_channel(int(dms_channel_id))
+            if dms_channel:
+                await dms_channel.send("Document Management System Bot is now online! Use `/dms_help` to see available commands.")
+            else:
+                logger.warning(f"Could not find DMS channel with ID {dms_channel_id}")
     except Exception as e:
         logger.error(f"Error in on_ready: {str(e)}", exc_info=True)
 
@@ -220,6 +230,25 @@ async def help_command(ctx):
         value=(
             f"{bot.command_prefix}transcribe_audio - Transcribe an audio file\n"
             "/transcribe_audio - Transcribe an audio file with choice of transcription service"
+        ),
+        inline=False
+    )
+    
+    help_embed.add_field(
+        name="Document Management System (DMS) Commands",
+        value=(
+            f"{bot.command_prefix}dms_help - Show DMS commands\n"
+            f"{bot.command_prefix}upload_document - Upload a new document\n"
+            f"{bot.command_prefix}view_documents - View all documents\n"
+            f"{bot.command_prefix}search_document [query] - Search for documents\n"
+            f"{bot.command_prefix}update_document [id] - Update a document\n"
+            f"{bot.command_prefix}download_document [id] - Download a document\n"
+            "/dms_help - Show DMS commands\n"
+            "/upload_document - Upload a new document\n"
+            "/view_documents - View all documents\n"
+            "/search_document - Search for documents\n"
+            "/update_document - Update a document\n"
+            "/download_document - Download a document"
         ),
         inline=False
     )
