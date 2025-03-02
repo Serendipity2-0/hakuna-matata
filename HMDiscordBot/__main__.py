@@ -1,6 +1,6 @@
 """
-Main Discord bot module for SoM (System of Management).
-This module implements a Discord bot that can fetch and display transaction data from a SQLite database.
+Main Discord bot module for Hakuna Matata.
+This module implements a Discord bot that can interact with the Calendar database.
 """
 
 import os
@@ -13,10 +13,10 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 from HMDiscordBot.utils.config import ConfigManager
+from HMDiscordBot.utils.db_handler import CalendarDBHandler
 import sqlite3
 from datetime import datetime, timedelta
 from pathlib import Path
-from Kaas.discord_handler import KaasDiscordHandler
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -40,38 +40,55 @@ bot = commands.Bot(
     help_command=None  # Disable the default help command
 )
 
-def get_db_path():
-    """Get the full path to the database file."""
+def get_db_path(db_name='calendar'):
+    """
+    Get the full path to the database file.
+    
+    Args:
+        db_name: Name of the database to get the path for
+        
+    Returns:
+        Full path to the database file
+    """
     base_dir = os.getcwd()
-    db_base_path = 'DB/main'
-    db_file = config.get('database', 'files', 'kaas')
+    db_base_path = config.get('database', 'base_path', 'DB/Main')
+    db_file = config.get('database', 'files', db_name)
     full_path = os.path.join(base_dir, db_base_path, db_file)
     return full_path
 
-async def init_kaas_handler():
-    """Initialize the Kaas handler with the correct database path."""
-    db_path = get_db_path()
-    currency_symbol = config.get('formatting', 'currency', 'symbol')
-    # Add the cog to the bot
-    await bot.add_cog(KaasDiscordHandler(bot, db_path, currency_symbol))
+async def load_cogs():
+    """Load all cogs for the bot."""
+    # List of cogs to load
+    cogs = [
+        'HMDiscordBot.cogs.calendar_commands',
+        'HMDiscordBot.cogs.calendar_views'
+    ]
+    
+    for cog in cogs:
+        try:
+            await bot.load_extension(cog)
+            logger.info(f"Loaded cog: {cog}")
+        except Exception as e:
+            logger.error(f"Error loading cog {cog}: {str(e)}", exc_info=True)
 
 @bot.event
 async def on_ready():
     """Event handler that runs when the Discord bot successfully connects."""
     logger.info(f'{bot.user} has connected to Discord!')
     try:
-        await init_kaas_handler()
+        # Load all cogs
+        await load_cogs()
         
+        # Set up slash commands
+        await bot.tree.sync()
+        logger.info("Slash commands synced")
+        
+        # Send a message to the specified channel if provided
         channel_id = os.getenv('DISCORD_CHANNEL_ID')
         if channel_id:
             channel = bot.get_channel(int(channel_id))
             if channel:
-                # Get the KaasDiscordHandler cog
-                kaas_cog = bot.get_cog('KaasDiscordHandler')
-                if kaas_cog:
-                    await kaas_cog.check_due_transactions(channel)
-                else:
-                    logger.warning("KaasDiscordHandler cog not found")
+                await channel.send("Calendar Bot is now online! Use `/calendar_help` to see available commands.")
             else:
                 logger.warning(f"Could not find channel with ID {channel_id}")
     except Exception as e:
@@ -99,16 +116,44 @@ async def on_message(message):
 @bot.command(name='help')
 async def help_command(ctx):
     """Display help information for available commands."""
-    help_text = (
-        "**Available Commands:**\n"
-        f"{bot.command_prefix}chat [message] - Chat with the AI agent\n"
-        f"{bot.command_prefix}query [sql] - Execute a SQL query\n"
-        f"{bot.command_prefix}todayM - Show today's transactions\n"
-        f"{bot.command_prefix}weekM - Show this week's transactions\n"
-        f"{bot.command_prefix}check_due - Check for due transactions\n"
-        f"{bot.command_prefix}help - Show this help message"
+    help_embed = discord.Embed(
+        title="Calendar Bot Help",
+        description="Here are the available commands:",
+        color=discord.Color.blue()
     )
-    await ctx.send(help_text)
+    
+    help_embed.add_field(
+        name="Calendar Commands",
+        value=(
+            f"{bot.command_prefix}calendar_help - Show calendar commands\n"
+            f"{bot.command_prefix}add_event - Add a new event\n"
+            f"{bot.command_prefix}view_events - View all events\n"
+            f"{bot.command_prefix}view_today - View today's events\n"
+            f"{bot.command_prefix}view_week - View this week's events\n"
+            f"{bot.command_prefix}view_date [YYYY-MM-DD] - View events for a specific date\n"
+            f"{bot.command_prefix}delete_event [id] - Delete an event\n"
+            f"{bot.command_prefix}update_event [id] - Update an event"
+        ),
+        inline=False
+    )
+    
+    help_embed.add_field(
+        name="Slash Commands",
+        value=(
+            "/calendar_help - Show calendar commands\n"
+            "/add_event - Add a new event\n"
+            "/view_events - View all events\n"
+            "/view_date - View events for a specific date\n"
+            "/delete_event - Delete an event\n"
+            "/update_event - Update an event\n"
+            "/create_march_2025 - Create calendar entries for March 2025"
+        ),
+        inline=False
+    )
+    
+    help_embed.set_footer(text="Use the buttons and dropdowns in responses for easier interaction")
+    
+    await ctx.send(embed=help_embed)
 
 def main():
     """Main function to run the bot with error handling and reconnection logic."""

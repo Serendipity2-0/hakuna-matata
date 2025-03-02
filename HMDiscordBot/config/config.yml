@@ -4,20 +4,22 @@ bot:
 database:
   base_path: "DB/Main"
   files:
-    kaas: "ContentCalendar.db"
-    time: "CMSCalendar.db"
-    shakti: "CodingCalendar.db"
-    shakti: "AccountTaskCalendar.db"
-    shakti: "EmployeeManagementSystem.db"
-    shakti: "DocumentCalendar.db"
+    calendar: "Calendar.db"
+    content_calendar: "ContentCalendar.db"
+    cms: "CMSCalendar.db"
+    coding: "CodingCalendar.db"
+    account_task: "AccountTaskCalendar.db"
+    employee: "EmployeeManagementSystem.db"
+    document: "DocumentCalendar.db"
 
 tables:
-  kaas: "ContentCalendar"
-  time: "CMSCalendar"
-  shakti: "CodingCalendar"
-  shakti: "AccountTaskCalendar"
-  shakti: "EmployeeManagementSystem"
-  shakti: "DocumentCalendar"
+  calendar: "calendar"
+  content_calendar: "ContentCalendar"
+  cms: "CMSCalendar"
+  coding: "CodingCalendar"
+  account_task: "AccountTaskCalendar"
+  employee: "EmployeeManagementSystem"
+  document: "DocumentCalendar"
 
 formatting:
   currency:
