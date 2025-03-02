@@ -569,7 +569,45 @@ class UploadDocumentModal(discord.ui.Modal, title="Upload Document"):
             )
             
             async def download_callback(interaction: discord.Interaction):
-                await self.cog.download_document_slash(interaction, doc_id)
+                # Get the document from the database
+                conn = self.cog.get_db_connection()
+                cursor = conn.cursor()
+                cursor.execute("SELECT * FROM DMS WHERE docid = ?", (doc_id,))
+                document = cursor.fetchone()
+                conn.close()
+                
+                if not document:
+                    await interaction.response.send_message(f"Document with ID {doc_id} not found.", ephemeral=True)
+                    return
+                
+                # Check if the document file exists
+                doc_path = os.path.join(self.cog.dms_folder, f"{doc_id}_{document['name']}.md")
+                if not os.path.exists(doc_path):
+                    await interaction.response.send_message(f"Document file not found for ID {doc_id}.", ephemeral=True)
+                    return
+                
+                # Read the document file
+                with open(doc_path, "r", encoding="utf-8") as f:
+                    content = f.read()
+                
+                # Create a file to send
+                file = discord.File(
+                    io.BytesIO(content.encode("utf-8")),
+                    filename=f"{document['name']}.md"
+                )
+                
+                # Create an embed with document info
+                embed = discord.Embed(
+                    title=f"Document: {document['name']}",
+                    description=document['description'],
+                    color=discord.Color.blue()
+                )
+                
+                embed.add_field(name="ID", value=document['docid'], inline=True)
+                embed.add_field(name="Department", value=document['department'], inline=True)
+                embed.add_field(name="Tags", value=document['tags'] or "None", inline=True)
+                
+                await interaction.response.send_message(embed=embed, file=file)
             
             download_button.callback = download_callback
             view.add_item(download_button)
@@ -701,7 +739,45 @@ class UpdateDocumentModal(discord.ui.Modal, title="Update Document"):
             )
             
             async def download_callback(interaction: discord.Interaction):
-                await self.cog.download_document_slash(interaction, self.doc_id)
+                # Get the document from the database
+                conn = self.cog.get_db_connection()
+                cursor = conn.cursor()
+                cursor.execute("SELECT * FROM DMS WHERE docid = ?", (self.doc_id,))
+                document = cursor.fetchone()
+                conn.close()
+                
+                if not document:
+                    await interaction.response.send_message(f"Document with ID {self.doc_id} not found.", ephemeral=True)
+                    return
+                
+                # Check if the document file exists
+                doc_path = os.path.join(self.cog.dms_folder, f"{self.doc_id}_{document['name']}.md")
+                if not os.path.exists(doc_path):
+                    await interaction.response.send_message(f"Document file not found for ID {self.doc_id}.", ephemeral=True)
+                    return
+                
+                # Read the document file
+                with open(doc_path, "r", encoding="utf-8") as f:
+                    content = f.read()
+                
+                # Create a file to send
+                file = discord.File(
+                    io.BytesIO(content.encode("utf-8")),
+                    filename=f"{document['name']}.md"
+                )
+                
+                # Create an embed with document info
+                embed = discord.Embed(
+                    title=f"Document: {document['name']}",
+                    description=document['description'],
+                    color=discord.Color.blue()
+                )
+                
+                embed.add_field(name="ID", value=document['docid'], inline=True)
+                embed.add_field(name="Department", value=document['department'], inline=True)
+                embed.add_field(name="Tags", value=document['tags'] or "None", inline=True)
+                
+                await interaction.response.send_message(embed=embed, file=file)
             
             download_button.callback = download_callback
             view.add_item(download_button)
