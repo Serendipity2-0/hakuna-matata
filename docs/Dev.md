@@ -92,18 +92,19 @@ Discord cogs for audio transcript:
 command which takes audio file as an input and uses audio transcript to return back an MD file, save it, also displayed back in discord DISCORD_AUDI0MEET_CHANNEL_ID. give choice of backend/agents/tools/assemblyAudioTranscript.py and backend/agents/tools/geminiAudiotranscript.py . Save the MD file in DB/AudioTranscripts and audio in Assets/AudioMeet. Display response back in DISCORD_AUDI0MEET_CHANNEL_ID.
 
 ###############
-Help me build an interactive discord bot in DISCORD_CMS_CHANNEL_ID which can take the @DB/Main/customer_management.db file. Use prefix commands, slash commands, modals and other appropriate interactive tools like dropdowns, buttons, etc., to make it user friendly. Place it in cogs/customer_management_commands.py
+Help me build an interactive discord bot in DISCORD_DMS_CHANNEL_ID which helps users in managing md files.
+Use prefix commands, slash commands, modals and other appropriate interactive tools like dropdowns, buttons, etc., to make it user friendly.
 
 IMPORTANT: Read the database with sqlite3 commands before building the bot.
 
 
 Required functionalites:
-1. Add a new customer to the database
-2. View all customers in the database based on Past, Active, Prospective
-3. Schedule a call/meeting with a customer
-4. Update meeting details
-5. Meeting reminder
-6. After meeting actions
+1. Upload a new document to the database. Save it in /DMS folder.
+2. View all documents in the database and download requested documents.
+3. Query the database for a specific document
+4. Update a document in the database
+
+
 
 
 

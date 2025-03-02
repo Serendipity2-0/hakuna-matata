@@ -14,9 +14,15 @@ import wave
 import pyaudio
 import threading
 import time
+import sys
 from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
+
+# Add the parent directory to the Python path for imports
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# Import the transcription module
+from backend.Agents.assemblyAudioTranscript import setup_environment, transcribe_audio, save_transcript
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -331,6 +337,95 @@ async def list_recordings(ctx):
     # Format the list of recordings
     recordings_list = "\n".join([f"- {rec.name}" for rec in recording_files])
     await ctx.send(f"📂 Available recordings:\n{recordings_list}")
+
+@bot.command()
+async def transcribe(ctx, *, recording_name=None):
+    """
+    Transcribe a recorded audio file using AssemblyAI.
+    
+    Args:
+        ctx: The command context
+        recording_name: Optional name of the recording to transcribe. 
+                       If not provided, the most recent recording will be used.
+    """
+    # Check if recordings directory exists
+    if not RECORDINGS_DIR.exists():
+        await ctx.send("❌ No recordings directory found.")
+        return
+    
+    # Get all WAV files in the recordings directory
+    recording_files = list(RECORDINGS_DIR.glob("*.wav"))
+    
+    if not recording_files:
+        await ctx.send("❌ No recordings found to transcribe.")
+        return
+    
+    # Determine which file to transcribe
+    if recording_name:
+        # Find the file that matches the provided name
+        matching_files = [f for f in recording_files if recording_name in f.name]
+        if not matching_files:
+            await ctx.send(f"❌ No recording found matching '{recording_name}'.")
+            return
+        file_to_transcribe = matching_files[0]
+    else:
+        # Use the most recent recording (based on file modification time)
+        file_to_transcribe = max(recording_files, key=lambda f: f.stat().st_mtime)
+    
+    # Send a message indicating transcription has started
+    processing_msg = await ctx.send(f"🔄 Starting transcription of `{file_to_transcribe.name}`...\nThis may take a few minutes depending on the length of the recording.")
+    
+    try:
+        # Initialize the transcription environment
+        setup_environment()
+        
+        # Start the transcription process
+        logger.info(f"Starting transcription of {file_to_transcribe}")
+        await processing_msg.edit(content=f"🔄 Transcribing `{file_to_transcribe.name}`...\nUploading to AssemblyAI...")
+        
+        # Run the transcription in a separate thread to avoid blocking the bot
+        def run_transcription():
+            try:
+                # Transcribe the audio file
+                transcript = transcribe_audio(str(file_to_transcribe))
+                
+                # Save the transcript to a file
+                save_transcript(transcript, str(file_to_transcribe))
+                
+                return transcript, None
+            except Exception as e:
+                logger.error(f"Transcription error: {str(e)}")
+                return None, str(e)
+        
+        # Run the transcription in a thread pool to avoid blocking the bot
+        transcript, error = await bot.loop.run_in_executor(None, run_transcription)
+        
+        if error:
+            await processing_msg.edit(content=f"❌ Error during transcription: {error}")
+            return
+        
+        # Get the path to the saved transcript file
+        transcript_file_name = os.path.splitext(file_to_transcribe.name)[0]
+        transcript_path = Path(f"DB/AudioTranscripts/{transcript_file_name}_transcript.md")
+        
+        if transcript_path.exists():
+            # Read the first 1500 characters of the transcript to preview
+            with open(transcript_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                preview = content[:1500] + "..." if len(content) > 1500 else content
+            
+            # Send the transcript preview
+            await processing_msg.edit(content=f"✅ Transcription complete!\n\n**Preview:**\n```\n{preview}\n```\n\nFull transcript saved to `{transcript_path}`")
+            
+            # If the transcript is too long, also send it as a file
+            if len(content) > 1500:
+                await ctx.send(f"📄 Full transcript attached:", file=discord.File(transcript_path))
+        else:
+            await processing_msg.edit(content=f"✅ Transcription complete, but couldn't find the saved file at `{transcript_path}`.")
+    
+    except Exception as e:
+        logger.error(f"Error in transcribe command: {str(e)}")
+        await processing_msg.edit(content=f"❌ Error: {str(e)}")
 
 def run_bot():
     """Run the Discord bot with the token from environment variables."""
