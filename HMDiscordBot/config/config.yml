@@ -1,0 +1,30 @@
+bot:
+  command_prefix: "!"  # Make sure this line exists and has a valid value
+
+database:
+  base_path: "DB/Main"
+  files:
+    kaas: "ContentCalendar.db"
+    time: "CMSCalendar.db"
+    shakti: "CodingCalendar.db"
+    shakti: "AccountTaskCalendar.db"
+    shakti: "EmployeeManagementSystem.db"
+    shakti: "DocumentCalendar.db"
+
+tables:
+  kaas: "ContentCalendar"
+  time: "CMSCalendar"
+  shakti: "CodingCalendar"
+  shakti: "AccountTaskCalendar"
+  shakti: "EmployeeManagementSystem"
+  shakti: "DocumentCalendar"
+
+formatting:
+  currency:
+    symbol: "₹"
+    locale: "en_IN"
+
+colors:
+  success: [67, 181, 129]
+  error: [231, 76, 60]
+  info: [52, 152, 219]

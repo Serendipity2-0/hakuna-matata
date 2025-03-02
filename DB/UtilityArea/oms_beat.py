@@ -1,0 +1,408 @@
+# celery_app.py
+from celery import Celery
+import subprocess
+from datetime import datetime
+import requests
+from time import sleep
+import redis
+import logging
+from logging import FileHandler
+import sys, os
+from dotenv import load_dotenv
+
+# Define constants and load environment variables
+DIR = os.getcwd()
+sys.path.append(DIR)  # Add the current directory to the system path
+
+ENV_PATH = os.path.join(DIR, "trademan.env")
+# ENV_PATH = '/Users/traderscafe/Desktop/TradeManV1/trademan.env'
+load_dotenv(ENV_PATH)
+
+CONDA_PATH = os.getenv("CONDA_PATH")
+CONDA_ENV_NAME = os.getenv("CONDA_ENV_NAME")
+PROJECT_PATH = os.getenv("PROJECT_PATH")
+PYTHON_ENV_PATH = os.getenv("PYTHON_ENV_PATH")
+
+# Create a Celery instance
+app = Celery("tasks")
+app.config_from_object("Executor.Scripts.CeleryScripts.celeryconfig")
+
+# redis client
+redis_client = redis.StrictRedis(host="localhost", port=6379, db=0)
+
+# Telegram bot parameters
+TELEGRAM_BOT_TOKEN = os.getenv("ERROR_TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.getenv("ERROR_CHAT_ID")
+
+# log files path
+log_dir = os.getenv("CELERY_SCRIPTS_LOG_PATH")
+
+# Strategy Constants
+AMIPY = "amipy"
+OVERNIGHT_FUTURES = "overnight_futures"
+EXPIRY_TRADER = "expiry_trader"
+NAMAHA = "namaha"
+EQUITY_ENTRY = "equity_entry"
+MPWIZARD = "mpwizard"
+GOLDEN_COIN = "golden_coin"
+OM = "om"
+PYSTOCKS = "pystocks"
+EQUITY_EXIT = "equity_exit"
+
+
+def setup_logger(name, log_file, level=logging.DEBUG):
+    """
+    Sets up a logger with file handler and custom formatting.
+
+    Args:
+        name (str): Name of the logger
+        log_file (str): Path to the log file
+        level (int): Logging level (default: DEBUG)
+
+    Returns:
+        logging.Logger: Configured logger instance
+    """
+    # Create log directory if it doesn't exist
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
+
+    # Create and configure file handler
+    handler = FileHandler(log_file)
+    handler.setLevel(level)
+
+    # Create a detailed formatter
+    formatter = logging.Formatter(
+        fmt="%(asctime)s - %(name)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
+    handler.setFormatter(formatter)
+
+    # Get or create logger
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+
+    # Remove existing handlers to avoid duplicates
+    logger.handlers.clear()
+    logger.addHandler(handler)
+
+    # Add stream handler for console output
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
+    console_handler.setLevel(level)
+    logger.addHandler(console_handler)
+
+    logger.info(
+        f"Logger '{name}' initialized - Log file: {log_file} - Level: {logging.getLevelName(level)}"
+    )
+    return logger
+
+
+# Redirect print statements to the logger
+class LoggerWriter:
+    def __init__(self, logger, level):
+        self.logger = logger
+        self.level = level
+
+    def write(self, message):
+        if message.strip() != "":
+            self.logger.log(self.level, message.strip())
+
+    def flush(self):
+        pass
+
+
+# Function to run the script
+def run_script(script_path, retry_hour, logger):
+    """
+    Executes a Python script using conda environment with retry logic.
+
+    Args:
+        script_path (str): Path to the Python script to execute
+        retry_hour (int): Hour after which retries should stop (24-hour format)
+        logger (logging.Logger): Logger instance for recording execution details
+
+    Returns:
+        str: Execution status ('success', 'failed', or 'failed after retry_hour')
+
+    This function replaces the old shell scripts by:
+    1. Activating the specified conda environment
+    2. Running the script with proper Python interpreter
+    3. Handling retries until retry_hour
+    4. Logging all output and errors
+    5. Sending Telegram notifications on failures
+    """
+    max_attempts = 1
+    attempt = 0
+
+    logger.debug("Redirecting stdout and stderr to logger")
+    sys.stdout = LoggerWriter(logger, logging.INFO)
+    sys.stderr = LoggerWriter(logger, logging.ERROR)
+
+    while True:
+        current_hour = datetime.now().hour
+        if current_hour >= retry_hour:
+            logger.info("The script will not retry after retry_hour.")
+            return "The script will not retry after retry_hour."
+
+        attempt += 1
+        logger.info(f"Attempt: {attempt}")
+
+        try:
+            logger.debug(f"Running script {script_path}")
+            # Check if we're running in Docker
+            in_docker = os.environ.get("DOCKER_ENV", "false") == "true"
+
+            command = (
+                f"python {script_path}"
+                if in_docker
+                else f"source {CONDA_PATH}/etc/profile.d/conda.sh && "
+                f"conda activate {CONDA_ENV_NAME} && "
+                f"cd {PROJECT_PATH} && "
+                f"{PYTHON_ENV_PATH} {script_path}"
+            )
+
+            with subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                executable="/bin/bash",
+                bufsize=1,
+                universal_newlines=True,
+            ) as process:
+                for stdout_line in iter(process.stdout.readline, ""):
+                    logger.info(stdout_line.strip())
+                for stderr_line in iter(process.stderr.readline, ""):
+                    logger.error(stderr_line.strip())
+                process.stdout.close()
+                process.stderr.close()
+                return_code = process.wait()
+                if return_code:
+                    logger.error(
+                        f"Script {script_path} failed with return code {return_code}"
+                    )
+                    return "failed"
+                logger.info(f"Program {script_path} completed successfully")
+                return "success"
+        except subprocess.CalledProcessError as e:
+            logger.error(f"Error running script {script_path}: {e}")
+            if attempt == max_attempts:
+                current_hour = datetime.now().hour
+                if current_hour <= retry_hour:
+                    logger.error(
+                        f"The script {script_path} has some errors. Please Check !!!"
+                    )
+                    message = f"{script_path} errors. Please Check !!!"
+                    requests.post(
+                        f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
+                        data={"chat_id": CHAT_ID, "text": message},
+                    )
+                    return "failed"
+                else:
+                    logger.error(
+                        f"Script {script_path} failed after retry_hour, exiting without notification."
+                    )
+                    return "failed after retry_hour"
+
+        sleep(5)
+
+
+def run_multiple_scripts(script_paths, logger):
+    """
+    Executes multiple Python scripts sequentially.
+
+    Args:
+        script_paths (list): List of script paths to execute
+        logger (logging.Logger): Logger instance for recording execution details
+
+    Returns:
+        str: Execution status message
+    """
+    logger.info(f"Starting execution of {len(script_paths)} scripts")
+    for script_path in script_paths:
+        logger.info(f"Executing script: {script_path}")
+        result = run_script(script_path, 20, logger)
+        if "failed" in result:
+            logger.error(f"Script execution failed: {script_path}")
+            return result
+        logger.info(f"Successfully executed: {script_path}")
+    logger.info("All scripts executed successfully")
+    return "All scripts executed successfully."
+
+
+# Below are the celery tasks/cronjobs
+
+
+@app.task
+def good_morning_scripts():
+    good_morning_logger = setup_logger(
+        "good_morning_logger", f"{log_dir}/good_morning.log"
+    )
+    scripts = [
+        "Executor/Scripts/1_GoodMorning/1_Login/DailyLogin.py",
+        "Executor/Scripts/1_GoodMorning/4_DailyInstrumentAggregator/DailyInstrumentAggregator.py",
+        "Executor/Scripts/1_GoodMorning/6_AsmGsmAggregator/AsmGsmAggregator.py",
+    ]
+    return run_multiple_scripts(scripts, good_morning_logger)
+
+
+@app.task(bind=True)
+def fast_api_server(self):
+    fast_api_server_logger = setup_logger(
+        "fast_api_server", f"{log_dir}/fast_api_server.log"
+    )
+    task_id = self.request.id
+    redis_client.set("fast_api_server_task_id", task_id)
+    while True:
+        return run_script("User/UserApi/main.py", 17, fast_api_server_logger)
+
+
+@app.task(bind=True)
+def amipy(self):
+    amipy_logger = setup_logger(AMIPY, f"{log_dir}/{AMIPY}.log")
+    task_id = self.request.id
+    redis_client.set("amipy_task_id", task_id)
+    while True:
+        return run_script(
+            "Executor/NSEStrategies/Derivatives/AmiPy/AmiPyLive.py", 17, amipy_logger
+        )
+
+
+@app.task
+def equity_entry():
+    equity_entry_logger = setup_logger(EQUITY_ENTRY, f"{log_dir}/{EQUITY_ENTRY}.log")
+    return run_script(
+        "Executor/NSEStrategies/Equity/Equity.py",
+        15,
+        equity_entry_logger,
+    )
+
+
+@app.task
+def equity_exit():
+    equity_exit_logger = setup_logger(EQUITY_EXIT, f"{log_dir}/{EQUITY_EXIT}.log")
+    return run_script(
+        "Executor/NSEStrategies/Equity/EquityStoploss.py",
+        15,
+        equity_exit_logger,
+    )
+
+
+@app.task
+def send_telegram_message():
+    return run_script(
+        "User/Omkar/Kaas.py",
+        17,
+        setup_logger("telegram_message", f"{log_dir}/telegram_message.log"),
+    )
+
+
+@app.task(bind=True)
+def mpwizard(self):
+    mpwizard_logger = setup_logger(MPWIZARD, f"{log_dir}/{MPWIZARD}.log")
+    task_id = self.request.id
+    redis_client.set("mpwizard_task_id", task_id)
+    while True:
+        return run_script(
+            "Executor/NSEStrategies/Derivatives/MPWizard/MPWizard.py",
+            15,
+            mpwizard_logger,
+        )
+
+
+@app.task
+def golden_coin():
+    golden_coin_logger = setup_logger("golden_coin", f"{log_dir}/golden_coin.log")
+    return run_script(
+        "Executor/NSEStrategies/Derivatives/GoldenCoin/GoldenCoin.py",
+        15,
+        golden_coin_logger,
+    )
+
+
+@app.task
+def sweep_orders():
+    sweep_orders_logger = setup_logger("sweep_orders", f"{log_dir}/sweep_orders.log")
+    return run_script(
+        "Executor/Scripts/2_GoodEvening/1_SweepOrders/SweepOrders.py",
+        16,
+        sweep_orders_logger,
+    )
+
+
+@app.task
+def tradebook_validator():
+    tradebook_validator_logger = setup_logger(
+        "tradebook_validator", f"{log_dir}/tradebook_validator.log"
+    )
+    return run_script(
+        "Executor/Scripts/2_GoodEvening/2_DailyTradeBookValidator/DailyTradebookValidator.py",
+        16,
+        tradebook_validator_logger,
+    )
+
+
+@app.task
+def eod_trade_db_logging():
+    eod_trade_db_logging_logger = setup_logger(
+        "eod_trade_db_logging", f"{log_dir}/eod_trade_db_logging.log"
+    )
+    return run_script(
+        "Executor/Scripts/2_GoodEvening/3_EODTradeDBLogging/EODDBLog.py",
+        17,
+        eod_trade_db_logging_logger,
+    )
+
+
+@app.task
+def eod_daily_reports():
+    eod_daily_reports_logger = setup_logger(
+        "eod_daily_reports", f"{log_dir}/eod_daily_reports.log"
+    )
+    return run_script(
+        "Executor/Scripts/2_GoodEvening/4_EODDailyReports/EODReport.py",
+        17,
+        eod_daily_reports_logger,
+    )
+
+
+@app.task
+def ticker_db():
+    ticker_db_logger = setup_logger("ticker_db", f"{log_dir}/ticker_db.log")
+    return run_script(
+        "Executor/Scripts/2_GoodEvening/5_TickerDB/TickerDB.py", 17, ticker_db_logger
+    )
+
+
+@app.task
+def revoke_amipy_task():
+    subprocess.run(["pkill", "-f", "AmiPyLive.py"])
+
+
+@app.task
+def revoke_mpwizard_task():
+    subprocess.run(["pkill", "-f", "MPWizard.py"])
+
+
+@app.task
+def clear_celery_tasks():
+    redis_client.flushdb()
+    return "All Celery tasks cleared from Redis"
+
+
+def start_worker():
+    """
+    Start the Celery worker process.
+    """
+    app.worker_main(
+        argv=["worker", "--loglevel=INFO", "--traceback", "-P", "solo"]
+    )  # Use solo pool for better compatibility
+
+
+def start_beat():
+    """
+    Start the Celery beat scheduler.
+    """
+    from celery.apps.beat import Beat
+
+    beat = Beat(app=app, loglevel="INFO", traceback=True)
+    beat.run()
