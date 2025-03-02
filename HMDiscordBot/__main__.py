@@ -63,7 +63,8 @@ async def load_cogs():
         'HMDiscordBot.cogs.calendar_commands',
         'HMDiscordBot.cogs.calendar_views',
         'HMDiscordBot.cogs.audio_transcript_commands',
-        'HMDiscordBot.cogs.coding_calendar_commands'
+        'HMDiscordBot.cogs.coding_calendar_commands',
+        'HMDiscordBot.cogs.serendipity_calendar_commands'
     ]
     
     for cog in cogs:
@@ -102,6 +103,15 @@ async def on_ready():
                 await coding_channel.send("Coding Calendar Bot is now online! Use `/coding_help` to see available commands.")
             else:
                 logger.warning(f"Could not find coding calendar channel with ID {coding_channel_id}")
+                
+        # Send a message to the serendipity calendar channel if provided
+        serendipity_channel_id = os.getenv('DISCORD_SERENDIPITY_CALENDAR_CHANNEL_ID')
+        if serendipity_channel_id and serendipity_channel_id != channel_id and serendipity_channel_id != coding_channel_id:
+            serendipity_channel = bot.get_channel(int(serendipity_channel_id))
+            if serendipity_channel:
+                await serendipity_channel.send("Serendipity Calendar Bot is now online! Use `/serendipity_help` to see available commands.")
+            else:
+                logger.warning(f"Could not find serendipity calendar channel with ID {serendipity_channel_id}")
     except Exception as e:
         logger.error(f"Error in on_ready: {str(e)}", exc_info=True)
 
@@ -180,6 +190,27 @@ async def help_command(ctx):
             "/view_coding_date - View coding tasks for a specific date\n"
             "/delete_coding_task - Delete a coding task\n"
             "/update_coding_task - Update a coding task"
+        ),
+        inline=False
+    )
+    
+    help_embed.add_field(
+        name="Serendipity Calendar Commands",
+        value=(
+            f"{bot.command_prefix}serendipity_help - Show serendipity calendar commands\n"
+            f"{bot.command_prefix}add_serendipity_task - Add a new task\n"
+            f"{bot.command_prefix}view_serendipity_tasks - View all tasks\n"
+            f"{bot.command_prefix}view_serendipity_today - View today's tasks\n"
+            f"{bot.command_prefix}view_serendipity_week - View this week's tasks\n"
+            f"{bot.command_prefix}view_serendipity_date [YYYY-MM-DD] - View tasks for a specific date\n"
+            f"{bot.command_prefix}delete_serendipity_task [id] - Delete a task\n"
+            f"{bot.command_prefix}update_serendipity_task [id] - Update a task\n"
+            "/serendipity_help - Show serendipity calendar commands\n"
+            "/add_serendipity_task - Add a new task\n"
+            "/view_serendipity_tasks - View all tasks\n"
+            "/view_serendipity_date - View tasks for a specific date\n"
+            "/delete_serendipity_task - Delete a task\n"
+            "/update_serendipity_task - Update a task"
         ),
         inline=False
     )

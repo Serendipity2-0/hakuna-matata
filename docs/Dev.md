@@ -92,8 +92,8 @@ Discord cogs for audio transcript:
 command which takes audio file as an input and uses audio transcript to return back an MD file, save it, also displayed back in discord DISCORD_AUDI0MEET_CHANNEL_ID. give choice of backend/agents/tools/assemblyAudioTranscript.py and backend/agents/tools/geminiAudiotranscript.py . Save the MD file in DB/AudioTranscripts and audio in Assets/AudioMeet. Display response back in DISCORD_AUDI0MEET_CHANNEL_ID.
 
 ###############
-Help me build an interactive discord bot in DISCORD_CODING_CALENDAR_CHANNEL_ID which can take the @DB/Main/CodingCalendar.db file. Use prefix commands, slash commands, modals and other appropriate interactive tools like dropdowns, buttons, etc., to make it user friendly. Place it in cogs/coding_calendar_commands.py
-Create the database before building the bot. 
+Help me build an interactive discord bot in DISCORD_SERENDIPITY_CALENDAR_CHANNEL_ID which can take the @DB/Main/SerendipityCalendar.db file. Use prefix commands, slash commands, modals and other appropriate interactive tools like dropdowns, buttons, etc., to make it user friendly. Place it in cogs/serendipity_calendar_commands.py
+Read the database with sqlite3 commands before building the bot. 
 
 Required functionalites:
 1. Add a new task to the calendar
@@ -102,8 +102,8 @@ Required functionalites:
 4. Delete an task from the calendar
 5. Update an task in the calendar
 
-Coding Calendar:
-create the CodingCalendar.db file for March 2025 with mock data. Everyday one row: Makes sure to add missing columns and data:
-"SerialNo.","Date","CodingTask","CodingTaskDescription","CodingTaskStatus","CodingTaskDueDate","CodingTaskCompletedDate","CodingTaskAssignedTo","CodingProjectName", "ReferenceLinks"
+Coding Calendar Headers:
+
+"SerialNo","Date","AccountTask","AccountTaskDescription","AccountTaskStatus","AccountTaskDueDate","AccountTaskCompletedDate","AccountTaskAssignedTo","AccountProjectName", "ReferenceLinks"
 
 
