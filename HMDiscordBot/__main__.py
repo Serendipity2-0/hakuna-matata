@@ -62,7 +62,8 @@ async def load_cogs():
     cogs = [
         'HMDiscordBot.cogs.calendar_commands',
         'HMDiscordBot.cogs.calendar_views',
-        'HMDiscordBot.cogs.audio_transcript_commands'
+        'HMDiscordBot.cogs.audio_transcript_commands',
+        'HMDiscordBot.cogs.coding_calendar_commands'
     ]
     
     for cog in cogs:
@@ -89,9 +90,18 @@ async def on_ready():
         if channel_id:
             channel = bot.get_channel(int(channel_id))
             if channel:
-                await channel.send("Calendar Bot is now online! Use `/calendar_help` to see available commands.")
+                await channel.send("Calendar Bot is now online! Use `/calendar_help` or `/coding_help` to see available commands.")
             else:
                 logger.warning(f"Could not find channel with ID {channel_id}")
+                
+        # Send a message to the coding calendar channel if provided
+        coding_channel_id = os.getenv('DISCORD_CODING_CALENDAR_CHANNEL_ID')
+        if coding_channel_id and coding_channel_id != channel_id:
+            coding_channel = bot.get_channel(int(coding_channel_id))
+            if coding_channel:
+                await coding_channel.send("Coding Calendar Bot is now online! Use `/coding_help` to see available commands.")
+            else:
+                logger.warning(f"Could not find coding calendar channel with ID {coding_channel_id}")
     except Exception as e:
         logger.error(f"Error in on_ready: {str(e)}", exc_info=True)
 
@@ -149,6 +159,27 @@ async def help_command(ctx):
             "/update_event - Update an event\n"
             "/create_march_2025 - Create calendar entries for March 2025\n"
             "/transcribe_audio - Transcribe an audio file"
+        ),
+        inline=False
+    )
+    
+    help_embed.add_field(
+        name="Coding Calendar Commands",
+        value=(
+            f"{bot.command_prefix}coding_help - Show coding calendar commands\n"
+            f"{bot.command_prefix}add_coding_task - Add a new coding task\n"
+            f"{bot.command_prefix}view_coding_tasks - View all coding tasks\n"
+            f"{bot.command_prefix}view_coding_today - View today's coding tasks\n"
+            f"{bot.command_prefix}view_coding_week - View this week's coding tasks\n"
+            f"{bot.command_prefix}view_coding_date [YYYY-MM-DD] - View coding tasks for a specific date\n"
+            f"{bot.command_prefix}delete_coding_task [id] - Delete a coding task\n"
+            f"{bot.command_prefix}update_coding_task [id] - Update a coding task\n"
+            "/coding_help - Show coding calendar commands\n"
+            "/add_coding_task - Add a new coding task\n"
+            "/view_coding_tasks - View all coding tasks\n"
+            "/view_coding_date - View coding tasks for a specific date\n"
+            "/delete_coding_task - Delete a coding task\n"
+            "/update_coding_task - Update a coding task"
         ),
         inline=False
     )
