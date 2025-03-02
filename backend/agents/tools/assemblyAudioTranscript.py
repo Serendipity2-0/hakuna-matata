@@ -8,40 +8,74 @@ import assemblyai as aai
 import os
 import dotenv
 
-# Load environment variables from .env file
-dotenv.load_dotenv()
+def setup_environment():
+    """Initialize environment variables and API settings"""
+    dotenv.load_dotenv()
+    aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
+    if not aai.settings.api_key:
+        raise ValueError("ASSEMBLYAI_API_KEY not found in environment variables")
 
-# Replace with your API key
-aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
-
-# You can also transcribe a local file by passing in a file path
-FILE_URL = '/Users/mforce/Desktop/hakuna-matata/DB/bkp/KaasDis1.mp3'
-
-transcriber = aai.Transcriber()
-transcript = transcriber.transcribe(FILE_URL)
-
-if transcript.status == aai.TranscriptStatus.error:
-    print(transcript.error)
-    exit(1)
-
-print("Transcription completed successfully")
-transcript_file_name = os.path.splitext(os.path.basename(FILE_URL))[0]
-
-# Create the transcripts directory if it doesn't exist
-output_dir = "DB/AudioTranscripts"
-os.makedirs(output_dir, exist_ok=True)
-
-# Full path to the output file
-output_file = os.path.join(output_dir, f"{transcript_file_name}_transcript.md")
+def transcribe_audio(file_path):
+    """
+    Transcribe audio file using AssemblyAI
     
-try:
+    Args:
+        file_path (str): Path to the audio file
+        
+    Returns:
+        aai.Transcript: Transcript object
+    """
+    transcriber = aai.Transcriber()
+    transcript = transcriber.transcribe(file_path)
+    
+    if transcript.status == aai.TranscriptStatus.error:
+        raise Exception(f"Transcription error: {transcript.error}")
+        
+    return transcript
+
+def save_transcript(transcript, source_file):
+    """
+    Save transcript to markdown file
+    
+    Args:
+        transcript (aai.Transcript): Transcript object
+        source_file (str): Original audio file path
+    """
+    transcript_file_name = os.path.splitext(os.path.basename(source_file))[0]
+    output_dir = "DB/AudioTranscripts"
+    os.makedirs(output_dir, exist_ok=True)
+    
+    output_file = os.path.join(output_dir, f"{transcript_file_name}_transcript.md")
+    
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(f"# Audio Transcription\n\n")
-        f.write(f"Source: {FILE_URL}\n\n")
+        f.write(f"Source: {source_file}\n\n")
         f.write("## Content\n\n")
         f.write(transcript.text)
+    
     print(f"Successfully wrote transcription to {output_file}")
-except Exception as e:
-    print(f"Error writing to file: {str(e)}")
 
+def main():
+    try:
+        # Initialize environment
+        setup_environment()
+        
+        # File to transcribe
+        FILE_URL = 'recordings/channel_General_20250302_182217.wav'
+        
+        # Process transcription
+        print("Starting transcription...")
+        transcript = transcribe_audio(FILE_URL)
+        print("Transcription completed successfully")
+        
+        # Save results
+        save_transcript(transcript, FILE_URL)
+        
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return 1
+    
+    return 0
 
+if __name__ == "__main__":
+    exit(main())
