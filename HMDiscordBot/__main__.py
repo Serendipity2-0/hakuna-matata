@@ -61,7 +61,8 @@ async def load_cogs():
     # List of cogs to load
     cogs = [
         'HMDiscordBot.cogs.calendar_commands',
-        'HMDiscordBot.cogs.calendar_views'
+        'HMDiscordBot.cogs.calendar_views',
+        'HMDiscordBot.cogs.audio_transcript_commands'
     ]
     
     for cog in cogs:
@@ -146,7 +147,17 @@ async def help_command(ctx):
             "/view_date - View events for a specific date\n"
             "/delete_event - Delete an event\n"
             "/update_event - Update an event\n"
-            "/create_march_2025 - Create calendar entries for March 2025"
+            "/create_march_2025 - Create calendar entries for March 2025\n"
+            "/transcribe_audio - Transcribe an audio file"
+        ),
+        inline=False
+    )
+    
+    help_embed.add_field(
+        name="Audio Transcription",
+        value=(
+            f"{bot.command_prefix}transcribe_audio - Transcribe an audio file\n"
+            "/transcribe_audio - Transcribe an audio file with choice of transcription service"
         ),
         inline=False
     )
