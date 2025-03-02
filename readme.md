@@ -57,6 +57,10 @@ You can monitor the Celery tasks using Flower at http://localhost:5555
 
 The Discord bot includes voice channel recording functionality. The PyNaCl library is required for voice functionality and has been included in the Docker setup.
 
+### Audio Fallback Mechanism
+
+The system includes a fallback mechanism for environments where audio devices are not available (like in Docker containers). When no physical audio device is detected, the bot will automatically use a dummy audio implementation that generates silent recordings. This ensures the bot can still function in containerized environments without audio hardware access.
+
 ## Configuration
 
 The Discord bot is scheduled to run every minute by default. You can change this in `HMBeat/celeryconfig.py`:

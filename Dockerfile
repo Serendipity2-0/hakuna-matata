@@ -13,8 +13,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libportaudio2 \
     portaudio19-dev \
     python3-dev \
+    pulseaudio \
+    alsa-utils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Set up virtual audio device
+RUN mkdir -p /etc/pulse
+RUN echo "default-server = unix:/tmp/pulseaudio.socket" > /etc/pulse/client.conf && \
+    echo "autospawn = no" >> /etc/pulse/client.conf && \
+    echo "daemon-binary = /bin/true" >> /etc/pulse/client.conf && \
+    echo "enable-shm = false" >> /etc/pulse/client.conf
 
 # Copy requirements files
 COPY HMDiscordBot/requirements.txt /app/HMDiscordBot/requirements.txt

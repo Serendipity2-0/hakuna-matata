@@ -8,11 +8,19 @@ import sys
 import asyncio
 import logging
 import wave
-import pyaudio
 import threading
 import time
 from datetime import datetime, timedelta
 from pathlib import Path
+
+# Try to import PyAudio, use fallback if not available
+try:
+    import pyaudio
+    PYAUDIO_AVAILABLE = True
+except ImportError:
+    PYAUDIO_AVAILABLE = False
+    logging.warning("PyAudio not available, using fallback audio module")
+    from HMDiscordBot.utils.audio_fallback import DummyPyAudio, create_silent_wav_file
 # Add the parent directory to the Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import discord
@@ -84,7 +92,7 @@ def get_db_path(db_name='calendar'):
 class VoiceRecorder:
     """
     Class to handle recording audio from a Discord voice channel.
-    Uses PyAudio to capture and save the audio stream.
+    Uses PyAudio to capture and save the audio stream, with fallback to dummy audio if needed.
     """
     
     def __init__(self, voice_client, filename):
@@ -97,43 +105,72 @@ class VoiceRecorder:
         """
         self.voice_client = voice_client
         self.recording = False
-        self.audio = pyaudio.PyAudio()
+        self.using_fallback = False
         
         # Create a timestamp for the filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.filename = f"{filename}_{timestamp}.wav"
         self.filepath = RECORDINGS_DIR / self.filename
         
-        # Find the best input device
-        self.device_index = self._find_input_device()
-        logger_voice.info(f"Using audio input device index: {self.device_index}")
-        
         # List to track participants
         self.participants = set()
         
-        # Set up the wave file
-        self.wave_file = wave.open(str(self.filepath), 'wb')
-        self.wave_file.setnchannels(CHANNELS)
-        self.wave_file.setsampwidth(self.audio.get_sample_size(FORMAT))
-        self.wave_file.setframerate(RATE)
-        
-        logger_voice.info(f"Initialized recorder for {filename}, saving to {self.filepath}")
-        
-        # Set up the audio stream with error handling
         try:
-            self.stream = self.audio.open(
-                format=FORMAT,
-                channels=CHANNELS,
-                rate=RATE,
-                input=True,
-                input_device_index=self.device_index,
-                frames_per_buffer=CHUNK
-            )
-            logger_voice.info(f"Successfully opened audio stream")
+            # Try to initialize PyAudio
+            if not PYAUDIO_AVAILABLE:
+                raise ImportError("PyAudio not available")
+                
+            self.audio = pyaudio.PyAudio()
+            
+            # Find the best input device
+            self.device_index = self._find_input_device()
+            logger_voice.info(f"Using audio input device index: {self.device_index}")
+            
+            # Set up the wave file
+            self.wave_file = wave.open(str(self.filepath), 'wb')
+            self.wave_file.setnchannels(CHANNELS)
+            self.wave_file.setsampwidth(self.audio.get_sample_size(FORMAT))
+            self.wave_file.setframerate(RATE)
+            
+            logger_voice.info(f"Initialized recorder for {filename}, saving to {self.filepath}")
+            
+            # Set up the audio stream with error handling
+            try:
+                self.stream = self.audio.open(
+                    format=FORMAT,
+                    channels=CHANNELS,
+                    rate=RATE,
+                    input=True,
+                    input_device_index=self.device_index,
+                    frames_per_buffer=CHUNK
+                )
+                logger_voice.info(f"Successfully opened audio stream")
+            except Exception as e:
+                logger_voice.error(f"Error opening audio stream: {str(e)}")
+                # Try with default device as fallback
+                logger_voice.info("Trying with default device settings")
+                self.stream = self.audio.open(
+                    format=FORMAT,
+                    channels=CHANNELS,
+                    rate=RATE,
+                    input=True,
+                    frames_per_buffer=CHUNK
+                )
         except Exception as e:
-            logger_voice.error(f"Error opening audio stream: {str(e)}")
-            # Try with default device as fallback
-            logger_voice.info("Trying with default device settings")
+            # If PyAudio fails, use the fallback
+            logger_voice.warning(f"Failed to initialize PyAudio: {str(e)}. Using fallback audio module.")
+            self.using_fallback = True
+            
+            # Use dummy PyAudio
+            self.audio = DummyPyAudio()
+            
+            # Set up the wave file
+            self.wave_file = wave.open(str(self.filepath), 'wb')
+            self.wave_file.setnchannels(CHANNELS)
+            self.wave_file.setsampwidth(self.audio.get_sample_size(FORMAT))
+            self.wave_file.setframerate(RATE)
+            
+            # Set up dummy stream
             self.stream = self.audio.open(
                 format=FORMAT,
                 channels=CHANNELS,
@@ -141,6 +178,7 @@ class VoiceRecorder:
                 input=True,
                 frames_per_buffer=CHUNK
             )
+            logger_voice.info(f"Initialized dummy audio recorder for {filename}, saving to {self.filepath}")
     
     def _find_input_device(self):
         """Find the best input device for recording."""
