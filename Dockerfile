@@ -1,40 +1,43 @@
 FROM python:3.11-slim
 
-# Set environment variables
-ENV DEBIAN_FRONTEND=noninteractive
-ENV PYTHONUNBUFFERED 1
-ENV TZ=Asia/Kolkata
-
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    git \
-    libmagic1 \
-    libffi-dev \
-    libssl-dev \
-    libxml2-dev \
-    libxslt1-dev \
-    python3-dev \
-    python3-pip \
-    python3-venv \
-    tzdata \
-    && rm -rf /var/lib/apt/lists/*
-
-
-# set working directory
+# Set working directory
 WORKDIR /app
 
-# Copy the requirements file and key to the container
-COPY requirements.txt .
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    ffmpeg \
+    libffi-dev \
+    libnacl-dev \
+    libopus-dev \
+    libportaudio2 \
+    portaudio19-dev \
+    python3-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --upgrade setuptools && \
-    pip3 install wheel && \
-    pip3 install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# Copy requirements files
+COPY HMDiscordBot/requirements.txt /app/HMDiscordBot/requirements.txt
+COPY HMBeat/requirements.txt /app/HMBeat/requirements.txt
 
-# Copy the rest of the application code to the container
-COPY . .
+# Install Python dependencies
+RUN pip install --no-cache-dir -r HMDiscordBot/requirements.txt \
+    && pip install --no-cache-dir -r HMBeat/requirements.txt \
+    && pip install --no-cache-dir pyaudio PyNaCl flower
 
-RUN chmod +x ./worker.sh
-CMD ["./worker.sh"]
+# Copy application code
+COPY HMDiscordBot /app/HMDiscordBot
+COPY HMBeat /app/HMBeat
+
+# Make run_bot.py executable
+RUN chmod +x /app/HMBeat/run_bot.py
+
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
+
+# Create directory for recordings
+RUN mkdir -p /app/recordings
+
+# Default command
+CMD ["celery", "-A", "HMBeat", "worker", "--loglevel=info"]
