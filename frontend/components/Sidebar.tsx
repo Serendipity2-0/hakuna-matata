@@ -1,3 +1,4 @@
+'use client';
 import ContentCalendar from './ContentCalendar';
 import Typing from './Typing';
 
@@ -11,14 +12,8 @@ export default function Sidebar() {
 
       {/* Navigation Items */}
       <nav className="p-4 space-y-6">
-        {/* You can add icons and better styling to each component */}
-        <div className="hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-          <ContentCalendar />
-        </div>
-
-        <div className="hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-          <Typing />
-        </div>
+        <ContentCalendar />
+        <Typing />
       </nav>
 
       {/* Optional: Footer Section */}
