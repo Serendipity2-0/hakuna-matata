@@ -1,5 +1,13 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import { useUser } from '@clerk/nextjs';
+
+interface TypingResult {
+  wpm: number;
+  accuracy: number;
+  test_duration: number;
+  test_date: string;
+}
 
 export default function TypingPage() {
   const [text, setText] = useState('');
@@ -7,10 +15,51 @@ export default function TypingPage() {
   const [isTyping, setIsTyping] = useState(false);
   const [wpm, setWpm] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
+  const [typingHistory, setTypingHistory] = useState<TypingResult[]>([]);
+  const [showHistory, setShowHistory] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const { isSignedIn } = useUser();
   
   const sampleText = "The quick brown fox jumps over the lazy dog. Programming is the art of telling another human what one wants the computer to do. The best way to predict the future is to invent it.";
   
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  // Save user info when the page loads
+  useEffect(() => {
+    if (isSignedIn) {
+      // Save user info to the database
+      fetch('/api/typing', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+      }).catch(console.error);
+      
+      loadTypingHistory();
+    }
+  }, [isSignedIn]);
+
+  const loadTypingHistory = async () => {
+    if (!isSignedIn) return;
+    
+    try {
+      setIsLoading(true);
+      const response = await fetch('/api/typing');
+      const data = await response.json();
+      
+      if (data.success) {
+        setTypingHistory(data.results);
+      } else {
+        console.error('Error loading typing history:', data.error);
+      }
+    } catch (error) {
+      console.error('Error loading typing history:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -50,6 +99,23 @@ export default function TypingPage() {
     setWpm(newWpm);
     setAccuracy(newAccuracy);
     setIsTyping(false);
+    
+    // Save results to database if user is signed in
+    if (isSignedIn) {
+      fetch('/api/typing', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          wpm: newWpm,
+          accuracy: newAccuracy,
+          testDuration: 60 - timeLeft,
+        }),
+      })
+        .then(() => loadTypingHistory())
+        .catch(console.error);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -106,6 +172,56 @@ export default function TypingPage() {
               <p className="text-3xl font-bold text-green-500">{accuracy}%</p>
             </div>
           </div>
+        </div>
+      )}
+
+      {isSignedIn && (
+        <div className="mt-8">
+          <button
+            onClick={() => setShowHistory(!showHistory)}
+            className="w-full py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors mb-4"
+          >
+            {showHistory ? 'Hide History' : 'Show Typing History'}
+          </button>
+          
+          {showHistory && (
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+              <h2 className="text-2xl font-bold mb-4 text-center text-gray-800 dark:text-white">
+                Your Typing History
+              </h2>
+              
+              {isLoading ? (
+                <p className="text-center text-gray-600 dark:text-gray-400">Loading...</p>
+              ) : typingHistory.length === 0 ? (
+                <p className="text-center text-gray-600 dark:text-gray-400">No typing history found</p>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b dark:border-gray-700">
+                        <th className="py-2 text-left text-gray-600 dark:text-gray-400">Date</th>
+                        <th className="py-2 text-left text-gray-600 dark:text-gray-400">WPM</th>
+                        <th className="py-2 text-left text-gray-600 dark:text-gray-400">Accuracy</th>
+                        <th className="py-2 text-left text-gray-600 dark:text-gray-400">Duration</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {typingHistory.map((result, index) => (
+                        <tr key={index} className="border-b dark:border-gray-700">
+                          <td className="py-2 text-gray-800 dark:text-white">
+                            {new Date(result.test_date).toLocaleDateString()}
+                          </td>
+                          <td className="py-2 text-gray-800 dark:text-white">{result.wpm}</td>
+                          <td className="py-2 text-gray-800 dark:text-white">{result.accuracy}%</td>
+                          <td className="py-2 text-gray-800 dark:text-white">{result.test_duration}s</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>
