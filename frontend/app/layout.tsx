@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import ClientTelegramWrapper from '@/components/ClientTelegramWrapper';
 import Sidebar from '@/components/Sidebar';
+import UserSync from '@/components/UserSync';
 import {
   ClerkProvider,
   SignInButton,
@@ -40,6 +41,7 @@ export default function RootLayout({
               </SignedOut>
               <SignedIn>
                 <UserButton />
+                <UserSync />
               </SignedIn>
             </header>
             <div className="flex flex-1">

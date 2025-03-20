@@ -1,0 +1,12 @@
+# Core dependencies
+fastapi==0.104.1
+uvicorn==0.24.0  # Using basic uvicorn without [standard] to avoid C extension dependencies
+python-dotenv==1.0.0
+
+# No SQLAlchemy - using direct sqlite3 connection instead
+
+# Use compatible versions of pydantic
+pydantic>=2.0.0
+
+# Dependencies for existing agents - commented out to avoid C extension dependencies
+# crawl4ai>=0.1.0

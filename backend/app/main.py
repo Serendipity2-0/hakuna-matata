@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import asyncio
 import logging
 import json
+from .routes import user_routes
 from agents.coderunner import WebScraperAgent, AnalystAgent, CampaignIdeaAgent, CopywriterAgent
 from agents.snowywriter import SnowyInterfaceAgent
 from agents.amolgittur import UserInterfaceAgent
@@ -24,6 +25,9 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
+
+# Include routers
+app.include_router(user_routes.router, prefix="/api/v1")
 
 @app.post("/agents/scrape")
 async def run_scraper(request: Request):
